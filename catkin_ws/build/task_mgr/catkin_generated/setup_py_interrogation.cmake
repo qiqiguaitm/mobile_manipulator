@@ -1,0 +1,7 @@
+set(task_mgr_SETUP_PY_SETUP_MODULE "setuptools")
+set(task_mgr_SETUP_PY_VERSION "0.0.1")
+set(task_mgr_SETUP_PY_SCRIPTS "")
+set(task_mgr_SETUP_PY_PACKAGES "task_mgr")
+set(task_mgr_SETUP_PY_PACKAGE_DIRS "src/task_mgr")
+set(task_mgr_SETUP_PY_MODULES "")
+set(task_mgr_SETUP_PY_MODULE_DIRS "")

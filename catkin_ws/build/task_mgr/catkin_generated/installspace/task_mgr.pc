@@ -1,0 +1,8 @@
+prefix=/home/agilex/AgileXDemo/catkin_ws/install
+
+Name: task_mgr
+Description: Description of task_mgr
+Version: 0.0.1
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs geometry_msgs sensor_msgs message_runtime

@@ -1,0 +1,8 @@
+prefix=/home/agilex/AgileXDemo/catkin_ws/install
+
+Name: arm_planner
+Description: Description of arm_planner
+Version: 0.0.1
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs sensor_msgs geometry_msgs trajectory_msgs message_runtime

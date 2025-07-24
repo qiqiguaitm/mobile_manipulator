@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="object_tracker" type="object_tracker_node.py" name="object_tracker_node" output="screen">
+    <remap from="/vision/object_list" to="/vision/object_list" />
+    <remap from="/vision/tracking_list" to="/vision/tracking_list" />
+  </node>
+</launch>

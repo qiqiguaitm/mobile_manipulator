@@ -1,0 +1,7 @@
+set(sensor_calibration_SETUP_PY_SETUP_MODULE "setuptools")
+set(sensor_calibration_SETUP_PY_VERSION "0.0.1")
+set(sensor_calibration_SETUP_PY_SCRIPTS "")
+set(sensor_calibration_SETUP_PY_PACKAGES "sensor_calibration")
+set(sensor_calibration_SETUP_PY_PACKAGE_DIRS "src/sensor_calibration")
+set(sensor_calibration_SETUP_PY_MODULES "")
+set(sensor_calibration_SETUP_PY_MODULE_DIRS "")

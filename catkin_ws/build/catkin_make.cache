@@ -1,0 +1,2 @@
+arm_controller:arm_planner:chassis_controller:chassis_planner:dag_framework:inference_abstraction:object_tracker:perception:sensor_calibration:slam:target_filter:task_mgr:task_router
+-DCATKIN_DEVEL_PREFIX=/home/agilex/AgileXDemo/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/agilex/AgileXDemo/catkin_ws/install -G Unix Makefiles

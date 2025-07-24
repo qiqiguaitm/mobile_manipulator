@@ -1,0 +1,116 @@
+{
+  "/map/octomap": {
+    "type": "octomap_msgs/Octomap",
+    "sample_data": {
+      "header": {
+        "seq": 1,
+        "stamp": {
+          "secs": 1234567890,
+          "nsecs": 123456789
+        },
+        "frame_id": "map"
+      },
+      "binary": true,
+      "id": "OcTree",
+      "resolution": 0.05,
+      "data": "base64_encoded_octomap_data"
+    }
+  },
+  "/chassis/pose": {
+    "type": "geometry_msgs/PoseStamped",
+    "sample_data": {
+      "header": {
+        "seq": 1,
+        "stamp": {
+          "secs": 1234567890,
+          "nsecs": 123456789
+        },
+        "frame_id": "odom"
+      },
+      "pose": {
+        "position": {
+          "x": 1.0,
+          "y": 2.0,
+          "z": 0.0
+        },
+        "orientation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      }
+    }
+  },
+  "/task_mgr/target_object/pose": {
+    "type": "geometry_msgs/PoseStamped",
+    "sample_data": {
+      "header": {
+        "seq": 1,
+        "stamp": {
+          "secs": 1234567890,
+          "nsecs": 123456789
+        },
+        "frame_id": "map"
+      },
+      "pose": {
+        "position": {
+          "x": 3.0,
+          "y": 4.0,
+          "z": 0.5
+        },
+        "orientation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      }
+    }
+  },
+  "/arm/joint_states": {
+    "type": "sensor_msgs/JointState",
+    "sample_data": {
+      "header": {
+        "seq": 1,
+        "stamp": {
+          "secs": 1234567890,
+          "nsecs": 123456789
+        },
+        "frame_id": "arm_base"
+      },
+      "name": [
+        "joint1",
+        "joint2",
+        "joint3",
+        "joint4",
+        "joint5",
+        "joint6"
+      ],
+      "position": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "effort": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

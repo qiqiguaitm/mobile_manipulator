@@ -1,0 +1,7 @@
+set(slam_SETUP_PY_SETUP_MODULE "setuptools")
+set(slam_SETUP_PY_VERSION "0.0.1")
+set(slam_SETUP_PY_SCRIPTS "")
+set(slam_SETUP_PY_PACKAGES "slam")
+set(slam_SETUP_PY_PACKAGE_DIRS "src/slam")
+set(slam_SETUP_PY_MODULES "")
+set(slam_SETUP_PY_MODULE_DIRS "")

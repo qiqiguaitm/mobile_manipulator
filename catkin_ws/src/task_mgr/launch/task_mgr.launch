@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="task_mgr" type="task_mgr_node.py" name="task_mgr_node" output="screen">
+    <remap from="/arm/joint_state" to="/arm/joint_state" />
+    <remap from="/chassis/chassis_state" to="/chassis/chassis_state" />
+    <remap from="/router/target_list" to="/router/target_list" />
+    <remap from="/task_mgr/status" to="/task_mgr/status" />
+  </node>
+</launch>

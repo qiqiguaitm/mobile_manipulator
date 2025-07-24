@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(echo:*)",
+      "Bash(chmod:*)",
+      "Bash(source:*)",
+      "Bash(catkin_make:*)",
+      "Bash(sudo apt-get update:*)",
+      "Bash(sudo apt-get install:*)",
+      "Bash(pip install:*)",
+      "Bash(rosrun chaiss_planner test_hybrid_a_star:*)",
+      "Bash(/home/agilex/AgileXDemo/catkin_ws/src/chaiss_planner/verify.sh:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(find:*)",
+      "Bash(./build_all.sh:*)",
+      "Bash(rosnode list:*)",
+      "Bash(./run_all.sh:*)",
+      "Bash(roslaunch:*)",
+      "Bash(dpkg:*)",
+      "Bash(rosrun arm_planner arm_planner_node.py:*)",
+      "Bash(pip3 install:*)",
+      "Bash(python3 src/arm_planner/scripts/arm_planner_node.py:*)",
+      "Bash(python3:*)",
+      "Bash(bash run_all.sh:*)",
+      "Bash(rospack find:*)",
+      "Bash(rm:*)",
+      "Bash(timeout:*)"
+    ],
+    "deny": []
+  }
+}

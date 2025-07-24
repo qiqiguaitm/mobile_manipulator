@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="task_router" type="task_router_node.py" name="task_router_node" output="screen">
+    <remap from="/vision/target_list" to="/vision/target_list" />
+    <remap from="/router/target_list" to="/router/target_list" />
+  </node>
+</launch>

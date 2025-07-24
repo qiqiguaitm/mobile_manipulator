@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="dag_framework" type="dag_executor.py" name="dag_executor" output="screen" />
+</launch>

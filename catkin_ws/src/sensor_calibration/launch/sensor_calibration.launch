@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="sensor_calibration" type="sensor_calibration_node.py" name="sensor_calibration_node" output="screen">
+    <remap from="/camera/top/dual/color/image_raw" to="/camera/top/dual/color/image_raw" />
+    <remap from="/camera/hand/dual/color/image_raw" to="/camera/hand/dual/color/image_raw" />
+    <remap from="/camera/chassis/dual/color/image_raw" to="/camera/chassis/dual/color/image_raw" />
+    <remap from="/lidar/chassis/point_cloud" to="/lidar/chassis/point_cloud" />
+  </node>
+</launch>

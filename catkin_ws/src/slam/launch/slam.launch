@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="slam" type="slam_node.py" name="slam_node" output="screen">
+    <remap from="/lidar/chassis" to="/lidar/chassis" />
+    <remap from="/imu/data" to="/imu/data" />
+    <remap from="/map/occupancy_grid" to="/map/occupancy_grid" />
+    <remap from="/chassis/pose" to="/chassis/pose" />
+  </node>
+</launch>

@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="target_filter" type="target_filter_node.py" name="target_filter_node" output="screen">
+    <remap from="/vision/tracking_list" to="/vision/tracking_list" />
+    <remap from="/vision/target_list" to="/vision/target_list" />
+  </node>
+</launch>

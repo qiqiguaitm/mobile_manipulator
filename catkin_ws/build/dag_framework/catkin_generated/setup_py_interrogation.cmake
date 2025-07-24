@@ -1,0 +1,7 @@
+set(dag_framework_SETUP_PY_SETUP_MODULE "setuptools")
+set(dag_framework_SETUP_PY_VERSION "0.0.1")
+set(dag_framework_SETUP_PY_SCRIPTS "")
+set(dag_framework_SETUP_PY_PACKAGES "dag_framework")
+set(dag_framework_SETUP_PY_PACKAGE_DIRS "src/dag_framework")
+set(dag_framework_SETUP_PY_MODULES "")
+set(dag_framework_SETUP_PY_MODULE_DIRS "")

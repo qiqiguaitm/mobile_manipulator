@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="inference_abstraction" type="inference_abstraction_node.py" name="inference_abstraction_node" output="screen">
+    <remap from="/camera/top/dual/color/image_raw" to="/camera/top/dual/color/image_raw" />
+    <remap from="/camera/hand/dual/color/image_raw" to="/camera/hand/dual/color/image_raw" />
+    <remap from="/camera/chassis/dual/color/image_raw" to="/camera/chassis/dual/color/image_raw" />
+  </node>
+</launch>

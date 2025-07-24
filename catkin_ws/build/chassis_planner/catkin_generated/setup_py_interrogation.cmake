@@ -1,0 +1,7 @@
+set(chassis_planner_SETUP_PY_SETUP_MODULE "setuptools")
+set(chassis_planner_SETUP_PY_VERSION "0.0.1")
+set(chassis_planner_SETUP_PY_SCRIPTS "")
+set(chassis_planner_SETUP_PY_PACKAGES "chassis_planner")
+set(chassis_planner_SETUP_PY_PACKAGE_DIRS "src/chassis_planner")
+set(chassis_planner_SETUP_PY_MODULES "")
+set(chassis_planner_SETUP_PY_MODULE_DIRS "")

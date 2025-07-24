@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="perception" type="perception_node.py" name="perception_node" output="screen">
+    <remap from="/camera/top/dual/color/image_raw" to="/camera/top/dual/color/image_raw" />
+    <remap from="/camera/hand/dual/color/image_raw" to="/camera/hand/dual/color/image_raw" />
+    <remap from="/camera/chassis/dual/color/image_raw" to="/camera/chassis/dual/color/image_raw" />
+    <remap from="/vision/object_list" to="/vision/object_list" />
+  </node>
+</launch>
