@@ -1,0 +1,9 @@
+topics:
+  inputs:
+    trajectory:
+      name: /arm/trajectory
+      type: trajectory_msgs/JointTrajectory
+  outputs:
+    joint_state:
+      name: /arm/joint_state
+      type: sensor_msgs/JointState

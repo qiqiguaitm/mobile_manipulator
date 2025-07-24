@@ -1,0 +1,15 @@
+topics:
+  inputs:
+    top_camera:
+      name: /camera/top/dual/color/image_raw
+      type: sensor_msgs/Image
+    hand_camera:
+      name: /camera/hand/dual/color/image_raw
+      type: sensor_msgs/Image
+    chassis_camera:
+      name: /camera/chassis/dual/color/image_raw
+      type: sensor_msgs/Image
+  outputs:
+    object_list:
+      name: /vision/object_list
+      type: geometry_msgs/PoseStamped

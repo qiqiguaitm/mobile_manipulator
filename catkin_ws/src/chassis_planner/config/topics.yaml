@@ -1,0 +1,18 @@
+topics:
+  inputs:
+    target_pose:
+      name: /task_mgr/target_object/pose
+      type: geometry_msgs/PoseStamped
+    map:
+      name: /map/occupancy_grid
+      type: nav_msgs/OccupancyGrid
+    chassis_pose:
+      name: /chassis/pose
+      type: geometry_msgs/PoseStamped
+  outputs:
+    cmd_vel:
+      name: /chassis/cmd_vel
+      type: geometry_msgs/Twist
+    trajectory:
+      name: /chassis/trajectory
+      type: geometry_msgs/PoseStamped

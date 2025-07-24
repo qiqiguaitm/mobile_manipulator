@@ -1,0 +1,9 @@
+topics:
+  inputs:
+    vision_target_list:
+      name: /vision/target_list
+      type: geometry_msgs/PoseStamped
+  outputs:
+    target_list:
+      name: /router/target_list
+      type: geometry_msgs/PoseStamped
