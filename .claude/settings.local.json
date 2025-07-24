@@ -27,7 +27,21 @@
       "Bash(bash run_all.sh:*)",
       "Bash(rospack find:*)",
       "Bash(rm:*)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(cat:*)",
+      "Bash(git restore:*)",
+      "Bash(conda install:*)",
+      "Bash(rosrun arm_planner:*)",
+      "Bash(rostopic list:*)",
+      "Bash(rosnode info:*)",
+      "Bash(rostopic info:*)",
+      "Bash(env:*)",
+      "Bash(rostopic echo:*)",
+      "Bash(pkill:*)",
+      "Bash(rostopic hz:*)",
+      "Bash(rostopic pub:*)",
+      "Bash(rosnode ping:*)",
+      "Bash(dmesg:*)"
     ],
     "deny": []
   }

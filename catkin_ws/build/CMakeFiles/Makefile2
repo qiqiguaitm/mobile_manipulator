@@ -56,7 +56,6 @@ CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/catkin_ws/build
 all: gtest/all
 all: chassis_controller/all
 all: chassis_planner/all
-all: dag_framework/all
 all: object_tracker/all
 all: target_filter/all
 all: task_router/all
@@ -74,7 +73,6 @@ all: sensor_calibration/all
 preinstall: gtest/preinstall
 preinstall: chassis_controller/preinstall
 preinstall: chassis_planner/preinstall
-preinstall: dag_framework/preinstall
 preinstall: object_tracker/preinstall
 preinstall: target_filter/preinstall
 preinstall: task_router/preinstall
@@ -97,7 +95,6 @@ clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: chassis_controller/clean
 clean: chassis_planner/clean
-clean: dag_framework/clean
 clean: object_tracker/clean
 clean: target_filter/clean
 clean: task_router/clean
@@ -220,24 +217,6 @@ chassis_planner/clean: chassis_planner/CMakeFiles/actionlib_msgs_generate_messag
 chassis_planner/clean: chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/clean
 
 .PHONY : chassis_planner/clean
-
-#=============================================================================
-# Directory level rules for directory dag_framework
-
-# Recursive "all" directory target.
-dag_framework/all:
-
-.PHONY : dag_framework/all
-
-# Recursive "preinstall" directory target.
-dag_framework/preinstall:
-
-.PHONY : dag_framework/preinstall
-
-# Recursive "clean" directory target.
-dag_framework/clean:
-
-.PHONY : dag_framework/clean
 
 #=============================================================================
 # Directory level rules for directory gtest

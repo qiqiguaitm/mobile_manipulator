@@ -1,6 +1,7 @@
 <launch>
+  <!-- 加载话题配置 -->
+  <rosparam file="$(find arm_controller)/config/topics.yaml" command="load" />
+  
   <node pkg="arm_controller" type="arm_controller_node.py" name="arm_controller_node" output="screen">
-    <remap from="/arm/trajectory" to="/arm/trajectory" />
-    <remap from="/arm/joint_state" to="/arm/joint_state" />
   </node>
 </launch>

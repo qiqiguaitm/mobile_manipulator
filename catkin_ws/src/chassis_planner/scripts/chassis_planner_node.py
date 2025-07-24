@@ -8,14 +8,17 @@ class ChassisPlannerNode:
     def __init__(self):
         rospy.init_node('chassis_planner_node')
         
+        # Load topic configurations
+        topics = rospy.get_param('topics')
+        
         # Publishers for planner outputs
-        self.cmd_vel_pub = rospy.Publisher('/chassis/cmd_vel', Twist, queue_size=10)
-        self.trajectory_pub = rospy.Publisher('/chassis/trajectory', PoseStamped, queue_size=10)
+        self.cmd_vel_pub = rospy.Publisher(topics['outputs']['cmd_vel']['name'], Twist, queue_size=10)
+        self.trajectory_pub = rospy.Publisher(topics['outputs']['trajectory']['name'], PoseStamped, queue_size=10)
         
         # Subscribers for planning inputs
-        self.target_sub = rospy.Subscriber('/task_mgr/target_object/pose', PoseStamped, self.target_callback)
-        self.map_sub = rospy.Subscriber('/map/occupancy_grid', OccupancyGrid, self.map_callback)
-        self.pose_sub = rospy.Subscriber('/chassis/pose', PoseStamped, self.pose_callback)
+        self.target_sub = rospy.Subscriber(topics['inputs']['target_pose']['name'], PoseStamped, self.target_callback)
+        self.map_sub = rospy.Subscriber(topics['inputs']['map']['name'], OccupancyGrid, self.map_callback)
+        self.pose_sub = rospy.Subscriber(topics['inputs']['chassis_pose']['name'], PoseStamped, self.pose_callback)
         
         rospy.loginfo("ChassisPlanner node initialized")
 

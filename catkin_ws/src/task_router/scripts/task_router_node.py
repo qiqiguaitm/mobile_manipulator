@@ -7,11 +7,14 @@ class TaskRouterNode:
     def __init__(self):
         rospy.init_node('task_router_node')
         
+        # Load topic configurations
+        topics = rospy.get_param('topics')
+        
         # Publishers for routing outputs
-        self.route_pub = rospy.Publisher('/router/target_list', PoseStamped, queue_size=10)
+        self.route_pub = rospy.Publisher(topics['outputs']['target_list']['name'], PoseStamped, queue_size=10)
         
         # Subscribers for target data
-        self.target_sub = rospy.Subscriber('/vision/target_list', PoseStamped, self.target_callback)
+        self.target_sub = rospy.Subscriber(topics['inputs']['vision_target_list']['name'], PoseStamped, self.target_callback)
         
         rospy.loginfo("TaskRouter node initialized")
 

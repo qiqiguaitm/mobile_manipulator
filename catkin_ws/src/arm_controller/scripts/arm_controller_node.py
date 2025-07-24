@@ -8,11 +8,14 @@ class ArmControllerNode:
     def __init__(self):
         rospy.init_node('arm_controller_node')
         
+        # Load topic configurations
+        topics = rospy.get_param('topics')
+        
         # Publishers for controller outputs
-        self.joint_state_pub = rospy.Publisher('/arm/joint_state', JointState, queue_size=10)
+        self.joint_state_pub = rospy.Publisher(topics['outputs']['joint_state']['name'], JointState, queue_size=10)
         
         # Subscribers for control inputs
-        self.trajectory_sub = rospy.Subscriber('/arm/trajectory', ArmTrajectory, self.trajectory_callback)
+        self.trajectory_sub = rospy.Subscriber(topics['inputs']['trajectory']['name'], ArmTrajectory, self.trajectory_callback)
         
         rospy.loginfo("ArmController node initialized")
 

@@ -18,7 +18,7 @@ topics:
   outputs:
     arm_trajectory:
       name: /arm/trajectory
-      type: trajectory_msgs/JointTrajectory
+      type: arm_planner/ArmTrajectory
     end_pose:
       name: /arm/end_pose
       type: geometry_msgs/PoseStamped

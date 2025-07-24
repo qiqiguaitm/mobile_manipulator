@@ -8,13 +8,16 @@ class PerceptionNode:
     def __init__(self):
         rospy.init_node('perception_node')
         
+        # Load topic configurations
+        topics = rospy.get_param('topics')
+        
         # Publishers for perception outputs
-        self.object_pub = rospy.Publisher('/vision/object_list', PoseStamped, queue_size=10)
+        self.object_pub = rospy.Publisher(topics['outputs']['object_list']['name'], PoseStamped, queue_size=10)
         
         # Subscribers for camera images
-        self.top_camera_sub = rospy.Subscriber('/camera/top/dual/color/image_raw', Image, self.top_camera_callback)
-        self.hand_camera_sub = rospy.Subscriber('/camera/hand/dual/color/image_raw', Image, self.hand_camera_callback)
-        self.chassis_camera_sub = rospy.Subscriber('/camera/chassis/dual/color/image_raw', Image, self.chassis_camera_callback)
+        self.top_camera_sub = rospy.Subscriber(topics['inputs']['top_camera']['name'], Image, self.top_camera_callback)
+        self.hand_camera_sub = rospy.Subscriber(topics['inputs']['hand_camera']['name'], Image, self.hand_camera_callback)
+        self.chassis_camera_sub = rospy.Subscriber(topics['inputs']['chassis_camera']['name'], Image, self.chassis_camera_callback)
         
         rospy.loginfo("Perception node initialized")
 

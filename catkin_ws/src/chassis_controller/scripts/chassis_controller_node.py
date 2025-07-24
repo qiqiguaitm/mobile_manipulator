@@ -7,11 +7,14 @@ class ChassisControllerNode:
     def __init__(self):
         rospy.init_node('chassis_controller_node')
         
+        # Load topic configurations
+        topics = rospy.get_param('topics')
+        
         # Publishers for controller outputs
-        self.state_pub = rospy.Publisher('/chassis/state', PoseStamped, queue_size=10)
+        self.state_pub = rospy.Publisher(topics['outputs']['state']['name'], PoseStamped, queue_size=10)
         
         # Subscribers for control inputs
-        self.cmd_vel_sub = rospy.Subscriber('/chassis/cmd_vel', Twist, self.cmd_vel_callback)
+        self.cmd_vel_sub = rospy.Subscriber(topics['inputs']['cmd_vel']['name'], Twist, self.cmd_vel_callback)
         
         rospy.loginfo("ChassisController node initialized")
 

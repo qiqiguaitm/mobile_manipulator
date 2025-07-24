@@ -1,9 +1,7 @@
 <launch>
+  <!-- 加载话题配置 -->
+  <rosparam file="$(find chassis_planner)/config/topics.yaml" command="load" />
+  
   <node pkg="chassis_planner" type="chassis_planner_node.py" name="chassis_planner_node" output="screen">
-    <remap from="/task_mgr/target_object/pose" to="/task_mgr/target_object/pose" />
-    <remap from="/map/occupancy_grid" to="/map/occupancy_grid" />
-    <remap from="/chassis/pose" to="/chassis/pose" />
-    <remap from="/chassis/cmd_vel" to="/chassis/cmd_vel" />
-    <remap from="/chassis/trajectory" to="/chassis/trajectory" />
   </node>
 </launch>

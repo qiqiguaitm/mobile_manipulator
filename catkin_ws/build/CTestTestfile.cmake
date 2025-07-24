@@ -7,7 +7,6 @@
 subdirs("gtest")
 subdirs("chassis_controller")
 subdirs("chassis_planner")
-subdirs("dag_framework")
 subdirs("object_tracker")
 subdirs("target_filter")
 subdirs("task_router")

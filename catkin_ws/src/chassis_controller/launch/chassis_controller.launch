@@ -1,6 +1,7 @@
 <launch>
+  <!-- 加载话题配置 -->
+  <rosparam file="$(find chassis_controller)/config/topics.yaml" command="load" />
+  
   <node pkg="chassis_controller" type="chassis_controller_node.py" name="chassis_controller_node" output="screen">
-    <remap from="/chassis/cmd_vel" to="/chassis/cmd_vel" />
-    <remap from="/chassis/state" to="/chassis/state" />
   </node>
 </launch>
