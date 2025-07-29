@@ -6,8 +6,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   std_msgs
-  rslidar_sdk
-  pointcloud_to_laserscan
 )
 
 catkin_python_setup()
@@ -18,8 +16,6 @@ catkin_package(
   roscpp
   sensor_msgs
   std_msgs
-  rslidar_sdk
-  pointcloud_to_laserscan
 )
 
 include_directories(
@@ -28,6 +24,7 @@ include_directories(
 
 catkin_install_python(PROGRAMS
   scripts/lidar_driver_node.py
+  scripts/lidar_driver_node_sim.py
   scripts/lidar_test.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

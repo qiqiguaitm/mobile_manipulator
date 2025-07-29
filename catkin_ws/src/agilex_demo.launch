@@ -50,9 +50,7 @@
   <!-- Arm Controller -->
   <include file="$(find arm_controller)/launch/arm_controller.launch" />
   
-  <!-- Access Layer -->
-  <!-- include file="$(find access_layer)/launch/access_layer.launch" /-->
-  
+
   <!-- DAG Executor -->
   <!-- include file="$(find dag_framework)/launch/dag_executor.launch" /-->
   
@@ -69,5 +67,5 @@
     <param name="resolution" value="0.05" />
     <param name="point_cloud_topic" value="/sensors/point_cloud" />
     <remap from="/octomap_full" to="/environment/octomap" />
-  </node> -->
+  </node -->
 </launch>

@@ -21,7 +21,7 @@ class ImuDriverNode:
         self.baud = rospy.get_param('~baud', DEFAULT_BAUD)
         
         # Publisher for IMU data
-        self.imu_pub = rospy.Publisher('/sensors/imu/data', Imu, queue_size=10)
+        self.imu_pub = rospy.Publisher('/imu/data', Imu, queue_size=10)
         
         # Initialize serial connection
         try:

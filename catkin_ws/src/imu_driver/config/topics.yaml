@@ -1,5 +1,5 @@
 topics:
   outputs:
     data:
-      name: /sensors/imu/data
+      name: /imu/data
       type: sensor_msgs/Imu

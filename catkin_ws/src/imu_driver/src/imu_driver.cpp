@@ -85,7 +85,7 @@ int main(int argc, char** argv)
     private_nh.param<int>("baud", baud, BAUD);
 
     // Publisher for IMU data
-    ros::Publisher imu_pub = n.advertise<sensor_msgs::Imu>("/sensors/imu/data", 20);
+    ros::Publisher imu_pub = n.advertise<sensor_msgs::Imu>("/imu/data", 20);
 
     serial::Serial sp;
 

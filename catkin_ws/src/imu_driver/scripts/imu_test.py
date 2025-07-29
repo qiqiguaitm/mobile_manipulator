@@ -17,7 +17,7 @@ def main():
     rospy.init_node('imu_test_listener', anonymous=True)
     
     # Subscribe to IMU topic
-    rospy.Subscriber('/sensors/imu/data', Imu, imu_callback)
+    rospy.Subscriber('/imu/data', Imu, imu_callback)
     
     rospy.loginfo("IMU test listener started. Waiting for data...")
     rospy.spin()

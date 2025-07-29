@@ -552,7 +552,7 @@ inference_abstraction_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/
 inference_abstraction_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/inference_abstraction
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/noetic/lib/libactionlib.so
+lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
 
 //Value Computed by CMake
 lidar_driver_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/lidar_driver

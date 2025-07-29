@@ -37,5 +37,7 @@ install(TARGETS imu_driver
 
 catkin_install_python(PROGRAMS
   scripts/imu_driver_node.py
+  scripts/imu_test.py
+  scripts/test_imu_topic.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

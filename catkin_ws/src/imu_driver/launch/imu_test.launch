@@ -4,4 +4,5 @@
     
     <!-- Launch the test listener node -->
     <node pkg="imu_driver" type="imu_test.py" name="imu_test_listener" output="screen"/>
+    <remap from="/sensors/imu/data" to="/imu/data" />
 </launch>
