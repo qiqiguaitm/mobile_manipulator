@@ -1,0 +1,5 @@
+topics:
+  outputs:
+    data:
+      name: /sensors/imu/data
+      type: sensor_msgs/Imu

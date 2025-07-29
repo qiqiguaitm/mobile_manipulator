@@ -59,11 +59,11 @@ arm_planner/CMakeFiles/arm_planner_generate_messages_py: /home/agilex/AgileXDemo
 
 /home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /home/agilex/AgileXDemo/catkin_ws/src/arm_planner/msg/ArmTrajectory.msg
-/home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /opt/ros/noetic/share/trajectory_msgs/msg/JointTrajectoryPoint.msg
 /home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py: /opt/ros/noetic/share/trajectory_msgs/msg/JointTrajectoryPoint.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/agilex/AgileXDemo/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG arm_planner/ArmTrajectory"
 	cd /home/agilex/AgileXDemo/catkin_ws/build/arm_planner && ../catkin_generated/env_cached.sh /home/agilex/miniconda3/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/agilex/AgileXDemo/catkin_ws/src/arm_planner/msg/ArmTrajectory.msg -Iarm_planner:/home/agilex/AgileXDemo/catkin_ws/src/arm_planner/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -p arm_planner -o /home/agilex/AgileXDemo/catkin_ws/devel/lib/python3/dist-packages/arm_planner/msg
 

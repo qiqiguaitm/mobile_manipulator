@@ -1,0 +1,7 @@
+<launch>
+  <!-- Launch all RealSense cameras -->
+  <include file="$(find camera_driver)/launch/realsense_cameras.launch" />
+  
+  <!-- LiDAR is launched in the main agilex_demo.launch file -->
+  <!-- <include file="$(find lidar_driver)/launch/rslidar_driver.launch" /> -->
+</launch>

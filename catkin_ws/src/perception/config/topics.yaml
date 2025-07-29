@@ -1,13 +1,13 @@
 topics:
   inputs:
     top_camera:
-      name: /camera/top/dual/color/image_raw
+      name: /camera/top/color/image_raw
       type: sensor_msgs/Image
     hand_camera:
-      name: /camera/hand/dual/color/image_raw
+      name: /camera/hand/color/image_raw
       type: sensor_msgs/Image
     chassis_camera:
-      name: /camera/chassis/dual/color/image_raw
+      name: /camera/chassis/color/image_raw
       type: sensor_msgs/Image
   outputs:
     object_list:

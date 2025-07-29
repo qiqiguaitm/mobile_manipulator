@@ -1,0 +1,10 @@
+<launch>
+  <!-- Include the lidar driver -->
+  <include file="$(find lidar_driver)/launch/rslidar_driver.launch"/>
+  
+  <!-- Launch the odom node -->
+  <include file="$(find odom)/launch/odom.launch"/>
+  
+  <!-- Launch the test listener node -->
+  <node pkg="odom" type="odom_test.py" name="odom_test_listener" output="screen"/>
+</launch>

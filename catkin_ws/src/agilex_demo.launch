@@ -2,6 +2,18 @@
   <!-- 加载话题配置 -->
   <rosparam file="$(find arm_planner)/config/topics.yaml" command="load" />
   
+  <!-- IMU Driver -->
+  <include file="$(find imu_driver)/launch/imu_driver_cpp.launch" />
+  
+  <!-- Camera Driver -->
+  <include file="$(find camera_driver)/launch/camera_driver.launch">
+    <arg name="device_id" value="0" />
+    <arg name="frame_rate" value="30" />
+  </include>
+  
+  <!-- LIDAR Driver (using Realsense depth camera) -->
+  <include file="$(find lidar_driver)/launch/rslidar_driver.launch" />
+  
   <!-- Sensor Calibration -->
   <include file="$(find sensor_calibration)/launch/sensor_calibration.launch" />
   
@@ -37,6 +49,9 @@
   
   <!-- Arm Controller -->
   <include file="$(find arm_controller)/launch/arm_controller.launch" />
+  
+  <!-- Access Layer -->
+  <!-- include file="$(find access_layer)/launch/access_layer.launch" /-->
   
   <!-- DAG Executor -->
   <!-- include file="$(find dag_framework)/launch/dag_executor.launch" /-->

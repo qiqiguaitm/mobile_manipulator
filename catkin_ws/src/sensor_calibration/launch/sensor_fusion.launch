@@ -1,0 +1,36 @@
+<launch>
+  <!-- Sensor Integration Launch File -->
+  <!-- This file integrates all sensors: LiDAR and RealSense cameras -->
+  
+  <!-- Arguments for sensor configurations -->
+  <arg name="lidar_enabled" default="false"/>  <!-- LiDAR is launched in the main agilex_demo.launch file -->
+  <arg name="cameras_enabled" default="true"/>
+  
+  <!-- Launch RS-Helios LiDAR if enabled -->
+  <group if="$(arg lidar_enabled)">
+    <!-- <include file="$(find lidar_driver)/launch/rslidar_driver.launch" /> -->
+    <!-- LiDAR is launched in the main agilex_demo.launch file to avoid duplication -->
+  </group>
+  
+  <!-- Launch RealSense cameras if enabled -->
+  <group if="$(arg cameras_enabled)">
+    <include file="$(find camera_driver)/launch/realsense_cameras.launch" />
+  </group>
+  
+  <!-- Static transforms for sensor positions (example - adjust as needed) -->
+  <!-- These transforms define the spatial relationship between sensors and the robot base -->
+  <!-- 
+  <node pkg="tf2_ros" type="static_transform_publisher" name="lidar_to_base" 
+        args="0 0 0.3 0 0 0 base_link rslidar" />
+        
+  <node pkg="tf2_ros" type="static_transform_publisher" name="chassis_camera_to_base" 
+        args="0.2 0 0.1 0 0.2 0 base_link chassis_link" />
+        
+  <node pkg="tf2_ros" type="static_transform_publisher" name="hand_camera_to_base" 
+        args="0 0 0.8 0 0.5 0 base_link hand_link" />
+        
+  <node pkg="tf2_ros" type="static_transform_publisher" name="top_camera_to_base" 
+        args="0 0 1.2 0 0 0 base_link top_link" />
+  -->
+  
+</launch>

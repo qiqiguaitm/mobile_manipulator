@@ -1,0 +1,7 @@
+<launch>
+    <!-- Launch only the IMU driver for testing -->
+    <include file="$(find imu_driver)/launch/imu_driver_cpp.launch" />
+    
+    <!-- Simple subscriber to verify IMU data -->
+    <node name="imu_test_subscriber" pkg="rostopic" type="rostopic" args="echo /sensors/imu/data" output="screen" />
+</launch>
