@@ -1,0 +1,8 @@
+<launch>
+    <!-- Launch the IMU driver -->
+    <include file="$(find imu_driver)/launch/imu_driver.launch" />
+    
+    <!-- Test subscriber to verify IMU data on the new topic -->
+    <node name="imu_test_subscriber" pkg="imu_driver" type="test_imu_topic.py" output="screen" />
+    <remap from="/sensors/imu/data" to="/imu/data" />
+</launch>

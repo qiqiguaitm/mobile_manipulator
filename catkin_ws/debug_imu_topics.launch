@@ -1,0 +1,7 @@
+<launch>
+    <!-- Launch the IMU driver -->
+    <include file="$(find imu_driver)/launch/imu_driver_cpp.launch" />
+    
+    <!-- Debug node to check which topic has data -->
+    <node name="debug_imu_topics" pkg="imu_driver" type="debug_imu_topics.py" output="screen" />
+</launch>

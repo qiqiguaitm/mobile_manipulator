@@ -1,0 +1,7 @@
+<launch>
+  <!-- Launch the simulated lidar driver node -->
+  <node pkg="lidar_driver" type="lidar_driver_node_sim.py" name="lidar_driver_node" output="screen"/>
+  
+  <!-- Launch the test listener node -->
+  <node pkg="lidar_driver" type="lidar_test.py" name="lidar_test_listener" output="screen"/>
+</launch>
