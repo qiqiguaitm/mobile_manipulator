@@ -59,10 +59,10 @@ arm_planner/CMakeFiles/arm_planner_generate_messages_cpp: /home/agilex/AgileXDem
 /home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /home/agilex/AgileXDemo/catkin_ws/src/arm_planner/msg/ArmTrajectory.msg
 /home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/share/trajectory_msgs/msg/JointTrajectoryPoint.msg
-/home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner/ArmTrajectory.h: /opt/ros/noetic/share/gencpp/msg.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/agilex/AgileXDemo/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from arm_planner/ArmTrajectory.msg"
 	cd /home/agilex/AgileXDemo/catkin_ws/src/arm_planner && /home/agilex/AgileXDemo/catkin_ws/build/catkin_generated/env_cached.sh /home/agilex/miniconda3/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/agilex/AgileXDemo/catkin_ws/src/arm_planner/msg/ArmTrajectory.msg -Iarm_planner:/home/agilex/AgileXDemo/catkin_ws/src/arm_planner/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -p arm_planner -o /home/agilex/AgileXDemo/catkin_ws/devel/include/arm_planner -e /opt/ros/noetic/share/gencpp/cmake/..

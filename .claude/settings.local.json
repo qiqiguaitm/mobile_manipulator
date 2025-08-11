@@ -65,7 +65,20 @@
       "Bash(git clone:*)",
       "Bash(rosrun rviz:*)",
       "Bash(rosrun realsense2_camera rs2_device_info:*)",
-      "Bash(bash -n:*)"
+      "Bash(bash -n:*)",
+      "Bash(rosrun rqt_console rqt_console:*)",
+      "Bash(rosservice list:*)",
+      "Bash(ssh:*)",
+      "Bash(rospack list:*)",
+      "Bash(pip show:*)",
+      "Bash(ip link:*)",
+      "Bash(./find_all_can_port.sh:*)",
+      "Bash(ip -details link show type can)",
+      "Bash(candump:*)",
+      "Bash(rosservice call:*)",
+      "Bash(pgrep:*)",
+      "Bash(export ROS_MASTER_URI=http://192.168.0.155:11311)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
