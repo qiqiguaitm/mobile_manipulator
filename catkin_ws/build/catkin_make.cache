@@ -1,2 +1,2 @@
-arm_controller:arm_planner:camera_driver:chassis_controller:chassis_planner:imu_driver:inference_abstraction:lidar_driver:object_tracker:odom:perception:realsense2_camera/realsense2_camera:realsense2_camera/realsense2_description:sensor_calibration:slam:target_filter:task_mgr:task_router
--DCATKIN_DEVEL_PREFIX=/home/agilex/AgileXDemo/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/agilex/AgileXDemo/catkin_ws/install -G Unix Makefiles
+realsense2_camera/realsense2_camera
+-DCATKIN_DEVEL_PREFIX=/home/agilex/AgileXDemo/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/agilex/AgileXDemo/catkin_ws/install -DCATKIN_WHITELIST_PACKAGES=realsense2_camera -G Unix Makefiles

@@ -47,14 +47,14 @@ class LidarDriverNode:
         # Create a simulated laser scan
         scan = LaserScan()
         scan.header.stamp = rospy.Time.now()
-        scan.header.frame_id = "laser_frame"
+        scan.header.frame_id = "rslidar"
         scan.angle_min = -math.pi/2
         scan.angle_max = math.pi/2
-        scan.angle_increment = math.pi/180  # 1 degree
+        scan.angle_increment = math.pi/360  # 0.5 degree
         scan.time_increment = 0.0
         scan.scan_time = 0.1
-        scan.range_min = 0.1
-        scan.range_max = 10.0
+        scan.range_min = 0.2
+        scan.range_max = 100.0
         
         # Generate simulated ranges
         num_readings = int((scan.angle_max - scan.angle_min) / scan.angle_increment)

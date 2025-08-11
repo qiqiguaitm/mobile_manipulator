@@ -16,7 +16,7 @@ if [ $# -eq 0 ] || [ "$1" = "all" ]; then
     catkin_make
 elif [ "$1" = "camera" ]; then
     echo "Building camera driver packages..."
-    catkin_make --only-pkg-with-deps camera_driver
+    catkin_make --only-pkg-with-deps realsense2_camera
 elif [ "$1" = "lidar" ]; then
     echo "Building LiDAR driver packages..."
     catkin_make --only-pkg-with-deps lidar_driver

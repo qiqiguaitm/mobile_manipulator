@@ -1,5 +1,5 @@
 <launch>
-  <!-- Launch the lidar driver node directly without rslidar dependencies -->
+  <!-- Launch the simulated lidar driver node -->
   <node pkg="lidar_driver" type="lidar_driver_node.py" name="lidar_driver_node" output="screen"/>
   
   <!-- Launch the test listener node -->

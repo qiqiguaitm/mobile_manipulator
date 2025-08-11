@@ -167,81 +167,6 @@ depend:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-arm_controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : arm_controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_py: arm_controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_py
-
-# fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make arm_controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-arm_controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-.PHONY : arm_controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_nodejs: arm_controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make arm_controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-arm_controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : arm_controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_lisp: arm_controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_lisp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make arm_controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-arm_controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-.PHONY : arm_controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_eus: arm_controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_eus
-
-# fast build rule for target.
-sensor_msgs_generate_messages_eus/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make arm_controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
-.PHONY : sensor_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : arm_controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_cpp: arm_controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make arm_controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -255,11 +180,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... sensor_msgs_generate_messages_py"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_eus"
-	@echo "... sensor_msgs_generate_messages_cpp"
 .PHONY : help
 
 

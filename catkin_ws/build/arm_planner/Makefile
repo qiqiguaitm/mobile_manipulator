@@ -68,6 +68,28 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -80,15 +102,16 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target test
+test/fast: test
 
-.PHONY : list_install_components/fast
+.PHONY : test/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -111,29 +134,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -228,19 +228,79 @@ arm_planner_generate_messages_nodejs/fast:
 .PHONY : arm_planner_generate_messages_nodejs/fast
 
 # Convenience name for target.
-arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
-.PHONY : arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+arm_planner/CMakeFiles/arm_planner_genlisp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_genlisp.dir/rule
+.PHONY : arm_planner/CMakeFiles/arm_planner_genlisp.dir/rule
 
 # Convenience name for target.
-trajectory_msgs_generate_messages_cpp: arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+arm_planner_genlisp: arm_planner/CMakeFiles/arm_planner_genlisp.dir/rule
 
-.PHONY : trajectory_msgs_generate_messages_cpp
+.PHONY : arm_planner_genlisp
 
 # fast build rule for target.
-trajectory_msgs_generate_messages_cpp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
-.PHONY : trajectory_msgs_generate_messages_cpp/fast
+arm_planner_genlisp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_genlisp.dir/build.make arm_planner/CMakeFiles/arm_planner_genlisp.dir/build
+.PHONY : arm_planner_genlisp/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/rule
+.PHONY : arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+arm_planner_generate_messages_lisp: arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/rule
+
+.PHONY : arm_planner_generate_messages_lisp
+
+# fast build rule for target.
+arm_planner_generate_messages_lisp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/build.make arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/build
+.PHONY : arm_planner_generate_messages_lisp/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/rule
+.PHONY : arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+arm_planner_generate_messages_eus: arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/rule
+
+.PHONY : arm_planner_generate_messages_eus
+
+# fast build rule for target.
+arm_planner_generate_messages_eus/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/build.make arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/build
+.PHONY : arm_planner_generate_messages_eus/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/arm_planner_gencpp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_gencpp.dir/rule
+.PHONY : arm_planner/CMakeFiles/arm_planner_gencpp.dir/rule
+
+# Convenience name for target.
+arm_planner_gencpp: arm_planner/CMakeFiles/arm_planner_gencpp.dir/rule
+
+.PHONY : arm_planner_gencpp
+
+# fast build rule for target.
+arm_planner_gencpp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_gencpp.dir/build.make arm_planner/CMakeFiles/arm_planner_gencpp.dir/build
+.PHONY : arm_planner_gencpp/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+.PHONY : arm_planner/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_cpp: arm_planner/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_cpp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make arm_planner/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 arm_planner/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule:
@@ -256,6 +316,111 @@ trajectory_msgs_generate_messages_nodejs: arm_planner/CMakeFiles/trajectory_msgs
 trajectory_msgs_generate_messages_nodejs/fast:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make arm_planner/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
 .PHONY : trajectory_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+.PHONY : arm_planner/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_eus: arm_planner/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_eus
+
+# fast build rule for target.
+sensor_msgs_generate_messages_eus/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make arm_planner/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+.PHONY : sensor_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+.PHONY : arm_planner/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: arm_planner/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make arm_planner/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+.PHONY : arm_planner/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_nodejs: arm_planner/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+sensor_msgs_generate_messages_nodejs/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make arm_planner/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+.PHONY : arm_planner/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_py: arm_planner/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_py
+
+# fast build rule for target.
+sensor_msgs_generate_messages_py/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make arm_planner/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+.PHONY : arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+trajectory_msgs_generate_messages_cpp: arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : trajectory_msgs_generate_messages_cpp
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_cpp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make arm_planner/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
+.PHONY : trajectory_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/arm_planner_generate_messages.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_generate_messages.dir/rule
+.PHONY : arm_planner/CMakeFiles/arm_planner_generate_messages.dir/rule
+
+# Convenience name for target.
+arm_planner_generate_messages: arm_planner/CMakeFiles/arm_planner_generate_messages.dir/rule
+
+.PHONY : arm_planner_generate_messages
+
+# fast build rule for target.
+arm_planner_generate_messages/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_generate_messages.dir/build.make arm_planner/CMakeFiles/arm_planner_generate_messages.dir/build
+.PHONY : arm_planner_generate_messages/fast
+
+# Convenience name for target.
+arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+.PHONY : arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+trajectory_msgs_generate_messages_lisp: arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : trajectory_msgs_generate_messages_lisp
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_lisp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build.make arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build
+.PHONY : trajectory_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 arm_planner/CMakeFiles/arm_planner_generate_messages_cpp.dir/rule:
@@ -288,34 +453,19 @@ trajectory_msgs_generate_messages_py/fast:
 .PHONY : trajectory_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
-.PHONY : arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+arm_planner/CMakeFiles/arm_planner_geneus.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_geneus.dir/rule
+.PHONY : arm_planner/CMakeFiles/arm_planner_geneus.dir/rule
 
 # Convenience name for target.
-trajectory_msgs_generate_messages_lisp: arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+arm_planner_geneus: arm_planner/CMakeFiles/arm_planner_geneus.dir/rule
 
-.PHONY : trajectory_msgs_generate_messages_lisp
+.PHONY : arm_planner_geneus
 
 # fast build rule for target.
-trajectory_msgs_generate_messages_lisp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build.make arm_planner/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build
-.PHONY : trajectory_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-arm_planner/CMakeFiles/arm_planner_generate_messages.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_generate_messages.dir/rule
-.PHONY : arm_planner/CMakeFiles/arm_planner_generate_messages.dir/rule
-
-# Convenience name for target.
-arm_planner_generate_messages: arm_planner/CMakeFiles/arm_planner_generate_messages.dir/rule
-
-.PHONY : arm_planner_generate_messages
-
-# fast build rule for target.
-arm_planner_generate_messages/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_generate_messages.dir/build.make arm_planner/CMakeFiles/arm_planner_generate_messages.dir/build
-.PHONY : arm_planner_generate_messages/fast
+arm_planner_geneus/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_geneus.dir/build.make arm_planner/CMakeFiles/arm_planner_geneus.dir/build
+.PHONY : arm_planner_geneus/fast
 
 # Convenience name for target.
 arm_planner/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule:
@@ -333,21 +483,6 @@ trajectory_msgs_generate_messages_eus/fast:
 .PHONY : trajectory_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-arm_planner/CMakeFiles/arm_planner_geneus.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_geneus.dir/rule
-.PHONY : arm_planner/CMakeFiles/arm_planner_geneus.dir/rule
-
-# Convenience name for target.
-arm_planner_geneus: arm_planner/CMakeFiles/arm_planner_geneus.dir/rule
-
-.PHONY : arm_planner_geneus
-
-# fast build rule for target.
-arm_planner_geneus/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_geneus.dir/build.make arm_planner/CMakeFiles/arm_planner_geneus.dir/build
-.PHONY : arm_planner_geneus/fast
-
-# Convenience name for target.
 arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory.dir/rule:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory.dir/rule
 .PHONY : arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory.dir/rule
@@ -362,66 +497,6 @@ _arm_planner_generate_messages_check_deps_ArmTrajectory/fast:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory.dir/build.make arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory.dir/build
 .PHONY : _arm_planner_generate_messages_check_deps_ArmTrajectory/fast
 
-# Convenience name for target.
-arm_planner/CMakeFiles/arm_planner_gencpp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_gencpp.dir/rule
-.PHONY : arm_planner/CMakeFiles/arm_planner_gencpp.dir/rule
-
-# Convenience name for target.
-arm_planner_gencpp: arm_planner/CMakeFiles/arm_planner_gencpp.dir/rule
-
-.PHONY : arm_planner_gencpp
-
-# fast build rule for target.
-arm_planner_gencpp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_gencpp.dir/build.make arm_planner/CMakeFiles/arm_planner_gencpp.dir/build
-.PHONY : arm_planner_gencpp/fast
-
-# Convenience name for target.
-arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/rule
-.PHONY : arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-arm_planner_generate_messages_eus: arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/rule
-
-.PHONY : arm_planner_generate_messages_eus
-
-# fast build rule for target.
-arm_planner_generate_messages_eus/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/build.make arm_planner/CMakeFiles/arm_planner_generate_messages_eus.dir/build
-.PHONY : arm_planner_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/rule
-.PHONY : arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-arm_planner_generate_messages_lisp: arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/rule
-
-.PHONY : arm_planner_generate_messages_lisp
-
-# fast build rule for target.
-arm_planner_generate_messages_lisp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/build.make arm_planner/CMakeFiles/arm_planner_generate_messages_lisp.dir/build
-.PHONY : arm_planner_generate_messages_lisp/fast
-
-# Convenience name for target.
-arm_planner/CMakeFiles/arm_planner_genlisp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_planner/CMakeFiles/arm_planner_genlisp.dir/rule
-.PHONY : arm_planner/CMakeFiles/arm_planner_genlisp.dir/rule
-
-# Convenience name for target.
-arm_planner_genlisp: arm_planner/CMakeFiles/arm_planner_genlisp.dir/rule
-
-.PHONY : arm_planner_genlisp
-
-# fast build rule for target.
-arm_planner_genlisp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f arm_planner/CMakeFiles/arm_planner_genlisp.dir/build.make arm_planner/CMakeFiles/arm_planner_genlisp.dir/build
-.PHONY : arm_planner_genlisp/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -433,25 +508,30 @@ help:
 	@echo "... arm_planner_generate_messages_py"
 	@echo "... arm_planner_gennodejs"
 	@echo "... arm_planner_generate_messages_nodejs"
-	@echo "... install/strip"
-	@echo "... trajectory_msgs_generate_messages_cpp"
+	@echo "... arm_planner_genlisp"
+	@echo "... arm_planner_generate_messages_lisp"
+	@echo "... install"
+	@echo "... arm_planner_generate_messages_eus"
+	@echo "... arm_planner_gencpp"
+	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... list_install_components"
 	@echo "... trajectory_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_eus"
+	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... sensor_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_py"
+	@echo "... install/strip"
+	@echo "... trajectory_msgs_generate_messages_cpp"
+	@echo "... test"
+	@echo "... arm_planner_generate_messages"
+	@echo "... trajectory_msgs_generate_messages_lisp"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... arm_planner_generate_messages_cpp"
 	@echo "... trajectory_msgs_generate_messages_py"
-	@echo "... test"
-	@echo "... trajectory_msgs_generate_messages_lisp"
-	@echo "... arm_planner_generate_messages"
-	@echo "... trajectory_msgs_generate_messages_eus"
 	@echo "... arm_planner_geneus"
+	@echo "... trajectory_msgs_generate_messages_eus"
 	@echo "... _arm_planner_generate_messages_check_deps_ArmTrajectory"
-	@echo "... arm_planner_gencpp"
-	@echo "... install"
-	@echo "... arm_planner_generate_messages_eus"
-	@echo "... arm_planner_generate_messages_lisp"
-	@echo "... arm_planner_genlisp"
 .PHONY : help
 
 

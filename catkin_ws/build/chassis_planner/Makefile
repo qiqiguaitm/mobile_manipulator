@@ -56,6 +56,18 @@ CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/catkin_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,39 +89,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -134,6 +113,27 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -198,79 +198,19 @@ actionlib_msgs_generate_messages_nodejs/fast:
 .PHONY : actionlib_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
-.PHONY : chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-actionlib_msgs_generate_messages_lisp: chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+geometry_msgs_generate_messages_eus: chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
 
-.PHONY : actionlib_msgs_generate_messages_lisp
+.PHONY : geometry_msgs_generate_messages_eus
 
 # fast build rule for target.
-actionlib_msgs_generate_messages_lisp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
-.PHONY : actionlib_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-chassis_planner/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : chassis_planner/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: chassis_planner/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make chassis_planner/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-.PHONY : chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_cpp: chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_cpp
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_cpp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
-.PHONY : actionlib_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-.PHONY : chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_py: chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-.PHONY : nav_msgs_generate_messages_py
-
-# fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-chassis_planner/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : chassis_planner/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: chassis_planner/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make chassis_planner/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+geometry_msgs_generate_messages_eus/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 chassis_planner/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
@@ -288,66 +228,6 @@ nav_msgs_generate_messages_nodejs/fast:
 .PHONY : nav_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-chassis_planner/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : chassis_planner/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: chassis_planner/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make chassis_planner/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-chassis_planner/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : chassis_planner/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: chassis_planner/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/std_msgs_generate_messages_py.dir/build.make chassis_planner/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-.PHONY : chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_eus: chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_eus
-
-# fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make chassis_planner/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-chassis_planner/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : chassis_planner/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: chassis_planner/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make chassis_planner/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
 chassis_planner/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
 .PHONY : chassis_planner/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
@@ -361,21 +241,6 @@ geometry_msgs_generate_messages_lisp: chassis_planner/CMakeFiles/geometry_msgs_g
 geometry_msgs_generate_messages_lisp/fast:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make chassis_planner/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
 .PHONY : geometry_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-.PHONY : chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_eus: chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_eus
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_eus/fast:
-	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build.make chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build
-.PHONY : actionlib_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 chassis_planner/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
@@ -393,6 +258,21 @@ geometry_msgs_generate_messages_cpp/fast:
 .PHONY : geometry_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
+chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
+.PHONY : chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+actionlib_msgs_generate_messages_eus: chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
+
+.PHONY : actionlib_msgs_generate_messages_eus
+
+# fast build rule for target.
+actionlib_msgs_generate_messages_eus/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build.make chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build
+.PHONY : actionlib_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
 chassis_planner/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 .PHONY : chassis_planner/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
@@ -406,6 +286,21 @@ geometry_msgs_generate_messages_nodejs: chassis_planner/CMakeFiles/geometry_msgs
 geometry_msgs_generate_messages_nodejs/fast:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make chassis_planner/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
 .PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+.PHONY : chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+actionlib_msgs_generate_messages_lisp: chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : actionlib_msgs_generate_messages_lisp
+
+# fast build rule for target.
+actionlib_msgs_generate_messages_lisp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
+.PHONY : actionlib_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 chassis_planner/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
@@ -467,39 +362,64 @@ nav_msgs_generate_messages_lisp/fast:
 	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make chassis_planner/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
 .PHONY : nav_msgs_generate_messages_lisp/fast
 
+# Convenience name for target.
+chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+.PHONY : chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_py: chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+
+.PHONY : nav_msgs_generate_messages_py
+
+# fast build rule for target.
+nav_msgs_generate_messages_py/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make chassis_planner/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+.PHONY : nav_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
+.PHONY : chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+actionlib_msgs_generate_messages_cpp: chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : actionlib_msgs_generate_messages_cpp
+
+# fast build rule for target.
+actionlib_msgs_generate_messages_cpp/fast:
+	cd /home/agilex/AgileXDemo/catkin_ws/build && $(MAKE) -f chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make chassis_planner/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
+.PHONY : actionlib_msgs_generate_messages_cpp/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
-	@echo "... test"
-	@echo "... actionlib_msgs_generate_messages_lisp"
-	@echo "... install/strip"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... list_install_components"
-	@echo "... actionlib_msgs_generate_messages_cpp"
-	@echo "... nav_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... nav_msgs_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_py"
 	@echo "... install/local"
 	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... nav_msgs_generate_messages_nodejs"
 	@echo "... install"
-	@echo "... std_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... test"
+	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... nav_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_lisp"
+	@echo "... list_install_components"
+	@echo "... nav_msgs_generate_messages_py"
+	@echo "... actionlib_msgs_generate_messages_cpp"
 .PHONY : help
 
 

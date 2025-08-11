@@ -11,7 +11,7 @@
     <arg name="frame_rate" value="30" />
   </include>
   
-  <!-- LIDAR Driver (using Realsense depth camera) -->
+  <!-- LIDAR Driver (using simple driver) -->
   <include file="$(find lidar_driver)/launch/rslidar_driver.launch" />
   
   <!-- Sensor Calibration -->

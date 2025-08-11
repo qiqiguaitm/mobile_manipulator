@@ -5,9 +5,18 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   sensor_msgs
+  trajectory_msgs
+  arm_planner
 )
 
-catkin_package()
+catkin_package(
+  CATKIN_DEPENDS
+  rospy
+  std_msgs
+  sensor_msgs
+  trajectory_msgs
+  arm_planner
+)
 
 catkin_python_setup()
 

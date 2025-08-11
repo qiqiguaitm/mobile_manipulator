@@ -15,10 +15,10 @@ if [ $# -eq 0 ] || [ "$1" = "all" ]; then
     roslaunch /home/agilex/AgileXDemo/catkin_ws/src/agilex_demo.launch
 elif [ "$1" = "camera" ]; then
     echo "Launching camera driver..."
-    roslaunch camera_driver camera_driver.launch
+    roslaunch realsense2_camera realsense_cameras.launch
 elif [ "$1" = "lidar" ]; then
     echo "Launching LiDAR driver..."
-    roslaunch lidar_driver rslidar_driver.launch
+    roslaunch lidar_driver lidar_driver_simple.launch
 elif [ "$1" = "imu" ]; then
     echo "Launching IMU driver..."
     roslaunch imu_driver imu_driver.launch

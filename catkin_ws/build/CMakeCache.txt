@@ -20,6 +20,9 @@ BUILD_GMOCK:BOOL=ON
 //Build dynamically-linked binaries
 BUILD_SHARED_LIBS:BOOL=ON
 
+//Build tests
+BUILD_TESTING:BOOL=OFF
+
 //Use OpenMP
 BUILD_WITH_OPENMP:BOOL=OFF
 
@@ -40,7 +43,10 @@ CATKIN_SKIP_TESTING:BOOL=OFF
 CATKIN_SYMLINK_INSTALL:BOOL=OFF
 
 //List of ';' separated packages to build
-CATKIN_WHITELIST_PACKAGES:STRING=lidar_driver
+CATKIN_WHITELIST_PACKAGES:STRING=realsense2_camera
+
+//Path to a program.
+CCACHE_PROGRAM:FILEPATH=CCACHE_PROGRAM-NOTFOUND
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -48,9 +54,8 @@ CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
-//Choose the type of build, options are: None Debug Release RelWithDebInfo
-// MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+//Choose the type of build.
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -356,7 +361,10 @@ SETUPTOOLS_DEB_LAYOUT:BOOL=ON
 SET_USER_BREAK_AT_STARTUP:BOOL=OFF
 
 //Name of the computer/site where compile is being run
-SITE:STRING=ubuntu
+SITE:STRING=ubuntuA
+
+//Run static check
+STATIC_CHECK:BOOL=OFF
 
 //LSB Distrib tag
 UBUNTU:BOOL=TRUE
@@ -377,13 +385,7 @@ _gtest_INCLUDES:FILEPATH=/usr/include/gtest/gtest.h
 _gtest_SOURCES:FILEPATH=/usr/src/gtest/src/gtest.cc
 
 //Path to a file.
-_path_name:FILEPATH=/home/agilex/AgileXDemo/catkin_ws/src/realsense-ros/realsense2_description/tests
-
-//Value Computed by CMake
-access_layer_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/access_layer
-
-//Value Computed by CMake
-access_layer_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/access_layer
+_path_name:FILEPATH=/home/agilex/AgileXDemo/catkin_ws/src/realsense2_camera/realsense2_description/tests
 
 //The directory containing a CMake configuration file for actionlib.
 actionlib_DIR:PATH=/opt/ros/noetic/share/actionlib/cmake
@@ -399,6 +401,9 @@ arm_controller_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/arm_contr
 
 //Value Computed by CMake
 arm_planner_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/arm_planner
+
+//The directory containing a CMake configuration file for arm_planner.
+arm_planner_DIR:PATH=/home/agilex/AgileXDemo/catkin_ws/devel/share/arm_planner/cmake
 
 //Value Computed by CMake
 arm_planner_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/arm_planner
@@ -439,17 +444,14 @@ chassis_planner_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/chassis_
 //The directory containing a CMake configuration file for class_loader.
 class_loader_DIR:PATH=/opt/ros/noetic/share/class_loader/cmake
 
+//The directory containing a CMake configuration file for control_msgs.
+control_msgs_DIR:PATH=/opt/ros/noetic/share/control_msgs/cmake
+
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
 
 //The directory containing a CMake configuration file for cv_bridge.
 cv_bridge_DIR:PATH=/opt/ros/noetic/share/cv_bridge/cmake
-
-//Value Computed by CMake
-dag_framework_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/dag_framework
-
-//Value Computed by CMake
-dag_framework_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/dag_framework
 
 //The directory containing a CMake configuration file for ddynamic_reconfigure.
 ddynamic_reconfigure_DIR:PATH=/opt/ros/noetic/share/ddynamic_reconfigure/cmake
@@ -462,6 +464,15 @@ diagnostic_updater_DIR:PATH=/opt/ros/noetic/share/diagnostic_updater/cmake
 
 //The directory containing a CMake configuration file for dynamic_reconfigure.
 dynamic_reconfigure_DIR:PATH=/opt/ros/noetic/share/dynamic_reconfigure/cmake
+
+//The directory containing a CMake configuration file for eigen_stl_containers.
+eigen_stl_containers_DIR:PATH=/opt/ros/noetic/share/eigen_stl_containers/cmake
+
+//The directory containing a CMake configuration file for gazebo_msgs.
+gazebo_msgs_DIR:PATH=/opt/ros/noetic/share/gazebo_msgs/cmake
+
+//The directory containing a CMake configuration file for gazebo_ros.
+gazebo_ros_DIR:PATH=/opt/ros/noetic/share/gazebo_ros/cmake
 
 //The directory containing a CMake configuration file for gencpp.
 gencpp_DIR:PATH=/opt/ros/noetic/share/gencpp/cmake
@@ -480,6 +491,9 @@ gennodejs_DIR:PATH=/opt/ros/noetic/share/gennodejs/cmake
 
 //The directory containing a CMake configuration file for genpy.
 genpy_DIR:PATH=/opt/ros/noetic/share/genpy/cmake
+
+//The directory containing a CMake configuration file for geometric_shapes.
+geometric_shapes_DIR:PATH=/opt/ros/noetic/share/geometric_shapes/cmake
 
 //The directory containing a CMake configuration file for geometry_msgs.
 geometry_msgs_DIR:PATH=/opt/ros/noetic/share/geometry_msgs/cmake
@@ -540,19 +554,16 @@ imu_driver_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/imu_driver
 imu_driver_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/imu_driver
 
 //Value Computed by CMake
-imu_launch_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/imu/imu_launch
-
-//Value Computed by CMake
-imu_launch_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/imu/imu_launch
-
-//Value Computed by CMake
 inference_abstraction_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/inference_abstraction
 
 //Value Computed by CMake
 inference_abstraction_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/inference_abstraction
 
+//The directory containing a CMake configuration file for kdl_parser.
+kdl_parser_DIR:PATH=/opt/ros/noetic/share/kdl_parser/cmake
+
 //Path to a library.
-lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
+lib:FILEPATH=/opt/ros/noetic/lib/libdiagnostic_updater.so
 
 //Value Computed by CMake
 lidar_driver_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/lidar_driver
@@ -569,17 +580,56 @@ message_generation_DIR:PATH=/opt/ros/noetic/share/message_generation/cmake
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
 
+//The directory containing a CMake configuration file for moveit_commander.
+moveit_commander_DIR:PATH=/opt/ros/noetic/share/moveit_commander/cmake
+
+//The directory containing a CMake configuration file for moveit_core.
+moveit_core_DIR:PATH=/opt/ros/noetic/share/moveit_core/cmake
+
+//Value Computed by CMake
+moveit_ctrl_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_moveit/moveit_ctrl
+
+//Value Computed by CMake
+moveit_ctrl_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper_moveit/moveit_ctrl
+
+//The directory containing a CMake configuration file for moveit_msgs.
+moveit_msgs_DIR:PATH=/opt/ros/noetic/share/moveit_msgs/cmake
+
+//The directory containing a CMake configuration file for moveit_ros_manipulation.
+moveit_ros_manipulation_DIR:PATH=/opt/ros/noetic/share/moveit_ros_manipulation/cmake
+
+//The directory containing a CMake configuration file for moveit_ros_move_group.
+moveit_ros_move_group_DIR:PATH=/opt/ros/noetic/share/moveit_ros_move_group/cmake
+
+//The directory containing a CMake configuration file for moveit_ros_occupancy_map_monitor.
+moveit_ros_occupancy_map_monitor_DIR:PATH=/opt/ros/noetic/share/moveit_ros_occupancy_map_monitor/cmake
+
+//The directory containing a CMake configuration file for moveit_ros_planning.
+moveit_ros_planning_DIR:PATH=/opt/ros/noetic/share/moveit_ros_planning/cmake
+
+//The directory containing a CMake configuration file for moveit_ros_planning_interface.
+moveit_ros_planning_interface_DIR:PATH=/opt/ros/noetic/share/moveit_ros_planning_interface/cmake
+
+//The directory containing a CMake configuration file for moveit_ros_warehouse.
+moveit_ros_warehouse_DIR:PATH=/opt/ros/noetic/share/moveit_ros_warehouse/cmake
+
 //The directory containing a CMake configuration file for nav_msgs.
 nav_msgs_DIR:PATH=/opt/ros/noetic/share/nav_msgs/cmake
 
 //The directory containing a CMake configuration file for nodelet.
 nodelet_DIR:PATH=/opt/ros/noetic/share/nodelet/cmake
 
+//The directory containing a CMake configuration file for object_recognition_msgs.
+object_recognition_msgs_DIR:PATH=/opt/ros/noetic/share/object_recognition_msgs/cmake
+
 //Value Computed by CMake
 object_tracker_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/object_tracker
 
 //Value Computed by CMake
 object_tracker_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/object_tracker
+
+//The directory containing a CMake configuration file for octomap_msgs.
+octomap_msgs_DIR:PATH=/opt/ros/noetic/share/octomap_msgs/cmake
 
 //Value Computed by CMake
 odom_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/odom
@@ -593,35 +643,86 @@ perception_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/perception
 //Value Computed by CMake
 perception_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/perception
 
+//Value Computed by CMake
+piper_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper
+
+//Value Computed by CMake
+piper_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper
+
+//Value Computed by CMake
+piper_description_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_description
+
+//Value Computed by CMake
+piper_description_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper_description
+
+//Value Computed by CMake
+piper_gazebo_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_sim/piper_gazebo
+
+//Value Computed by CMake
+piper_gazebo_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper_sim/piper_gazebo
+
+//Value Computed by CMake
+piper_msgs_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_msgs
+
+//Value Computed by CMake
+piper_msgs_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper_msgs
+
+//Value Computed by CMake
+piper_mujoco_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_sim/piper_mujoco
+
+//Value Computed by CMake
+piper_mujoco_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper_sim/piper_mujoco
+
+//Value Computed by CMake
+piper_no_gripper_moveit_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_moveit/piper_no_gripper_moveit
+
+//Value Computed by CMake
+piper_no_gripper_moveit_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper_moveit/piper_no_gripper_moveit
+
+//Value Computed by CMake
+piper_noetic_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_noetic
+
+//Value Computed by CMake
+piper_noetic_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper_noetic
+
+//Value Computed by CMake
+piper_with_gripper_moveit_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_moveit/piper_with_gripper_moveit
+
+//Value Computed by CMake
+piper_with_gripper_moveit_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper_moveit/piper_with_gripper_moveit
+
 //The directory containing a CMake configuration file for pluginlib.
 pluginlib_DIR:PATH=/opt/ros/noetic/share/pluginlib/cmake
 
-//The directory containing a CMake configuration file for pointcloud_to_laserscan.
-pointcloud_to_laserscan_DIR:PATH=/home/agilex/catkin_ws/devel/share/pointcloud_to_laserscan/cmake
+//The directory containing a CMake configuration file for random_numbers.
+random_numbers_DIR:PATH=/opt/ros/noetic/share/random_numbers/cmake
 
 //The directory containing a CMake configuration file for realsense2.
 realsense2_DIR:PATH=/usr/local/lib/cmake/realsense2
 
 //Value Computed by CMake
-realsense2_camera_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/realsense-ros/realsense2_camera
+realsense2_camera_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/realsense2_camera/realsense2_camera
 
 //Dependencies for the target
 realsense2_camera_LIB_DEPENDS:STATIC=general;realsense2::realsense2;general;/opt/ros/noetic/lib/libnodeletlib.so;general;/opt/ros/noetic/lib/libbondcpp.so;general;/usr/lib/aarch64-linux-gnu/libuuid.so;general;/opt/ros/noetic/lib/libcv_bridge.so;general;/usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_ml.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_video.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_aruco.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_bgsegm.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_bioinspired.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_ccalib.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_datasets.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_dnn_superres.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_dpm.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_face.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_freetype.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_fuzzy.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_hdf.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_hfs.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_img_hash.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_line_descriptor.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_optflow.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_plot.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_quality.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_reg.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_rgbd.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_saliency.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_shape.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_stereo.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_structured_light.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_superres.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_surface_matching.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_text.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_tracking.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_videostab.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_viz.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_ximgproc.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_xobjdetect.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_xphoto.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_core.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.2.0;general;/usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.2.0;general;/opt/ros/noetic/lib/libimage_transport.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/aarch64-linux-gnu/libPocoFoundation.so;general;/usr/lib/aarch64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/aarch64-linux-gnu/libpython3.8.so;general;/usr/lib/aarch64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libtf.so;general;/opt/ros/noetic/lib/libtf2_ros.so;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libtf2.so;general;/opt/ros/noetic/lib/libddynamic_reconfigure.so;general;/opt/ros/noetic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/noetic/lib/libdiagnostic_updater.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/aarch64-linux-gnu/libpthread.so;general;/usr/lib/aarch64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/aarch64-linux-gnu/liblog4cxx.so;general;/usr/lib/aarch64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/aarch64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/aarch64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4;general;-lpthread;general;opencv_calib3d;general;opencv_core;general;opencv_dnn;general;opencv_features2d;general;opencv_flann;general;opencv_gapi;general;opencv_highgui;general;opencv_imgcodecs;general;opencv_imgproc;general;opencv_ml;general;opencv_objdetect;general;opencv_photo;general;opencv_stitching;general;opencv_video;general;opencv_videoio;
 
 //Value Computed by CMake
-realsense2_camera_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/realsense-ros/realsense2_camera
+realsense2_camera_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/realsense2_camera/realsense2_camera
 
 //Value Computed by CMake
-realsense2_description_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/realsense-ros/realsense2_description
+realsense2_description_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/realsense2_camera/realsense2_description
 
 //Value Computed by CMake
-realsense2_description_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/realsense-ros/realsense2_description
+realsense2_description_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/realsense2_camera/realsense2_description
 
 //The directory containing a CMake configuration file for rf2o_laser_odometry.
 rf2o_laser_odometry_DIR:PATH=/home/agilex/catkin_ws/devel/share/rf2o_laser_odometry/cmake
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
+
+//The directory containing a CMake configuration file for rosconsole_bridge.
+rosconsole_bridge_DIR:PATH=/opt/ros/noetic/share/rosconsole_bridge/cmake
 
 //The directory containing a CMake configuration file for roscpp.
 roscpp_DIR:PATH=/opt/ros/noetic/share/roscpp/cmake
@@ -638,8 +739,14 @@ rosgraph_DIR:PATH=/opt/ros/noetic/share/rosgraph/cmake
 //The directory containing a CMake configuration file for rosgraph_msgs.
 rosgraph_msgs_DIR:PATH=/opt/ros/noetic/share/rosgraph_msgs/cmake
 
+//The directory containing a CMake configuration file for roslaunch.
+roslaunch_DIR:PATH=/opt/ros/noetic/share/roslaunch/cmake
+
 //The directory containing a CMake configuration file for roslib.
 roslib_DIR:PATH=/opt/ros/noetic/share/roslib/cmake
+
+//The directory containing a CMake configuration file for roslint.
+roslint_DIR:PATH=/opt/ros/noetic/share/roslint/cmake
 
 //The directory containing a CMake configuration file for rospack.
 rospack_DIR:PATH=/opt/ros/noetic/share/rospack/cmake
@@ -649,9 +756,6 @@ rospy_DIR:PATH=/opt/ros/noetic/share/rospy/cmake
 
 //The directory containing a CMake configuration file for rostime.
 rostime_DIR:PATH=/opt/ros/noetic/share/rostime/cmake
-
-//The directory containing a CMake configuration file for rslidar_sdk.
-rslidar_sdk_DIR:PATH=/home/agilex/catkin_ws/devel/share/rslidar_sdk/cmake
 
 //Value Computed by CMake
 sensor_calibration_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/sensor_calibration
@@ -665,11 +769,8 @@ sensor_msgs_DIR:PATH=/opt/ros/noetic/share/sensor_msgs/cmake
 //The directory containing a CMake configuration file for serial.
 serial_DIR:PATH=/opt/ros/noetic/share/serial/cmake
 
-//Value Computed by CMake
-serial_imu_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/imu/serial_imu
-
-//Value Computed by CMake
-serial_imu_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/imu/serial_imu
+//The directory containing a CMake configuration file for shape_msgs.
+shape_msgs_DIR:PATH=/opt/ros/noetic/share/shape_msgs/cmake
 
 //Value Computed by CMake
 slam_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/slam
@@ -679,6 +780,9 @@ slam_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/slam
 
 //The directory containing a CMake configuration file for smclib.
 smclib_DIR:PATH=/opt/ros/noetic/share/smclib/cmake
+
+//The directory containing a CMake configuration file for srdfdom.
+srdfdom_DIR:PATH=/opt/ros/noetic/share/srdfdom/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/noetic/share/std_msgs/cmake
@@ -707,6 +811,12 @@ task_router_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/task_router
 //The directory containing a CMake configuration file for tf2.
 tf2_DIR:PATH=/opt/ros/noetic/share/tf2/cmake
 
+//The directory containing a CMake configuration file for tf2_eigen.
+tf2_eigen_DIR:PATH=/opt/ros/noetic/share/tf2_eigen/cmake
+
+//The directory containing a CMake configuration file for tf2_geometry_msgs.
+tf2_geometry_msgs_DIR:PATH=/opt/ros/noetic/share/tf2_geometry_msgs/cmake
+
 //The directory containing a CMake configuration file for tf2_msgs.
 tf2_msgs_DIR:PATH=/opt/ros/noetic/share/tf2_msgs/cmake
 
@@ -719,17 +829,71 @@ tf2_ros_DIR:PATH=/opt/ros/noetic/share/tf2_ros/cmake
 //The directory containing a CMake configuration file for tf.
 tf_DIR:PATH=/opt/ros/noetic/share/tf/cmake
 
+//Value Computed by CMake
+tracer_base_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/tracer_ros/tracer_base
+
+//Value Computed by CMake
+tracer_base_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/tracer_ros/tracer_base
+
+//Value Computed by CMake
+tracer_bringup_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/tracer_ros/tracer_bringup
+
+//Value Computed by CMake
+tracer_bringup_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/tracer_ros/tracer_bringup
+
+//Value Computed by CMake
+tracer_description_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/tracer_ros/tracer_description
+
+//Value Computed by CMake
+tracer_description_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/tracer_ros/tracer_description
+
+//Dependencies for the target
+tracer_gazebo_LIB_DEPENDS:STATIC=general;/opt/ros/noetic/lib/libtf2_ros.so;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/aarch64-linux-gnu/libpthread.so;general;/usr/lib/aarch64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/aarch64-linux-gnu/liblog4cxx.so;general;/usr/lib/aarch64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libtf2.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/aarch64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/aarch64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4;
+
+//Value Computed by CMake
+tracer_gazebo_sim_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/tracer_ros/tracer_gazebo_sim
+
+//Value Computed by CMake
+tracer_gazebo_sim_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/tracer_ros/tracer_gazebo_sim
+
+//Dependencies for the target
+tracer_messenger_LIB_DEPENDS:STATIC=general;/opt/ros/noetic/lib/libtf2_ros.so;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/aarch64-linux-gnu/libpthread.so;general;/usr/lib/aarch64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/aarch64-linux-gnu/liblog4cxx.so;general;/usr/lib/aarch64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libtf2.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/aarch64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/aarch64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4;general;ugv_sdk;
+
+//Value Computed by CMake
+tracer_msgs_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/tracer_ros/tracer_msgs
+
+//The directory containing a CMake configuration file for tracer_msgs.
+tracer_msgs_DIR:PATH=/home/agilex/AgileXDemo/catkin_ws/devel/share/tracer_msgs/cmake
+
+//Value Computed by CMake
+tracer_msgs_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/tracer_ros/tracer_msgs
+
 //The directory containing a CMake configuration file for trajectory_msgs.
 trajectory_msgs_DIR:PATH=/opt/ros/noetic/share/trajectory_msgs/cmake
 
-//The directory containing a CMake configuration file for turtlesim.
-turtlesim_DIR:PATH=/opt/ros/noetic/share/turtlesim/cmake
+//Value Computed by CMake
+ugv_sdk_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/ugv_sdk
+
+//The directory containing a CMake configuration file for ugv_sdk.
+ugv_sdk_DIR:PATH=/home/agilex/AgileXDemo/catkin_ws/devel/share/ugv_sdk/cmake
+
+//Value Computed by CMake
+ugv_sdk_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/ugv_sdk
+
+//The directory containing a CMake configuration file for urdf.
+urdf_DIR:PATH=/opt/ros/noetic/share/urdf/cmake
+
+//The directory containing a CMake configuration file for visualization_msgs.
+visualization_msgs_DIR:PATH=/opt/ros/noetic/share/visualization_msgs/cmake
+
+//The directory containing a CMake configuration file for warehouse_ros.
+warehouse_ros_DIR:PATH=/opt/ros/noetic/share/warehouse_ros/cmake
+
+//The directory containing a CMake configuration file for xacro.
+xacro_DIR:PATH=/opt/ros/noetic/share/xacro/cmake
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/noetic/share/xmlrpcpp/cmake
-
-//The directory containing a CMake configuration file for yaml-cpp.
-yaml-cpp_DIR:PATH=/home/agilex/miniconda3/lib/cmake/yaml-cpp
 
 
 ########################
@@ -743,6 +907,8 @@ CATKIN_TEST_RESULTS_DIR:INTERNAL=/home/agilex/AgileXDemo/catkin_ws/build/test_re
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
+//STRINGS property for variable: CMAKE_BUILD_TYPE
+CMAKE_BUILD_TYPE-STRINGS:INTERNAL=Debug;Release;MinSizeRel;RelWithDebInfo
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/agilex/AgileXDemo/catkin_ws/build
 //Major version of cmake used to create the current loaded cache

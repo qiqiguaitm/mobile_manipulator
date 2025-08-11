@@ -1,8 +1,8 @@
 <launch>
   <!-- Serial numbers of the RealSense cameras for vision (including chassis camera) -->
   <arg name="serial_no_camera1" default="337122071540"/>  <!-- chassis camera -->
-  <arg name="serial_no_camera2" default="318122302992"/>  <!-- hand camera -->
-  <arg name="serial_no_camera3" default="337122071190"/>  <!-- top camera -->
+  <arg name="serial_no_camera2" default="337122071190"/>  <!-- hand camera -->
+  <arg name="serial_no_camera3" default="318122302992"/>  <!-- top camera -->
   
   <arg name="camera1" default="camera/chassis"/>
   <arg name="camera2" default="camera/hand"/>
