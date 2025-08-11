@@ -40,7 +40,7 @@ CATKIN_SKIP_TESTING:BOOL=OFF
 CATKIN_SYMLINK_INSTALL:BOOL=OFF
 
 //List of ';' separated packages to build
-CATKIN_WHITELIST_PACKAGES:STRING=
+CATKIN_WHITELIST_PACKAGES:STRING=piper_description;tracer2_description
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -648,10 +648,10 @@ piper_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/pi
 piper_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/piper
 
 //Value Computed by CMake
-piper_description_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/mobile_manipulator2_description
+piper_description_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_description
 
 //Value Computed by CMake
-piper_description_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_ros/src/mobile_manipulator2_description
+piper_description_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/piper_description
 
 //Value Computed by CMake
 piper_gazebo_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/piper_ros/src/piper_sim/piper_gazebo
@@ -824,6 +824,12 @@ tf2_ros_DIR:PATH=/opt/ros/noetic/share/tf2_ros/cmake
 //The directory containing a CMake configuration file for tf.
 tf_DIR:PATH=/opt/ros/noetic/share/tf/cmake
 
+//Value Computed by CMake
+tracer2_description_BINARY_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/build/tracer2_description
+
+//Value Computed by CMake
+tracer2_description_SOURCE_DIR:STATIC=/home/agilex/AgileXDemo/catkin_ws/src/tracer2_description
+
 //The directory containing a CMake configuration file for trajectory_msgs.
 trajectory_msgs_DIR:PATH=/opt/ros/noetic/share/trajectory_msgs/cmake
 
@@ -987,7 +993,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=31
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

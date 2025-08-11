@@ -78,7 +78,8 @@
       "Bash(rosservice call:*)",
       "Bash(pgrep:*)",
       "Bash(export ROS_MASTER_URI=http://192.168.0.155:11311)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(ln:*)"
     ],
     "deny": []
   }

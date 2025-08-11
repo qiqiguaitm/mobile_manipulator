@@ -4,9 +4,15 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="piper">
-  <link name="dummy_link"/>
-  <joint name="base_to_dummy" type="fixed">
-    <parent link="dummy_link"/>
+  <link name="world"/>
+  <link name="dummy_root"/>
+  <joint name="dummy_joint" type="fixed">
+    <parent link="world"/>
+    <child link="dummy_root"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <joint name="base_to_world" type="fixed">
+    <parent link="dummy_root"/>
     <child link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
