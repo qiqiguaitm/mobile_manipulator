@@ -85,7 +85,9 @@ class C_PiperRosNode():
             self.gripper_val_mutiple = 1  # 设置为默认值
         rospy.loginfo("%s is %s", rospy.resolve_name('~gripper_val_mutiple'), self.gripper_val_mutiple)
         # publish
-        self.joint_pub = rospy.Publisher('joint_states_single', JointState, queue_size=1)
+        # 发布到标准话题名，可通过参数配置
+        joint_states_topic = rospy.get_param('~joint_states_topic', 'joint_states')
+        self.joint_pub = rospy.Publisher(joint_states_topic, JointState, queue_size=1)
         self.arm_status_pub = rospy.Publisher('arm_status', PiperStatusMsg, queue_size=1)
         # self.end_pose_euler_pub = rospy.Publisher('end_pose_euler', PosCmd, queue_size=1)
         self.end_pose_pub = rospy.Publisher('end_pose', PoseStamped, queue_size=1)
@@ -100,10 +102,10 @@ class C_PiperRosNode():
         self.block_arm_service = rospy.Service('block_arm', SetBool, self.handle_block_arm_service)
         # joint
         self.joint_states = JointState()
-        self.joint_states.name = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6', 'joint7']
-        self.joint_states.position = [0.0] * 7
-        self.joint_states.velocity = [0.0] * 7
-        self.joint_states.effort = [0.0] * 7
+        self.joint_states.name = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6', 'joint7', 'joint8']
+        self.joint_states.position = [0.0] * 8
+        self.joint_states.velocity = [0.0] * 8
+        self.joint_states.effort = [0.0] * 8
         
         # 创建piper类并打开can接口
         self.piper = C_PiperInterface(can_name=self.can_port)
@@ -219,9 +221,9 @@ class C_PiperRosNode():
         effort_5:float = self.piper.GetArmHighSpdInfoMsgs().motor_6.effort/1000
         effort_6:float = self.piper.GetArmGripperMsgs().gripper_state.grippers_effort/1000
         self.joint_states.header.stamp = rospy.Time.now()
-        self.joint_states.position = [joint_0,joint_1, joint_2, joint_3, joint_4, joint_5,joint_6]
-        self.joint_states.velocity = [vel_0, vel_1, vel_2, vel_3, vel_4, vel_5, 0.0]
-        self.joint_states.effort = [effort_0, effort_1, effort_2, effort_3, effort_4, effort_5, effort_6]
+        self.joint_states.position = [joint_0, joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, -joint_6]
+        self.joint_states.velocity = [vel_0, vel_1, vel_2, vel_3, vel_4, vel_5, 0.0, 0.0]
+        self.joint_states.effort = [effort_0, effort_1, effort_2, effort_3, effort_4, effort_5, effort_6, effort_6]
         # 发布所有消息
         self.joint_pub.publish(self.joint_states)
     
@@ -267,7 +269,7 @@ class C_PiperRosNode():
         """机械臂关节订阅
         
         """
-        rospy.Subscriber('joint_ctrl_single', JointState, self.joint_callback, queue_size=1, tcp_nodelay=True)
+        rospy.Subscriber('joint_ctrl', JointState, self.joint_callback, queue_size=1, tcp_nodelay=True)
         # rospy.Subscriber('/move_group/fake_controller_joint_states', JointState, self.joint_callback)
         rospy.spin()
     
@@ -342,20 +344,21 @@ class C_PiperRosNode():
             # rospy.loginfo("joint_5: %f", joint_data.position[5])
             # rospy.loginfo("joint_6: %f", joint_data.position[6])
             # print(joint_data.position)
-            # 安全地获取关节位置，处理可变长度的关节命令
-            joint_positions = [0.0] * 7  # 默认7个关节都为0
-            for i, pos in enumerate(joint_data.position[:7]):  # 只取前7个关节
-                joint_positions[i] = pos
-            
-            joint_0 = round(joint_positions[0]*factor) if len(joint_data.position) > 0 else 0
-            joint_1 = round(joint_positions[1]*factor) if len(joint_data.position) > 1 else 0
-            joint_2 = round(joint_positions[2]*factor) if len(joint_data.position) > 2 else 0
-            joint_3 = round(joint_positions[3]*factor) if len(joint_data.position) > 3 else 0
-            joint_4 = round(joint_positions[4]*factor) if len(joint_data.position) > 4 else 0
-            joint_5 = round(joint_positions[5]*factor) if len(joint_data.position) > 5 else 0
-            
+            joint_0 = round(joint_data.position[0]*factor)
+            joint_1 = round(joint_data.position[1]*factor)
+            joint_2 = round(joint_data.position[2]*factor)
+            joint_3 = round(joint_data.position[3]*factor)
+            joint_4 = round(joint_data.position[4]*factor)
+            joint_5 = round(joint_data.position[5]*factor)
+            # 处理夹爪：joint7和joint8，取第一个值（它们应该是相反的）
             if(len(joint_data.position) >= 7):
-                joint_6 = round(joint_positions[6]*1000*1000)
+                joint_6 = round(joint_data.position[6]*1000*1000)
+                joint_6 = joint_6 * self.gripper_val_mutiple
+                if(joint_6>80000): joint_6 = 80000
+                if(joint_6<0): joint_6 = 0
+            elif(len(joint_data.position) >= 8):
+                # 如果有8个关节，使用joint7的值
+                joint_6 = round(joint_data.position[6]*1000*1000)
                 joint_6 = joint_6 * self.gripper_val_mutiple
                 if(joint_6>80000): joint_6 = 80000
                 if(joint_6<0): joint_6 = 0
@@ -390,7 +393,7 @@ class C_PiperRosNode():
                 if(self.gripper_exist and joint_6 is not None):
                     if abs(joint_6)<200:
                         joint_6=0
-                    if(joint_data.effort and len(joint_data.effort) >= 7):
+                    if(len(joint_data.effort) >= 7):
                         gripper_effort = joint_data.effort[6]
                         gripper_effort = max(0.5, min(gripper_effort, 3))
                         # rospy.loginfo("gripper_effort: %f", gripper_effort)

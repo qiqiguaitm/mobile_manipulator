@@ -1,0 +1,45 @@
+# 混合控制器配置 - 支持仿真规划和实机执行
+controller_list:
+  # 用于仿真显示的fake控制器
+  - name: fake_arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: false
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+      
+  # 用于实机控制的真实控制器
+  - name: arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+      
+  # 夹爪控制器
+  - name: gripper_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: false
+    joints:
+      - joint7
+      - joint8
+
+# 混合模式配置
+hybrid_mode:
+  # 是否在执行前显示预览
+  show_preview: true
+  # 预览时间（秒）
+  preview_duration: 2.0
+  # 是否需要用户确认才能执行到实机
+  require_confirmation: false

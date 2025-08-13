@@ -1,96 +1,149 @@
 <launch>
 
-  <!-- specify the planning pipeline -->
+  <!-- 指定规划管道 -->
   <arg name="pipeline" default="ompl" />
 
-  <!-- By default, we do not start a database (it can be large) -->
+  <!-- 数据库配置 -->
   <arg name="db" default="false" />
-  <!-- Allow user to specify database location -->
   <arg name="db_path" default="$(find piper_with_gripper_moveit)/default_warehouse_mongo_db" />
 
-  <!-- By default, we are not in debug mode -->
+  <!-- 调试模式 -->
   <arg name="debug" default="false" />
 
-  <!-- By default, we will load or override the robot_description -->
+  <!-- 机器人描述加载 -->
   <arg name="load_robot_description" default="true"/>
 
-  <!-- Choose controller manager: fake, simple, or ros_control -->
-  <arg name="moveit_controller_manager" default="fake" />
-  <!-- Add argument for real hardware mode -->
-  <arg name="real_hardware" default="false" />
-  <!-- Set execution mode for fake execution controllers -->
-  <arg name="fake_execution_type" default="interpolate" />
-
-  <!-- By default, hide joint_state_publisher's GUI in 'fake' controller_manager mode -->
+  <!-- GUI和RViz配置 -->
   <arg name="use_gui" default="false" />
   <arg name="use_rviz" default="true" />
 
-  <!-- If needed, broadcast static tf for robot root -->
+  <!-- 控制模式选择：sim_only(仅仿真), real_only(仅实机), hybrid(混合模式) -->
+  <arg name="control_mode" default="hybrid" />
+  
+  <!-- 执行模式：true表示可以执行到实机，false仅用于规划仿真 -->
+  <arg name="execute_on_real" default="true" />
+  
+  <!-- 是否启动机器人状态发布器 -->
+  <arg name="launch_robot_state_publisher" default="true" />
+  
+  <!-- 控制器管理器类型，适配不同的控制后端 -->
+  <arg name="moveit_controller_manager" default="simple" />
+  <arg name="fake_execution_type" default="interpolate" />
 
-  <!-- Real robot hardware control -->
-  <group if="$(arg real_hardware)">
-    <!-- 启动真实机械臂控制节点 -->
-    <arg name="can_port" default="can0" />
-    <arg name="auto_enable" default="true" />
-    <arg name="gripper_val_mutiple" default="2" />
-    
-    <node name="piper_ctrl_single_node" pkg="piper" type="piper_ctrl_single_node.py" output="screen">
-      <param name="can_port" value="$(arg can_port)" />
-      <param name="auto_enable" value="$(arg auto_enable)" />
-      <param name="gripper_val_mutiple" value="$(arg gripper_val_mutiple)" />
-      <param name="girpper_exist" value="true" />
-      <remap from="joint_ctrl_single" to="/joint_ctrl_commands" />
+  <!-- ============================================= -->
+  <!-- 根据控制模式配置控制器管理器 -->
+  <!-- ============================================= -->
+  
+  <!-- 仅仿真模式：使用fake控制器 -->
+  <group if="$(eval arg('control_mode') == 'sim_only')">
+    <!-- 发布fake关节状态 -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" unless="$(arg use_gui)">
+      <rosparam param="source_list">[move_group/fake_controller_joint_states]</rosparam>
+      <param name="rate" value="100"/>
     </node>
     
-    <!-- 启动Fake到Real的桥接节点 -->
-    <node name="fake_to_real_bridge" pkg="moveit_ctrl" type="fake_to_real_bridge.py" output="screen" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg use_gui)">
+      <rosparam param="source_list">[move_group/fake_controller_joint_states]</rosparam>
+      <param name="rate" value="100"/>
+    </node>
   </group>
 
-  <group if="$(eval arg('moveit_controller_manager') == 'fake')">
-    <!-- For fake mode without real hardware -->
-    <group unless="$(arg real_hardware)">
-      <!-- We do not have a real robot connected, so publish fake joint states via a joint_state_publisher
-           MoveIt's fake controller's joint states are considered via the 'source_list' parameter -->
-      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" unless="$(arg use_gui)">
-        <rosparam param="source_list">[move_group/fake_controller_joint_states]</rosparam>
-        <param name="rate" value="100"/>
-      </node>
-      <!-- If desired, a GUI version is available allowing to move the simulated robot around manually
-           This corresponds to moving around the real robot without the use of MoveIt. -->
-      <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg use_gui)">
-        <rosparam param="source_list">[move_group/fake_controller_joint_states]</rosparam>
-        <param name="rate" value="100"/>
-      </node>
-    </group>
-
-    <!-- Always publish robot state -->
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+  <!-- 仅实机模式：使用ros_control -->
+  <group if="$(eval arg('control_mode') == 'real_only')">
+    <!-- 启动follow_joint_trajectory服务器 -->
+    <node name="follow_joint_trajectory_server" pkg="moveit_ctrl" type="follow_joint_trajectory_server.py"
+          output="screen" required="true">
+      <remap from="/joint_ctrl_commands" to="/joint_ctrl_commands"/>
+      <remap from="/joint_states" to="/joint_states"/>
+    </node>
+    
+    <!-- 不需要joint_state_publisher，直接使用真实机器人的/joint_states -->
   </group>
 
-  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
+  <!-- 混合模式（默认）：可以在仿真中规划，然后执行到实机 -->
+  <group if="$(eval arg('control_mode') == 'hybrid')">
+    <!-- 启动follow_joint_trajectory服务器（如果需要执行到实机） -->
+    <node if="$(arg execute_on_real)" 
+          name="follow_joint_trajectory_server" 
+          pkg="moveit_ctrl" 
+          type="follow_joint_trajectory_server.py"
+          output="screen">
+      <remap from="/joint_ctrl_commands" to="/joint_ctrl_commands"/>
+      <remap from="/joint_states" to="/joint_states"/>
+    </node>
+    
+    <!-- 智能关节状态发布器：等待并检测真实joint_states，如果没有则发布fake states -->
+    <node name="joint_state_coordinator" 
+          pkg="moveit_ctrl" 
+          type="joint_state_coordinator.py"
+          output="screen">
+      <param name="wait_for_real_robot_timeout" value="5.0"/>
+      <param name="fake_joint_state_rate" value="50"/>
+      <rosparam param="default_joint_positions">
+        joint1: 0.0
+        joint2: 0.0  
+        joint3: 0.0
+        joint4: 0.0
+        joint5: 0.0
+        joint6: 0.0
+        joint7: 0.025
+        joint8: -0.025
+      </rosparam>
+    </node>
+  </group>
+
+  <!-- 根据需要启动robot_state_publisher -->
+  <node if="$(arg launch_robot_state_publisher)" 
+        name="robot_state_publisher_moveit" 
+        pkg="robot_state_publisher" 
+        type="robot_state_publisher" 
+        respawn="false" 
+        output="screen" />
+
+  <!-- ============================================= -->
+  <!-- 启动MoveGroup（完整功能版本） -->
+  <!-- ============================================= -->
   <include file="$(dirname)/move_group.launch">
     <arg name="allow_trajectory_execution" value="true"/>
-    <arg name="moveit_controller_manager" value="$(arg moveit_controller_manager)" />
-    <arg name="fake_execution_type" value="$(arg fake_execution_type)"/>
-    <arg name="info" value="true"/>
+    <arg name="moveit_controller_manager" value="fake" if="$(eval arg('control_mode') == 'sim_only')" />
+    <arg name="moveit_controller_manager" value="simple" if="$(eval arg('control_mode') == 'real_only')" />
+    <arg name="moveit_controller_manager" value="simple" if="$(eval arg('control_mode') == 'hybrid')" />
+    <arg name="fake_execution_type" value="$(arg fake_execution_type)" if="$(eval arg('control_mode') == 'sim_only')"/>
+    <arg name="info" value="false"/>
     <arg name="debug" value="$(arg debug)"/>
     <arg name="pipeline" value="$(arg pipeline)"/>
     <arg name="load_robot_description" value="$(arg load_robot_description)"/>
   </include>
 
-  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <!-- ============================================= -->
+  <!-- 启动RViz -->
+  <!-- ============================================= -->
   <include file="$(dirname)/moveit_rviz.launch" if="$(arg use_rviz)">
     <arg name="rviz_config" value="$(dirname)/moveit.rviz"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
-  <!-- If database loading was enabled, start mongodb as well -->
+  <!-- ============================================= -->
+  <!-- 数据库支持 -->
+  <!-- ============================================= -->
   <include file="$(dirname)/default_warehouse_db.launch" if="$(arg db)">
     <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
   </include>
 
-  <!-- 启动 joint_moveit_ctrl_server -->
-  <node name="joint_moveit_ctrl_server" pkg="moveit_ctrl" type="joint_moveit_ctrl_server.py"
-        output="screen" launch-prefix="python3" if="$(arg real_hardware)"/>
+  <!-- ============================================= -->
+  <!-- 启动joint_moveit_ctrl_server（智能等待机制） -->
+  <!-- ============================================= -->
+  <node name="joint_moveit_ctrl_server" 
+        pkg="moveit_ctrl" 
+        type="joint_moveit_ctrl_server.py"
+        output="screen" 
+        respawn="false"
+        required="false">
+    <!-- 使用智能等待机制，无需硬编码延迟 -->
+  </node>
+
+  <!-- ============================================= -->
+  <!-- 配置信息会在启动时显示在控制台 -->
+  <!-- ============================================= -->
 
 </launch>

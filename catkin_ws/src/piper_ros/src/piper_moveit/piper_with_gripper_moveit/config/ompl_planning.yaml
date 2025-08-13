@@ -153,8 +153,8 @@ arm:
     - LazyPRMstar
     - SPARS
     - SPARStwo
-  projection_evaluator: joints(arm_joint1,arm_joint2)
-  longest_valid_segment_fraction: 0.005
+  projection_evaluator: joints(joint1,joint2)
+  longest_valid_segment_fraction: 0.01
 gripper:
   planner_configs:
     - AnytimePathShortening
@@ -207,5 +207,5 @@ piper:
     - LazyPRMstar
     - SPARS
     - SPARStwo
-  projection_evaluator: joints(arm_joint1,arm_joint2)
-  longest_valid_segment_fraction: 0.005
+  projection_evaluator: joints(joint1,joint2)
+  longest_valid_segment_fraction: 0.01

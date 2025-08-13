@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/catkin_ws/build
 include arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory.dir/progress.make
 
 arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory:
-	cd /home/agilex/AgileXDemo/catkin_ws/build/arm_planner && ../catkin_generated/env_cached.sh /home/agilex/miniconda3/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py arm_planner /home/agilex/AgileXDemo/catkin_ws/src/arm_planner/msg/ArmTrajectory.msg std_msgs/Header:geometry_msgs/Point:geometry_msgs/Quaternion:trajectory_msgs/JointTrajectoryPoint:geometry_msgs/Pose
+	cd /home/agilex/AgileXDemo/catkin_ws/build/arm_planner && ../catkin_generated/env_cached.sh /home/agilex/miniconda3/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py arm_planner /home/agilex/AgileXDemo/catkin_ws/src/arm_planner/msg/ArmTrajectory.msg geometry_msgs/Pose:geometry_msgs/Point:trajectory_msgs/JointTrajectoryPoint:std_msgs/Header:geometry_msgs/Quaternion
 
 _arm_planner_generate_messages_check_deps_ArmTrajectory: arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory
 _arm_planner_generate_messages_check_deps_ArmTrajectory: arm_planner/CMakeFiles/_arm_planner_generate_messages_check_deps_ArmTrajectory.dir/build.make

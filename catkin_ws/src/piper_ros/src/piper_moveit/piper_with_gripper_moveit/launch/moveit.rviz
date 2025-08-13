@@ -57,7 +57,7 @@ Visualization Manager:
         Colliding Link Color: 255; 0; 0
         Goal State Alpha: 1
         Goal State Color: 250; 128; 0
-        Interactive Marker Size: 0
+        Interactive Marker Size: 0.05
         Joint Violation Color: 255; 0; 255
         Query Goal State: true
         Query Start State: false
@@ -80,7 +80,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base_link
+    Fixed Frame: world_link
   Name: root
   Tools:
     - Class: rviz/Interact

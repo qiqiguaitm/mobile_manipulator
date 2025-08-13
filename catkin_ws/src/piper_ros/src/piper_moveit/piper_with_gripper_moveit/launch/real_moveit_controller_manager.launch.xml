@@ -1,7 +1,0 @@
-<launch>
-  <!-- Set the real controller manager -->
-  <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
-  
-  <!-- Loads the real robot controllers configuration -->
-  <rosparam file="$(find piper_with_gripper_moveit)/config/real_robot_controllers.yaml"/>
-</launch>

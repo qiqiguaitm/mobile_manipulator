@@ -1,0 +1,62 @@
+<launch>
+
+  <!-- 1. 启动底盘及控制器（基础模块） -->
+  <include file="$(find odom)/launch/odom_test.launch" name="odom_node"/>
+  
+  <include file="$(find chassis_controller)/launch/chassis_controller.launch" name="chassis_controller"/>
+
+  <!-- 2. 启动RS16激光雷达（依赖底盘控制器） -->
+  <include file="$(find lidar_driver)/launch/lidar_driver_simple.launch" name="lidar_node" depends="chassis_controller"/>
+
+  <!-- 2-1. 激光话题转发（/sensors/lidar/scan → /scan，供rf2o和gmapping使用） -->
+  <node pkg="topic_tools" type="relay" name="scan_topic_relay"
+        args="/lidar/chassis/scan /scan" output="screen"/>
+
+  <!-- 3-3. rslidar到机器人基坐标系（base_link）的安装变换（根据实际位置调整） -->
+  <node pkg="tf" type="static_transform_publisher" name="rslidar_to_base_link"
+        args="0.25 0.0 0.0 0.0 0.0 0.0 base_link rslidar 100"/>
+     
+  <node pkg="rf2o_laser_odometry" type="rf2o_laser_odometry_node" name="rf2o_laser_odometry_slam" output="screen">
+    <param name="laser_scan_topic" value="/scan"/>         # topic where the lidar scans are being published
+    <param name="odom_topic" value="/odom" />              # topic where tu publish the odometry estimations
+    
+    <param name="base_frame_id" value="rslidar"/>            # frame_id (tf) of the mobile robot base. A tf transform from the laser_frame to the base_frame is mandatory
+    <param name="odom_frame_id" value="odom" />                # frame_id (tf) to publish the odometry estimations  
+    <param name="publish_tf" value="true" />                   # wheter or not to publish the tf::transform (base->odom)  
+    <param name="init_pose_from_topic" value="" />             # (Odom topic) Leave empty to start at point (0,0)
+    <param name="freq" value="10.0"/>                          # Execution frequency.
+    <param name="verbose" value="true" />                      # verbose
+  </node>
+
+  <!--  ************** Navigation ***************  -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find chassis_planner)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find chassis_planner)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find chassis_planner)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find chassis_planner)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find chassis_planner)/param/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find chassis_planner)/param/move_base_params.yaml" command="load" />
+  </node>
+
+  	<!--  ****** Maps *****  -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find slam)/maps/map11.yaml" output="screen">
+      <param name="frame_id" value="map"/>
+	</node>
+
+	<node pkg="amcl" type="amcl" name="amcl" output="screen">
+		<rosparam file="$(find chassis_planner)/param/amcl_params.yaml" command="load" />
+      		<param name="initial_pose_x"            value="0"/>
+      		<param name="initial_pose_y"            value="0"/>
+		<param name="initial_pose_a"            value="0"/>
+	</node>
+
+    <!--  **************** Visualisation ****************  -->
+  <node name="car_rviz" pkg="rviz" type="rviz" args="-d $(find chassis_planner)/rviz/rviz_navigation.rviz">
+  </node>
+
+  <include file="$(find chassis_planner)/launch/tracer_base.launch">
+      <arg name="port_name" default="can0" />
+      <arg name="simulated_robot" default="false" />
+  </include>
+
+</launch>

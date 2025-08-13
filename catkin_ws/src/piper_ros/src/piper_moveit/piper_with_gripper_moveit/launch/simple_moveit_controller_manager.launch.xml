@@ -4,5 +4,6 @@
 
   <!-- Load controller list to the parameter server -->
   <rosparam file="$(find piper_with_gripper_moveit)/config/simple_moveit_controllers.yaml" />
-  <rosparam file="$(find piper_with_gripper_moveit)/config/ros_controllers.yaml" />
+  <!-- Also load real_controllers.yaml for proper controller configuration -->
+  <rosparam file="$(find piper_with_gripper_moveit)/config/real_controllers.yaml" />
 </launch>

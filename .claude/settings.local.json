@@ -79,7 +79,12 @@
       "Bash(pgrep:*)",
       "Bash(export ROS_MASTER_URI=http://192.168.0.155:11311)",
       "Bash(git add:*)",
-      "Bash(ln:*)"
+      "Bash(ln:*)",
+      "Bash(check_urdf:*)",
+      "Bash(xmllint:*)",
+      "Bash(/dev/null)",
+      "Bash(rosnode kill:*)",
+      "Bash(touch:*)"
     ],
     "deny": []
   }

@@ -1,8 +1,8 @@
 # joint_limits.yaml allows the dynamics properties specified in the URDF to be overwritten or augmented as needed
 
-# For cartesian planning, we use moderate scaling factors.
-# You can always specify higher scaling factors (<= 1.0) in your motion requests.
-default_velocity_scaling_factor: 0.3
+# For beginners, we downscale velocity and acceleration limits.
+# You can always specify higher scaling factors (<= 1.0) in your motion requests.  # Increase the values below to 1.0 to always move at maximum speed.
+default_velocity_scaling_factor: 0.5
 default_acceleration_scaling_factor: 0.3
 
 # Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
@@ -10,35 +10,52 @@ default_acceleration_scaling_factor: 0.3
 joint_limits:
   joint1:
     has_velocity_limits: true
-    max_velocity: 5
+    max_velocity: 3.14
     has_acceleration_limits: true
-    max_acceleration: 2.0
+    max_acceleration: 1.57
+    min_position: -2.687
+    max_position: 2.687
   joint2:
     has_velocity_limits: true
-    max_velocity: 5
+    max_velocity: 3.40
     has_acceleration_limits: true
-    max_acceleration: 2.0
+    max_acceleration: 1.70
+    min_position: 0.0
+    max_position: 3.403
   joint3:
     has_velocity_limits: true
-    max_velocity: 5
+    max_velocity: 3.14
     has_acceleration_limits: true
-    max_acceleration: 2.0
+    max_acceleration: 1.57
+    min_position: -3.054
+    max_position: 0.0
   joint4:
     has_velocity_limits: true
-    max_velocity: 5
+    max_velocity: 3.93
     has_acceleration_limits: true
-    max_acceleration: 2.0
+    max_acceleration: 1.96
+    min_position: -1.780
+    max_position: 1.780
   joint5:
     has_velocity_limits: true
-    max_velocity: 5
+    max_velocity: 3.93
     has_acceleration_limits: true
-    max_acceleration: 2.0
+    max_acceleration: 1.96
+    min_position: -1.309
+    max_position: 1.309
   joint6:
     has_velocity_limits: true
-    max_velocity: 3
+    max_velocity: 3.93
     has_acceleration_limits: true
-    max_acceleration: 1.5
+    max_acceleration: 1.96
+    min_position: -2.094
+    max_position: 2.094
   joint7:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  joint8:
     has_velocity_limits: true
     max_velocity: 1
     has_acceleration_limits: false

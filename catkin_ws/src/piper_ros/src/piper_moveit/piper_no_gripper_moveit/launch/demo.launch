@@ -15,7 +15,7 @@
   <arg name="load_robot_description" default="true"/>
 
   <!-- Choose controller manager: fake, simple, or ros_control -->
-  <arg name="moveit_controller_manager" default="simple" />
+  <arg name="moveit_controller_manager" default="fake" />
   <!-- Set execution mode for fake execution controllers -->
   <arg name="fake_execution_type" default="interpolate" />
 
@@ -40,36 +40,6 @@
     </node>
 
     <!-- Given the published joint states, publish tf for the robot links -->
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
-  </group>
-
-  <!-- For real robot control -->
-  <group if="$(eval arg('moveit_controller_manager') == 'simple')">
-    <!-- Start the actual arm controller node for hardware control -->
-    <node name="arm_controller_node" pkg="arm_controller" type="arm_controller_node.py" 
-          output="screen" launch-prefix="python3">
-      <rosparam file="$(find arm_controller)/config/topics.yaml" command="load" />
-    </node>
-    
-    <!-- Start the FollowJointTrajectory action server -->
-    <node name="follow_joint_trajectory_server" pkg="arm_controller" type="follow_joint_trajectory_server.py"
-          output="screen" launch-prefix="python3" />
-    
-    <!-- Publish joint states for MoveIt (temporary until hardware connection is established) -->
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-      <param name="rate" value="50"/>
-      <rosparam param="source_list">[/arm/joint_states]</rosparam>
-      <rosparam param="zeros">
-        joint1: 0.0
-        joint2: 0.0
-        joint3: 0.0
-        joint4: 0.0
-        joint5: 0.0
-        joint6: 0.0
-      </rosparam>
-    </node>
-    
-    <!-- Start the robot state publisher for TF -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
   </group>
 
