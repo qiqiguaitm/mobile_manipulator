@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/task_mgr/share/gennodejs/ros/task_mgr/msg/task_mgr.js

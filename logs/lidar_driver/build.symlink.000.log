@@ -1,0 +1,7 @@
+Symlinking /home/agilex/AgileXDemo/devel/share/lidar_driver/cmake/lidar_driverConfig-version.cmake
+Symlinking /home/agilex/AgileXDemo/devel/share/lidar_driver/cmake/lidar_driverConfig.cmake
+Symlinking /home/agilex/AgileXDemo/devel/lib/lidar_driver/lidar_driver_node.py
+Symlinking /home/agilex/AgileXDemo/devel/lib/lidar_driver/lidar_test.py
+Symlinking /home/agilex/AgileXDemo/devel/lib/lidar_driver/lidar_driver_node_sim.py
+Symlinking /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/lidar_driver/__init__.py
+Symlinking /home/agilex/AgileXDemo/devel/lib/pkgconfig/lidar_driver.pc

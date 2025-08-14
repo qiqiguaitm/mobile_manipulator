@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/moveit_ctrl/share/gennodejs/ros/moveit_ctrl/srv/JointMoveitCtrl.js

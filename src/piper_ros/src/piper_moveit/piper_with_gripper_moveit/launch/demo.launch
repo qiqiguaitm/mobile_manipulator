@@ -1,0 +1,119 @@
+<launch>
+
+  <!-- ============================================= -->
+  <!-- 简化版Piper MoveIt Demo - 稳定可靠的版本 -->
+  <!-- 解决RViz显示、规划和控制问题 -->
+  <!-- ============================================= -->
+
+  <!-- 基本参数 -->
+  <arg name="pipeline" default="ompl" />
+  <arg name="debug" default="false" />
+  <arg name="use_rviz" default="true" />
+  
+  <!-- 模式选择: fake(仿真) 或 real(实机) -->
+  <arg name="mode" default="real" />
+
+  <!-- ============================================= -->
+  <!-- 加载机器人描述 -->
+  <!-- ============================================= -->
+  <include file="$(dirname)/planning_context.launch">
+    <arg name="load_robot_description" value="true" />
+  </include>
+
+  <!-- ============================================= -->
+  <!-- 机器人状态发布器 - 必须启动 -->
+  <!-- ============================================= -->
+  <node name="robot_state_publisher" 
+        pkg="robot_state_publisher" 
+        type="robot_state_publisher" 
+        respawn="false" 
+        output="screen">
+    <remap from="joint_states" to="/joint_states" />
+  </node>
+
+  <!-- ============================================= -->
+  <!-- 关节状态发布 -->
+  <!-- ============================================= -->
+  
+  <!-- 仿真模式：使用fake joint states -->
+  <group if="$(eval arg('mode') == 'fake')">
+    <node name="joint_state_publisher" 
+          pkg="joint_state_publisher" 
+          type="joint_state_publisher"
+          output="screen">
+      <param name="rate" value="50"/>
+      <rosparam param="zeros">
+        joint1: 0.0
+        joint2: 0.0  
+        joint3: 0.0
+        joint4: 0.0
+        joint5: 0.0
+        joint6: 0.0
+        joint7: 0.025
+        joint8: -0.025
+      </rosparam>
+    </node>
+  </group>
+  
+  <!-- 实机模式：启动硬件驱动 -->
+  <group if="$(eval arg('mode') == 'real')">
+    <node name="piper_driver" 
+          pkg="piper" 
+          type="piper_ctrl_single_node.py" 
+          output="screen"
+          required="true">
+      <param name="can_port" value="can0" />
+      <param name="auto_enable" value="true" />
+      <param name="gripper_exist" value="true" />
+      <param name="gripper_val_mutiple" value="1" />
+    </node>
+    
+    <!-- 轨迹执行服务器 -->
+    <node name="trajectory_controller" 
+          pkg="moveit_ctrl" 
+          type="follow_joint_trajectory_server.py" 
+          output="screen">
+    </node>
+  </group>
+  
+
+  <!-- ============================================= -->
+  <!-- MoveIt核心组件 -->
+  <!-- ============================================= -->
+  <include file="$(dirname)/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="moveit_controller_manager" 
+         value="fake" if="$(eval arg('mode') == 'fake')" />
+    <arg name="moveit_controller_manager" 
+         value="simple" if="$(eval arg('mode') == 'real')" />
+    <arg name="fake_execution_type" value="interpolate"/>
+    <arg name="info" value="false"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="pipeline" value="$(arg pipeline)"/>
+    <arg name="load_robot_description" value="false"/>
+  </include>
+
+  <!-- ============================================= -->
+  <!-- RViz可视化 -->
+  <!-- ============================================= -->
+  <include file="$(dirname)/moveit_rviz.launch" if="$(arg use_rviz)">
+    <arg name="rviz_config" value="$(dirname)/moveit.rviz"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <!-- ============================================= -->
+  <!-- MoveIt控制服务 -->
+  <!-- ============================================= -->
+  <node name="joint_moveit_ctrl_server" 
+        pkg="moveit_ctrl" 
+        type="joint_moveit_ctrl_server.py"
+        output="screen" 
+        respawn="false" />
+
+  <!-- ============================================= -->
+  <!-- 启动信息显示 -->
+  <!-- ============================================= -->
+  <node name="launch_status_info" pkg="moveit_ctrl" type="launch_status_info.py" 
+        output="screen" args="$(arg mode)" />
+
+</launch>

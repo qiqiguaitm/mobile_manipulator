@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/piper_msgs/lib/pkgconfig/piper_msgs.pc

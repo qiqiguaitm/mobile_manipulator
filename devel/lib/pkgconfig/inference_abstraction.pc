@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/inference_abstraction/lib/pkgconfig/inference_abstraction.pc

@@ -1,0 +1,8 @@
+prefix=/home/agilex/AgileXDemo/devel/.private/target_filter
+
+Name: target_filter
+Description: Description of target_filter
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

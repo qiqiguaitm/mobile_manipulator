@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/tracer2_description/lib/pkgconfig/tracer2_description.pc

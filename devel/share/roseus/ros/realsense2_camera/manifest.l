@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/manifest.l

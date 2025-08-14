@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/moveit_ctrl/lib/pkgconfig/moveit_ctrl.pc

@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/gennodejs/ros/arm_planner/msg/ArmTrajectory.js

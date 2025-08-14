@@ -1,0 +1,4 @@
+Symlinking /home/agilex/AgileXDemo/devel/share/object_tracker/cmake/object_trackerConfig-version.cmake
+Symlinking /home/agilex/AgileXDemo/devel/share/object_tracker/cmake/object_trackerConfig.cmake
+Symlinking /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/object_tracker/__init__.py
+Symlinking /home/agilex/AgileXDemo/devel/lib/pkgconfig/object_tracker.pc

@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/moveit_ctrl/share/roseus/ros/moveit_ctrl/srv/JointMoveitCtrl.l

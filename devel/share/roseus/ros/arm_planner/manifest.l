@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/roseus/ros/arm_planner/manifest.l

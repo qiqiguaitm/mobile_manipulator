@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>sensor_calibration</name>
+  <version>0.0.1</version>
+  <description>Sensor calibration module for AgileX robot</description>
+  
+  <maintainer email="maintainer@example.com">AgileX</maintainer>
+  <license>MIT</license>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>tf2_ros</depend>
+  
+  <export>
+  </export>
+</package>

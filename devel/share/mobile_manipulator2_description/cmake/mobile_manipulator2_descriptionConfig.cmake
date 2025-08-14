@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/mobile_manipulator2_description/share/mobile_manipulator2_description/cmake/mobile_manipulator2_descriptionConfig.cmake

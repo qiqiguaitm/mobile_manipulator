@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/odom/lib/pkgconfig/odom.pc

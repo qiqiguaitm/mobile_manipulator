@@ -1,0 +1,4 @@
+Symlinking /home/agilex/AgileXDemo/devel/share/inference_abstraction/cmake/inference_abstractionConfig-version.cmake
+Symlinking /home/agilex/AgileXDemo/devel/share/inference_abstraction/cmake/inference_abstractionConfig.cmake
+Symlinking /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/inference_abstraction/__init__.py
+Symlinking /home/agilex/AgileXDemo/devel/lib/pkgconfig/inference_abstraction.pc

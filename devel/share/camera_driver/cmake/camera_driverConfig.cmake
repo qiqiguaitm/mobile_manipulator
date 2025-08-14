@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/camera_driver/share/camera_driver/cmake/camera_driverConfig.cmake

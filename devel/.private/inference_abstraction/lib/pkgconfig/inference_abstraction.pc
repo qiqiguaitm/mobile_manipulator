@@ -1,0 +1,8 @@
+prefix=/home/agilex/AgileXDemo/devel/.private/inference_abstraction
+
+Name: inference_abstraction
+Description: Description of inference_abstraction
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

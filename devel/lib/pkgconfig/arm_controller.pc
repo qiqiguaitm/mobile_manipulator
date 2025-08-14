@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/arm_controller/lib/pkgconfig/arm_controller.pc

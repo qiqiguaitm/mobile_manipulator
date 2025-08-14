@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/imu_driver/lib/pkgconfig/imu_driver.pc

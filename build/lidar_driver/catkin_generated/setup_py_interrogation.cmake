@@ -1,0 +1,7 @@
+set(lidar_driver_SETUP_PY_SETUP_MODULE "setuptools")
+set(lidar_driver_SETUP_PY_VERSION "0.0.1")
+set(lidar_driver_SETUP_PY_SCRIPTS "")
+set(lidar_driver_SETUP_PY_PACKAGES "lidar_driver")
+set(lidar_driver_SETUP_PY_PACKAGE_DIRS "src/lidar_driver")
+set(lidar_driver_SETUP_PY_MODULES "")
+set(lidar_driver_SETUP_PY_MODULE_DIRS "")

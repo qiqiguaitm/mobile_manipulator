@@ -1,0 +1,19 @@
+arm_planner
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/arm_planner/cmake/arm_planner-msg-extras.cmake /home/agilex/AgileXDemo/devel/share/arm_planner/cmake/arm_planner-msg-extras.cmake
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/arm_planner/cmake/arm_plannerConfig-version.cmake /home/agilex/AgileXDemo/devel/share/arm_planner/cmake/arm_plannerConfig-version.cmake
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/arm_planner/cmake/arm_plannerConfig.cmake /home/agilex/AgileXDemo/devel/share/arm_planner/cmake/arm_plannerConfig.cmake
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/arm_planner/cmake/arm_planner-msg-paths.cmake /home/agilex/AgileXDemo/devel/share/arm_planner/cmake/arm_planner-msg-paths.cmake
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/common-lisp/ros/arm_planner/msg/_package_ArmTrajectory.lisp /home/agilex/AgileXDemo/devel/share/common-lisp/ros/arm_planner/msg/_package_ArmTrajectory.lisp
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/common-lisp/ros/arm_planner/msg/arm_planner-msg.asd /home/agilex/AgileXDemo/devel/share/common-lisp/ros/arm_planner/msg/arm_planner-msg.asd
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/common-lisp/ros/arm_planner/msg/_package.lisp /home/agilex/AgileXDemo/devel/share/common-lisp/ros/arm_planner/msg/_package.lisp
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/common-lisp/ros/arm_planner/msg/ArmTrajectory.lisp /home/agilex/AgileXDemo/devel/share/common-lisp/ros/arm_planner/msg/ArmTrajectory.lisp
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/gennodejs/ros/arm_planner/_index.js /home/agilex/AgileXDemo/devel/share/gennodejs/ros/arm_planner/_index.js
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/gennodejs/ros/arm_planner/msg/ArmTrajectory.js /home/agilex/AgileXDemo/devel/share/gennodejs/ros/arm_planner/msg/ArmTrajectory.js
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/gennodejs/ros/arm_planner/msg/_index.js /home/agilex/AgileXDemo/devel/share/gennodejs/ros/arm_planner/msg/_index.js
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/roseus/ros/arm_planner/manifest.l /home/agilex/AgileXDemo/devel/share/roseus/ros/arm_planner/manifest.l
+/home/agilex/AgileXDemo/devel/.private/arm_planner/share/roseus/ros/arm_planner/msg/ArmTrajectory.l /home/agilex/AgileXDemo/devel/share/roseus/ros/arm_planner/msg/ArmTrajectory.l
+/home/agilex/AgileXDemo/devel/.private/arm_planner/lib/python3/dist-packages/arm_planner/__init__.py /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/arm_planner/__init__.py
+/home/agilex/AgileXDemo/devel/.private/arm_planner/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/arm_planner/msg/_ArmTrajectory.py
+/home/agilex/AgileXDemo/devel/.private/arm_planner/lib/python3/dist-packages/arm_planner/msg/__init__.py /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/arm_planner/msg/__init__.py
+/home/agilex/AgileXDemo/devel/.private/arm_planner/lib/pkgconfig/arm_planner.pc /home/agilex/AgileXDemo/devel/lib/pkgconfig/arm_planner.pc
+/home/agilex/AgileXDemo/devel/.private/arm_planner/include/arm_planner/ArmTrajectory.h /home/agilex/AgileXDemo/devel/include/arm_planner/ArmTrajectory.h

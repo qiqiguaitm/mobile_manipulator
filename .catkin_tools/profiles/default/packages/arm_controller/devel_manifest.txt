@@ -1,0 +1,5 @@
+arm_controller
+/home/agilex/AgileXDemo/devel/.private/arm_controller/share/arm_controller/cmake/arm_controllerConfig.cmake /home/agilex/AgileXDemo/devel/share/arm_controller/cmake/arm_controllerConfig.cmake
+/home/agilex/AgileXDemo/devel/.private/arm_controller/share/arm_controller/cmake/arm_controllerConfig-version.cmake /home/agilex/AgileXDemo/devel/share/arm_controller/cmake/arm_controllerConfig-version.cmake
+/home/agilex/AgileXDemo/devel/.private/arm_controller/lib/python3/dist-packages/arm_controller/__init__.py /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/arm_controller/__init__.py
+/home/agilex/AgileXDemo/devel/.private/arm_controller/lib/pkgconfig/arm_controller.pc /home/agilex/AgileXDemo/devel/lib/pkgconfig/arm_controller.pc

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/agilex/AgileXDemo/devel/.private/piper_with_gripper_moveit/setup.sh

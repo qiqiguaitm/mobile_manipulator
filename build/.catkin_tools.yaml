@@ -1,0 +1,6 @@
+devel_space: /home/agilex/AgileXDemo/devel
+install: false
+install_space: /home/agilex/AgileXDemo/install
+profile: default
+source_space: /home/agilex/AgileXDemo/src
+workspace: /home/agilex/AgileXDemo

@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/_Metadata.py

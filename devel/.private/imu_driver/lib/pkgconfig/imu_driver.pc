@@ -1,0 +1,8 @@
+prefix=/home/agilex/AgileXDemo/devel/.private/imu_driver
+
+Name: imu_driver
+Description: Description of imu_driver
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy serial sensor_msgs std_msgs

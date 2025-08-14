@@ -1,0 +1,5 @@
+odom
+/home/agilex/AgileXDemo/devel/.private/odom/share/odom/cmake/odomConfig.cmake /home/agilex/AgileXDemo/devel/share/odom/cmake/odomConfig.cmake
+/home/agilex/AgileXDemo/devel/.private/odom/share/odom/cmake/odomConfig-version.cmake /home/agilex/AgileXDemo/devel/share/odom/cmake/odomConfig-version.cmake
+/home/agilex/AgileXDemo/devel/.private/odom/lib/python3/dist-packages/odom/__init__.py /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/odom/__init__.py
+/home/agilex/AgileXDemo/devel/.private/odom/lib/pkgconfig/odom.pc /home/agilex/AgileXDemo/devel/lib/pkgconfig/odom.pc

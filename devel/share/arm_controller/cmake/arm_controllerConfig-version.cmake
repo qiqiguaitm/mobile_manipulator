@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/arm_controller/share/arm_controller/cmake/arm_controllerConfig-version.cmake

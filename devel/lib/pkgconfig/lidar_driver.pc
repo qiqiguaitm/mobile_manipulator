@@ -1,0 +1,1 @@
+/home/agilex/AgileXDemo/devel/.private/lidar_driver/lib/pkgconfig/lidar_driver.pc

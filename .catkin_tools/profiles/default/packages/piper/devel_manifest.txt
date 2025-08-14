@@ -1,0 +1,4 @@
+piper_ros/src/piper
+/home/agilex/AgileXDemo/devel/.private/piper/share/piper/cmake/piperConfig-version.cmake /home/agilex/AgileXDemo/devel/share/piper/cmake/piperConfig-version.cmake
+/home/agilex/AgileXDemo/devel/.private/piper/share/piper/cmake/piperConfig.cmake /home/agilex/AgileXDemo/devel/share/piper/cmake/piperConfig.cmake
+/home/agilex/AgileXDemo/devel/.private/piper/lib/pkgconfig/piper.pc /home/agilex/AgileXDemo/devel/lib/pkgconfig/piper.pc
