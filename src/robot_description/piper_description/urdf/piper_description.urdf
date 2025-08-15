@@ -105,10 +105,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="-2.618"
-      upper="2.168"
+      lower="-2.687"
+      upper="2.687"
       effort="100"
-      velocity="5" />
+      velocity="3.142" />
   </joint>
   <link
     name="link2">
@@ -165,9 +165,9 @@
       xyz="0 0 1" />
     <limit
       lower="0"
-      upper="3.14"
+      upper="3.403"
       effort="100"
-      velocity="5" />
+      velocity="3.403" />
   </joint>
   <link
     name="link3">
@@ -223,10 +223,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="-2.967"
+      lower="-3.054"
       upper="0"
       effort="100"
-      velocity="5" />
+      velocity="3.142" />
   </joint>
   <link
     name="link4">
@@ -281,10 +281,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="-1.745"
-      upper="1.745"
+      lower="-1.780"
+      upper="1.780"
       effort="100"
-      velocity="5" />
+      velocity="3.927" />
   </joint>
   <link
     name="link5">
@@ -339,10 +339,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="-1.22"
-      upper="1.22"
+      lower="-1.309"
+      upper="1.309"
       effort="100"
-      velocity="5" />
+      velocity="3.927" />
   </joint>
   <link
     name="link6">
@@ -397,10 +397,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="-2.0944"
-      upper="2.0944"
+      lower="-2.094"
+      upper="2.094"
       effort="100"
-      velocity="3" />
+      velocity="3.927" />
   </joint>
   <link
     name="gripper_base">
