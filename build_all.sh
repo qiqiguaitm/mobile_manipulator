@@ -1,43 +1,43 @@
 #!/bin/bash
 
-# Build script for AgileX robot project
+# Build script for MobileManipulator robot project
 # Usage: ./build_all.sh [camera|lidar|imu|arm|chassis|perception|slam|odom|all|list]
 
-echo "Building AgileX robot project..."
+echo "Building MobileManipulator robot project..."
 
 # Source ROS environment
 source /opt/ros/noetic/setup.bash
 
 # Build the workspace
-cd /home/agilex/AgileXDemo/catkin_ws
+cd /home/agilex/MobileManipulator
 
 if [ $# -eq 0 ] || [ "$1" = "all" ]; then
     echo "Building all packages..."
-    catkin_make
+    catkin build
 elif [ "$1" = "camera" ]; then
     echo "Building camera driver packages..."
-    catkin_make --only-pkg-with-deps realsense2_camera
+    catkin build realsense2_camera camera_driver
 elif [ "$1" = "lidar" ]; then
     echo "Building LiDAR driver packages..."
-    catkin_make --only-pkg-with-deps lidar_driver
+    catkin build lidar_driver
 elif [ "$1" = "imu" ]; then
     echo "Building IMU driver packages..."
-    catkin_make --only-pkg-with-deps imu_driver
+    catkin build imu_driver
 elif [ "$1" = "arm" ]; then
     echo "Building arm packages..."
-    catkin_make --only-pkg-with-deps arm_planner arm_controller
+    catkin build arm_planner arm_controller
 elif [ "$1" = "chassis" ]; then
     echo "Building chassis packages..."
-    catkin_make --only-pkg-with-deps chassis_planner chassis_controller
+    catkin build chassis_planner chassis_controller
 elif [ "$1" = "perception" ]; then
     echo "Building perception packages..."
-    catkin_make --only-pkg-with-deps perception object_tracker target_filter
+    catkin build perception object_tracker target_filter inference_abstraction
 elif [ "$1" = "slam" ]; then
     echo "Building SLAM packages..."
-    catkin_make --only-pkg-with-deps slam
+    catkin build slam
 elif [ "$1" = "odom" ]; then
     echo "Building odometry packages..."
-    catkin_make --only-pkg-with-deps odom lidar_driver
+    catkin build odom
 elif [ "$1" = "list" ]; then
     echo "Available packages:"
     echo "  all          - Build all packages"
