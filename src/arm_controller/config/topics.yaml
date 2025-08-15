@@ -1,9 +1,0 @@
-topics:
-  inputs:
-    trajectory:
-      name: /arm/trajectory
-      type: arm_planner/ArmTrajectory
-  outputs:
-    joint_state:
-      name: /arm/joint_states
-      type: sensor_msgs/JointState

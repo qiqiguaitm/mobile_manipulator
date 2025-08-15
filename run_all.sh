@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Run script for AgileX robot project
+# Run script for MobileManipulator robot project
 # Usage: ./run_all.sh [camera|lidar|imu|arm|chassis|perception|slam|odom|all|list]
 
-echo "Running AgileX robot project..."
+echo "Running MobileManipulator robot project..."
 
 # Source ROS environment and workspace
 source /opt/ros/noetic/setup.bash
-source /home/agilex/AgileXDemo/catkin_ws/devel/setup.bash
+source /home/agilex/MobileManipulator/devel/setup.bash
 
 # Check if a specific driver is requested
 if [ $# -eq 0 ] || [ "$1" = "all" ]; then
     echo "Launching all modules..."
-    roslaunch /home/agilex/AgileXDemo/catkin_ws/src/agilex_demo.launch
+    roslaunch /home/agilex/MobileManipulator/src/agilex_demo.launch
 elif [ "$1" = "camera" ]; then
     echo "Launching camera driver..."
     roslaunch realsense2_camera realsense_cameras.launch

@@ -1,0 +1,25 @@
+# MoveIt轨迹执行管理器的配置
+# 优化启动速度和执行性能
+
+# 是否允许启动时查找控制器
+allow_trajectory_execution: true
+
+# 是否允许查看模式，即不执行轨迹，仅显示
+execution_duration_monitoring: false
+
+# 轨迹执行期间是否允许重新规划
+allowed_execution_duration_scaling: 1.2
+
+# 允许开始执行延迟
+allowed_start_tolerance: 0.01
+
+# 控制器参数
+trajectory_execution:
+  # 减少等待控制器连接的时间
+  allowed_goal_duration_margin: 0.5
+  
+  # 缩短服务器连接超时时间
+  execution_duration_monitoring: false
+  
+  # 允许的最大轨迹偏差
+  allowed_execution_duration_scaling: 1.5

@@ -1,8 +1,0 @@
-<launch>
-	<!-- Define MoveIt controller manager plugin -->
-	<param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
-	
-	<!-- Load controllers configuration based on control mode -->
-	<rosparam file="$(find piper_with_gripper_moveit)/config/real_controllers.yaml" unless="$(eval optenv('MOVEIT_HYBRID_MODE', 'false') == 'true')"/>
-	<rosparam file="$(find piper_with_gripper_moveit)/config/hybrid_controllers.yaml" if="$(eval optenv('MOVEIT_HYBRID_MODE', 'false') == 'true')"/>
-</launch>

@@ -1,0 +1,37 @@
+<launch>
+
+  <!-- ============================================= -->
+  <!-- Piper MoveIt Demo - 重构版本 -->
+  <!-- ============================================= -->
+
+  <!-- 基本参数 -->
+  <arg name="pipeline" default="ompl" />
+  <arg name="debug" default="false" />
+  <arg name="use_rviz" default="true" />
+  
+  <!-- 模式选择: fake(仿真) 或 real(实机) -->
+  <arg name="mode" default="real" />
+  
+  <!-- 夹爪选择: true(带夹爪) 或 false(不带夹爪) -->
+  <arg name="gripper" default="true" />
+
+  <!-- 根据夹爪选择加载不同的配置 -->
+  <group if="$(arg gripper)">
+    <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/demo.launch">
+      <arg name="mode" value="$(arg mode)" />
+      <arg name="use_rviz" value="$(arg use_rviz)" />
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="pipeline" value="$(arg pipeline)" />
+    </include>
+  </group>
+  
+  <group unless="$(arg gripper)">
+    <include file="$(find arm_planner)/moveit_config/piper_no_gripper/launch/demo.launch">
+      <arg name="mode" value="$(arg mode)" />
+      <arg name="use_rviz" value="$(arg use_rviz)" />
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="pipeline" value="$(arg pipeline)" />
+    </include>
+  </group>
+
+</launch>

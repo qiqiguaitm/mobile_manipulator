@@ -1,0 +1,54 @@
+# MoveIt Move Group 快速启动配置
+# 优化参数以减少启动时间
+
+# 规划配置
+planning_scene_monitor:
+  publish_planning_scene: true
+  publish_geometry_updates: true
+  publish_state_updates: true
+  publish_transforms_updates: true
+
+# 碰撞检测配置
+collision_detection:
+  # 减少碰撞检测的复杂度
+  collision_detector_plugins: ["FCL"]
+  world_geometry_monitor_period: 0.1
+
+# 规划配置
+planning:
+  # 减少规划器初始化时间
+  planning_pipeline: ompl
+  request_adapters: >-
+    default_planner_request_adapters/AddTimeOptimalParameterization
+    default_planner_request_adapters/FixWorkspaceBounds
+    default_planner_request_adapters/FixStartStateBounds
+    default_planner_request_adapters/FixStartStateCollision
+    default_planner_request_adapters/FixStartStatePathConstraints
+
+# 轨迹执行配置
+trajectory_execution:
+  allowed_execution_duration_scaling: 1.2
+  allowed_goal_duration_margin: 0.5
+  allowed_start_tolerance: 0.01
+
+# 传感器配置
+sensors: []
+
+# 控制器配置
+moveit_controller_manager: simple
+
+# 能力配置
+capabilities: >-
+  move_group/MoveGroupCartesianPathService
+  move_group/MoveGroupExecuteTrajectoryAction
+  move_group/MoveGroupKinematicsService
+  move_group/MoveGroupMoveAction
+  move_group/MoveGroupPickPlaceAction
+  move_group/MoveGroupPlanService
+  move_group/MoveGroupQueryPlannersService
+  move_group/MoveGroupStateValidationService
+  move_group/MoveGroupGetPlanningSceneService
+
+# 禁用一些非必要功能以加快启动
+disable_capabilities: >-
+  move_group/ClearOctomapService
