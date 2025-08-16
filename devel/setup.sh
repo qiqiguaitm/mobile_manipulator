@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/catkin_tools_prebuild/setup.sh
+/home/agilex/MobileManipulator/devel/.private/catkin_tools_prebuild/setup.sh

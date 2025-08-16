@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "chassis_planner"
-PROJECT_SPACE_DIR = "/home/agilex/AgileXDemo/devel/.private/chassis_planner"
+PROJECT_SPACE_DIR = "/home/agilex/MobileManipulator/devel/.private/chassis_planner"
 PROJECT_VERSION = "0.0.1"

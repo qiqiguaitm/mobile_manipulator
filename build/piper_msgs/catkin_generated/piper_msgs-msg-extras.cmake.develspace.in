@@ -1,2 +1,0 @@
-set(piper_msgs_MESSAGE_FILES "/home/agilex/AgileXDemo/src/piper_ros/src/piper_msgs/msg/PiperStatusMsg.msg;/home/agilex/AgileXDemo/src/piper_ros/src/piper_msgs/msg/PosCmd.msg;/home/agilex/AgileXDemo/src/piper_ros/src/piper_msgs/msg/PiperEulerPose.msg")
-set(piper_msgs_SERVICE_FILES "/home/agilex/AgileXDemo/src/piper_ros/src/piper_msgs/srv/Enable.srv;/home/agilex/AgileXDemo/src/piper_ros/src/piper_msgs/srv/Gripper.srv;/home/agilex/AgileXDemo/src/piper_ros/src/piper_msgs/srv/GoZero.srv")

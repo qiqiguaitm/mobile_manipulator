@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/imu_driver
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/imu_driver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/imu_driver
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/imu_driver
 
 # Utility rule file for sensor_msgs_generate_messages_py.
 
@@ -67,6 +67,6 @@ CMakeFiles/sensor_msgs_generate_messages_py.dir/clean:
 .PHONY : CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
 
 CMakeFiles/sensor_msgs_generate_messages_py.dir/depend:
-	cd /home/agilex/AgileXDemo/build/imu_driver && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/AgileXDemo/src/imu_driver /home/agilex/AgileXDemo/src/imu_driver /home/agilex/AgileXDemo/build/imu_driver /home/agilex/AgileXDemo/build/imu_driver /home/agilex/AgileXDemo/build/imu_driver/CMakeFiles/sensor_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/imu_driver && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/imu_driver /home/agilex/MobileManipulator/src/imu_driver /home/agilex/MobileManipulator/build/imu_driver /home/agilex/MobileManipulator/build/imu_driver /home/agilex/MobileManipulator/build/imu_driver/CMakeFiles/sensor_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/sensor_msgs_generate_messages_py.dir/depend
 

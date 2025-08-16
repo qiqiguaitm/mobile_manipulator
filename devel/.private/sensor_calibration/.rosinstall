@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/agilex/AgileXDemo/devel/.private/sensor_calibration/setup.sh
+    local-name: /home/agilex/MobileManipulator/devel/.private/sensor_calibration/setup.sh

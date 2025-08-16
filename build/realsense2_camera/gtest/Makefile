@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/realsense2_camera/realsense2_camera
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/realsense2_camera
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/realsense2_camera
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,14 +137,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/agilex/AgileXDemo/build/realsense2_camera && $(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/AgileXDemo/build/realsense2_camera/CMakeFiles /home/agilex/AgileXDemo/build/realsense2_camera/gtest/CMakeFiles/progress.marks
-	cd /home/agilex/AgileXDemo/build/realsense2_camera && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/AgileXDemo/build/realsense2_camera/CMakeFiles 0
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/realsense2_camera/CMakeFiles /home/agilex/MobileManipulator/build/realsense2_camera/gtest/CMakeFiles/progress.marks
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/realsense2_camera/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/agilex/AgileXDemo/build/realsense2_camera && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,17 +154,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/agilex/AgileXDemo/build/realsense2_camera && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/agilex/AgileXDemo/build/realsense2_camera && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/agilex/AgileXDemo/build/realsense2_camera && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -191,6 +191,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/agilex/AgileXDemo/build/realsense2_camera && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

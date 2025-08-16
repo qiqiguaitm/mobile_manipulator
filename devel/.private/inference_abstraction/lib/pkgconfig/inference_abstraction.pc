@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/inference_abstraction
+prefix=/home/agilex/MobileManipulator/devel/.private/inference_abstraction
 
 Name: inference_abstraction
 Description: Description of inference_abstraction

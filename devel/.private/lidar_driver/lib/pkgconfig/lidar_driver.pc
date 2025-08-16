@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/lidar_driver
+prefix=/home/agilex/MobileManipulator/devel/.private/lidar_driver
 
 Name: lidar_driver
 Description: Description of lidar_driver

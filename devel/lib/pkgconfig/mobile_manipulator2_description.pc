@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/mobile_manipulator2_description/lib/pkgconfig/mobile_manipulator2_description.pc
+/home/agilex/MobileManipulator/devel/.private/mobile_manipulator2_description/lib/pkgconfig/mobile_manipulator2_description.pc

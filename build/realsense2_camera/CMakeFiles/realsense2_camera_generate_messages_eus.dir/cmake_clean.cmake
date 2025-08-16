@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/manifest.l"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/msg/Extrinsics.l"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/msg/IMUInfo.l"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/msg/Metadata.l"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/srv/DeviceInfo.l"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/manifest.l"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/msg/Extrinsics.l"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/msg/IMUInfo.l"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/msg/Metadata.l"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/srv/DeviceInfo.l"
   "CMakeFiles/realsense2_camera_generate_messages_eus"
 )
 

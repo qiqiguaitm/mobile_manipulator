@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/agilex/AgileXDemo/src/imu_driver/src/imu_data_decode.h
+/home/agilex/MobileManipulator/src/imu_driver/src/imu_data_decode.h
 stdint.h
 -
 stdbool.h
 -
 
-/home/agilex/AgileXDemo/src/imu_driver/src/imu_driver_complete.cpp
+/home/agilex/MobileManipulator/src/imu_driver/src/imu_driver_complete.cpp
 ros/ros.h
 -
 serial/serial.h
@@ -40,11 +40,11 @@ stdint.h
 stdbool.h
 -
 packet.h
-/home/agilex/AgileXDemo/src/imu_driver/src/packet.h
+/home/agilex/MobileManipulator/src/imu_driver/src/packet.h
 imu_data_decode.h
-/home/agilex/AgileXDemo/src/imu_driver/src/imu_data_decode.h
+/home/agilex/MobileManipulator/src/imu_driver/src/imu_data_decode.h
 
-/home/agilex/AgileXDemo/src/imu_driver/src/packet.h
+/home/agilex/MobileManipulator/src/imu_driver/src/packet.h
 stdint.h
 -
 stdbool.h

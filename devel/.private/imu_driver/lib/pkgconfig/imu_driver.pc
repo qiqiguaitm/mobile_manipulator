@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/imu_driver
+prefix=/home/agilex/MobileManipulator/devel/.private/imu_driver
 
 Name: imu_driver
 Description: Description of imu_driver

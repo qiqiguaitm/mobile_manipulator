@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/install
+prefix=/home/agilex/MobileManipulator/install
 
 Name: chassis_controller
 Description: Description of chassis_controller

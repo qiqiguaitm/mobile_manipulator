@@ -1,4 +1,0 @@
-piper_ros/src/piper_moveit/piper_with_gripper_moveit
-/home/agilex/AgileXDemo/devel/.private/piper_with_gripper_moveit/share/piper_with_gripper_moveit/cmake/piper_with_gripper_moveitConfig-version.cmake /home/agilex/AgileXDemo/devel/share/piper_with_gripper_moveit/cmake/piper_with_gripper_moveitConfig-version.cmake
-/home/agilex/AgileXDemo/devel/.private/piper_with_gripper_moveit/share/piper_with_gripper_moveit/cmake/piper_with_gripper_moveitConfig.cmake /home/agilex/AgileXDemo/devel/share/piper_with_gripper_moveit/cmake/piper_with_gripper_moveitConfig.cmake
-/home/agilex/AgileXDemo/devel/.private/piper_with_gripper_moveit/lib/pkgconfig/piper_with_gripper_moveit.pc /home/agilex/AgileXDemo/devel/lib/pkgconfig/piper_with_gripper_moveit.pc

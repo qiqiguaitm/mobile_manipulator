@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/msg/Extrinsics.js"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/msg/IMUInfo.js"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/msg/Metadata.js"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/srv/DeviceInfo.js"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/msg/Extrinsics.js"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/msg/IMUInfo.js"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/msg/Metadata.js"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/srv/DeviceInfo.js"
   "CMakeFiles/realsense2_camera_generate_messages_nodejs"
 )
 

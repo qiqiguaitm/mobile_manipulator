@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/install
+prefix=/home/agilex/MobileManipulator/install
 
 Name: inference_abstraction
 Description: Description of inference_abstraction

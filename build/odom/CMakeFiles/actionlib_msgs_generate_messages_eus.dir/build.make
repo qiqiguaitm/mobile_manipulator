@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/odom
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/odom
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/odom
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/odom
 
 # Utility rule file for actionlib_msgs_generate_messages_eus.
 
@@ -67,6 +67,6 @@ CMakeFiles/actionlib_msgs_generate_messages_eus.dir/clean:
 .PHONY : CMakeFiles/actionlib_msgs_generate_messages_eus.dir/clean
 
 CMakeFiles/actionlib_msgs_generate_messages_eus.dir/depend:
-	cd /home/agilex/AgileXDemo/build/odom && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/AgileXDemo/src/odom /home/agilex/AgileXDemo/src/odom /home/agilex/AgileXDemo/build/odom /home/agilex/AgileXDemo/build/odom /home/agilex/AgileXDemo/build/odom/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/odom && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/odom /home/agilex/MobileManipulator/src/odom /home/agilex/MobileManipulator/build/odom /home/agilex/MobileManipulator/build/odom /home/agilex/MobileManipulator/build/odom/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/actionlib_msgs_generate_messages_eus.dir/depend
 

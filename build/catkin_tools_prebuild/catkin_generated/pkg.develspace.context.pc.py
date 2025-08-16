@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "catkin_tools_prebuild"
-PROJECT_SPACE_DIR = "/home/agilex/AgileXDemo/devel/.private/catkin_tools_prebuild"
+PROJECT_SPACE_DIR = "/home/agilex/MobileManipulator/devel/.private/catkin_tools_prebuild"
 PROJECT_VERSION = "0.0.0"

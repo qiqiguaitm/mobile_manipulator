@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/tracer2_description
+prefix=/home/agilex/MobileManipulator/devel/.private/tracer2_description
 
 Name: tracer2_description
 Description: Description of tracer2_description

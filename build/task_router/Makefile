@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/task_router
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/task_router
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/task_router
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/task_router
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,9 +137,9 @@ list_install_components/fast: list_install_components
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/AgileXDemo/build/task_router/CMakeFiles /home/agilex/AgileXDemo/build/task_router/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_router/CMakeFiles /home/agilex/MobileManipulator/build/task_router/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/AgileXDemo/build/task_router/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_router/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

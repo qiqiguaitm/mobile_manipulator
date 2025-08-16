@@ -1,8 +1,8 @@
-prefix=/home/agilex/AgileXDemo/install
+prefix=/home/agilex/MobileManipulator/install
 
 Name: arm_planner
 Description: Description of arm_planner
-Version: 0.0.1
+Version: 0.0.0
 Cflags: -I${prefix}/include
 Libs: -L${prefix}/lib 
-Requires: rospy std_msgs sensor_msgs geometry_msgs trajectory_msgs message_runtime
+Requires: roscpp rospy std_msgs geometry_msgs sensor_msgs trajectory_msgs control_msgs actionlib actionlib_msgs message_runtime moveit_core moveit_ros_planning moveit_ros_planning_interface tf2 tf2_ros tf2_geometry_msgs

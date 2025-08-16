@@ -1,4 +1,4 @@
 realsense2_camera/realsense2_description
-/home/agilex/AgileXDemo/devel/.private/realsense2_description/share/realsense2_description/cmake/realsense2_descriptionConfig.cmake /home/agilex/AgileXDemo/devel/share/realsense2_description/cmake/realsense2_descriptionConfig.cmake
-/home/agilex/AgileXDemo/devel/.private/realsense2_description/share/realsense2_description/cmake/realsense2_descriptionConfig-version.cmake /home/agilex/AgileXDemo/devel/share/realsense2_description/cmake/realsense2_descriptionConfig-version.cmake
-/home/agilex/AgileXDemo/devel/.private/realsense2_description/lib/pkgconfig/realsense2_description.pc /home/agilex/AgileXDemo/devel/lib/pkgconfig/realsense2_description.pc
+/home/agilex/MobileManipulator/devel/.private/realsense2_description/share/realsense2_description/cmake/realsense2_descriptionConfig.cmake /home/agilex/MobileManipulator/devel/share/realsense2_description/cmake/realsense2_descriptionConfig.cmake
+/home/agilex/MobileManipulator/devel/.private/realsense2_description/share/realsense2_description/cmake/realsense2_descriptionConfig-version.cmake /home/agilex/MobileManipulator/devel/share/realsense2_description/cmake/realsense2_descriptionConfig-version.cmake
+/home/agilex/MobileManipulator/devel/.private/realsense2_description/lib/pkgconfig/realsense2_description.pc /home/agilex/MobileManipulator/devel/lib/pkgconfig/realsense2_description.pc

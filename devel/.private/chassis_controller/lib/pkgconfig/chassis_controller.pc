@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/chassis_controller
+prefix=/home/agilex/MobileManipulator/devel/.private/chassis_controller
 
 Name: chassis_controller
 Description: Description of chassis_controller

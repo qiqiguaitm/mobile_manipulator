@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/catkin_tools_prebuild/setup.fish
+/home/agilex/MobileManipulator/devel/.private/catkin_tools_prebuild/setup.fish

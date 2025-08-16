@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/sensor_calibration
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/sensor_calibration
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/sensor_calibration
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/sensor_calibration
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,9 +137,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/AgileXDemo/build/sensor_calibration/CMakeFiles /home/agilex/AgileXDemo/build/sensor_calibration/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/sensor_calibration/CMakeFiles /home/agilex/MobileManipulator/build/sensor_calibration/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/AgileXDemo/build/sensor_calibration/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/sensor_calibration/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

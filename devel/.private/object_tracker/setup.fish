@@ -18,7 +18,7 @@ if not type -q bass
 end
 
 if test -z $_CATKIN_SETUP_DIR
-    set _CATKIN_SETUP_DIR /home/agilex/AgileXDemo/devel/.private/object_tracker
+    set _CATKIN_SETUP_DIR /home/agilex/MobileManipulator/devel/.private/object_tracker
 end
 
 set _SETUP_UTIL "$_CATKIN_SETUP_DIR/_setup_util.py"

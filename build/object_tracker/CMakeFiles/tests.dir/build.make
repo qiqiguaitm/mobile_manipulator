@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/object_tracker
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/object_tracker
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/object_tracker
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/object_tracker
 
 # Utility rule file for tests.
 
@@ -67,6 +67,6 @@ CMakeFiles/tests.dir/clean:
 .PHONY : CMakeFiles/tests.dir/clean
 
 CMakeFiles/tests.dir/depend:
-	cd /home/agilex/AgileXDemo/build/object_tracker && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/AgileXDemo/src/object_tracker /home/agilex/AgileXDemo/src/object_tracker /home/agilex/AgileXDemo/build/object_tracker /home/agilex/AgileXDemo/build/object_tracker /home/agilex/AgileXDemo/build/object_tracker/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/object_tracker && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/object_tracker /home/agilex/MobileManipulator/src/object_tracker /home/agilex/MobileManipulator/build/object_tracker /home/agilex/MobileManipulator/build/object_tracker /home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tests.dir/depend
 

@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/srv/_index.js
+/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/gennodejs/ros/realsense2_camera/srv/_index.js

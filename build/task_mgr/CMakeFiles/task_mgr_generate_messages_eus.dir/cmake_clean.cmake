@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/agilex/AgileXDemo/devel/.private/task_mgr/share/roseus/ros/task_mgr/manifest.l"
-  "/home/agilex/AgileXDemo/devel/.private/task_mgr/share/roseus/ros/task_mgr/msg/task_mgr.l"
+  "/home/agilex/MobileManipulator/devel/.private/task_mgr/share/roseus/ros/task_mgr/manifest.l"
+  "/home/agilex/MobileManipulator/devel/.private/task_mgr/share/roseus/ros/task_mgr/msg/task_mgr.l"
   "CMakeFiles/task_mgr_generate_messages_eus"
 )
 

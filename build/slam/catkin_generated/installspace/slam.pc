@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/install
+prefix=/home/agilex/MobileManipulator/install
 
 Name: slam
 Description: Description of slam

@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/camera_driver/lib/pkgconfig/camera_driver.pc
+/home/agilex/MobileManipulator/devel/.private/camera_driver/lib/pkgconfig/camera_driver.pc

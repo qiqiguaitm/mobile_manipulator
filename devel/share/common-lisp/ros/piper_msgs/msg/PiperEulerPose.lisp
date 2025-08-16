@@ -1,1 +1,0 @@
-/home/agilex/AgileXDemo/devel/.private/piper_msgs/share/common-lisp/ros/piper_msgs/msg/PiperEulerPose.lisp

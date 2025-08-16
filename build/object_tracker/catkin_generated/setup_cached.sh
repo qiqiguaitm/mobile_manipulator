@@ -7,10 +7,10 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/agilex/AgileXDemo/devel/.private/object_tracker:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/agilex/AgileXDemo/devel/.private/object_tracker/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/agilex/AgileXDemo/devel/.private/object_tracker/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PWD='/home/agilex/AgileXDemo/build/object_tracker'
-export PYTHONPATH="/home/agilex/AgileXDemo/devel/.private/object_tracker/lib/python3/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/AgileXDemo/devel/.private/object_tracker/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/AgileXDemo/src/object_tracker:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/agilex/MobileManipulator/devel/.private/object_tracker:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/agilex/MobileManipulator/devel/.private/object_tracker/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/home/agilex/MobileManipulator/devel/.private/object_tracker/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PWD='/home/agilex/MobileManipulator/build/object_tracker'
+export PYTHONPATH="/home/agilex/MobileManipulator/devel/.private/object_tracker/lib/python3/dist-packages:/home/agilex/MobileManipulator/devel/lib/python3/dist-packages:$PYTHONPATH"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/object_tracker/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/object_tracker:$ROS_PACKAGE_PATH"

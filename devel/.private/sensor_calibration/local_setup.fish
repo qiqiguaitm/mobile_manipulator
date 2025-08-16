@@ -5,7 +5,7 @@
 # or fall back to the destination set at configure time
 
 if test -z $_CATKIN_SETUP_DIR
-    set _CATKIN_SETUP_DIR /home/agilex/AgileXDemo/devel/.private/sensor_calibration
+    set _CATKIN_SETUP_DIR /home/agilex/MobileManipulator/devel/.private/sensor_calibration
 end
 
 set CATKIN_SETUP_UTIL_ARGS "--extend --local"

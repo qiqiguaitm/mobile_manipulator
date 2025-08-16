@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/arm_planner/share/arm_planner/cmake/arm_planner-msg-extras.cmake
+/home/agilex/MobileManipulator/devel/.private/arm_planner/share/arm_planner/cmake/arm_planner-msg-extras.cmake

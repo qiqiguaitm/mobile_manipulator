@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/agilex/AgileXDemo/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
-export PWD='/home/agilex/AgileXDemo/build/catkin_tools_prebuild'
-export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/AgileXDemo/devel/.private/catkin_tools_prebuild/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/AgileXDemo/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/agilex/MobileManipulator/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
+export PWD='/home/agilex/MobileManipulator/build/catkin_tools_prebuild'
+export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/catkin_tools_prebuild/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"

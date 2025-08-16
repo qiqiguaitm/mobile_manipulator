@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/sensor_calibration
+prefix=/home/agilex/MobileManipulator/devel/.private/sensor_calibration
 
 Name: sensor_calibration
 Description: Description of sensor_calibration

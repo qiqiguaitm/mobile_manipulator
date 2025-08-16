@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/msg/realsense2_camera-msg.asd
+/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/msg/realsense2_camera-msg.asd

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/piper_ros/src/mobile_manipulator2_description/piper_description
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/robot_description/piper_description
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/piper_description
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/piper_description
 
 # Utility rule file for doxygen.
 
@@ -67,6 +67,6 @@ CMakeFiles/doxygen.dir/clean:
 .PHONY : CMakeFiles/doxygen.dir/clean
 
 CMakeFiles/doxygen.dir/depend:
-	cd /home/agilex/AgileXDemo/build/piper_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/AgileXDemo/src/piper_ros/src/mobile_manipulator2_description/piper_description /home/agilex/AgileXDemo/src/piper_ros/src/mobile_manipulator2_description/piper_description /home/agilex/AgileXDemo/build/piper_description /home/agilex/AgileXDemo/build/piper_description /home/agilex/AgileXDemo/build/piper_description/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/piper_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/robot_description/piper_description /home/agilex/MobileManipulator/src/robot_description/piper_description /home/agilex/MobileManipulator/build/piper_description /home/agilex/MobileManipulator/build/piper_description /home/agilex/MobileManipulator/build/piper_description/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doxygen.dir/depend
 

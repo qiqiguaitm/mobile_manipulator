@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/_Extrinsics.py"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/_IMUInfo.py"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/_Metadata.py"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/__init__.py"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/srv/_DeviceInfo.py"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/srv/__init__.py"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/_Extrinsics.py"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/_IMUInfo.py"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/_Metadata.py"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/msg/__init__.py"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/srv/_DeviceInfo.py"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib/python3/dist-packages/realsense2_camera/srv/__init__.py"
   "CMakeFiles/realsense2_camera_generate_messages_py"
 )
 

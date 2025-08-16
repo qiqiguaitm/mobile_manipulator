@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/agilex/AgileXDemo/devel/.private/realsense2_description:$CMAKE_PREFIX_PATH"
-export PWD='/home/agilex/AgileXDemo/build/realsense2_description'
-export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/AgileXDemo/devel/.private/realsense2_description/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/AgileXDemo/src/realsense2_camera/realsense2_description:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/agilex/MobileManipulator/devel/.private/realsense2_description:$CMAKE_PREFIX_PATH"
+export PWD='/home/agilex/MobileManipulator/build/realsense2_description'
+export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/realsense2_description/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_description:$ROS_PACKAGE_PATH"

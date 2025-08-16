@@ -1,7 +1,11 @@
 (cl:defpackage arm_planner-msg
   (:use )
   (:export
-   "<ARMTRAJECTORY>"
-   "ARMTRAJECTORY"
+   "<PIPEREULERPOSE>"
+   "PIPEREULERPOSE"
+   "<PIPERSTATUSMSG>"
+   "PIPERSTATUSMSG"
+   "<POSCMD>"
+   "POSCMD"
   ))
 

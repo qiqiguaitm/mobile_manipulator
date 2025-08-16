@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/agilex/AgileXDemo/devel/.private/arm_planner/setup.sh
+    local-name: /home/agilex/MobileManipulator/devel/.private/arm_planner/setup.sh

@@ -1,8 +1,8 @@
-Symlinking /home/agilex/AgileXDemo/devel/share/imu_driver/cmake/imu_driverConfig.cmake
-Symlinking /home/agilex/AgileXDemo/devel/share/imu_driver/cmake/imu_driverConfig-version.cmake
-Symlinking /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/imu_driver/__init__.py
-Symlinking /home/agilex/AgileXDemo/devel/lib/pkgconfig/imu_driver.pc
-Symlinking /home/agilex/AgileXDemo/devel/lib/imu_driver/imu_test.py
-Symlinking /home/agilex/AgileXDemo/devel/lib/imu_driver/imu_driver
-Symlinking /home/agilex/AgileXDemo/devel/lib/imu_driver/test_imu_topic.py
-Symlinking /home/agilex/AgileXDemo/devel/lib/imu_driver/imu_driver_node.py
+Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/share/imu_driver/cmake/imu_driverConfig.cmake, /home/agilex/MobileManipulator/devel/share/imu_driver/cmake/imu_driverConfig.cmake)
+Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/share/imu_driver/cmake/imu_driverConfig-version.cmake, /home/agilex/MobileManipulator/devel/share/imu_driver/cmake/imu_driverConfig-version.cmake)
+Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/python3/dist-packages/imu_driver/__init__.py, /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/imu_driver/__init__.py)
+Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/pkgconfig/imu_driver.pc, /home/agilex/MobileManipulator/devel/lib/pkgconfig/imu_driver.pc)
+Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/imu_test.py, /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_test.py)
+Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/imu_driver, /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_driver)
+Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/test_imu_topic.py, /home/agilex/MobileManipulator/devel/lib/imu_driver/test_imu_topic.py)
+Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/imu_driver_node.py, /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_driver_node.py)

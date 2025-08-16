@@ -1,6 +1,0 @@
-Symlinking /home/agilex/AgileXDemo/devel/share/piper_mujoco/cmake/piper_mujocoConfig-version.cmake
-Symlinking /home/agilex/AgileXDemo/devel/share/piper_mujoco/cmake/piper_mujocoConfig.cmake
-Symlinking /home/agilex/AgileXDemo/devel/lib/pkgconfig/piper_mujoco.pc
-Symlinking /home/agilex/AgileXDemo/devel/lib/piper_mujoco/piper_mujoco_pid.py
-Symlinking /home/agilex/AgileXDemo/devel/lib/piper_mujoco/piper_no_gripper_mujoco_ros.py
-Symlinking /home/agilex/AgileXDemo/devel/lib/piper_mujoco/piper_mujoco_ros.py

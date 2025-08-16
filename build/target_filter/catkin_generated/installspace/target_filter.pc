@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/install
+prefix=/home/agilex/MobileManipulator/install
 
 Name: target_filter
 Description: Description of target_filter

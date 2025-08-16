@@ -1,4 +1,4 @@
-Symlinking /home/agilex/AgileXDemo/devel/share/task_router/cmake/task_routerConfig-version.cmake
-Symlinking /home/agilex/AgileXDemo/devel/share/task_router/cmake/task_routerConfig.cmake
-Symlinking /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/task_router/__init__.py
-Symlinking /home/agilex/AgileXDemo/devel/lib/pkgconfig/task_router.pc
+Symlinking /home/agilex/MobileManipulator/devel/share/task_router/cmake/task_routerConfig-version.cmake
+Symlinking /home/agilex/MobileManipulator/devel/share/task_router/cmake/task_routerConfig.cmake
+Symlinking /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/task_router/__init__.py
+Symlinking /home/agilex/MobileManipulator/devel/lib/pkgconfig/task_router.pc

@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/install
+prefix=/home/agilex/MobileManipulator/install
 
 Name: piper_description
 Description: Description of piper_description

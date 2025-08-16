@@ -13,9 +13,9 @@ Not searching for unused variables given on the command line.
 -- Detecting CXX compiler ABI info - done
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Using CATKIN_DEVEL_PREFIX: /home/agilex/AgileXDemo/devel/.private/task_router
--- Using CMAKE_PREFIX_PATH: /home/agilex/AgileXDemo/devel;/home/agilex/catkin_ws/devel;/opt/ros/noetic
--- This workspace overlays: /home/agilex/AgileXDemo/devel;/home/agilex/catkin_ws/devel;/opt/ros/noetic
+-- Using CATKIN_DEVEL_PREFIX: /home/agilex/MobileManipulator/devel/.private/task_router
+-- Using CMAKE_PREFIX_PATH: /home/agilex/MobileManipulator/devel;/home/agilex/catkin_ws/devel;/opt/ros/noetic
+-- This workspace overlays: /home/agilex/MobileManipulator/devel;/home/agilex/catkin_ws/devel;/opt/ros/noetic
 -- Found PythonInterp: /home/agilex/miniconda3/bin/python3 (found suitable version "3.13.2", minimum required is "3")
 -- Using PYTHON_EXECUTABLE: /home/agilex/miniconda3/bin/python3
 -- Using Debian Python package layout
@@ -23,7 +23,7 @@ Not searching for unused variables given on the command line.
 -- Using empy: /home/agilex/miniconda3/lib/python3.13/site-packages/em.py
 -- Using CATKIN_ENABLE_TESTING: ON
 -- Call enable_testing()
--- Using CATKIN_TEST_RESULTS_DIR: /home/agilex/AgileXDemo/build/task_router/test_results
+-- Using CATKIN_TEST_RESULTS_DIR: /home/agilex/MobileManipulator/build/task_router/test_results
 -- Forcing gtest/gmock from source, though one was otherwise available.
 -- Found gtest sources under '/usr/src/googletest': gtests will be built
 -- Found gmock sources under '/usr/src/googletest': gmock will be built
@@ -34,4 +34,4 @@ Not searching for unused variables given on the command line.
 -- BUILD_SHARED_LIBS is on
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/agilex/AgileXDemo/build/task_router
+-- Build files have been written to: /home/agilex/MobileManipulator/build/task_router

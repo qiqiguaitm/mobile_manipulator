@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/arm_planner/share/common-lisp/ros/arm_planner/msg/arm_planner-msg.asd
+/home/agilex/MobileManipulator/devel/.private/arm_planner/share/common-lisp/ros/arm_planner/msg/arm_planner-msg.asd

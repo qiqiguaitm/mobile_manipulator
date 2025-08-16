@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/perception/lib/pkgconfig/perception.pc
+/home/agilex/MobileManipulator/devel/.private/perception/lib/pkgconfig/perception.pc

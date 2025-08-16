@@ -1,6 +1,6 @@
-devel_space: /home/agilex/AgileXDemo/devel
+devel_space: /home/agilex/MobileManipulator/devel
 install: false
-install_space: /home/agilex/AgileXDemo/install
+install_space: /home/agilex/MobileManipulator/install
 profile: default
-source_space: /home/agilex/AgileXDemo/src
-workspace: /home/agilex/AgileXDemo
+source_space: /home/agilex/MobileManipulator/src
+workspace: /home/agilex/MobileManipulator

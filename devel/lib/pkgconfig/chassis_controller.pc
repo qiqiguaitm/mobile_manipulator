@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/chassis_controller/lib/pkgconfig/chassis_controller.pc
+/home/agilex/MobileManipulator/devel/.private/chassis_controller/lib/pkgconfig/chassis_controller.pc

@@ -67,14 +67,14 @@ set(object_tracker_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(object_tracker_SOURCE_PREFIX /home/agilex/AgileXDemo/src/object_tracker)
-  set(object_tracker_DEVEL_PREFIX /home/agilex/AgileXDemo/devel/.private/object_tracker)
+  set(object_tracker_SOURCE_PREFIX /home/agilex/MobileManipulator/src/object_tracker)
+  set(object_tracker_DEVEL_PREFIX /home/agilex/MobileManipulator/devel/.private/object_tracker)
   set(object_tracker_INSTALL_PREFIX "")
   set(object_tracker_PREFIX ${object_tracker_DEVEL_PREFIX})
 else()
   set(object_tracker_SOURCE_PREFIX "")
   set(object_tracker_DEVEL_PREFIX "")
-  set(object_tracker_INSTALL_PREFIX /home/agilex/AgileXDemo/install)
+  set(object_tracker_INSTALL_PREFIX /home/agilex/MobileManipulator/install)
   set(object_tracker_PREFIX ${object_tracker_INSTALL_PREFIX})
 endif()
 
@@ -156,7 +156,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/agilex/AgileXDemo/install/lib;/home/agilex/AgileXDemo/devel/lib;/home/agilex/catkin_ws/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/agilex/MobileManipulator/install/lib;/home/agilex/MobileManipulator/devel/lib;/home/agilex/catkin_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

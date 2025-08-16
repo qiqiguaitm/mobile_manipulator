@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/msg/Extrinsics.l
+/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/roseus/ros/realsense2_camera/msg/Extrinsics.l

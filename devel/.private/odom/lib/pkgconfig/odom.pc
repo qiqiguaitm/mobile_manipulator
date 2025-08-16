@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/odom
+prefix=/home/agilex/MobileManipulator/devel/.private/odom
 
 Name: odom
 Description: Description of odom

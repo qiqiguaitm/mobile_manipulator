@@ -1,23 +1,46 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>arm_planner</name>
-  <version>0.0.1</version>
-  <description>Arm planner module for AgileX robot</description>
-  
-  <maintainer email="maintainer@example.com">AgileX</maintainer>
-  <license>MIT</license>
-  
+  <version>0.0.0</version>
+  <description>The arm planner package for Piper robot trajectory planning and MoveIt integration</description>
+
+  <maintainer email="agilex@todo.todo">agilex</maintainer>
+  <license>TODO</license>
+
   <buildtool_depend>catkin</buildtool_depend>
   
-  <depend>rospy</depend>
-  <depend>std_msgs</depend>
-  <depend>sensor_msgs</depend>
-  <depend>geometry_msgs</depend>
-  <depend>trajectory_msgs</depend>
-  
+  <!-- Message generation dependencies -->
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
   
+  <!-- Core dependencies -->
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>trajectory_msgs</depend>
+  <depend>control_msgs</depend>
+  <depend>actionlib</depend>
+  <depend>actionlib_msgs</depend>
+  
+  <!-- MoveIt dependencies -->
+  <depend>moveit_core</depend>
+  <depend>moveit_ros_planning</depend>
+  <depend>moveit_ros_planning_interface</depend>
+  <depend>moveit_ros_perception</depend>
+  <depend>moveit_visual_tools</depend>
+  <depend>moveit_commander</depend>
+  <depend>moveit_msgs</depend>
+  
+  <!-- Robot description dependencies -->
+  <depend>mobile_manipulator2_description</depend>
+  
+  <!-- Other dependencies -->
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+
   <export>
   </export>
 </package>

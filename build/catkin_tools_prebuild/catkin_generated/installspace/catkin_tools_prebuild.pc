@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/install
+prefix=/home/agilex/MobileManipulator/install
 
 Name: catkin_tools_prebuild
 Description: Description of catkin_tools_prebuild

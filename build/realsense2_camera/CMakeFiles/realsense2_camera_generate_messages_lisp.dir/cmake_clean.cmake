@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/msg/Extrinsics.lisp"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/msg/IMUInfo.lisp"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/msg/Metadata.lisp"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/srv/DeviceInfo.lisp"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/msg/Extrinsics.lisp"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/msg/IMUInfo.lisp"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/msg/Metadata.lisp"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/common-lisp/ros/realsense2_camera/srv/DeviceInfo.lisp"
   "CMakeFiles/realsense2_camera_generate_messages_lisp"
 )
 

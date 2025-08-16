@@ -7,9 +7,9 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/agilex/AgileXDemo/devel/.private/imu_driver:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/agilex/AgileXDemo/devel/.private/imu_driver/lib:$LD_LIBRARY_PATH"
-export PWD='/home/agilex/AgileXDemo/build/imu_driver'
-export PYTHONPATH="/home/agilex/AgileXDemo/devel/.private/imu_driver/lib/python3/dist-packages:/home/agilex/AgileXDemo/devel/lib/python3/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/AgileXDemo/devel/.private/imu_driver/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/AgileXDemo/src/imu_driver:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/agilex/MobileManipulator/devel/.private/imu_driver:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/agilex/MobileManipulator/devel/.private/imu_driver/lib:$LD_LIBRARY_PATH"
+export PWD='/home/agilex/MobileManipulator/build/imu_driver'
+export PYTHONPATH="/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/python3/dist-packages:$PYTHONPATH"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/imu_driver/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/imu_driver:$ROS_PACKAGE_PATH"

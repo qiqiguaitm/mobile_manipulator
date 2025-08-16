@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/catkin_tools_prebuild/lib/pkgconfig/catkin_tools_prebuild.pc
+/home/agilex/MobileManipulator/devel/.private/catkin_tools_prebuild/lib/pkgconfig/catkin_tools_prebuild.pc

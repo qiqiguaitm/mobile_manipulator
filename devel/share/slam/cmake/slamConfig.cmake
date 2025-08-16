@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/slam/share/slam/cmake/slamConfig.cmake
+/home/agilex/MobileManipulator/devel/.private/slam/share/slam/cmake/slamConfig.cmake

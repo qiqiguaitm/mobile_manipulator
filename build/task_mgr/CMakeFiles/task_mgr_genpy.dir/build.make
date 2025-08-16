@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/task_mgr
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/task_mgr
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/task_mgr
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/task_mgr
 
 # Utility rule file for task_mgr_genpy.
 
@@ -67,6 +67,6 @@ CMakeFiles/task_mgr_genpy.dir/clean:
 .PHONY : CMakeFiles/task_mgr_genpy.dir/clean
 
 CMakeFiles/task_mgr_genpy.dir/depend:
-	cd /home/agilex/AgileXDemo/build/task_mgr && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/AgileXDemo/src/task_mgr /home/agilex/AgileXDemo/src/task_mgr /home/agilex/AgileXDemo/build/task_mgr /home/agilex/AgileXDemo/build/task_mgr /home/agilex/AgileXDemo/build/task_mgr/CMakeFiles/task_mgr_genpy.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/task_mgr && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/task_mgr /home/agilex/MobileManipulator/src/task_mgr /home/agilex/MobileManipulator/build/task_mgr /home/agilex/MobileManipulator/build/task_mgr /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles/task_mgr_genpy.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/task_mgr_genpy.dir/depend
 

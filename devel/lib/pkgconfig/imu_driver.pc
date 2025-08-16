@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/imu_driver/lib/pkgconfig/imu_driver.pc
+/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/pkgconfig/imu_driver.pc

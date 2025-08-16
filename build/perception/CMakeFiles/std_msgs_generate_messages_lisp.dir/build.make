@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/perception
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/perception
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/perception
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/perception
 
 # Utility rule file for std_msgs_generate_messages_lisp.
 
@@ -67,6 +67,6 @@ CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
 .PHONY : CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 
 CMakeFiles/std_msgs_generate_messages_lisp.dir/depend:
-	cd /home/agilex/AgileXDemo/build/perception && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/AgileXDemo/src/perception /home/agilex/AgileXDemo/src/perception /home/agilex/AgileXDemo/build/perception /home/agilex/AgileXDemo/build/perception /home/agilex/AgileXDemo/build/perception/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/perception && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/perception /home/agilex/MobileManipulator/src/perception /home/agilex/MobileManipulator/build/perception /home/agilex/MobileManipulator/build/perception /home/agilex/MobileManipulator/build/perception/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
 

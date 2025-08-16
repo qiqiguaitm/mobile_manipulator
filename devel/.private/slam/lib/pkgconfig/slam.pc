@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/slam
+prefix=/home/agilex/MobileManipulator/devel/.private/slam
 
 Name: slam
 Description: Description of slam

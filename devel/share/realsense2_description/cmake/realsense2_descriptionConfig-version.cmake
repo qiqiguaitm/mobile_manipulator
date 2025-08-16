@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/realsense2_description/share/realsense2_description/cmake/realsense2_descriptionConfig-version.cmake
+/home/agilex/MobileManipulator/devel/.private/realsense2_description/share/realsense2_description/cmake/realsense2_descriptionConfig-version.cmake

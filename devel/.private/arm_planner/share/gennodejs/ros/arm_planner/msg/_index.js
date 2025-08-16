@@ -1,8 +1,12 @@
 
 "use strict";
 
-let ArmTrajectory = require('./ArmTrajectory.js');
+let PiperStatusMsg = require('./PiperStatusMsg.js');
+let PosCmd = require('./PosCmd.js');
+let PiperEulerPose = require('./PiperEulerPose.js');
 
 module.exports = {
-  ArmTrajectory: ArmTrajectory,
+  PiperStatusMsg: PiperStatusMsg,
+  PosCmd: PosCmd,
+  PiperEulerPose: PiperEulerPose,
 };

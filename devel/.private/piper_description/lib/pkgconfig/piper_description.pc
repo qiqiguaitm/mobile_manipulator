@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/piper_description
+prefix=/home/agilex/MobileManipulator/devel/.private/piper_description
 
 Name: piper_description
 Description: Description of piper_description

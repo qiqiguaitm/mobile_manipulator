@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/librealsense2_camera.pdb"
-  "/home/agilex/AgileXDemo/devel/.private/realsense2_camera/lib/librealsense2_camera.so"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib/librealsense2_camera.pdb"
+  "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib/librealsense2_camera.so"
   "CMakeFiles/realsense2_camera.dir/src/base_realsense_node.cpp.o"
   "CMakeFiles/realsense2_camera.dir/src/realsense_node_factory.cpp.o"
   "CMakeFiles/realsense2_camera.dir/src/t265_realsense_node.cpp.o"

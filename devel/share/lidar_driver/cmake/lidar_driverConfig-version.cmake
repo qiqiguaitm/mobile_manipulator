@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/lidar_driver/share/lidar_driver/cmake/lidar_driverConfig-version.cmake
+/home/agilex/MobileManipulator/devel/.private/lidar_driver/share/lidar_driver/cmake/lidar_driverConfig-version.cmake

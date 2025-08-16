@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/target_filter
+prefix=/home/agilex/MobileManipulator/devel/.private/target_filter
 
 Name: target_filter
 Description: Description of target_filter

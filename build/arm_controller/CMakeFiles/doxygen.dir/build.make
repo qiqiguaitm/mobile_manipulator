@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/AgileXDemo/src/arm_controller
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/arm_controller
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/agilex/AgileXDemo/build/arm_controller
+CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/arm_controller
 
 # Utility rule file for doxygen.
 
@@ -67,6 +67,6 @@ CMakeFiles/doxygen.dir/clean:
 .PHONY : CMakeFiles/doxygen.dir/clean
 
 CMakeFiles/doxygen.dir/depend:
-	cd /home/agilex/AgileXDemo/build/arm_controller && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/AgileXDemo/src/arm_controller /home/agilex/AgileXDemo/src/arm_controller /home/agilex/AgileXDemo/build/arm_controller /home/agilex/AgileXDemo/build/arm_controller /home/agilex/AgileXDemo/build/arm_controller/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/arm_controller && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/arm_controller /home/agilex/MobileManipulator/src/arm_controller /home/agilex/MobileManipulator/build/arm_controller /home/agilex/MobileManipulator/build/arm_controller /home/agilex/MobileManipulator/build/arm_controller/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doxygen.dir/depend
 

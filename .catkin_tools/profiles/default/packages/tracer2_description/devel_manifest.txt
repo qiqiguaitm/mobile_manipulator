@@ -1,4 +1,4 @@
-piper_ros/src/mobile_manipulator2_description/tracer2_description
-/home/agilex/AgileXDemo/devel/.private/tracer2_description/share/tracer2_description/cmake/tracer2_descriptionConfig-version.cmake /home/agilex/AgileXDemo/devel/share/tracer2_description/cmake/tracer2_descriptionConfig-version.cmake
-/home/agilex/AgileXDemo/devel/.private/tracer2_description/share/tracer2_description/cmake/tracer2_descriptionConfig.cmake /home/agilex/AgileXDemo/devel/share/tracer2_description/cmake/tracer2_descriptionConfig.cmake
-/home/agilex/AgileXDemo/devel/.private/tracer2_description/lib/pkgconfig/tracer2_description.pc /home/agilex/AgileXDemo/devel/lib/pkgconfig/tracer2_description.pc
+robot_description/tracer2_description
+/home/agilex/MobileManipulator/devel/.private/tracer2_description/share/tracer2_description/cmake/tracer2_descriptionConfig-version.cmake /home/agilex/MobileManipulator/devel/share/tracer2_description/cmake/tracer2_descriptionConfig-version.cmake
+/home/agilex/MobileManipulator/devel/.private/tracer2_description/share/tracer2_description/cmake/tracer2_descriptionConfig.cmake /home/agilex/MobileManipulator/devel/share/tracer2_description/cmake/tracer2_descriptionConfig.cmake
+/home/agilex/MobileManipulator/devel/.private/tracer2_description/lib/pkgconfig/tracer2_description.pc /home/agilex/MobileManipulator/devel/lib/pkgconfig/tracer2_description.pc

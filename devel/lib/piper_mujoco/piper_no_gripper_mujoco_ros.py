@@ -1,1 +1,0 @@
-/home/agilex/AgileXDemo/devel/.private/piper_mujoco/lib/piper_mujoco/piper_no_gripper_mujoco_ros.py

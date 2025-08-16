@@ -1,1 +1,0 @@
-/home/agilex/AgileXDemo/devel/.private/moveit_ctrl/lib/moveit_ctrl/joint_moveit_ctrl_server.py

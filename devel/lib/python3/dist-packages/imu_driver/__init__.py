@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/imu_driver/lib/python3/dist-packages/imu_driver/__init__.py
+/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/python3/dist-packages/imu_driver/__init__.py

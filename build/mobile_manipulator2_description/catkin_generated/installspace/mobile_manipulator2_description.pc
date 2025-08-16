@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/install
+prefix=/home/agilex/MobileManipulator/install
 
 Name: mobile_manipulator2_description
 Description: Description of mobile_manipulator2_description

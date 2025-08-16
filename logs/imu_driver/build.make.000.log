@@ -2,5 +2,5 @@
 [ 25%] [32mBuilding CXX object CMakeFiles/imu_driver.dir/src/imu_driver_complete.cpp.o[0m
 [ 50%] [32mBuilding C object CMakeFiles/imu_driver.dir/src/imu_data_decode.c.o[0m
 [ 75%] [32mBuilding C object CMakeFiles/imu_driver.dir/src/packet.c.o[0m
-[100%] [32m[1mLinking CXX executable /home/agilex/AgileXDemo/devel/.private/imu_driver/lib/imu_driver/imu_driver[0m
+[100%] [32m[1mLinking CXX executable /home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/imu_driver[0m
 [100%] Built target imu_driver

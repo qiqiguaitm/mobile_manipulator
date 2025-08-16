@@ -1,8 +1,8 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "arm_planner: 1 messages, 0 services")
+message(STATUS "arm_planner: 3 messages, 4 services")
 
-set(MSG_I_FLAGS "-Iarm_planner:/home/agilex/AgileXDemo/src/arm_planner/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg;-Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Iarm_planner:/home/agilex/MobileManipulator/src/arm_planner/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -17,9 +17,39 @@ add_custom_target(arm_planner_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg" NAME_WE)
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg" NAME_WE)
 add_custom_target(_arm_planner_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "arm_planner" "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg" "std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:trajectory_msgs/JointTrajectoryPoint"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "arm_planner" "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg" "std_msgs/Header"
+)
+
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg" NAME_WE)
+add_custom_target(_arm_planner_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "arm_planner" "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg" ""
+)
+
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg" NAME_WE)
+add_custom_target(_arm_planner_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "arm_planner" "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg" ""
+)
+
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv" NAME_WE)
+add_custom_target(_arm_planner_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "arm_planner" "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv" ""
+)
+
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv" NAME_WE)
+add_custom_target(_arm_planner_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "arm_planner" "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv" ""
+)
+
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv" NAME_WE)
+add_custom_target(_arm_planner_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "arm_planner" "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv" ""
+)
+
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv" NAME_WE)
+add_custom_target(_arm_planner_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "arm_planner" "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv" ""
 )
 
 #
@@ -29,13 +59,49 @@ add_custom_target(_arm_planner_generate_messages_check_deps_${_filename}
 ### Section generating for lang: gencpp
 ### Generating Messages
 _generate_msg_cpp(arm_planner
-  "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg"
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/trajectory_msgs/cmake/../msg/JointTrajectoryPoint.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/arm_planner
+)
+_generate_msg_cpp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/arm_planner
+)
+_generate_msg_cpp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/arm_planner
 )
 
 ### Generating Services
+_generate_srv_cpp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/arm_planner
+)
+_generate_srv_cpp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/arm_planner
+)
+_generate_srv_cpp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/arm_planner
+)
+_generate_srv_cpp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/arm_planner
+)
 
 ### Generating Module File
 _generate_module_cpp(arm_planner
@@ -49,7 +115,19 @@ add_custom_target(arm_planner_generate_messages_cpp
 add_dependencies(arm_planner_generate_messages arm_planner_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg" NAME_WE)
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_cpp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_cpp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_cpp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_cpp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_cpp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_cpp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv" NAME_WE)
 add_dependencies(arm_planner_generate_messages_cpp _arm_planner_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -62,13 +140,49 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS arm_planner_generate_messages_cpp)
 ### Section generating for lang: geneus
 ### Generating Messages
 _generate_msg_eus(arm_planner
-  "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg"
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/trajectory_msgs/cmake/../msg/JointTrajectoryPoint.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/arm_planner
+)
+_generate_msg_eus(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/arm_planner
+)
+_generate_msg_eus(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/arm_planner
 )
 
 ### Generating Services
+_generate_srv_eus(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/arm_planner
+)
+_generate_srv_eus(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/arm_planner
+)
+_generate_srv_eus(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/arm_planner
+)
+_generate_srv_eus(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/arm_planner
+)
 
 ### Generating Module File
 _generate_module_eus(arm_planner
@@ -82,7 +196,19 @@ add_custom_target(arm_planner_generate_messages_eus
 add_dependencies(arm_planner_generate_messages arm_planner_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg" NAME_WE)
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_eus _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_eus _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_eus _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_eus _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_eus _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_eus _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv" NAME_WE)
 add_dependencies(arm_planner_generate_messages_eus _arm_planner_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -95,13 +221,49 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS arm_planner_generate_messages_eus)
 ### Section generating for lang: genlisp
 ### Generating Messages
 _generate_msg_lisp(arm_planner
-  "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg"
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/trajectory_msgs/cmake/../msg/JointTrajectoryPoint.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/arm_planner
+)
+_generate_msg_lisp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/arm_planner
+)
+_generate_msg_lisp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/arm_planner
 )
 
 ### Generating Services
+_generate_srv_lisp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/arm_planner
+)
+_generate_srv_lisp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/arm_planner
+)
+_generate_srv_lisp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/arm_planner
+)
+_generate_srv_lisp(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/arm_planner
+)
 
 ### Generating Module File
 _generate_module_lisp(arm_planner
@@ -115,7 +277,19 @@ add_custom_target(arm_planner_generate_messages_lisp
 add_dependencies(arm_planner_generate_messages arm_planner_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg" NAME_WE)
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_lisp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_lisp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_lisp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_lisp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_lisp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_lisp _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv" NAME_WE)
 add_dependencies(arm_planner_generate_messages_lisp _arm_planner_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -128,13 +302,49 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS arm_planner_generate_messages_lisp)
 ### Section generating for lang: gennodejs
 ### Generating Messages
 _generate_msg_nodejs(arm_planner
-  "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg"
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/trajectory_msgs/cmake/../msg/JointTrajectoryPoint.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/arm_planner
+)
+_generate_msg_nodejs(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/arm_planner
+)
+_generate_msg_nodejs(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/arm_planner
 )
 
 ### Generating Services
+_generate_srv_nodejs(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/arm_planner
+)
+_generate_srv_nodejs(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/arm_planner
+)
+_generate_srv_nodejs(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/arm_planner
+)
+_generate_srv_nodejs(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/arm_planner
+)
 
 ### Generating Module File
 _generate_module_nodejs(arm_planner
@@ -148,7 +358,19 @@ add_custom_target(arm_planner_generate_messages_nodejs
 add_dependencies(arm_planner_generate_messages arm_planner_generate_messages_nodejs)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg" NAME_WE)
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_nodejs _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_nodejs _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_nodejs _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_nodejs _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_nodejs _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_nodejs _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv" NAME_WE)
 add_dependencies(arm_planner_generate_messages_nodejs _arm_planner_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -161,13 +383,49 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS arm_planner_generate_messages_nodej
 ### Section generating for lang: genpy
 ### Generating Messages
 _generate_msg_py(arm_planner
-  "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg"
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/trajectory_msgs/cmake/../msg/JointTrajectoryPoint.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
+)
+_generate_msg_py(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
+)
+_generate_msg_py(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
 )
 
 ### Generating Services
+_generate_srv_py(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
+)
+_generate_srv_py(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
+)
+_generate_srv_py(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
+)
+_generate_srv_py(arm_planner
+  "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
+)
 
 ### Generating Module File
 _generate_module_py(arm_planner
@@ -181,7 +439,19 @@ add_custom_target(arm_planner_generate_messages_py
 add_dependencies(arm_planner_generate_messages arm_planner_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/agilex/AgileXDemo/src/arm_planner/msg/ArmTrajectory.msg" NAME_WE)
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_py _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_py _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg" NAME_WE)
+add_dependencies(arm_planner_generate_messages_py _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_py _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_py _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv" NAME_WE)
+add_dependencies(arm_planner_generate_messages_py _arm_planner_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv" NAME_WE)
 add_dependencies(arm_planner_generate_messages_py _arm_planner_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -203,9 +473,6 @@ endif()
 if(TARGET std_msgs_generate_messages_cpp)
   add_dependencies(arm_planner_generate_messages_cpp std_msgs_generate_messages_cpp)
 endif()
-if(TARGET sensor_msgs_generate_messages_cpp)
-  add_dependencies(arm_planner_generate_messages_cpp sensor_msgs_generate_messages_cpp)
-endif()
 if(TARGET geometry_msgs_generate_messages_cpp)
   add_dependencies(arm_planner_generate_messages_cpp geometry_msgs_generate_messages_cpp)
 endif()
@@ -222,9 +489,6 @@ if(geneus_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/ar
 endif()
 if(TARGET std_msgs_generate_messages_eus)
   add_dependencies(arm_planner_generate_messages_eus std_msgs_generate_messages_eus)
-endif()
-if(TARGET sensor_msgs_generate_messages_eus)
-  add_dependencies(arm_planner_generate_messages_eus sensor_msgs_generate_messages_eus)
 endif()
 if(TARGET geometry_msgs_generate_messages_eus)
   add_dependencies(arm_planner_generate_messages_eus geometry_msgs_generate_messages_eus)
@@ -243,9 +507,6 @@ endif()
 if(TARGET std_msgs_generate_messages_lisp)
   add_dependencies(arm_planner_generate_messages_lisp std_msgs_generate_messages_lisp)
 endif()
-if(TARGET sensor_msgs_generate_messages_lisp)
-  add_dependencies(arm_planner_generate_messages_lisp sensor_msgs_generate_messages_lisp)
-endif()
 if(TARGET geometry_msgs_generate_messages_lisp)
   add_dependencies(arm_planner_generate_messages_lisp geometry_msgs_generate_messages_lisp)
 endif()
@@ -263,9 +524,6 @@ endif()
 if(TARGET std_msgs_generate_messages_nodejs)
   add_dependencies(arm_planner_generate_messages_nodejs std_msgs_generate_messages_nodejs)
 endif()
-if(TARGET sensor_msgs_generate_messages_nodejs)
-  add_dependencies(arm_planner_generate_messages_nodejs sensor_msgs_generate_messages_nodejs)
-endif()
 if(TARGET geometry_msgs_generate_messages_nodejs)
   add_dependencies(arm_planner_generate_messages_nodejs geometry_msgs_generate_messages_nodejs)
 endif()
@@ -279,24 +537,10 @@ if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_
   install(
     DIRECTORY ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
     DESTINATION ${genpy_INSTALL_DIR}
-    # skip all init files
-    PATTERN "__init__.py" EXCLUDE
-    PATTERN "__init__.pyc" EXCLUDE
-  )
-  # install init files which are not in the root folder of the generated code
-  string(REGEX REPLACE "([][+.*()^])" "\\\\\\1" ESCAPED_PATH "${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner")
-  install(
-    DIRECTORY ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/arm_planner
-    DESTINATION ${genpy_INSTALL_DIR}
-    FILES_MATCHING
-    REGEX "${ESCAPED_PATH}/.+/__init__.pyc?$"
   )
 endif()
 if(TARGET std_msgs_generate_messages_py)
   add_dependencies(arm_planner_generate_messages_py std_msgs_generate_messages_py)
-endif()
-if(TARGET sensor_msgs_generate_messages_py)
-  add_dependencies(arm_planner_generate_messages_py sensor_msgs_generate_messages_py)
 endif()
 if(TARGET geometry_msgs_generate_messages_py)
   add_dependencies(arm_planner_generate_messages_py geometry_msgs_generate_messages_py)

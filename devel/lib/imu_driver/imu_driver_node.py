@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/imu_driver/lib/imu_driver/imu_driver_node.py
+/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/imu_driver_node.py

@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/lidar_driver/lib/python3/dist-packages/lidar_driver/__init__.py
+/home/agilex/MobileManipulator/devel/.private/lidar_driver/lib/python3/dist-packages/lidar_driver/__init__.py

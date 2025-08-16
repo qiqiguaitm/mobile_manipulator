@@ -1,1 +1,0 @@
-/home/agilex/AgileXDemo/devel/.private/piper_msgs/include/piper_msgs/PiperStatusMsg.h

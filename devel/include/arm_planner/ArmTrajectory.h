@@ -1,1 +1,0 @@
-/home/agilex/AgileXDemo/devel/.private/arm_planner/include/arm_planner/ArmTrajectory.h

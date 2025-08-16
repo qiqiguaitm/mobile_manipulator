@@ -1,1 +1,0 @@
-/home/agilex/AgileXDemo/devel/.private/piper_msgs/share/gennodejs/ros/piper_msgs/srv/_index.js

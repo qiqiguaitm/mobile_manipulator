@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/agilex/AgileXDemo/src/slam
-# Build directory: /home/agilex/AgileXDemo/build/slam
+# Source directory: /home/agilex/MobileManipulator/src/slam
+# Build directory: /home/agilex/MobileManipulator/build/slam
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

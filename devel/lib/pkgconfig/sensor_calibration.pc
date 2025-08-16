@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/sensor_calibration/lib/pkgconfig/sensor_calibration.pc
+/home/agilex/MobileManipulator/devel/.private/sensor_calibration/lib/pkgconfig/sensor_calibration.pc

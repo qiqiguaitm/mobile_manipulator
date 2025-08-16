@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/chassis_planner/share/chassis_planner/cmake/chassis_plannerConfig-version.cmake
+/home/agilex/MobileManipulator/devel/.private/chassis_planner/share/chassis_planner/cmake/chassis_plannerConfig-version.cmake

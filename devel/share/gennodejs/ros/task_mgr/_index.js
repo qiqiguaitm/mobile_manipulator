@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/task_mgr/share/gennodejs/ros/task_mgr/_index.js
+/home/agilex/MobileManipulator/devel/.private/task_mgr/share/gennodejs/ros/task_mgr/_index.js

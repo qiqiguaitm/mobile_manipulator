@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/agilex/AgileXDemo/devel/.private/imu_driver/setup.sh
+    local-name: /home/agilex/MobileManipulator/devel/.private/imu_driver/setup.sh

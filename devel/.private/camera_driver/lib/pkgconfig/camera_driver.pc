@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/camera_driver
+prefix=/home/agilex/MobileManipulator/devel/.private/camera_driver
 
 Name: camera_driver
 Description: Description of camera_driver

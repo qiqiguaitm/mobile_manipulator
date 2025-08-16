@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "rospy;roscpp;sensor_msgs;std_msgs".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "lidar_driver"
-PROJECT_SPACE_DIR = "/home/agilex/AgileXDemo/devel/.private/lidar_driver"
+PROJECT_SPACE_DIR = "/home/agilex/MobileManipulator/devel/.private/lidar_driver"
 PROJECT_VERSION = "0.0.1"

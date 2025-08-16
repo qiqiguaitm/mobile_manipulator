@@ -1,1 +1,0 @@
-/home/agilex/AgileXDemo/devel/.private/piper_msgs/lib/python3/dist-packages/piper_msgs/msg/_PiperEulerPose.py

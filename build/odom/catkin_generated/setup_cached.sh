@@ -7,9 +7,9 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/agilex/AgileXDemo/devel/.private/odom:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/agilex/AgileXDemo/devel/.private/odom/lib:$LD_LIBRARY_PATH"
-export PWD='/home/agilex/AgileXDemo/build/odom'
-export PYTHONPATH="/home/agilex/AgileXDemo/devel/.private/odom/lib/python3/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/AgileXDemo/devel/.private/odom/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/AgileXDemo/src/odom:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/agilex/MobileManipulator/devel/.private/odom:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/agilex/MobileManipulator/devel/.private/odom/lib:$LD_LIBRARY_PATH"
+export PWD='/home/agilex/MobileManipulator/build/odom'
+export PYTHONPATH="/home/agilex/MobileManipulator/devel/.private/odom/lib/python3/dist-packages:$PYTHONPATH"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/odom/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/odom:$ROS_PACKAGE_PATH"

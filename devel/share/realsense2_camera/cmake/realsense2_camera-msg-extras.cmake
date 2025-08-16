@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/realsense2_camera/share/realsense2_camera/cmake/realsense2_camera-msg-extras.cmake
+/home/agilex/MobileManipulator/devel/.private/realsense2_camera/share/realsense2_camera/cmake/realsense2_camera-msg-extras.cmake

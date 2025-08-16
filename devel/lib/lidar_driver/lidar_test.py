@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/lidar_driver/lib/lidar_driver/lidar_test.py
+/home/agilex/MobileManipulator/devel/.private/lidar_driver/lib/lidar_driver/lidar_test.py

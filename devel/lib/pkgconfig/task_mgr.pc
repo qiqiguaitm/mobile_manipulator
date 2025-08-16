@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/task_mgr/lib/pkgconfig/task_mgr.pc
+/home/agilex/MobileManipulator/devel/.private/task_mgr/lib/pkgconfig/task_mgr.pc

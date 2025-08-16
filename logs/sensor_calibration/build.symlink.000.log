@@ -1,4 +1,4 @@
-Symlinking /home/agilex/AgileXDemo/devel/share/sensor_calibration/cmake/sensor_calibrationConfig.cmake
-Symlinking /home/agilex/AgileXDemo/devel/share/sensor_calibration/cmake/sensor_calibrationConfig-version.cmake
-Symlinking /home/agilex/AgileXDemo/devel/lib/python3/dist-packages/sensor_calibration/__init__.py
-Symlinking /home/agilex/AgileXDemo/devel/lib/pkgconfig/sensor_calibration.pc
+Symlinking /home/agilex/MobileManipulator/devel/share/sensor_calibration/cmake/sensor_calibrationConfig.cmake
+Symlinking /home/agilex/MobileManipulator/devel/share/sensor_calibration/cmake/sensor_calibrationConfig-version.cmake
+Symlinking /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/sensor_calibration/__init__.py
+Symlinking /home/agilex/MobileManipulator/devel/lib/pkgconfig/sensor_calibration.pc

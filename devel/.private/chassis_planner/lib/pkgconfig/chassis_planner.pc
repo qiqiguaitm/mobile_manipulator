@@ -1,4 +1,4 @@
-prefix=/home/agilex/AgileXDemo/devel/.private/chassis_planner
+prefix=/home/agilex/MobileManipulator/devel/.private/chassis_planner
 
 Name: chassis_planner
 Description: Description of chassis_planner

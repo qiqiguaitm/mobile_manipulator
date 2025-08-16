@@ -3,7 +3,7 @@
 # generated from catkin/cmake/template/script.py.in
 # creates a relay to a python script source file, acting as that file.
 # The purpose is that of a symlink
-python_script = '/home/agilex/AgileXDemo/src/lidar_driver/scripts/lidar_driver_node_sim.py'
+python_script = '/home/agilex/MobileManipulator/src/lidar_driver/scripts/lidar_driver_node_sim.py'
 with open(python_script, 'r') as fh:
     context = {
         '__builtins__': __builtins__,

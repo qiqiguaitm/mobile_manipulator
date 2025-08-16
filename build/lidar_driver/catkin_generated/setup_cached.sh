@@ -7,9 +7,9 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/agilex/AgileXDemo/devel/.private/lidar_driver:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/agilex/AgileXDemo/devel/.private/lidar_driver/lib:$LD_LIBRARY_PATH"
-export PWD='/home/agilex/AgileXDemo/build/lidar_driver'
-export PYTHONPATH="/home/agilex/AgileXDemo/devel/.private/lidar_driver/lib/python3/dist-packages:/home/agilex/AgileXDemo/devel/lib/python3/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/AgileXDemo/devel/.private/lidar_driver/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/AgileXDemo/src/lidar_driver:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/agilex/MobileManipulator/devel/.private/lidar_driver:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/agilex/MobileManipulator/devel/.private/lidar_driver/lib:$LD_LIBRARY_PATH"
+export PWD='/home/agilex/MobileManipulator/build/lidar_driver'
+export PYTHONPATH="/home/agilex/MobileManipulator/devel/.private/lidar_driver/lib/python3/dist-packages:/home/agilex/MobileManipulator/devel/lib/python3/dist-packages:$PYTHONPATH"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/lidar_driver/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/lidar_driver:$ROS_PACKAGE_PATH"

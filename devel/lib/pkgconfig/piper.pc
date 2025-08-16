@@ -1,1 +1,0 @@
-/home/agilex/AgileXDemo/devel/.private/piper/lib/pkgconfig/piper.pc

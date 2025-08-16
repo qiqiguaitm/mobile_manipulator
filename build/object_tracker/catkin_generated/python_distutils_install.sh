@@ -13,21 +13,21 @@ fi
 
 echo_and_run() { echo "+ $@" ; "$@" ; }
 
-echo_and_run cd "/home/agilex/AgileXDemo/src/object_tracker"
+echo_and_run cd "/home/agilex/MobileManipulator/src/object_tracker"
 
 # ensure that Python install destination exists
-echo_and_run mkdir -p "$DESTDIR/home/agilex/AgileXDemo/install/lib/python3/dist-packages"
+echo_and_run mkdir -p "$DESTDIR/home/agilex/MobileManipulator/install/lib/python3/dist-packages"
 
 # Note that PYTHONPATH is pulled from the environment to support installing
 # into one location when some dependencies were installed in another
 # location, #123.
 echo_and_run /usr/bin/env \
-    PYTHONPATH="/home/agilex/AgileXDemo/install/lib/python3/dist-packages:/home/agilex/AgileXDemo/build/object_tracker/lib/python3/dist-packages:$PYTHONPATH" \
-    CATKIN_BINARY_DIR="/home/agilex/AgileXDemo/build/object_tracker" \
+    PYTHONPATH="/home/agilex/MobileManipulator/install/lib/python3/dist-packages:/home/agilex/MobileManipulator/build/object_tracker/lib/python3/dist-packages:$PYTHONPATH" \
+    CATKIN_BINARY_DIR="/home/agilex/MobileManipulator/build/object_tracker" \
     "/home/agilex/miniconda3/bin/python3" \
-    "/home/agilex/AgileXDemo/src/object_tracker/setup.py" \
-    egg_info --egg-base /home/agilex/AgileXDemo/build/object_tracker \
-    build --build-base "/home/agilex/AgileXDemo/build/object_tracker" \
+    "/home/agilex/MobileManipulator/src/object_tracker/setup.py" \
+    egg_info --egg-base /home/agilex/MobileManipulator/build/object_tracker \
+    build --build-base "/home/agilex/MobileManipulator/build/object_tracker" \
     install \
     --root="${DESTDIR-/}" \
-    --install-layout=deb --prefix="/home/agilex/AgileXDemo/install" --install-scripts="/home/agilex/AgileXDemo/install/bin"
+    --install-layout=deb --prefix="/home/agilex/MobileManipulator/install" --install-scripts="/home/agilex/MobileManipulator/install/bin"

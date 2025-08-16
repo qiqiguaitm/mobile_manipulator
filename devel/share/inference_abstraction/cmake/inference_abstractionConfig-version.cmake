@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/inference_abstraction/share/inference_abstraction/cmake/inference_abstractionConfig-version.cmake
+/home/agilex/MobileManipulator/devel/.private/inference_abstraction/share/inference_abstraction/cmake/inference_abstractionConfig-version.cmake

@@ -1,1 +1,1 @@
-/home/agilex/AgileXDemo/devel/.private/task_mgr/share/common-lisp/ros/task_mgr/msg/task_mgr-msg.asd
+/home/agilex/MobileManipulator/devel/.private/task_mgr/share/common-lisp/ros/task_mgr/msg/task_mgr-msg.asd

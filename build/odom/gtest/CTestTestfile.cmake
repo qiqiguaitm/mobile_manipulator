@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
 # Source directory: /usr/src/googletest
-# Build directory: /home/agilex/AgileXDemo/build/odom/gtest
+# Build directory: /home/agilex/MobileManipulator/build/odom/gtest
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

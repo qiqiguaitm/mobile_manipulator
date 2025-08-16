@@ -1,7 +1,0 @@
-set(arm_planner_SETUP_PY_SETUP_MODULE "setuptools")
-set(arm_planner_SETUP_PY_VERSION "0.0.1")
-set(arm_planner_SETUP_PY_SCRIPTS "")
-set(arm_planner_SETUP_PY_PACKAGES "arm_planner")
-set(arm_planner_SETUP_PY_PACKAGE_DIRS "src/arm_planner")
-set(arm_planner_SETUP_PY_MODULES "")
-set(arm_planner_SETUP_PY_MODULE_DIRS "")

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/agilex/AgileXDemo/devel/.private/task_mgr/include/task_mgr/task_mgr.h"
+  "/home/agilex/MobileManipulator/devel/.private/task_mgr/include/task_mgr/task_mgr.h"
   "CMakeFiles/task_mgr_generate_messages_cpp"
 )
 
