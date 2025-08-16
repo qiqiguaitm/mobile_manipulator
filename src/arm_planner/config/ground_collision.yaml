@@ -1,0 +1,16 @@
+# Ground collision protection configuration
+# Prevents the robot arm from hitting the ground
+
+# Ground parameters
+ground_height: -0.05      # Height relative to base_link (m), -50mm for safety margin
+ground_size_x: 10.0       # Ground size in X direction (m)
+ground_size_y: 10.0       # Ground size in Y direction (m)  
+ground_thickness: 0.1     # Ground thickness for collision detection (m)
+
+# Enable ground collision protection on startup
+enable_on_startup: true
+
+# Workspace constraints (optional, for additional safety)
+workspace_constraints:
+  min_z: 0.1             # Minimum end-effector height above ground (m)
+  max_reach: 1.0         # Maximum reach from base (m)

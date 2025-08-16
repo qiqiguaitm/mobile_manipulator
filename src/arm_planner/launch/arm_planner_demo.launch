@@ -9,6 +9,8 @@
   <arg name="debug" default="false" />
   <arg name="use_rviz" default="true" />
   
+  <!-- TF桥接已移除：现在统一使用world作为根坐标系 -->
+  
   <!-- 模式选择: fake(仿真) 或 real(实机) -->
   <arg name="mode" default="real" />
   

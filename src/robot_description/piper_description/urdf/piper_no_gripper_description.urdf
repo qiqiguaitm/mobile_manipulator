@@ -41,6 +41,7 @@
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
+    <!-- 原始高精度碰撞几何 - 已禁用以提升性能
     <collision>
       <origin
         xyz="0 0 0"
@@ -48,6 +49,17 @@
       <geometry>
         <mesh
           filename="package://piper_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+    -->
+    <!-- 简化碰撞几何 - 性能优化：减少96%文件大小和顶点数 -->
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/collision/base_link_collision.STL" />
       </geometry>
     </collision>
   </link>
@@ -82,6 +94,7 @@
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
+    <!-- 原始高精度碰撞几何 - 已禁用以提升性能
     <collision>
       <origin
         xyz="0 0 0"
@@ -89,6 +102,17 @@
       <geometry>
         <mesh
           filename="package://piper_description/meshes/link1.STL" />
+      </geometry>
+    </collision>
+    -->
+    <!-- 简化碰撞几何 - 性能优化：减少94%文件大小和顶点数 -->
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/collision/link1_collision.STL" />
       </geometry>
     </collision>
   </link>
@@ -140,6 +164,7 @@
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
+    <!-- 原始高精度碰撞几何 - 已禁用以提升性能
     <collision>
       <origin
         xyz="0 0 0"
@@ -147,6 +172,17 @@
       <geometry>
         <mesh
           filename="package://piper_description/meshes/link2.STL" />
+      </geometry>
+    </collision>
+    -->
+    <!-- 简化碰撞几何 - 性能优化：减少98%文件大小和顶点数 （主臂-最重要部件）-->
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/collision/link2_collision.STL" />
       </geometry>
     </collision>
   </link>
@@ -199,6 +235,7 @@
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
+    <!-- 原始高精度碰撞几何 - 已禁用以提升性能
     <collision>
       <origin
         xyz="0 0 0"
@@ -206,6 +243,17 @@
       <geometry>
         <mesh
           filename="package://piper_description/meshes/link3.STL" />
+      </geometry>
+    </collision>
+    -->
+    <!-- 简化碰撞几何 - 性能优化：减少98%文件大小和顶点数 （前臂-很重要部件）-->
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/collision/link3_collision.STL" />
       </geometry>
     </collision>
   </link>
@@ -258,6 +306,7 @@
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
+    <!-- 原始高精度碰撞几何 - 已禁用以提升性能
     <collision>
       <origin
         xyz="0 0 0"
@@ -265,6 +314,17 @@
       <geometry>
         <mesh
           filename="package://piper_description/meshes/link4.STL" />
+      </geometry>
+    </collision>
+    -->
+    <!-- 简化碰撞几何 - 性能优化：减少91%文件大小和顶点数 （腕部1-中等重要）-->
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/collision/link4_collision.STL" />
       </geometry>
     </collision>
   </link>
@@ -316,6 +376,7 @@
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
+    <!-- 原始高精度碰撞几何 - 已禁用以提升性能
     <collision>
       <origin
         xyz="0 0 0"
@@ -323,6 +384,17 @@
       <geometry>
         <mesh
           filename="package://piper_description/meshes/link5.STL" />
+      </geometry>
+    </collision>
+    -->
+    <!-- 简化碰撞几何 - 性能优化：减少92%文件大小和顶点数 （腕部2-中等重要）-->
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/collision/link5_collision.STL" />
       </geometry>
     </collision>
   </link>
@@ -374,6 +446,7 @@
           rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
       </material>
     </visual>
+    <!-- 原始高精度碰撞几何 - 已禁用以提升性能
     <collision>
       <origin
         xyz="0 0 0"
@@ -381,6 +454,17 @@
       <geometry>
         <mesh
           filename="package://piper_description/meshes/link6.STL" />
+      </geometry>
+    </collision>
+    -->
+    <!-- 简化碰撞几何 - 性能优化：减少87%文件大小和顶点数 （末端-保持高精度）-->
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/collision/link6_collision.STL" />
       </geometry>
     </collision>
   </link>

@@ -1,0 +1,62 @@
+# Enhanced collision safety configuration
+# 增强的碰撞安全配置
+
+# Move Group Parameters
+move_group:
+  # 更严格的碰撞检测
+  collision_detector: "FCL"  # or "Bullet" for more accurate detection
+  
+  # 碰撞检测分辨率
+  collision_detection:
+    collision_check_resolution: 0.005  # 5mm resolution
+    max_contacts_per_pair: 10
+    
+  # 路径验证
+  trajectory_execution:
+    trajectory_state_recurrence_frequency: 10.0  # Hz
+    allowed_execution_duration_scaling: 1.2
+    allowed_goal_time: 0.5
+    
+# Planning Scene Monitor
+planning_scene_monitor:
+  # 增加默认padding
+  default_robot_padding: 0.03  # 30mm default
+  default_robot_scale: 1.0
+  
+  # 针对底盘的特殊padding
+  link_padding:
+    # 底盘组件 - 增加保护
+    base_link: 0.05        # 50mm
+    box_Link: 0.05         # 50mm
+    lifting_Link: 0.06     # 60mm - 最重要
+    
+    # 机械臂前三节 - 增加padding
+    link1: 0.04            # 40mm
+    link2: 0.04            # 40mm
+    link3: 0.04            # 40mm
+    
+# OMPL Planning Parameters
+ompl:
+  # 使用更保守的规划器
+  default_planner_config: "RRTConnect"
+  
+  # 增加碰撞检测采样
+  longest_valid_segment_fraction: 0.005  # 0.5% of state space
+  
+  # 路径简化时保持安全
+  simplify_solutions: true
+  
+  # 增加规划时间以找到更安全的路径
+  planning_time: 10.0
+  
+# 工作空间限制
+workspace_parameters:
+  # 限制机械臂活动范围，远离底盘
+  min_corner:
+    x: -0.8
+    y: -0.8
+    z: 0.0   # 不允许低于底盘高度
+  max_corner:
+    x: 0.8
+    y: 0.8
+    z: 2.0

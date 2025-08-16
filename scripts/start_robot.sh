@@ -1,7 +1,9 @@
 #!/bin/bash
+rosnode kill -a
 echo "agx" | sudo -S pkill -9 rviz
 echo "agx" | sudo -S pkill -9 roscore
 echo "agx" | sudo -S pkill -9 rosmaster
+
 roscore & 
 sleep 5s
 
@@ -39,7 +41,7 @@ fi
 echo "CAN接口配置成功"
     
 # 启动系统
-roslaunch arm_planner arm_planner_demo.launch mode:=real use_rviz:=true gripper:=true 
+roslaunch arm_planner main_demo.launch mode:=fake use_rviz:=true gripper:=true 
 
 
 

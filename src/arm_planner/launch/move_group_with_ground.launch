@@ -1,0 +1,19 @@
+<launch>
+  <!-- Launch standard move_group -->
+  <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/move_group.launch">
+    <arg name="pipeline" value="ompl"/>
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="moveit_controller_manager" value="simple"/>
+  </include>
+  
+  <!-- Load ground collision parameters -->
+  <rosparam command="load" file="$(find arm_planner)/config/ground_collision.yaml" ns="ground_collision_manager"/>
+  
+  <!-- Start ground collision manager -->
+  <node name="ground_collision_manager" 
+        pkg="arm_planner" 
+        type="ground_collision_manager.py" 
+        output="screen">
+    <param name="enable_on_startup" value="true"/>
+  </node>
+</launch>

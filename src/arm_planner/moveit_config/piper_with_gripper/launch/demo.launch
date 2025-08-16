@@ -100,11 +100,27 @@
     <arg name="load_robot_description" value="false"/>
   </include>
 
+
+
+
+  <!-- ============================================= -->
+  <!-- 地面碰撞保护 -->
+  <!-- ============================================= -->
+  <rosparam command="load" file="$(find arm_planner)/config/ground_collision.yaml" ns="ground_collision_manager"/>
+  
+  <node name="ground_collision_manager" 
+        pkg="arm_planner" 
+        type="ground_collision_manager.py" 
+        output="screen"
+        launch-prefix="bash -c 'sleep 3; $0 $@'">
+    <param name="enable_on_startup" value="true"/>
+  </node>
+
   <!-- ============================================= -->
   <!-- RViz可视化 -->
   <!-- ============================================= -->
   <include file="$(dirname)/moveit_rviz.launch" if="$(arg use_rviz)">
-    <arg name="rviz_config" value="$(dirname)/moveit.rviz"/>
+    <arg name="rviz_config" value="$(dirname)/moveit_full.rviz"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
 

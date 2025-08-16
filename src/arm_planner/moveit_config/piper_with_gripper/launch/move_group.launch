@@ -85,11 +85,14 @@
     <param name="planning_scene_monitor/publish_state_updates" value="$(arg publish_monitored_planning_scene)" />
     <param name="planning_scene_monitor/publish_transforms_updates" value="false" />
     
-    <!-- 快速启动模式配置 -->
-    <param name="planning_scene_monitor/default_robot_link_padding" value="0.0" />
+    <!-- 安全缓冲配置 -->
+    <param name="planning_scene_monitor/default_robot_link_padding" value="0.02" />
     <param name="planning_scene_monitor/default_robot_link_scale" value="1.0" />
-    <param name="planning_scene_monitor/default_attached_padd" value="0.0" />
+    <param name="planning_scene_monitor/default_attached_padd" value="0.01" />
     <param name="planning_scene_monitor/default_attached_scale" value="1.0" />
+    
+    <!-- 加载详细的padding配置 -->
+    <rosparam command="load" file="$(find arm_planner)/moveit_config/piper_with_gripper/config/collision_padding.yaml" ns="move_group/planning_scene_monitor" />
   </node>
 
 </launch>

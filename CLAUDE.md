@@ -188,7 +188,7 @@ claude mcp add spec-workflow-mcp -s user -- npx -y spec-workflow-mcp@latest
 - 验证代码正确性，直接参考用户的执行脚本验证，尽量避免开发其他测试脚本验证
 - 对于用户提的错误日志和对应的执行脚本，根据错误日志修复后，使用用户的脚本进行验证；
 - 保持代码结构的简洁和干净
-- 临时测试脚本放在在MobileManipulator/scripts, 并增加 _cc_ 作为前缀
+- 对于正式的代码，请放到正确和合理的目录，并正确命名；否则临时测试脚本放在在MobileManipulator/scripts, 并增加 _cc_ 作为前缀
 
 
 

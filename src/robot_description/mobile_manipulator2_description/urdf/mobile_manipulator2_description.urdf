@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <robot name="mobile_manipulator2_description">
   <!-- Dummy root link to avoid KDL inertia warning -->
-  <link name="world_link"/>
+  <link name="world"/>
   
   <joint name="world_to_base" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="world_link"/>
+    <parent link="world"/>
     <child link="base_link"/>
   </joint>
   
@@ -27,7 +27,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/base_link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/collision/base_link_collision.STL"/>
       </geometry>
     </collision>
   </link>
@@ -49,7 +49,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/box_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/collision/box_Link_collision.STL"/>
       </geometry>
     </collision>
   </link>
@@ -77,7 +77,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/lifting_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/collision/lifting_Link_collision.STL"/>
       </geometry>
     </collision>
   </link>
@@ -105,7 +105,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/top_camera_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/collision/top_camera_Link_collision.STL"/>
       </geometry>
     </collision>
   </link>
@@ -133,7 +133,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/lidar_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/collision/lidar_Link_collision.STL"/>
       </geometry>
     </collision>
   </link>
@@ -161,7 +161,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/under_camera_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/collision/under_camera_Link_collision.STL"/>
       </geometry>
     </collision>
   </link>
@@ -368,6 +368,34 @@
     <axis xyz="0 0 1"/>
     <limit effort="100" lower="-3.14" upper="3.14" velocity="3"/>
   </joint>
+  <!-- Gripper base link - fixed between link6 and gripper fingers -->
+  <link name="gripper_base">
+    <inertial>
+      <origin xyz="-0.000183807162235591 8.05033155577911E-05 0.0321436689908876" rpy="0 0 0"/>
+      <mass value="0.45"/>
+      <inertia ixx="0.00092934" ixy="0.00000034" ixz="-0.00000738" iyy="0.00071447" iyz="0.00000005" izz="0.00039442"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://piper_description/meshes/gripper_base.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://piper_description/meshes/gripper_base.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint6_to_gripper_base" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="link6"/>
+    <child link="gripper_base"/>
+  </joint>
   <link name="link7">
     <inertial>
       <origin rpy="0 0 0" xyz="-0.000277778383727112 -0.0467673043650824 -0.00921029491873201"/>
@@ -392,7 +420,7 @@
   </link>
   <joint name="joint7" type="prismatic">
     <origin rpy="1.5708 0 1.5708" xyz="0 0 0.13503"/>
-    <parent link="link6"/>
+    <parent link="gripper_base"/>
     <child link="link7"/>
     <axis xyz="0 0 -1"/>
     <limit effort="10" lower="0" upper="0.05" velocity="1"/>
@@ -421,7 +449,7 @@
   </link>
   <joint name="joint8" type="prismatic">
     <origin rpy="-1.5708 0 1.5708" xyz="0 0 0.13503"/>
-    <parent link="link6"/>
+    <parent link="gripper_base"/>
     <child link="link8"/>
     <axis xyz="0 0 1"/>
     <limit effort="10" lower="-0.05" upper="0" velocity="1"/>
