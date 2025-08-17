@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 加载机器人描述 -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro --inorder '$(find mobile_manipulator2_description)/urdf/mobile_manipulator2_description.urdf'" />
+  
+  <!-- 启动robot_state_publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="publish_frequency" value="50.0"/>
+  </node>
+  
+  <!-- 启动joint_state_publisher_gui用于手动控制关节 -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    <param name="use_gui" value="true"/>
+    <rosparam param="source_list">[/move_group/fake_controller_joint_states]</rosparam>
+  </node>
+  
+  <!-- 启动RViz并加载配置 -->
+  <node name="rviz" pkg="rviz" type="rviz" 
+        args="-d $(find mobile_manipulator2_description)/config/collision_visualization.rviz"
+        output="screen">
+    <remap from="/joint_states" to="/joint_states"/>
+  </node>
+  
+  <!-- 可选：启动MoveIt -->
+  <arg name="use_moveit" default="false"/>
+  <group if="$(arg use_moveit)">
+    <include file="$(find arm_planner)/launch/arm_moveit.launch">
+      <arg name="use_rviz" value="false"/>
+    </include>
+  </group>
+  
+</launch>
