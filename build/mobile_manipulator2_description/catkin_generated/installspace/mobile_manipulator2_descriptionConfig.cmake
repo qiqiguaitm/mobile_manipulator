@@ -67,7 +67,7 @@ set(mobile_manipulator2_description_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(mobile_manipulator2_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/robot_description/mobile_manipulator2_description)
+  set(mobile_manipulator2_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/robot_desc/mobile_manipulator2_description)
   set(mobile_manipulator2_description_DEVEL_PREFIX /home/agilex/MobileManipulator/devel/.private/mobile_manipulator2_description)
   set(mobile_manipulator2_description_INSTALL_PREFIX "")
   set(mobile_manipulator2_description_PREFIX ${mobile_manipulator2_description_DEVEL_PREFIX})

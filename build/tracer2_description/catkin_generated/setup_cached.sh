@@ -10,4 +10,4 @@
 export CMAKE_PREFIX_PATH="/home/agilex/MobileManipulator/devel/.private/tracer2_description:$CMAKE_PREFIX_PATH"
 export PWD='/home/agilex/MobileManipulator/build/tracer2_description'
 export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/tracer2_description/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/robot_description/tracer2_description:$ROS_PACKAGE_PATH"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/robot_desc/tracer2_description:$ROS_PACKAGE_PATH"

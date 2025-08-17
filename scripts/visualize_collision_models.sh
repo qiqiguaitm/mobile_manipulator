@@ -45,7 +45,7 @@ fi
 
 # 启动RViz
 echo "启动RViz..."
-rosrun rviz rviz -d /home/agilex/MobileManipulator/src/mobile_manipulator2_description/config/collision_visualization.rviz &
+rosrun rviz rviz &
 
 echo ""
 echo "=== 启动完成 ==="

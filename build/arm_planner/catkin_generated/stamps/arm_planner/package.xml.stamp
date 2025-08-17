@@ -40,7 +40,14 @@
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
   <depend>tf2_geometry_msgs</depend>
+  
+  <!-- RViz plugin dependencies -->
+  <depend>rviz</depend>
+  <depend>python_qt_binding</depend>
+  <depend>std_srvs</depend>
 
   <export>
+    <!-- RViz plugin export -->
+    <rviz plugin="${prefix}/plugin_description.xml"/>
   </export>
 </package>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_manipulator2">
+
+  <!-- Include the base mobile manipulator URDF -->
+  <xacro:include filename="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2.urdf"/>
+  
+  <!-- Include the Piper arm description with hand camera -->
+  <xacro:include filename="$(find piper_description)/urdf/piper_description_v100_camera.urdf"/>
+
+  <!-- Joint to connect the arm to the mobile base -->
+  <joint name="arm_joint" type="fixed">
+    <origin xyz="0.118 0 0.1" rpy="0.0 0.0 0.0"/>
+    <parent link="box_Link"/>
+    <child link="arm_base"/>
+    <axis xyz="0.0 0.0 0.0"/>
+    <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
+  </joint>
+
+</robot>

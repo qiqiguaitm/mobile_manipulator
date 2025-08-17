@@ -1,0 +1,40 @@
+<launch>
+  <arg name="model" default=""/>
+  
+  <param
+    name="robot_description"
+    textfile="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2_description.urdf" />
+    
+  <!-- Use non-GUI joint_state_publisher with zeros for all joints -->
+  <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+    <param name="rate" value="50"/>
+    <rosparam param="zeros">
+      joint1: 0.0
+      joint2: 0.7854
+      joint3: -1.5708
+      joint4: 0.0
+      joint5: 0.0
+      joint6: 0.0
+      joint7: 0.0
+      joint8: 0.0
+    </rosparam>
+  </node>
+  
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher">
+    <param name="publish_frequency" value="50"/>
+  </node>
+    
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find mobile_manipulator2_description)/rviz/display.rviz"
+    required="true" />
+</launch>

@@ -1,4 +1,4 @@
-# Install script for directory: /home/agilex/MobileManipulator/src/robot_description/piper_description
+# Install script for directory: /home/agilex/MobileManipulator/src/robot_desc/piper_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -155,23 +155,23 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description" TYPE FILE FILES "/home/agilex/MobileManipulator/src/robot_description/piper_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description" TYPE FILE FILES "/home/agilex/MobileManipulator/src/robot_desc/piper_description/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description/config" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/robot_description/piper_description/config/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description/config" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/robot_desc/piper_description/config/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description/launch" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/robot_description/piper_description/launch/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description/launch" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/robot_desc/piper_description/launch/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description/meshes" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/robot_description/piper_description/meshes/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description/meshes" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/robot_desc/piper_description/meshes/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description/urdf" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/robot_description/piper_description/urdf/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/piper_description/urdf" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/robot_desc/piper_description/urdf/")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

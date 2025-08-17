@@ -48,7 +48,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/robot_description/mobile_manipulator2_description
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/robot_desc/mobile_manipulator2_description
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/mobile_manipulator2_description

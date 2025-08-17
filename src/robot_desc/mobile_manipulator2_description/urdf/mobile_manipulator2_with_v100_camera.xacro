@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_manipulator2">
+
+  <!-- Include the base mobile robot (just the mobile base) -->
+  <xacro:include filename="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2.urdf"/>
+  
+  <!-- Include the Piper arm v100 with hand camera as a separate robot -->
+  <!-- We'll manually add its links since it's a URDF not xacro -->
+  
+  <!-- First, let's include it as text and parse -->
+  <xacro:property name="piper_urdf" value="${load_yaml('$(find piper_description)/urdf/piper_description_v100_camera.urdf')}" />
+
+  <!-- Since we can't directly include a URDF in xacro, we need to manually add the arm -->
+  <!-- For now, let's just add a placeholder that tells users to use the combined URDF -->
+  
+  <!-- Joint to connect the arm to the mobile base -->
+  <!-- This would connect to the arm_base link from the Piper robot -->
+  
+</robot>

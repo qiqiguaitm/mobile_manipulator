@@ -411,7 +411,7 @@ gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 piper_description_BINARY_DIR:STATIC=/home/agilex/MobileManipulator/build/piper_description
 
 //Value Computed by CMake
-piper_description_SOURCE_DIR:STATIC=/home/agilex/MobileManipulator/src/robot_description/piper_description
+piper_description_SOURCE_DIR:STATIC=/home/agilex/MobileManipulator/src/robot_desc/piper_description
 
 //The directory containing a CMake configuration file for roslaunch.
 roslaunch_DIR:PATH=/opt/ros/noetic/share/roslaunch/cmake
@@ -512,7 +512,7 @@ CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=1
 CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/home/agilex/MobileManipulator/src/robot_description/piper_description
+CMAKE_HOME_DIRECTORY:INTERNAL=/home/agilex/MobileManipulator/src/robot_desc/piper_description
 //ADVANCED property for variable: CMAKE_INSTALL_BINDIR
 CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_DATADIR

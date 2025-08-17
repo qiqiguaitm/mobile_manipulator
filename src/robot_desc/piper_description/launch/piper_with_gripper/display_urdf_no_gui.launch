@@ -1,0 +1,23 @@
+<launch>
+  <arg name="model" />
+  <arg name="rviz_config" default="$(find piper_description)/rviz/piper_ctrl.rviz" />
+  <param
+    name="robot_description"
+    textfile="$(find piper_description)/urdf/piper_description_v100_camera.urdf" />
+  
+  <!-- Use non-GUI joint_state_publisher -->
+  <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+    
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(arg rviz_config)" />
+</launch>

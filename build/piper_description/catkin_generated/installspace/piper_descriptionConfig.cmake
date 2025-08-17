@@ -67,7 +67,7 @@ set(piper_description_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(piper_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/robot_description/piper_description)
+  set(piper_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/robot_desc/piper_description)
   set(piper_description_DEVEL_PREFIX /home/agilex/MobileManipulator/devel/.private/piper_description)
   set(piper_description_INSTALL_PREFIX "")
   set(piper_description_PREFIX ${piper_description_DEVEL_PREFIX})

@@ -43,7 +43,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/robot_description/tracer2_description
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/robot_desc/tracer2_description
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/tracer2_description
@@ -67,6 +67,6 @@ CMakeFiles/doxygen.dir/clean:
 .PHONY : CMakeFiles/doxygen.dir/clean
 
 CMakeFiles/doxygen.dir/depend:
-	cd /home/agilex/MobileManipulator/build/tracer2_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/robot_description/tracer2_description /home/agilex/MobileManipulator/src/robot_description/tracer2_description /home/agilex/MobileManipulator/build/tracer2_description /home/agilex/MobileManipulator/build/tracer2_description /home/agilex/MobileManipulator/build/tracer2_description/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/tracer2_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/robot_desc/tracer2_description /home/agilex/MobileManipulator/src/robot_desc/tracer2_description /home/agilex/MobileManipulator/build/tracer2_description /home/agilex/MobileManipulator/build/tracer2_description /home/agilex/MobileManipulator/build/tracer2_description/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doxygen.dir/depend
 

@@ -67,7 +67,7 @@ set(tracer2_description_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(tracer2_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/robot_description/tracer2_description)
+  set(tracer2_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/robot_desc/tracer2_description)
   set(tracer2_description_DEVEL_PREFIX /home/agilex/MobileManipulator/devel/.private/tracer2_description)
   set(tracer2_description_INSTALL_PREFIX "")
   set(tracer2_description_PREFIX ${tracer2_description_DEVEL_PREFIX})
