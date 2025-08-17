@@ -39,7 +39,7 @@ class CollisionSceneManager:
         
         # 创建地面位姿
         ground_pose = PoseStamped()
-        ground_pose.header.frame_id = "world_link"
+        ground_pose.header.frame_id = "world"
         ground_pose.header.stamp = rospy.Time.now()
         
         # 地面位置：略低于ground_height，考虑安全距离
@@ -85,7 +85,7 @@ class CollisionSceneManager:
         
         for name, pos, size in walls:
             wall_pose = PoseStamped()
-            wall_pose.header.frame_id = "world_link"
+            wall_pose.header.frame_id = "world"
             wall_pose.pose.position.x = pos[0]
             wall_pose.pose.position.y = pos[1]
             wall_pose.pose.position.z = workspace_z/2 + self.ground_height

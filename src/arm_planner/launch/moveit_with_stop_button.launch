@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- 启动RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" 
+        args="-d $(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
+  
+  <!-- 启动独立的停止按钮 -->
+  <node name="piper_stop_button" pkg="arm_planner" type="simple_stop_button.py" respawn="false" output="screen"/>
+  
+</launch>

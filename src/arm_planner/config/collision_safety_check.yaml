@@ -1,0 +1,40 @@
+# 碰撞安全检查配置
+# 定义关键的碰撞对和安全距离
+
+critical_collision_pairs:
+  # lifting_Link 与机械臂各连杆的最小安全距离
+  - link1: "lifting_Link"
+    link2: "link1"
+    min_distance: 0.08  # 80mm
+    
+  - link1: "lifting_Link"
+    link2: "link2"
+    min_distance: 0.10  # 100mm
+    
+  - link1: "lifting_Link"
+    link2: "link3"
+    min_distance: 0.08  # 80mm
+    
+  # 底盘与末端执行器
+  - link1: "base_link"
+    link2: "link6"
+    min_distance: 0.15  # 150mm
+    
+  - link1: "base_link"
+    link2: "link7"
+    min_distance: 0.10  # 100mm
+    
+  - link1: "base_link"
+    link2: "link8"
+    min_distance: 0.10  # 100mm
+
+# 实时监控配置
+monitoring:
+  enabled: true
+  frequency: 10.0  # Hz
+  warning_threshold: 0.02  # 20mm接近警告
+  
+# 紧急停止配置
+emergency_stop:
+  enabled: true
+  trigger_distance: 0.01  # 10mm触发紧急停止

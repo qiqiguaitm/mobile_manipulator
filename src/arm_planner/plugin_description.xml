@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<library path="scripts">
+  <class name="arm_planner/PiperStopPanel" 
+         type="rviz_stop_panel.PiperStopPanel" 
+         base_class_type="rviz::Panel">
+    <description>
+      Piper机械臂停止控制面板
+    </description>
+  </class>
+</library>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- RViz配置 -->
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" 
+        args="-d $(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
+  
+</launch>
