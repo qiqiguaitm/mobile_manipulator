@@ -41,6 +41,6 @@ fi
 echo "CAN接口配置成功"
     
 # 启动系统
-roslaunch arm_planner main_demo.launch mode:=real use_rviz:=true gripper:=true 
+roslaunch arm_planner main_demo.launch mode:=real use_rviz:=true gripper:=true  
 
   

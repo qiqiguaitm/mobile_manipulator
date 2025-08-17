@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <launch>
   
-  <!-- 启动RViz -->
+  <!-- 启动RViz with optimized layout -->
   <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" 
-        args="-d $(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
+        args="-d $(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_optimized.rviz"/>
   
-  <!-- 启动增强的控制按钮 (包含停止、回零和使能控制) -->
+  <!-- 启动增强的控制面板 (停止、回零、使能控制) -->
   <node name="piper_control_panel" pkg="arm_planner" type="enhanced_stop_button.py" respawn="false" output="screen"/>
   
 </launch>

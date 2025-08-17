@@ -1,7 +1,8 @@
 <launch>
 
   <!-- ============================================= -->
-  <!-- Piper MoveIt Demo - 重构版本 -->
+  <!-- Piper MoveIt Demo - 增强版本 -->
+  <!-- 包含: robot_desc参数更新, 增强控制面板, 优化RViz布局 -->
   <!-- ============================================= -->
 
   <!-- 基本参数 -->
@@ -15,37 +16,49 @@
   <!-- 夹爪选择: true(带夹爪) 或 false(不带夹爪) -->
   <arg name="gripper" default="true" />
   
-  <!-- 停止按钮选择: true(启用停止按钮) 或 false(禁用) -->
-  <arg name="stop_button" default="true" />
+  <!-- 控制面板选择: none(无), simple(简单停止按钮), enhanced(增强控制面板) -->
+  <arg name="control_panel" default="enhanced" />
+  
+  <!-- RViz布局选择: standard(标准), optimized(优化) -->
+  <arg name="rviz_layout" default="optimized" />
 
   <!-- 根据夹爪选择加载不同的配置 -->
   <group if="$(arg gripper)">
-    <!-- 如果启用停止按钮，使用带停止按钮的RViz启动 -->
-    <group if="$(arg stop_button)">
-      <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/demo.launch">
-        <arg name="mode" value="$(arg mode)" />
-        <arg name="use_rviz" value="false" />
-        <arg name="debug" value="$(arg debug)" />
-        <arg name="pipeline" value="$(arg pipeline)" />
-      </include>
-      <!-- 启动RViz和停止按钮 -->
-      <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_rviz_with_stop.launch" if="$(arg use_rviz)">
-        <arg name="rviz_config" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
-        <arg name="debug" value="$(arg debug)"/>
-      </include>
+    <!-- 加载MoveIt配置 (不启动RViz) -->
+    <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/demo.launch">
+      <arg name="mode" value="$(arg mode)" />
+      <arg name="use_rviz" value="false" />
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="pipeline" value="$(arg pipeline)" />
+    </include>
+    
+    <!-- 根据选择启动RViz -->
+    <group if="$(arg use_rviz)">
+      <!-- 选择RViz配置文件 -->
+      <arg name="rviz_config_standard" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
+      <arg name="rviz_config_optimized" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_optimized.rviz"/>
+      <arg name="rviz_config" value="$(eval rviz_config_optimized if arg('rviz_layout') == 'optimized' else rviz_config_standard)"/>
+      
+      <!-- 启动RViz -->
+      <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" 
+            args="-d $(arg rviz_config)"/>
     </group>
     
-    <!-- 如果不启用停止按钮，使用标准启动 -->
-    <group unless="$(arg stop_button)">
-      <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/demo.launch">
-        <arg name="mode" value="$(arg mode)" />
-        <arg name="use_rviz" value="$(arg use_rviz)" />
-        <arg name="debug" value="$(arg debug)" />
-        <arg name="pipeline" value="$(arg pipeline)" />
-      </include>
+    <!-- 根据选择启动控制面板 -->
+    <group if="$(eval control_panel == 'simple')">
+      <!-- 简单停止按钮 -->
+      <node name="piper_stop_button" pkg="arm_planner" type="simple_stop_button.py" 
+            respawn="false" output="screen"/>
+    </group>
+    
+    <group if="$(eval control_panel == 'enhanced')">
+      <!-- 增强控制面板 (停止、回零、使能控制) -->
+      <node name="piper_control_panel" pkg="arm_planner" type="enhanced_stop_button.py" 
+            respawn="false" output="screen"/>
     </group>
   </group>
   
+  <!-- 不带夹爪的配置 -->
   <group unless="$(arg gripper)">
     <include file="$(find arm_planner)/moveit_config/piper_no_gripper/launch/demo.launch">
       <arg name="mode" value="$(arg mode)" />
@@ -54,5 +67,10 @@
       <arg name="pipeline" value="$(arg pipeline)" />
     </include>
   </group>
+
+  <!-- 显示启动信息 -->
+  <node name="startup_info" pkg="rostopic" type="rostopic" 
+        args="echo 'Piper MoveIt Demo Started - Mode: $(arg mode), Gripper: $(arg gripper), Control Panel: $(arg control_panel), RViz Layout: $(arg rviz_layout)'" 
+        output="screen" />
 
 </launch>
