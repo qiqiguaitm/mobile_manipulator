@@ -1,5 +1,5 @@
 # CMake generated Testfile for 
-# Source directory: /home/agilex/MobileManipulator/src/imu_driver
+# Source directory: /home/agilex/MobileManipulator/src/robot_drivers/imu_driver
 # Build directory: /home/agilex/MobileManipulator/build/imu_driver
 # 
 # This file includes the relevant testing commands required for 

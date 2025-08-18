@@ -12,4 +12,4 @@ export LD_LIBRARY_PATH="/home/agilex/MobileManipulator/devel/.private/camera_dri
 export PWD='/home/agilex/MobileManipulator/build/camera_driver'
 export PYTHONPATH="/home/agilex/MobileManipulator/devel/.private/camera_driver/lib/python3/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/camera_driver/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/camera_driver:$ROS_PACKAGE_PATH"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/robot_drivers/camera_driver:$ROS_PACKAGE_PATH"

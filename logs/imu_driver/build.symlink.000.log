@@ -4,5 +4,4 @@ Symlinking /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/imu_dr
 Symlinking /home/agilex/MobileManipulator/devel/lib/pkgconfig/imu_driver.pc
 Symlinking /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_test.py
 Symlinking /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_driver
-Symlinking /home/agilex/MobileManipulator/devel/lib/imu_driver/test_imu_topic.py
 Symlinking /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_driver_node.py

@@ -54,12 +54,11 @@ CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/task_mgr
 
 # The main recursive "all" target.
 all: CMakeFiles/task_mgr_generate_messages.dir/all
-all: gtest/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: gtest/preinstall
+preinstall:
 
 .PHONY : preinstall
 
@@ -96,66 +95,8 @@ clean: CMakeFiles/task_mgr_geneus.dir/clean
 clean: CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 clean: CMakeFiles/task_mgr_genlisp.dir/clean
 clean: CMakeFiles/task_mgr_generate_messages_nodejs.dir/clean
-clean: gtest/clean
 
 .PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory gtest
-
-# Recursive "all" directory target.
-gtest/all: gtest/googlemock/all
-
-.PHONY : gtest/all
-
-# Recursive "preinstall" directory target.
-gtest/preinstall: gtest/googlemock/preinstall
-
-.PHONY : gtest/preinstall
-
-# Recursive "clean" directory target.
-gtest/clean: gtest/googlemock/clean
-
-.PHONY : gtest/clean
-
-#=============================================================================
-# Directory level rules for directory gtest/googlemock
-
-# Recursive "all" directory target.
-gtest/googlemock/all: gtest/googletest/all
-
-.PHONY : gtest/googlemock/all
-
-# Recursive "preinstall" directory target.
-gtest/googlemock/preinstall: gtest/googletest/preinstall
-
-.PHONY : gtest/googlemock/preinstall
-
-# Recursive "clean" directory target.
-gtest/googlemock/clean: gtest/googlemock/CMakeFiles/gmock_main.dir/clean
-gtest/googlemock/clean: gtest/googlemock/CMakeFiles/gmock.dir/clean
-gtest/googlemock/clean: gtest/googletest/clean
-
-.PHONY : gtest/googlemock/clean
-
-#=============================================================================
-# Directory level rules for directory gtest/googletest
-
-# Recursive "all" directory target.
-gtest/googletest/all:
-
-.PHONY : gtest/googletest/all
-
-# Recursive "preinstall" directory target.
-gtest/googletest/preinstall:
-
-.PHONY : gtest/googletest/preinstall
-
-# Recursive "clean" directory target.
-gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest_main.dir/clean
-gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
-
-.PHONY : gtest/googletest/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/task_mgr_genpy.dir
@@ -188,12 +129,12 @@ CMakeFiles/task_mgr_genpy.dir/clean:
 # Target rules for target CMakeFiles/task_mgr_generate_messages_py.dir
 
 # All Build rule for target.
-CMakeFiles/task_mgr_generate_messages_py.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
 CMakeFiles/task_mgr_generate_messages_py.dir/all: CMakeFiles/_task_mgr_generate_messages_check_deps_task_mgr.dir/all
 CMakeFiles/task_mgr_generate_messages_py.dir/all: CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+CMakeFiles/task_mgr_generate_messages_py.dir/all: CMakeFiles/std_msgs_generate_messages_py.dir/all
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_py.dir/build.make CMakeFiles/task_mgr_generate_messages_py.dir/depend
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_py.dir/build.make CMakeFiles/task_mgr_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=14,15 "Built target task_mgr_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=6,7 "Built target task_mgr_generate_messages_py"
 .PHONY : CMakeFiles/task_mgr_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
@@ -600,7 +541,7 @@ CMakeFiles/task_mgr_generate_messages_eus.dir/all: CMakeFiles/_task_mgr_generate
 CMakeFiles/task_mgr_generate_messages_eus.dir/all: CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_eus.dir/build.make CMakeFiles/task_mgr_generate_messages_eus.dir/depend
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_eus.dir/build.make CMakeFiles/task_mgr_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=10,11 "Built target task_mgr_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=2,3 "Built target task_mgr_generate_messages_eus"
 .PHONY : CMakeFiles/task_mgr_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
@@ -786,8 +727,8 @@ CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean:
 # Target rules for target CMakeFiles/task_mgr_generate_messages.dir
 
 # All Build rule for target.
-CMakeFiles/task_mgr_generate_messages.dir/all: CMakeFiles/task_mgr_generate_messages_py.dir/all
 CMakeFiles/task_mgr_generate_messages.dir/all: CMakeFiles/task_mgr_generate_messages_eus.dir/all
+CMakeFiles/task_mgr_generate_messages.dir/all: CMakeFiles/task_mgr_generate_messages_py.dir/all
 CMakeFiles/task_mgr_generate_messages.dir/all: CMakeFiles/task_mgr_generate_messages_lisp.dir/all
 CMakeFiles/task_mgr_generate_messages.dir/all: CMakeFiles/task_mgr_generate_messages_cpp.dir/all
 CMakeFiles/task_mgr_generate_messages.dir/all: CMakeFiles/task_mgr_generate_messages_nodejs.dir/all
@@ -822,7 +763,7 @@ CMakeFiles/task_mgr_generate_messages_lisp.dir/all: CMakeFiles/_task_mgr_generat
 CMakeFiles/task_mgr_generate_messages_lisp.dir/all: CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_lisp.dir/build.make CMakeFiles/task_mgr_generate_messages_lisp.dir/depend
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_lisp.dir/build.make CMakeFiles/task_mgr_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=12 "Built target task_mgr_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=4 "Built target task_mgr_generate_messages_lisp"
 .PHONY : CMakeFiles/task_mgr_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -846,12 +787,12 @@ CMakeFiles/task_mgr_generate_messages_lisp.dir/clean:
 # Target rules for target CMakeFiles/task_mgr_generate_messages_cpp.dir
 
 # All Build rule for target.
-CMakeFiles/task_mgr_generate_messages_cpp.dir/all: CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
 CMakeFiles/task_mgr_generate_messages_cpp.dir/all: CMakeFiles/_task_mgr_generate_messages_check_deps_task_mgr.dir/all
+CMakeFiles/task_mgr_generate_messages_cpp.dir/all: CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
 CMakeFiles/task_mgr_generate_messages_cpp.dir/all: CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_cpp.dir/build.make CMakeFiles/task_mgr_generate_messages_cpp.dir/depend
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_cpp.dir/build.make CMakeFiles/task_mgr_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=9 "Built target task_mgr_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=1 "Built target task_mgr_generate_messages_cpp"
 .PHONY : CMakeFiles/task_mgr_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1010,12 +951,12 @@ CMakeFiles/task_mgr_genlisp.dir/clean:
 # Target rules for target CMakeFiles/task_mgr_generate_messages_nodejs.dir
 
 # All Build rule for target.
-CMakeFiles/task_mgr_generate_messages_nodejs.dir/all: CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
 CMakeFiles/task_mgr_generate_messages_nodejs.dir/all: CMakeFiles/_task_mgr_generate_messages_check_deps_task_mgr.dir/all
 CMakeFiles/task_mgr_generate_messages_nodejs.dir/all: CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+CMakeFiles/task_mgr_generate_messages_nodejs.dir/all: CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_nodejs.dir/build.make CMakeFiles/task_mgr_generate_messages_nodejs.dir/depend
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_nodejs.dir/build.make CMakeFiles/task_mgr_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=13 "Built target task_mgr_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=5 "Built target task_mgr_generate_messages_nodejs"
 .PHONY : CMakeFiles/task_mgr_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1034,115 +975,6 @@ task_mgr_generate_messages_nodejs: CMakeFiles/task_mgr_generate_messages_nodejs.
 CMakeFiles/task_mgr_generate_messages_nodejs.dir/clean:
 	$(MAKE) -f CMakeFiles/task_mgr_generate_messages_nodejs.dir/build.make CMakeFiles/task_mgr_generate_messages_nodejs.dir/clean
 .PHONY : CMakeFiles/task_mgr_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target gtest/googlemock/CMakeFiles/gmock_main.dir
-
-# All Build rule for target.
-gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmock.dir/all
-gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
-	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
-	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=3,4 "Built target gmock_main"
-.PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/all
-
-# Build rule for subdir invocation for target.
-gtest/googlemock/CMakeFiles/gmock_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 gtest/googlemock/CMakeFiles/gmock_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles 0
-.PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/rule
-
-# Convenience name for target.
-gmock_main: gtest/googlemock/CMakeFiles/gmock_main.dir/rule
-
-.PHONY : gmock_main
-
-# clean rule for target.
-gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
-	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/clean
-.PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/clean
-
-#=============================================================================
-# Target rules for target gtest/googlemock/CMakeFiles/gmock.dir
-
-# All Build rule for target.
-gtest/googlemock/CMakeFiles/gmock.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
-	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/depend
-	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=1,2 "Built target gmock"
-.PHONY : gtest/googlemock/CMakeFiles/gmock.dir/all
-
-# Build rule for subdir invocation for target.
-gtest/googlemock/CMakeFiles/gmock.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 gtest/googlemock/CMakeFiles/gmock.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles 0
-.PHONY : gtest/googlemock/CMakeFiles/gmock.dir/rule
-
-# Convenience name for target.
-gmock: gtest/googlemock/CMakeFiles/gmock.dir/rule
-
-.PHONY : gmock
-
-# clean rule for target.
-gtest/googlemock/CMakeFiles/gmock.dir/clean:
-	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/clean
-.PHONY : gtest/googlemock/CMakeFiles/gmock.dir/clean
-
-#=============================================================================
-# Target rules for target gtest/googletest/CMakeFiles/gtest_main.dir
-
-# All Build rule for target.
-gtest/googletest/CMakeFiles/gtest_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
-	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/depend
-	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=7,8 "Built target gtest_main"
-.PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/all
-
-# Build rule for subdir invocation for target.
-gtest/googletest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 gtest/googletest/CMakeFiles/gtest_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles 0
-.PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/rule
-
-# Convenience name for target.
-gtest_main: gtest/googletest/CMakeFiles/gtest_main.dir/rule
-
-.PHONY : gtest_main
-
-# clean rule for target.
-gtest/googletest/CMakeFiles/gtest_main.dir/clean:
-	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/clean
-.PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/clean
-
-#=============================================================================
-# Target rules for target gtest/googletest/CMakeFiles/gtest.dir
-
-# All Build rule for target.
-gtest/googletest/CMakeFiles/gtest.dir/all:
-	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/depend
-	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/agilex/MobileManipulator/build/task_mgr/CMakeFiles --progress-num=5,6 "Built target gtest"
-.PHONY : gtest/googletest/CMakeFiles/gtest.dir/all
-
-# Build rule for subdir invocation for target.
-gtest/googletest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 gtest/googletest/CMakeFiles/gtest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/agilex/MobileManipulator/build/task_mgr/CMakeFiles 0
-.PHONY : gtest/googletest/CMakeFiles/gtest.dir/rule
-
-# Convenience name for target.
-gtest: gtest/googletest/CMakeFiles/gtest.dir/rule
-
-.PHONY : gtest
-
-# clean rule for target.
-gtest/googletest/CMakeFiles/gtest.dir/clean:
-	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/clean
-.PHONY : gtest/googletest/CMakeFiles/gtest.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

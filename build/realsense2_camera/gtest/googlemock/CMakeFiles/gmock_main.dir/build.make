@@ -43,7 +43,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/realsense2_camera
@@ -95,6 +95,6 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/clean
 
 gtest/googlemock/CMakeFiles/gmock_main.dir/depend:
-	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera /usr/src/googletest/googlemock /home/agilex/MobileManipulator/build/realsense2_camera /home/agilex/MobileManipulator/build/realsense2_camera/gtest/googlemock /home/agilex/MobileManipulator/build/realsense2_camera/gtest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera /usr/src/googletest/googlemock /home/agilex/MobileManipulator/build/realsense2_camera /home/agilex/MobileManipulator/build/realsense2_camera/gtest/googlemock /home/agilex/MobileManipulator/build/realsense2_camera/gtest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 

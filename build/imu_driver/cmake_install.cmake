@@ -1,4 +1,4 @@
-# Install script for directory: /home/agilex/MobileManipulator/src/imu_driver
+# Install script for directory: /home/agilex/MobileManipulator/src/robot_drivers/imu_driver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -159,7 +159,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/imu_driver" TYPE FILE FILES "/home/agilex/MobileManipulator/src/imu_driver/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/imu_driver" TYPE FILE FILES "/home/agilex/MobileManipulator/src/robot_drivers/imu_driver/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -188,10 +188,6 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/imu_driver" TYPE PROGRAM FILES "/home/agilex/MobileManipulator/build/imu_driver/catkin_generated/installspace/imu_test.py")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/imu_driver" TYPE PROGRAM FILES "/home/agilex/MobileManipulator/build/imu_driver/catkin_generated/installspace/test_imu_topic.py")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

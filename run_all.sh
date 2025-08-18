@@ -61,7 +61,7 @@ launch_modules() {
             "realsense2_camera") launch_file="realsense2_camera/launch/realsense_cameras.launch" ;;
             "arm_controller")    launch_file="arm_controller/launch/start_single_piper.launch" ;;
             "chassis_controller") launch_file="chassis_controller/launch/chassis_controller.launch" ;;
-            "arm_planner")       launch_file="arm_planner/launch/main_demo.launch" ;;
+            "arm_planner")       launch_file="arm_planner/launch/arm_planner.launch" ;;
             "chassis_planner")   launch_file="chassis_planner/launch/chassis_planner.launch" ;;
             "perception")        launch_file="perception/launch/perception.launch" ;;
             "object_tracker")    launch_file="object_tracker/launch/object_tracker.launch" ;;

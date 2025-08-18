@@ -365,7 +365,7 @@ camera_calibration_parsers_DIR:PATH=/opt/ros/noetic/share/camera_calibration_par
 camera_driver_BINARY_DIR:STATIC=/home/agilex/MobileManipulator/build/camera_driver
 
 //Value Computed by CMake
-camera_driver_SOURCE_DIR:STATIC=/home/agilex/MobileManipulator/src/camera_driver
+camera_driver_SOURCE_DIR:STATIC=/home/agilex/MobileManipulator/src/robot_drivers/camera_driver
 
 //The directory containing a CMake configuration file for camera_info_manager.
 camera_info_manager_DIR:PATH=/opt/ros/noetic/share/camera_info_manager/cmake
@@ -560,7 +560,7 @@ CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=1
 CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/home/agilex/MobileManipulator/src/camera_driver
+CMAKE_HOME_DIRECTORY:INTERNAL=/home/agilex/MobileManipulator/src/robot_drivers/camera_driver
 //ADVANCED property for variable: CMAKE_INSTALL_BINDIR
 CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_DATADIR

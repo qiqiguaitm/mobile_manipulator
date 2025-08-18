@@ -43,7 +43,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/imu_driver
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/robot_drivers/imu_driver
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/imu_driver
@@ -67,6 +67,6 @@ CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
 .PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/clean
 
 CMakeFiles/roscpp_generate_messages_cpp.dir/depend:
-	cd /home/agilex/MobileManipulator/build/imu_driver && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/imu_driver /home/agilex/MobileManipulator/src/imu_driver /home/agilex/MobileManipulator/build/imu_driver /home/agilex/MobileManipulator/build/imu_driver /home/agilex/MobileManipulator/build/imu_driver/CMakeFiles/roscpp_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/imu_driver && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/robot_drivers/imu_driver /home/agilex/MobileManipulator/src/robot_drivers/imu_driver /home/agilex/MobileManipulator/build/imu_driver /home/agilex/MobileManipulator/build/imu_driver /home/agilex/MobileManipulator/build/imu_driver/CMakeFiles/roscpp_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/roscpp_generate_messages_cpp.dir/depend
 

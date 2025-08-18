@@ -1,5 +1,5 @@
 # CMake generated Testfile for 
-# Source directory: /home/agilex/MobileManipulator/src/camera_driver
+# Source directory: /home/agilex/MobileManipulator/src/robot_drivers/camera_driver
 # Build directory: /home/agilex/MobileManipulator/build/camera_driver
 # 
 # This file includes the relevant testing commands required for 

@@ -12,4 +12,4 @@ export LD_LIBRARY_PATH="/home/agilex/MobileManipulator/devel/.private/imu_driver
 export PWD='/home/agilex/MobileManipulator/build/imu_driver'
 export PYTHONPATH="/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/python3/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/imu_driver/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/imu_driver:$ROS_PACKAGE_PATH"
+export ROS_PACKAGE_PATH="/home/agilex/MobileManipulator/src/robot_drivers/imu_driver:$ROS_PACKAGE_PATH"

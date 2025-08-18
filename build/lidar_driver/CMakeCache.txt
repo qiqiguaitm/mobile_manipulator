@@ -420,7 +420,7 @@ lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
 lidar_driver_BINARY_DIR:STATIC=/home/agilex/MobileManipulator/build/lidar_driver
 
 //Value Computed by CMake
-lidar_driver_SOURCE_DIR:STATIC=/home/agilex/MobileManipulator/src/lidar_driver
+lidar_driver_SOURCE_DIR:STATIC=/home/agilex/MobileManipulator/src/robot_drivers/lidar_driver
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
@@ -551,7 +551,7 @@ CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=1
 CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/home/agilex/MobileManipulator/src/lidar_driver
+CMAKE_HOME_DIRECTORY:INTERNAL=/home/agilex/MobileManipulator/src/robot_drivers/lidar_driver
 //ADVANCED property for variable: CMAKE_INSTALL_BINDIR
 CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_DATADIR

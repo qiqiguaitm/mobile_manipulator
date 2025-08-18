@@ -67,7 +67,7 @@ set(realsense2_camera_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(realsense2_camera_SOURCE_PREFIX /home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera)
+  set(realsense2_camera_SOURCE_PREFIX /home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera)
   set(realsense2_camera_DEVEL_PREFIX /home/agilex/MobileManipulator/devel/.private/realsense2_camera)
   set(realsense2_camera_INSTALL_PREFIX "")
   set(realsense2_camera_PREFIX ${realsense2_camera_DEVEL_PREFIX})
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(realsense2_camera_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/include;/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/include " STREQUAL " ")
+if(NOT "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/include;/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/include " STREQUAL " ")
   set(realsense2_camera_INCLUDE_DIRS "")
-  set(_include_dirs "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/include;/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/include")
+  set(_include_dirs "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/include;/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/include")
   if(NOT "https://github.com/intel-ros/realsense/issues " STREQUAL " ")
     set(_report "Check the issue tracker 'https://github.com/intel-ros/realsense/issues' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT "http://www.ros.org/wiki/RealSense " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/agilex/MobileManipulator/devel/.private/realsense2_camera/include;
         message(FATAL_ERROR "Project 'realsense2_camera' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'realsense2_camera' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'realsense2_camera' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/${idir}'.  ${_report}")
     endif()
     _list_append_unique(realsense2_camera_INCLUDE_DIRS ${include})
   endforeach()
@@ -156,7 +156,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib;/home/agilex/MobileManipulator/devel/lib;/home/agilex/catkin_ws/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/agilex/MobileManipulator/devel/.private/realsense2_camera/lib;/home/agilex/MobileManipulator/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

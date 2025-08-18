@@ -4,5 +4,4 @@ Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/python3/di
 Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/pkgconfig/imu_driver.pc, /home/agilex/MobileManipulator/devel/lib/pkgconfig/imu_driver.pc)
 Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/imu_test.py, /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_test.py)
 Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/imu_driver, /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_driver)
-Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/test_imu_topic.py, /home/agilex/MobileManipulator/devel/lib/imu_driver/test_imu_topic.py)
 Linked: (/home/agilex/MobileManipulator/devel/.private/imu_driver/lib/imu_driver/imu_driver_node.py, /home/agilex/MobileManipulator/devel/lib/imu_driver/imu_driver_node.py)

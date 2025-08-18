@@ -1,4 +1,4 @@
-# Install script for directory: /home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera
+# Install script for directory: /home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -145,14 +145,14 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera/msg" TYPE FILE FILES
-    "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/msg/IMUInfo.msg"
-    "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/msg/Extrinsics.msg"
-    "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/msg/Metadata.msg"
+    "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/msg/IMUInfo.msg"
+    "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/msg/Extrinsics.msg"
+    "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/msg/Metadata.msg"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera/srv" TYPE FILE FILES "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/srv/DeviceInfo.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera/srv" TYPE FILE FILES "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/srv/DeviceInfo.srv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -199,7 +199,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera" TYPE FILE FILES "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera" TYPE FILE FILES "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -214,7 +214,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librealsense2_camera.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librealsense2_camera.so"
-         OLD_RPATH "/usr/local/lib:/opt/ros/noetic/lib:"
+         OLD_RPATH "/opt/ros/noetic/lib/aarch64-linux-gnu:/opt/ros/noetic/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librealsense2_camera.so")
@@ -226,19 +226,19 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/realsense2_camera" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/include/realsense2_camera")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/realsense2_camera" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/include/realsense2_camera")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera/launch" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/launch/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera/launch" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/launch/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera/rviz" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/rviz/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera/rviz" TYPE DIRECTORY FILES "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/rviz/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera" TYPE FILE FILES "/home/agilex/MobileManipulator/src/realsense2_camera/realsense2_camera/nodelet_plugins.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_camera" TYPE FILE FILES "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/nodelet_plugins.xml")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

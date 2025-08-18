@@ -1,0 +1,7 @@
+<launch>
+  <!-- Launch the rslidar driver with pointcloud to laserscan conversion -->
+  <include file="$(find lidar_driver)/launch/rslidar_driver.launch"/>
+  
+  <!-- Launch the test listener node -->
+  <node pkg="lidar_driver" type="lidar_test.py" name="lidar_test_listener" output="screen"/>
+</launch>

@@ -1,4 +1,0 @@
-<launch>
-    <!-- Launch RealSense cameras for chassis, hand, and top positions -->
-    <include file="$(find camera_driver)/launch/realsense_cameras.launch" />
-</launch>

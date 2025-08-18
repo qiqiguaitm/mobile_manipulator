@@ -15,7 +15,7 @@ except ImportError:
     rospy.logwarn("OpenCV not available, camera driver will not capture real images")
     OPENCV_AVAILABLE = False
 
-class MultiCameraDriverNode:
+class MultiCameraTestNode:
     def __init__(self):
         rospy.init_node('multi_camera_driver_node')
         
@@ -181,7 +181,7 @@ class MultiCameraDriverNode:
 
 if __name__ == '__main__':
     try:
-        node = MultiCameraDriverNode()
+        node = MultiCameraTestNode()
         rospy.on_shutdown(node.shutdown)
         node.run()
     except rospy.ROSInterruptException:

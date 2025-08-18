@@ -1,4 +1,4 @@
-# Install script for directory: /home/agilex/MobileManipulator/src/camera_driver
+# Install script for directory: /home/agilex/MobileManipulator/src/robot_drivers/camera_driver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -159,7 +159,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/camera_driver" TYPE FILE FILES "/home/agilex/MobileManipulator/src/camera_driver/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/camera_driver" TYPE FILE FILES "/home/agilex/MobileManipulator/src/robot_drivers/camera_driver/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

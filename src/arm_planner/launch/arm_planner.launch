@@ -1,0 +1,48 @@
+<launch>
+
+  <!-- ============================================= -->
+  <!-- Piper MoveIt Demo - 精简优化版 -->
+  <!-- ============================================= -->
+
+  <!-- 核心参数 -->
+  <arg name="mode" default="real" doc="运行模式: real(实机) 或 fake(仿真)" />
+  <arg name="use_rviz" default="true" doc="是否启动RViz可视化" />
+  <arg name="collision_mode" default="performance" doc="碰撞模型: performance(快速) 或 safety(精确)" />
+  <arg name="control_panel" default="enhanced" doc="控制面板: none, simple, enhanced" />
+  <arg name="pipeline" default="ompl" doc="运动规划器" />
+  <arg name="debug" default="false" doc="调试模式" />
+
+  <!-- 加载MoveIt配置 -->
+  <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/demo.launch">
+    <arg name="mode" value="$(arg mode)" />
+    <arg name="use_rviz" value="false" />
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="pipeline" value="$(arg pipeline)" />
+    <arg name="collision_mode" value="$(arg collision_mode)" />
+  </include>
+  
+  <!-- RViz可视化 -->
+  <group if="$(arg use_rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" 
+          args="-d $(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
+  </group>
+  
+  <!-- 控制面板 -->
+  <group if="$(eval control_panel == 'simple')">
+    <node name="piper_stop_button" pkg="arm_planner" type="simple_stop_button.py" 
+          respawn="false" output="screen"/>
+  </group>
+  
+  <group if="$(eval control_panel == 'enhanced')">
+    <node name="piper_control_panel" pkg="arm_planner" type="enhanced_stop_button.py" 
+          respawn="false" output="screen"/>
+  </group>
+
+  <!-- 基础安全功能 -->
+  <node name="emergency_stop_handler" pkg="arm_planner" type="emergency_stop_handler.py" 
+        respawn="true" output="screen"/>
+  
+  <!-- 地面碰撞保护 -->
+  <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/ground_collision.launch"/>
+
+</launch>

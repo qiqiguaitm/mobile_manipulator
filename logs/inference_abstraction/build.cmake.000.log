@@ -14,8 +14,8 @@ Not searching for unused variables given on the command line.
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Using CATKIN_DEVEL_PREFIX: /home/agilex/MobileManipulator/devel/.private/inference_abstraction
--- Using CMAKE_PREFIX_PATH: /home/agilex/MobileManipulator/devel;/home/agilex/catkin_ws/devel;/opt/ros/noetic
--- This workspace overlays: /home/agilex/MobileManipulator/devel;/home/agilex/catkin_ws/devel;/opt/ros/noetic
+-- Using CMAKE_PREFIX_PATH: /home/agilex/MobileManipulator/devel;/opt/ros/noetic
+-- This workspace overlays: /home/agilex/MobileManipulator/devel;/opt/ros/noetic
 -- Found PythonInterp: /home/agilex/miniconda3/bin/python3 (found suitable version "3.13.2", minimum required is "3")
 -- Using PYTHON_EXECUTABLE: /home/agilex/miniconda3/bin/python3
 -- Using Debian Python package layout

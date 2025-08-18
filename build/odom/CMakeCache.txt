@@ -458,9 +458,6 @@ odom_BINARY_DIR:STATIC=/home/agilex/MobileManipulator/build/odom
 //Value Computed by CMake
 odom_SOURCE_DIR:STATIC=/home/agilex/MobileManipulator/src/odom
 
-//The directory containing a CMake configuration file for rf2o_laser_odometry.
-rf2o_laser_odometry_DIR:PATH=rf2o_laser_odometry_DIR-NOTFOUND
-
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
 

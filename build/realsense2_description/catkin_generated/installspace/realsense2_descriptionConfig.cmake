@@ -67,7 +67,7 @@ set(realsense2_description_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(realsense2_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/realsense2_camera/realsense2_description)
+  set(realsense2_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_description)
   set(realsense2_description_DEVEL_PREFIX /home/agilex/MobileManipulator/devel/.private/realsense2_description)
   set(realsense2_description_INSTALL_PREFIX "")
   set(realsense2_description_PREFIX ${realsense2_description_DEVEL_PREFIX})
@@ -156,7 +156,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/agilex/MobileManipulator/install/lib;/home/agilex/MobileManipulator/devel/lib;/home/agilex/catkin_ws/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/agilex/MobileManipulator/install/lib;/home/agilex/MobileManipulator/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

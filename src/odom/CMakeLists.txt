@@ -6,7 +6,6 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   nav_msgs
   tf
-  rf2o_laser_odometry
 )
 
 catkin_python_setup()

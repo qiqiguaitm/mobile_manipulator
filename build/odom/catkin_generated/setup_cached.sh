@@ -9,7 +9,6 @@
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/agilex/MobileManipulator/devel/.private/odom:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/home/agilex/MobileManipulator/devel/.private/odom/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/agilex/MobileManipulator/devel/.private/odom/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/agilex/MobileManipulator/build/odom'
 export PYTHONPATH="/home/agilex/MobileManipulator/devel/.private/odom/lib/python3/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/agilex/MobileManipulator/devel/.private/odom/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"

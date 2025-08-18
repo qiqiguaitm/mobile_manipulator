@@ -6,31 +6,31 @@
 
 #IncludeRegexTransform: 
 
-/home/agilex/MobileManipulator/src/imu_driver/src/imu_data_decode.c
+/home/agilex/MobileManipulator/src/robot_drivers/imu_driver/src/imu_data_decode.c
 string.h
 -
 stdio.h
 -
 packet.h
-/home/agilex/MobileManipulator/src/imu_driver/src/packet.h
+/home/agilex/MobileManipulator/src/robot_drivers/imu_driver/src/packet.h
 imu_data_decode.h
-/home/agilex/MobileManipulator/src/imu_driver/src/imu_data_decode.h
+/home/agilex/MobileManipulator/src/robot_drivers/imu_driver/src/imu_data_decode.h
 
-/home/agilex/MobileManipulator/src/imu_driver/src/imu_data_decode.h
+/home/agilex/MobileManipulator/src/robot_drivers/imu_driver/src/imu_data_decode.h
 stdint.h
 -
 stdbool.h
 -
 
-/home/agilex/MobileManipulator/src/imu_driver/src/packet.c
+/home/agilex/MobileManipulator/src/robot_drivers/imu_driver/src/packet.c
 string.h
 -
 stdio.h
 -
 packet.h
-/home/agilex/MobileManipulator/src/imu_driver/src/packet.h
+/home/agilex/MobileManipulator/src/robot_drivers/imu_driver/src/packet.h
 
-/home/agilex/MobileManipulator/src/imu_driver/src/packet.h
+/home/agilex/MobileManipulator/src/robot_drivers/imu_driver/src/packet.h
 stdint.h
 -
 stdbool.h

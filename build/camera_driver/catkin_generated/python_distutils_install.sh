@@ -13,7 +13,7 @@ fi
 
 echo_and_run() { echo "+ $@" ; "$@" ; }
 
-echo_and_run cd "/home/agilex/MobileManipulator/src/camera_driver"
+echo_and_run cd "/home/agilex/MobileManipulator/src/robot_drivers/camera_driver"
 
 # ensure that Python install destination exists
 echo_and_run mkdir -p "$DESTDIR/home/agilex/MobileManipulator/install/lib/python3/dist-packages"
@@ -25,7 +25,7 @@ echo_and_run /usr/bin/env \
     PYTHONPATH="/home/agilex/MobileManipulator/install/lib/python3/dist-packages:/home/agilex/MobileManipulator/build/camera_driver/lib/python3/dist-packages:$PYTHONPATH" \
     CATKIN_BINARY_DIR="/home/agilex/MobileManipulator/build/camera_driver" \
     "/home/agilex/miniconda3/bin/python3" \
-    "/home/agilex/MobileManipulator/src/camera_driver/setup.py" \
+    "/home/agilex/MobileManipulator/src/robot_drivers/camera_driver/setup.py" \
     egg_info --egg-base /home/agilex/MobileManipulator/build/camera_driver \
     build --build-base "/home/agilex/MobileManipulator/build/camera_driver" \
     install \

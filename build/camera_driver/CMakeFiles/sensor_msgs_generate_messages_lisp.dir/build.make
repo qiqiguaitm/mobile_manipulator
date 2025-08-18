@@ -43,7 +43,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/camera_driver
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/robot_drivers/camera_driver
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/camera_driver
@@ -67,6 +67,6 @@ CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean:
 .PHONY : CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
 
 CMakeFiles/sensor_msgs_generate_messages_lisp.dir/depend:
-	cd /home/agilex/MobileManipulator/build/camera_driver && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/camera_driver /home/agilex/MobileManipulator/src/camera_driver /home/agilex/MobileManipulator/build/camera_driver /home/agilex/MobileManipulator/build/camera_driver /home/agilex/MobileManipulator/build/camera_driver/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/camera_driver && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/robot_drivers/camera_driver /home/agilex/MobileManipulator/src/robot_drivers/camera_driver /home/agilex/MobileManipulator/build/camera_driver /home/agilex/MobileManipulator/build/camera_driver /home/agilex/MobileManipulator/build/camera_driver/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/sensor_msgs_generate_messages_lisp.dir/depend
 

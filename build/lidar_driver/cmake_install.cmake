@@ -1,4 +1,4 @@
-# Install script for directory: /home/agilex/MobileManipulator/src/lidar_driver
+# Install script for directory: /home/agilex/MobileManipulator/src/robot_drivers/lidar_driver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -159,15 +159,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/lidar_driver" TYPE FILE FILES "/home/agilex/MobileManipulator/src/lidar_driver/package.xml")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/lidar_driver" TYPE PROGRAM FILES "/home/agilex/MobileManipulator/build/lidar_driver/catkin_generated/installspace/lidar_driver_node.py")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/lidar_driver" TYPE PROGRAM FILES "/home/agilex/MobileManipulator/build/lidar_driver/catkin_generated/installspace/lidar_driver_node_sim.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/lidar_driver" TYPE FILE FILES "/home/agilex/MobileManipulator/src/robot_drivers/lidar_driver/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

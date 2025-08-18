@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/lidar_driver/lib/lidar_driver/lidar_driver_node_sim.py
