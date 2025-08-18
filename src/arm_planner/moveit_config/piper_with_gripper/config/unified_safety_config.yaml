@@ -1,0 +1,136 @@
+# 统一安全配置文件 - 所有安全参数集中管理
+# 单位统一使用米(m)和弧度(rad)
+
+# 碰撞安全区域定义 - 分级响应
+safety_zones:
+  # 紧急停止区 - 立即停止所有运动
+  emergency_stop:
+    distance: 0.010  # 10mm
+    action: "immediate_stop"
+    
+  # 警告区 - 减速运行
+  warning_zone:
+    distance: 0.030  # 30mm
+    action: "reduce_speed"
+    speed_scale: 0.3  # 降至30%速度
+    
+  # 规划安全边界 - MoveIt规划使用
+  planning_buffer:
+    distance: 0.050  # 50mm
+    action: "planning_constraint"
+
+# 运动限制参数
+motion_limits:
+  # 速度限制
+  velocity:
+    default_scale: 0.5      # 默认50%速度
+    max_scale: 0.8          # 最大80%速度（安全考虑）
+    warning_zone_scale: 0.3 # 警告区速度
+    
+  # 加速度限制 - 必须启用！
+  acceleration:
+    enabled: true
+    default_scale: 0.3      # 默认30%加速度
+    max_scale: 0.5          # 最大50%加速度
+    emergency_decel: 2.0    # 紧急减速度(rad/s²)
+    
+  # 加加速度限制 - 平滑控制
+  jerk:
+    enabled: true
+    max_jerk: 1.0          # 最大加加速度(rad/s³)
+    smoothing_factor: 0.8   # 平滑因子
+
+# 高风险区域特殊配置
+high_risk_zones:
+  # 升降平台区域 - 最危险
+  lifting_area:
+    links: ["lifting_Link"]
+    extra_padding: 0.040    # 40mm额外保护
+    speed_limit: 0.3        # 限速30%
+    
+  # 底座区域
+  base_area:
+    links: ["base_link", "box_Link"]
+    extra_padding: 0.030    # 30mm额外保护
+    
+  # 传感器保护区
+  sensor_area:
+    links: ["lidar_Link", "top_camera_Link", "front_camera_Link"]
+    extra_padding: 0.040    # 40mm保护精密设备
+
+# 碰撞检测配置
+collision_detection:
+  # 连续碰撞检测
+  continuous_collision_checking:
+    enabled: true
+    check_frequency: 200.0   # 200Hz检测频率(匹配控制)
+    interpolation_steps: 5   # 轨迹插值步数(高频下减少)
+    
+  # 碰撞模型简化策略
+  model_simplification:
+    use_simplified_meshes: true
+    max_vertices_per_link: 1000
+    convex_hull_approximation: true
+    
+  # 实时检测参数
+  realtime_check:
+    use_fcl: true          # 使用FCL库提高性能
+    distance_threshold: 0.005  # 5mm距离计算阈值
+    enable_distance_field: true # 启用距离场加速
+
+# 规划器安全参数
+planner_safety:
+  # OMPL配置
+  ompl:
+    longest_valid_segment_fraction: 0.02  # 2%更密集采样
+    state_validity_checking_resolution: 0.01
+    
+  # CHOMP配置  
+  chomp:
+    collision_clearance: 0.050    # 50mm统一标准
+    collision_threshold: 0.030    # 30mm警告阈值
+    smoothness_cost_weight: 0.2   # 增加平滑权重
+
+# 紧急响应配置
+emergency_response:
+  # 多通道停止
+  stop_channels:
+    - ros_service: "/stop_arm"
+    - hardware_button: true
+    - software_gui: true
+    - keyboard_interrupt: "space"
+    
+  # 恢复策略
+  recovery:
+    require_manual_reset: true    # 需要手动复位
+    auto_clear_after: 5.0        # 5秒后自动清除错误
+    home_position_on_reset: true  # 复位后回零点
+
+# 安全监控配置
+safety_monitoring:
+  # 状态检查
+  health_check:
+    frequency: 10.0              # 10Hz
+    timeout_threshold: 0.5       # 500ms超时
+    
+  # 异常检测
+  anomaly_detection:
+    velocity_jump_threshold: 1.0  # 速度突变阈值(rad/s)
+    position_error_threshold: 0.1 # 位置误差阈值(rad)
+    
+  # 日志记录
+  logging:
+    log_collisions: true
+    log_emergency_stops: true
+    log_path: "/var/log/robot_safety/"
+    max_log_size: "100MB"
+
+# 性能优化选项
+performance:
+  # 并行计算
+  use_parallel_collision_check: true
+  num_collision_check_threads: 4
+  
+  # 缓存策略
+  cache_collision_results: true
+  cache_validity_duration: 0.1   # 100ms缓存有效期

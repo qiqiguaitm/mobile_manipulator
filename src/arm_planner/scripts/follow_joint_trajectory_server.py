@@ -66,7 +66,7 @@ class FollowJointTrajectoryServer:
         feedback = FollowJointTrajectoryFeedback()
         
         # 设置固定帧率50Hz
-        rate = rospy.Rate(200)
+        rate = rospy.Rate(50)
         # 速度缩放因子 - 0.5表示慢一半
         velocity_scale = 0.5
         

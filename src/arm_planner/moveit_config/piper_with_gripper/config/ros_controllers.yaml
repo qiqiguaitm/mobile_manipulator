@@ -7,6 +7,8 @@ arm_controller:
     - joint4
     - joint5
     - joint6
+  state_publish_rate: 200  # 200Hz状态发布
+  action_monitor_rate: 200  # 200Hz动作监控
   gains:
     joint1:
       p: 100

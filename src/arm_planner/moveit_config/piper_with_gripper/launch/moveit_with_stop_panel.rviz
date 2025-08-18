@@ -32,7 +32,7 @@ Panels:
     SyncMode: 0
     SyncSource: ""
   - Class: arm_planner/PiperStopPanel
-    Name: Emergency Stop
+    Name: Piper Control Panel
 Visualization Manager:
   Class: ""
   Displays:
@@ -188,7 +188,7 @@ Visualization Manager:
 Window Geometry:
   Displays:
     collapsed: false
-  Emergency Stop:
+  Piper Control Panel:
     collapsed: false
   Height: 800
   Hide Left Dock: false

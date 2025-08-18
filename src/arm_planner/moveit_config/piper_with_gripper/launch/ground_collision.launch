@@ -1,0 +1,55 @@
+<launch>
+  <!-- 地面碰撞保护配置 -->
+  <!-- 防止机械臂撞击地面或工作台面 -->
+  
+  <!-- 地面高度参数 (相对于机器人基座) -->
+  <arg name="ground_height" default="-0.05" />
+  <arg name="table_height" default="0.0" />
+  
+  <!-- 添加地面碰撞对象管理器 -->
+  <node name="ground_collision_manager" pkg="arm_planner" type="ground_collision_manager.py" 
+        output="screen">
+    <param name="ground_height" value="$(arg ground_height)" />
+    <param name="table_height" value="$(arg table_height)" />
+  </node>
+  
+  <!-- 碰撞检测参数 -->
+  <rosparam>
+    move_group:
+      planning_scene_monitor:
+        # 场景更新频率
+        planning_scene_monitor_options:
+          max_update_rate: 10.0
+          # 监控碰撞对象
+          monitored_planning_scene: true
+        
+        # 碰撞填充
+        default_robot_padding: 0.01
+        default_robot_scale: 1.0
+        default_object_padding: 0.02
+        default_attached_padding: 0.02
+        
+        # 特定链接的碰撞填充
+        link_padding:
+          base_link: 0.02
+          link1: 0.015
+          link2: 0.015
+          link3: 0.015
+          link4: 0.01
+          link5: 0.01
+          link6: 0.01
+          gripper_base: 0.01
+          gripper_finger1: 0.005
+          gripper_finger2: 0.005
+  </rosparam>
+  
+  <!-- 地面碰撞监控器 -->
+  <node name="ground_collision_monitor" pkg="arm_planner" type="ground_collision_monitor.py" 
+        output="screen" respawn="false">
+    <param name="min_height_threshold" value="$(arg ground_height)" />
+    <param name="check_frequency" value="50.0" />
+    <param name="enable_emergency_stop" value="true" />
+    <param name="warning_height_offset" value="0.05" />
+  </node>
+  
+</launch>

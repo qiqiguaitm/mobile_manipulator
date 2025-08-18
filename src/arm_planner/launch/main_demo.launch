@@ -21,6 +21,15 @@
   
   <!-- RViz布局选择: standard(标准), optimized(优化) -->
   <arg name="rviz_layout" default="optimized" />
+  
+  <!-- 安全系统选择: none(无), basic(基础), enhanced(增强) -->
+  <arg name="safety_system" default="enhanced" />
+  
+  <!-- 安全系统参数 -->
+  <arg name="enable_collision_monitoring" default="true" />
+  <arg name="enable_motion_smoothing" default="true" />
+  <arg name="safety_check_rate" default="200" />
+  <arg name="enable_safety_visualization" default="false" />
 
   <!-- 根据夹爪选择加载不同的配置 -->
   <group if="$(arg gripper)">
@@ -37,7 +46,8 @@
       <!-- 选择RViz配置文件 -->
       <arg name="rviz_config_standard" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
       <arg name="rviz_config_optimized" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_optimized.rviz"/>
-      <arg name="rviz_config" value="$(eval rviz_config_optimized if arg('rviz_layout') == 'optimized' else rviz_config_standard)"/>
+      <arg name="rviz_config_with_panel" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_with_stop_panel_main_demo_final.rviz"/>
+      <arg name="rviz_config" value="$(eval rviz_config_with_panel if arg('control_panel') != 'none' else (rviz_config_optimized if arg('rviz_layout') == 'optimized' else rviz_config_standard))"/>
       
       <!-- 启动RViz -->
       <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" 
@@ -68,9 +78,80 @@
     </include>
   </group>
 
+  <!-- ============================================= -->
+  <!-- 安全系统配置 -->
+  <!-- ============================================= -->
+  
+  <!-- 加载统一安全配置参数 -->
+  <rosparam file="$(find arm_planner)/moveit_config/piper_with_gripper/config/unified_safety_config.yaml" 
+            command="load" ns="safety_config" />
+  
+  <!-- 基础安全系统 -->
+  <group if="$(eval safety_system == 'basic')">
+    <!-- 仅启动紧急停止功能 -->
+    <node name="emergency_stop_handler" pkg="arm_planner" type="emergency_stop_handler.py" 
+          respawn="true" output="screen"/>
+  </group>
+  
+  <!-- 增强安全系统 -->
+  <group if="$(eval safety_system == 'enhanced')">
+    <!-- 1. 运动平滑控制器 - 加速度限制 -->
+    <node name="motion_smoother" pkg="arm_planner" type="motion_smoother.py" 
+          respawn="false" output="screen" if="$(arg enable_motion_smoothing)">
+      <param name="control_frequency" value="$(arg safety_check_rate)" />
+      <param name="enable_jerk_limit" value="true" />
+    </node>
+    
+    <!-- 2. 连续碰撞检测器 -->
+    <node name="continuous_collision_checker" pkg="arm_planner" type="continuous_collision_checker.py" 
+          respawn="false" output="screen" if="$(arg enable_collision_monitoring)">
+      <param name="check_frequency" value="$(arg safety_check_rate)" />
+      <param name="use_gpu_acceleration" value="false" />
+    </node>
+    
+    <!-- 3. 分级安全响应管理器 -->
+    <node name="safety_response_manager" pkg="arm_planner" type="safety_response_manager.py" 
+          respawn="false" output="screen">
+      <param name="enable_audio_alerts" value="false" />
+      <param name="enable_visual_alerts" value="true" />
+    </node>
+    
+    <!-- 4. 安全监控（可选） -->
+    <node name="safety_monitor" pkg="arm_planner" type="safety_monitor.py" 
+          respawn="false" output="screen" if="$(arg enable_safety_visualization)">
+      <param name="log_path" value="/var/log/robot_safety/" />
+      <param name="max_log_size_mb" value="100" />
+    </node>
+    
+    <!-- 5. 安全状态可视化（可选） -->
+    <group if="$(arg enable_safety_visualization)">
+      <!-- 在现有RViz中添加安全可视化标记 -->
+      <node name="safety_marker_publisher" pkg="arm_planner" type="safety_visualization.py" 
+            respawn="false" output="screen"/>
+    </group>
+  </group>
+  
+  <!-- ============================================= -->
+  <!-- 碰撞配置增强 -->
+  <!-- ============================================= -->
+  
+  <!-- 加载增强的碰撞检测配置 -->
+  <group if="$(eval safety_system != 'none')">
+    <!-- 碰撞填充配置 -->
+    <rosparam file="$(find arm_planner)/moveit_config/piper_with_gripper/config/collision_padding.yaml" 
+              command="load" ns="move_group/planning_scene_monitor" />
+    
+    <!-- 碰撞安全检查配置 -->
+    <rosparam file="$(find arm_planner)/moveit_config/piper_with_gripper/config/collision_safety_check.yaml" 
+              command="load" />
+    
+    <!-- 地面碰撞保护 -->
+    <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/ground_collision.launch"/>
+  </group>
+
   <!-- 显示启动信息 -->
   <node name="startup_info" pkg="rostopic" type="rostopic" 
-        args="echo 'Piper MoveIt Demo Started - Mode: $(arg mode), Gripper: $(arg gripper), Control Panel: $(arg control_panel), RViz Layout: $(arg rviz_layout)'" 
+        args="echo 'Piper MoveIt Demo Started - Mode: $(arg mode), Gripper: $(arg gripper), Control Panel: $(arg control_panel), RViz Layout: $(arg rviz_layout), Safety: $(arg safety_system)'" 
         output="screen" />
 
 </launch>

@@ -1,0 +1,74 @@
+# 碰撞安全检查配置
+# 用于增强MoveIt的碰撞检测能力
+
+collision_safety_check:
+  # 启用连续碰撞检测
+  enable_continuous_collision_detection: true
+  
+  # 碰撞检测频率 (Hz)
+  collision_check_frequency: 50.0
+  
+  # 最小安全距离 (米)
+  min_safety_distance: 0.03
+  
+  # 碰撞预测时间窗口 (秒)
+  prediction_time_window: 0.5
+  
+  # 自碰撞检测
+  self_collision:
+    enabled: true
+    check_frequency: 25.0
+    padding: 0.02
+    
+  # 环境碰撞检测
+  environment_collision:
+    enabled: true
+    check_frequency: 50.0
+    padding: 0.03
+    
+  # 碰撞响应策略
+  collision_response:
+    # 停止类型: immediate, smooth_stop, slow_down
+    stop_type: "smooth_stop"
+    # 减速因子 (0-1)
+    deceleration_factor: 0.3
+    # 最大减速度 (rad/s^2)
+    max_deceleration: 5.0
+    
+  # 关节特定配置
+  joint_specific_settings:
+    joint1:
+      safety_margin: 0.05
+      max_velocity_near_obstacle: 0.5
+    joint2:
+      safety_margin: 0.05
+      max_velocity_near_obstacle: 0.5
+    joint3:
+      safety_margin: 0.04
+      max_velocity_near_obstacle: 0.6
+    joint4:
+      safety_margin: 0.04
+      max_velocity_near_obstacle: 0.7
+    joint5:
+      safety_margin: 0.03
+      max_velocity_near_obstacle: 0.8
+    joint6:
+      safety_margin: 0.03
+      max_velocity_near_obstacle: 0.8
+      
+  # 碰撞区域定义
+  collision_zones:
+    # 危险区域 - 立即停止
+    danger_zone:
+      distance: 0.02
+      action: "immediate_stop"
+    # 警告区域 - 减速
+    warning_zone:
+      distance: 0.05
+      action: "slow_down"
+      speed_scale: 0.3
+    # 注意区域 - 轻微减速
+    caution_zone:
+      distance: 0.10
+      action: "slow_down"
+      speed_scale: 0.7

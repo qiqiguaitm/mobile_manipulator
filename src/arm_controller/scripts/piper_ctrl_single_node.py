@@ -330,6 +330,7 @@ class C_PiperRosNode():
         Args:
             joint_data (): 
         """
+        rospy.loginfo("Joint callback received, block_ctrl_flag=%s", self.block_ctrl_flag)
         if not self.block_ctrl_flag:
             factor = 57324.840764 #1000*180/3.14
             factor = 1000 * 180 / np.pi
@@ -374,7 +375,10 @@ class C_PiperRosNode():
                 if(joint_6>80000): joint_6 = 80000
                 if(joint_6<0): joint_6 = 0
             else: joint_6 = None
+            rospy.loginfo("GetEnableFlag()=%s", self.GetEnableFlag())
             if(self.GetEnableFlag()):
+                rospy.loginfo("Sending joint control: j0=%f, j1=%f, j2=%f, j3=%f, j4=%f, j5=%f", 
+                             joint_0, joint_1, joint_2, joint_3, joint_4, joint_5)
                 # 设定电机速度
                 if(joint_data.velocity != []):
                     all_zeros = all(v == 0 for v in joint_data.velocity)
@@ -478,6 +482,7 @@ class C_PiperRosNode():
         rospy.loginfo(f"Received request: {req.enable_request}")
         enable_flag = False
         loop_flag = False
+        response_flag = False  # 初始化响应标志
         # 设置超时时间（秒）
         timeout = 5
         # 记录进入循环前的时间
@@ -494,33 +499,49 @@ class C_PiperRosNode():
             enable_list.append(self.piper.GetArmLowSpdInfoMsgs().motor_5.foc_status.driver_enable_status)
             enable_list.append(self.piper.GetArmLowSpdInfoMsgs().motor_6.foc_status.driver_enable_status)
             if(req.enable_request):
+                # 请求使能时，检查所有电机是否都已使能
                 enable_flag = all(enable_list)
                 self.piper.EnableArm(7)
-                self.piper.GripperCtrl(0,1000,0x01, 0)
+                if(self.gripper_exist):
+                    self.piper.GripperCtrl(0,1000,0x01, 0)
             else:
-                enable_flag = any(enable_list)
+                # 请求禁用时，检查是否还有电机在使能状态
+                enable_flag = any(enable_list)  # 如果有任何电机还在使能，则为True
                 self.piper.DisableArm(7)
-                self.piper.GripperCtrl(0,1000,0x02, 0)
+                if(self.gripper_exist):
+                    self.piper.GripperCtrl(0,1000,0x02, 0)
             print("使能状态:", enable_flag)
-            self.__enable_flag = enable_flag
             print("--------------------")
-            if(enable_flag == req.enable_request):
-                loop_flag = True
-                enable_flag = True
-            else: 
-                loop_flag = False
-                enable_flag = False
+            
+            # 检查是否达到目标状态
+            if(req.enable_request):  # 如果请求使能
+                if(enable_flag):  # 且所有电机都已使能
+                    self.__enable_flag = True
+                    loop_flag = True
+                    response_flag = True
+                else:
+                    loop_flag = False
+                    response_flag = False
+            else:  # 如果请求禁用
+                if(not enable_flag):  # 且所有电机都已禁用
+                    self.__enable_flag = False
+                    loop_flag = True
+                    response_flag = True
+                else:
+                    loop_flag = False
+                    response_flag = False
             # 检查是否超过超时时间
             if elapsed_time > timeout:
                 print("超时....")
                 elapsed_time_flag = True
-                enable_flag = False
+                response_flag = False
                 loop_flag = True
                 break
             time.sleep(0.5)
-        response = enable_flag
-        rospy.loginfo(f"Returning response: {response}")
-        return EnableResponse(response)
+        
+        # 返回操作是否成功
+        rospy.loginfo(f"Returning response: {response_flag}")
+        return EnableResponse(response_flag)
 
     def handle_stop_service(self,req):
         response = TriggerResponse()

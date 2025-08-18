@@ -85,6 +85,7 @@ class SimpleStopButton:
             stop_service = rospy.ServiceProxy('stop_srv', Trigger)
             response = stop_service()
             
+             
             if response.success:
                 self.status_label.config(text="STOPPED", fg="red")
                 rospy.loginfo("Stop service called successfully!")
@@ -92,8 +93,11 @@ class SimpleStopButton:
                 self.status_label.config(text="STOP FAILED", fg="red")
                 rospy.logerr(f"Stop service failed: {response.message}")
             
-            # 1秒后恢复状态
-            self.root.after(1000, self.reset_status)
+            # 2秒后恢复状态
+            self.root.after(2000, self.reset_status)
+            rospy.wait_for_service('reset_srv', timeout=2.0)
+            reset_service = rospy.ServiceProxy('reset_srv', Trigger)
+            response = reset_service()
             
         except rospy.ServiceException as e:
             rospy.logerr(f"Failed to call stop service: {e}")

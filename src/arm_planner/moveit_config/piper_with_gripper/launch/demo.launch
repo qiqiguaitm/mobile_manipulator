@@ -106,15 +106,8 @@
   <!-- ============================================= -->
   <!-- 地面碰撞保护 -->
   <!-- ============================================= -->
-  <rosparam command="load" file="$(find arm_planner)/config/ground_collision.yaml" ns="ground_collision_manager"/>
-  
-  <node name="ground_collision_manager" 
-        pkg="arm_planner" 
-        type="ground_collision_manager.py" 
-        output="screen"
-        launch-prefix="bash -c 'sleep 3; $0 $@'">
-    <param name="enable_on_startup" value="true"/>
-  </node>
+  <!-- 注意：ground_collision_manager节点已移至独立的ground_collision.launch文件 -->
+  <!-- 这避免了在main_demo.launch中的节点名称冲突 -->
 
   <!-- ============================================= -->
   <!-- RViz可视化 -->

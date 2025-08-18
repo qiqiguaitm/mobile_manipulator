@@ -1,0 +1,147 @@
+# 优化后的安全配置 - 基于实际物理约束
+# 单位：米(m)和弧度(rad)
+
+# 碰撞安全区域 - 基于速度和系统延迟计算
+safety_zones:
+  # 紧急停止区 - 考虑最坏情况
+  emergency_stop:
+    distance: 0.020  # 20mm (200Hz控制下可以更小)
+    action: "immediate_stop"
+    # 计算依据: 200Hz控制 + 20ms系统延迟 + 制动距离
+    
+  # 减速区 - 提前减速
+  deceleration_zone:
+    distance: 0.060  # 60mm (新增)
+    action: "decelerate"
+    speed_scale: 0.5  # 降至50%速度
+    
+  # 警告区 - 限速运行
+  warning_zone:
+    distance: 0.100  # 100mm (原30mm太小)
+    action: "reduce_speed"
+    speed_scale: 0.3  # 降至30%速度
+    
+  # 规划安全边界
+  planning_buffer:
+    distance: 0.150  # 150mm (原50mm偏小)
+    action: "planning_constraint"
+
+# 运动限制 - 更保守的默认值
+motion_limits:
+  # 速度限制
+  velocity:
+    default_scale: 0.3      # 默认30%速度(原50%太快)
+    max_scale: 0.6          # 最大60%速度(原80%太快)
+    decel_zone_scale: 0.5   # 减速区50%
+    warning_zone_scale: 0.3 # 警告区30%
+    emergency_scale: 0.0    # 紧急停止
+    
+  # 加速度限制
+  acceleration:
+    enabled: true
+    default_scale: 0.2      # 默认20%加速度(原30%太快)
+    max_scale: 0.4          # 最大40%加速度
+    emergency_decel: 5.0    # 紧急减速度(rad/s²)提高到5.0
+    
+  # 加加速度限制
+  jerk:
+    enabled: true
+    max_jerk: 0.5          # 降低到0.5(原1.0太大)
+    smoothing_factor: 0.9   # 提高平滑度
+
+# 动态安全调整 - 根据速度调整安全距离
+dynamic_safety:
+  enabled: true
+  # 安全距离 = 基础距离 + 速度因子 * 当前速度
+  velocity_factor: 0.1      # 每1m/s增加100mm安全距离
+  min_multiplier: 1.0       # 最小1倍基础距离
+  max_multiplier: 3.0       # 最大3倍基础距离
+
+# 高风险区域配置 - 增加保护
+high_risk_zones:
+  # 升降平台 - 最危险
+  lifting_area:
+    links: ["lifting_Link"]
+    extra_padding: 0.080    # 80mm(原40mm不足)
+    speed_limit: 0.2        # 限速20%
+    approach_slowdown: 0.200 # 200mm开始减速
+    
+  # 底座区域
+  base_area:
+    links: ["base_link", "box_Link"]
+    extra_padding: 0.060    # 60mm(原30mm)
+    
+  # 传感器保护
+  sensor_area:
+    links: ["lidar_Link", "top_camera_Link", "front_camera_Link"]
+    extra_padding: 0.100    # 100mm(原40mm)精密设备需要更多保护
+    approach_warning: true   # 接近时发出警告
+
+# 碰撞检测优化 - 匹配200Hz控制频率
+collision_detection:
+  # 连续碰撞检测
+  continuous_collision_checking:
+    enabled: true
+    check_frequency: 200.0   # 匹配控制频率200Hz
+    interpolation_steps: 5   # 减少插值(高频不需要太多)
+    prediction_horizon: 0.1  # 预测未来100ms的轨迹
+    
+  # 自适应检测
+  adaptive_checking:
+    enabled: true
+    high_speed_threshold: 0.5  # 速度>0.5m/s时增加检测
+    high_speed_frequency: 400.0 # 高速时400Hz检测(2倍控制频率)
+    
+  # 实时检测参数
+  realtime_check:
+    use_fcl: true
+    distance_threshold: 0.002  # 2mm精度(原5mm)
+    enable_distance_field: true
+    parallel_collision_check: true
+    num_threads: 4
+
+# 规划器安全参数 - 更密集的检查
+planner_safety:
+  # OMPL配置
+  ompl:
+    longest_valid_segment_fraction: 0.005  # 0.5%(原2%)更密集
+    state_validity_checking_resolution: 0.005 # 5mm(原10mm)
+    
+  # CHOMP配置  
+  chomp:
+    collision_clearance: 0.100    # 100mm(原50mm)
+    collision_threshold: 0.060    # 60mm(原30mm)
+    smoothness_cost_weight: 0.3   # 增加平滑权重
+
+# 特殊情况处理
+special_cases:
+  # 夹爪操作模式 - 精密操作时放宽限制
+  gripper_operation:
+    enabled: false  # 默认关闭，抓取时开启
+    reduced_padding: 0.005  # 5mm最小距离
+    max_speed_scale: 0.1    # 限速10%
+    
+  # 紧急避障模式
+  emergency_avoidance:
+    enabled: true
+    reaction_time: 0.05     # 50ms反应时间
+    min_escape_distance: 0.200 # 200mm逃逸距离
+
+# 系统监控
+safety_monitoring:
+  # 性能监控
+  performance:
+    max_check_latency: 0.005  # 5ms最大检测延迟
+    latency_warning: true
+    
+  # 统计记录
+  statistics:
+    track_close_calls: true   # 记录险情
+    close_call_threshold: 0.040 # 40mm内算险情
+    
+# 失效保护
+failsafe:
+  # 检测失败时的默认行为
+  on_detection_failure: "stop"  # 立即停止
+  on_communication_loss: "hold"  # 保持当前位置
+  watchdog_timeout: 0.1         # 100ms看门狗

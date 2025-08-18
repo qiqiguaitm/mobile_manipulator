@@ -4,7 +4,7 @@
          type="rviz_stop_panel.PiperStopPanel" 
          base_class_type="rviz::Panel">
     <description>
-      Piper机械臂停止控制面板
+      Piper机械臂完整控制面板 - 包含停止、回零和使能控制功能
     </description>
   </class>
 </library>

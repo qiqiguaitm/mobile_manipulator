@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 增强安全系统启动文件 -->
+  
+  <!-- 加载统一安全配置 -->
+  <rosparam file="$(find arm_planner)/moveit_config/piper_with_gripper/config/unified_safety_config.yaml" 
+            command="load" ns="safety_config" />
+  
+  <!-- 1. 运动平滑控制器 - 加速度限制 -->
+  <node name="motion_smoother" 
+        pkg="arm_planner" 
+        type="motion_smoother.py" 
+        output="screen">
+    <param name="control_frequency" value="200.0" />
+    <param name="enable_jerk_limit" value="true" />
+  </node>
+  
+  <!-- 2. 连续碰撞检测器 -->
+  <node name="continuous_collision_checker" 
+        pkg="arm_planner" 
+        type="continuous_collision_checker.py" 
+        output="screen">
+    <param name="check_frequency" value="200.0" />
+    <param name="use_gpu_acceleration" value="false" />
+  </node>
+  
+  <!-- 3. 分级安全响应管理器 -->
+  <node name="safety_response_manager" 
+        pkg="arm_planner" 
+        type="safety_response_manager.py" 
+        output="screen">
+    <param name="enable_audio_alerts" value="true" />
+    <param name="enable_visual_alerts" value="true" />
+  </node>
+  
+  <!-- 4. 安全监控和日志系统 -->
+  <node name="safety_monitor" 
+        pkg="arm_planner" 
+        type="safety_monitor.py" 
+        output="screen"
+        if="$(arg enable_monitoring)">
+    <param name="log_path" value="/var/log/robot_safety/" />
+    <param name="max_log_size_mb" value="100" />
+  </node>
+  
+  <!-- 5. 可视化工具 -->
+  <group if="$(arg enable_visualization)">
+    <!-- 碰撞距离可视化 -->
+    <node name="collision_visualizer" 
+          pkg="rviz" 
+          type="rviz" 
+          args="-d $(find arm_planner)/moveit_config/piper_with_gripper/config/safety_visualization.rviz" />
+    
+    <!-- 安全状态面板 -->
+    <node name="safety_dashboard" 
+          pkg="rqt_gui" 
+          type="rqt_gui" 
+          args="--perspective-file $(find arm_planner)/moveit_config/piper_with_gripper/config/safety_dashboard.perspective" />
+  </group>
+  
+  <!-- 参数 -->
+  <arg name="enable_monitoring" default="true" />
+  <arg name="enable_visualization" default="false" />
+  <arg name="safety_check_rate" default="200" />
+  
+  <!-- 诊断聚合器 -->
+  <node pkg="diagnostic_aggregator" 
+        type="aggregator_node" 
+        name="safety_diagnostic_aggregator">
+    <rosparam>
+      analyzers:
+        safety:
+          type: diagnostic_aggregator/GenericAnalyzer
+          path: Safety System
+          contains: ['collision', 'safety', 'emergency']
+    </rosparam>
+  </node>
+  
+</launch>
