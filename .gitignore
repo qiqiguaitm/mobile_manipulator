@@ -1,9 +1,9 @@
 # ROS build artifacts
-build/
-devel/
-install/
-logs/
-.catkin_tools/
+build/*
+devel/*
+install/*
+logs/*
+.catkin_tools/*
 
 # Catkin custom files
 CATKIN_IGNORE

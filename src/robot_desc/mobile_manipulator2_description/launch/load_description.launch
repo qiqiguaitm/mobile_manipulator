@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 碰撞模型类型参数: performance (默认) 或 safety -->
+  <arg name="collision_mode" default="performance" 
+       doc="Collision model type: performance (simplified, fast) or safety (accurate, slow)"/>
+  
+  <!-- 显示当前使用的碰撞模型 -->
+  <arg name="urdf_file" value="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2_$(arg collision_mode).urdf"/>
+  
+  <!-- 加载URDF到参数服务器 -->
+  <param name="robot_description" 
+         textfile="$(arg urdf_file)"/>
+  
+  <!-- 启动robot_state_publisher -->
+  <node name="robot_state_publisher" 
+        pkg="robot_state_publisher" 
+        type="robot_state_publisher"
+        output="screen">
+    <param name="publish_frequency" value="50"/>
+  </node>
+  
+  <!-- 在控制台显示当前模式 -->
+  <node name="collision_mode_info" 
+        pkg="rostopic" 
+        type="rostopic"
+        args="echo -n 'Using $(arg collision_mode) collision model'"
+        output="screen"
+        launch-prefix="bash -c 'echo &quot;========================================&quot;; echo &quot;Collision Mode: $(arg collision_mode)&quot;; echo &quot;URDF File: $(arg urdf_file)&quot;; echo &quot;========================================&quot;; exit 0'"/>
+</launch>

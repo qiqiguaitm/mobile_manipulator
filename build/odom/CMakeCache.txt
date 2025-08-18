@@ -438,7 +438,7 @@ gtest_hide_internal_symbols:BOOL=OFF
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
 //Path to a library.
-lib:FILEPATH=/home/agilex/catkin_ws/devel/lib/librf2o_laser_odometry.so
+lib:FILEPATH=/opt/ros/noetic/lib/libtf2.so
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/noetic/share/message_filters/cmake
@@ -459,7 +459,7 @@ odom_BINARY_DIR:STATIC=/home/agilex/MobileManipulator/build/odom
 odom_SOURCE_DIR:STATIC=/home/agilex/MobileManipulator/src/odom
 
 //The directory containing a CMake configuration file for rf2o_laser_odometry.
-rf2o_laser_odometry_DIR:PATH=/home/agilex/catkin_ws/devel/share/rf2o_laser_odometry/cmake
+rf2o_laser_odometry_DIR:PATH=rf2o_laser_odometry_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
