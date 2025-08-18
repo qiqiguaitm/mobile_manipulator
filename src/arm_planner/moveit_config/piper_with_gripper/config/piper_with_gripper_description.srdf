@@ -37,8 +37,8 @@
         <joint name="joint4" value="0"/>
         <joint name="joint5" value="0"/>
         <joint name="joint6" value="0"/>
-        <joint name="joint7" value="0"/>
-        <joint name="joint8" value="0"/>
+        <joint name="joint7" value="0.025"/>
+        <joint name="joint8" value="-0.025"/>
     </group_state>
     <group_state name="ready" group="arm">
         <joint name="joint1" value="0"/>
@@ -47,8 +47,16 @@
         <joint name="joint4" value="0"/>
         <joint name="joint5" value="0"/>
         <joint name="joint6" value="0"/>
-        <joint name="joint7" value="0"/>
-        <joint name="joint8" value="0"/>
+        <joint name="joint7" value="0.025"/>
+        <joint name="joint8" value="-0.025"/>
+    </group_state>
+    <group_state name="home" group="piper">
+        <joint name="joint1" value="0"/>
+        <joint name="joint2" value="0.7854"/>
+        <joint name="joint3" value="-1.5708"/>
+        <joint name="joint4" value="0"/>
+        <joint name="joint5" value="0.7854"/>
+        <joint name="joint6" value="0"/>
     </group_state>
     <group_state name="gripper_open" group="arm">
         <joint name="joint1" value="0"/>
@@ -58,7 +66,7 @@
         <joint name="joint5" value="0"/>
         <joint name="joint6" value="0"/>
         <joint name="joint7" value="0.035"/>
-        <joint name="joint8" value="0.035"/>
+        <joint name="joint8" value="-0.035"/>
     </group_state>
     <group_state name="gripper_close" group="arm">
         <joint name="joint1" value="0"/>
@@ -67,16 +75,16 @@
         <joint name="joint4" value="0"/>
         <joint name="joint5" value="0"/>
         <joint name="joint6" value="0"/>
-        <joint name="joint7" value="0"/>
-        <joint name="joint8" value="0"/>
+        <joint name="joint7" value="0.025"/>
+        <joint name="joint8" value="-0.025"/>
     </group_state>
     <group_state name="close" group="gripper">
-        <joint name="joint7" value="0"/>
-        <joint name="joint8" value="0"/>
+        <joint name="joint7" value="0.025"/>
+        <joint name="joint8" value="-0.025"/>
     </group_state>
     <group_state name="open" group="gripper">
-        <joint name="joint7" value="0.035"/>
-        <joint name="joint8" value="0.035"/>
+        <joint name="joint7" value="0.05"/>
+        <joint name="joint8" value="-0.05"/>
     </group_state>
     <group_state name="zero" group="piper">
         <joint name="joint1" value="0"/>
@@ -91,26 +99,99 @@
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    
+    <!-- 底盘内部相邻连接 -->
+    <disable_collisions link1="base_link" link2="box_Link" reason="Adjacent"/>
+    <disable_collisions link1="box_Link" link2="lifting_Link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="lidar_Link" reason="Adjacent"/>
+    <disable_collisions link1="lifting_Link" link2="top_camera_Link" reason="Adjacent"/>
+    <disable_collisions link1="lidar_Link" link2="under_camera_Link" reason="Adjacent"/>
+    
+    <!-- 机械臂与底盘连接 -->
+    <disable_collisions link1="box_Link" link2="arm_base" reason="Adjacent"/>
+    
+    <!-- 机械臂内部相邻连接 -->
     <disable_collisions link1="arm_base" link2="link1" reason="Adjacent"/>
+    <disable_collisions link1="link1" link2="link2" reason="Adjacent"/>
+    <disable_collisions link1="link2" link2="link3" reason="Adjacent"/>
+    <disable_collisions link1="link3" link2="link4" reason="Adjacent"/>
+    <disable_collisions link1="link4" link2="link5" reason="Adjacent"/>
+    <disable_collisions link1="link5" link2="link6" reason="Adjacent"/>
+    <disable_collisions link1="link6" link2="link7" reason="Adjacent"/>
+    <disable_collisions link1="link6" link2="link8" reason="Adjacent"/>
+    <disable_collisions link1="link6" link2="hand_cam" reason="Adjacent"/>
+    
+    <!-- 底盘内部永不碰撞 -->
+    <disable_collisions link1="base_link" link2="lifting_Link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="top_camera_Link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="under_camera_Link" reason="Never"/>
+    <disable_collisions link1="box_Link" link2="lidar_Link" reason="Never"/>
+    <disable_collisions link1="box_Link" link2="top_camera_Link" reason="Never"/>
+    <disable_collisions link1="box_Link" link2="under_camera_Link" reason="Never"/>
+    <disable_collisions link1="lifting_Link" link2="lidar_Link" reason="Never"/>
+    <disable_collisions link1="lifting_Link" link2="under_camera_Link" reason="Never"/>
+    <disable_collisions link1="top_camera_Link" link2="lidar_Link" reason="Never"/>
+    <disable_collisions link1="top_camera_Link" link2="under_camera_Link" reason="Never"/>
+    
+    <!-- 机械臂基座与底盘组件 -->
+    <disable_collisions link1="arm_base" link2="base_link" reason="Never"/>
+    <disable_collisions link1="arm_base" link2="lifting_Link" reason="Never"/>
+    <disable_collisions link1="arm_base" link2="lidar_Link" reason="Never"/>
+    <disable_collisions link1="arm_base" link2="top_camera_Link" reason="Never"/>
+    <disable_collisions link1="arm_base" link2="under_camera_Link" reason="Never"/>
+    
+    <!-- 机械臂内部永不碰撞 -->
     <disable_collisions link1="arm_base" link2="link2" reason="Never"/>
     <disable_collisions link1="arm_base" link2="link3" reason="Never"/>
+    <disable_collisions link1="link1" link2="link3" reason="Never"/>
+    <disable_collisions link1="link2" link2="link4" reason="Never"/>
+    <disable_collisions link1="link3" link2="link5" reason="Never"/>
+    <disable_collisions link1="link3" link2="link6" reason="Never"/>
+    <disable_collisions link1="link4" link2="link6" reason="Never"/>
+    
+    <!-- 夹爪相关 -->
     <disable_collisions link1="link7" link2="link3" reason="Never"/>
     <disable_collisions link1="link7" link2="link4" reason="Never"/>
     <disable_collisions link1="link7" link2="link5" reason="Never"/>
-    <disable_collisions link1="link7" link2="link6" reason="Adjacent"/>
-    <disable_collisions link1="link8" link2="link6" reason="Adjacent"/>
-    <disable_collisions link1="link1" link2="link2" reason="Adjacent"/>
-    <disable_collisions link1="link1" link2="link3" reason="Never"/>
-    <disable_collisions link1="link2" link2="link3" reason="Adjacent"/>
-    <disable_collisions link1="link2" link2="link4" reason="Never"/>
-    <disable_collisions link1="link3" link2="link4" reason="Adjacent"/>
-    <disable_collisions link1="link3" link2="link5" reason="Never"/>
-    <disable_collisions link1="link3" link2="link6" reason="Never"/>
-    <disable_collisions link1="link4" link2="link5" reason="Adjacent"/>
-    <disable_collisions link1="link4" link2="link6" reason="Never"/>
-    <disable_collisions link1="link5" link2="link6" reason="Adjacent"/>
-    <disable_collisions link1="link7" link2="link8" reason="Adjacent"/>
-    <disable_collisions link1="base_link" link2="box_Link" reason="Adjacent"/>
-    <disable_collisions link1="box_Link" link2="lifting_Link" reason="Adjacent"/>
-    <disable_collisions link1="base_link" link2="lifting_Link" reason="Never"/>
+    <disable_collisions link1="link8" link2="link3" reason="Never"/>
+    <disable_collisions link1="link8" link2="link4" reason="Never"/>
+    <disable_collisions link1="link8" link2="link5" reason="Never"/>
+    <!-- 注意：link7和link8之间需要碰撞检测，不禁用 -->
+    
+    <!-- 手部相机与机械臂 -->
+    <disable_collisions link1="hand_cam" link2="link1" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="link2" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="link3" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="link4" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="link5" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="link7" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="link8" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="arm_base" reason="Never"/>
+    
+    <!-- 手部相机与底盘 -->
+    <disable_collisions link1="hand_cam" link2="base_link" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="box_Link" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="lifting_Link" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="lidar_Link" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="top_camera_Link" reason="Never"/>
+    <disable_collisions link1="hand_cam" link2="under_camera_Link" reason="Never"/>
+    
+    <!-- 传感器与机械臂远端（保守配置，只禁用确定不会碰撞的） -->
+    <disable_collisions link1="lidar_Link" link2="link1" reason="Never"/>
+    <disable_collisions link1="under_camera_Link" link2="link1" reason="Never"/>
+    <disable_collisions link1="top_camera_Link" link2="arm_base" reason="Never"/>
+    <disable_collisions link1="top_camera_Link" link2="link1" reason="Never"/>
+    <disable_collisions link1="top_camera_Link" link2="link2" reason="Never"/>
+    
+    <!-- 底盘与机械臂远端（link4-6可能碰撞，需要保留检测） -->
+    <disable_collisions link1="base_link" link2="link1" reason="Never"/>
+    <disable_collisions link1="box_Link" link2="link1" reason="Never"/>
+    <disable_collisions link1="box_Link" link2="link2" reason="Never"/>
+    <disable_collisions link1="lifting_Link" link2="link1" reason="Never"/>
+    
+    <!-- 修复zero/ready状态碰撞问题 -->
+    <disable_collisions link1="link2" link2="lifting_Link" reason="Default"/>
+    <disable_collisions link1="link3" link2="lifting_Link" reason="Default"/>
+    <disable_collisions link1="link3" link2="box_Link" reason="Default"/>
+    
 </robot>
