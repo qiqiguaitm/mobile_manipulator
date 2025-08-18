@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(task_router)
+project(task_router NONE)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
