@@ -19,11 +19,11 @@
   <!-- 控制面板选择: none(无), simple(简单停止按钮), enhanced(增强控制面板) -->
   <arg name="control_panel" default="enhanced" />
   
-  <!-- RViz布局选择: standard(标准), optimized(优化) -->
-  <arg name="rviz_layout" default="optimized" />
-  
   <!-- 安全系统选择: none(无), basic(基础), enhanced(增强) -->
   <arg name="safety_system" default="enhanced" />
+  
+  <!-- 碰撞模型类型: performance(默认,快速) 或 safety(精确,慢速) -->
+  <arg name="collision_mode" default="performance" />
   
   <!-- 安全系统参数 -->
   <arg name="enable_collision_monitoring" default="true" />
@@ -39,15 +39,13 @@
       <arg name="use_rviz" value="false" />
       <arg name="debug" value="$(arg debug)" />
       <arg name="pipeline" value="$(arg pipeline)" />
+      <arg name="collision_mode" value="$(arg collision_mode)" />
     </include>
     
     <!-- 根据选择启动RViz -->
     <group if="$(arg use_rviz)">
-      <!-- 选择RViz配置文件 -->
-      <arg name="rviz_config_standard" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
-      <arg name="rviz_config_optimized" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_optimized.rviz"/>
-      <arg name="rviz_config_with_panel" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_with_stop_panel_main_demo_final.rviz"/>
-      <arg name="rviz_config" value="$(eval rviz_config_with_panel if arg('control_panel') != 'none' else (rviz_config_optimized if arg('rviz_layout') == 'optimized' else rviz_config_standard))"/>
+      <!-- 使用统一的RViz配置文件 -->
+      <arg name="rviz_config" value="$(find arm_planner)/moveit_config/piper_with_gripper/launch/moveit_full.rviz"/>
       
       <!-- 启动RViz -->
       <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" 
@@ -75,6 +73,7 @@
       <arg name="use_rviz" value="$(arg use_rviz)" />
       <arg name="debug" value="$(arg debug)" />
       <arg name="pipeline" value="$(arg pipeline)" />
+      <arg name="collision_mode" value="$(arg collision_mode)" />
     </include>
   </group>
 
@@ -151,7 +150,7 @@
 
   <!-- 显示启动信息 -->
   <node name="startup_info" pkg="rostopic" type="rostopic" 
-        args="echo 'Piper MoveIt Demo Started - Mode: $(arg mode), Gripper: $(arg gripper), Control Panel: $(arg control_panel), RViz Layout: $(arg rviz_layout), Safety: $(arg safety_system)'" 
+        args="echo 'Piper MoveIt Demo Started - Mode: $(arg mode), Gripper: $(arg gripper), Control Panel: $(arg control_panel), Safety: $(arg safety_system), Collision: $(arg collision_mode)'" 
         output="screen" />
 
 </launch>

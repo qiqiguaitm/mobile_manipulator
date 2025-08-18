@@ -10,58 +10,58 @@ default_acceleration_scaling_factor: 0.3
 joint_limits:
   joint1:
     has_velocity_limits: true
-    max_velocity: 3.142
+    max_velocity: 3.142  # 180°/s = 3.142 rad/s
     has_acceleration_limits: false
     max_acceleration: 0
     # Angle limits: ±154° = ±2.687 rad
     has_position_limits: true
-    max_position: 2.687
-    min_position: -2.687
+    max_position: 2.687   # 154°
+    min_position: -2.687  # -154°
   joint2:
     has_velocity_limits: true
-    max_velocity: 3.403
+    max_velocity: 3.403  # 195°/s = 3.403 rad/s
     has_acceleration_limits: false
     max_acceleration: 0
     # Angle limits: 0°~195° = 0~3.403 rad
     has_position_limits: true
-    max_position: 3.403
-    min_position: 0.0
+    max_position: 3.403   # 195°
+    min_position: 0.0     # 0°
   joint3:
     has_velocity_limits: true
-    max_velocity: 3.142
+    max_velocity: 3.142  # 180°/s = 3.142 rad/s
     has_acceleration_limits: false
     max_acceleration: 0
     # Angle limits: -175°~0° = -3.054~0 rad
     has_position_limits: true
-    max_position: 0.0
-    min_position: -3.054
+    max_position: 0.0      # 0°
+    min_position: -3.054   # -175°
   joint4:
     has_velocity_limits: true
-    max_velocity: 3.927
+    max_velocity: 3.927  # 225°/s = 3.927 rad/s
     has_acceleration_limits: false
     max_acceleration: 0
     # Angle limits: -102°~102° = -1.780~1.780 rad
     has_position_limits: true
-    max_position: 1.780
-    min_position: -1.780
+    max_position: 1.780   # 102°
+    min_position: -1.780  # -102°
   joint5:
     has_velocity_limits: true
-    max_velocity: 3.927
+    max_velocity: 3.927  # 225°/s = 3.927 rad/s
     has_acceleration_limits: false
     max_acceleration: 0
     # Angle limits: -75°~75° = -1.309~1.309 rad
     has_position_limits: true
-    max_position: 1.309
-    min_position: -1.309
+    max_position: 1.309   # 75°
+    min_position: -1.309  # -75°
   joint6:
     has_velocity_limits: true
-    max_velocity: 3.927
+    max_velocity: 3.927  # 225°/s = 3.927 rad/s
     has_acceleration_limits: false
     max_acceleration: 0
     # Angle limits: ±120° = ±2.094 rad
     has_position_limits: true
-    max_position: 2.094
-    min_position: -2.094
+    max_position: 2.094   # 120°
+    min_position: -2.094  # -120°
   joint7:
     has_velocity_limits: true
     max_velocity: 1

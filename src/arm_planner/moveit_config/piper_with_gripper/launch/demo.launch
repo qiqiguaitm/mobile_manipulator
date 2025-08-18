@@ -13,12 +13,16 @@
   
   <!-- 模式选择: fake(仿真) 或 real(实机) -->
   <arg name="mode" default="real" />
+  
+  <!-- 碰撞模型类型: performance(默认,快速) 或 safety(精确,慢速) -->
+  <arg name="collision_mode" default="performance" />
 
   <!-- ============================================= -->
   <!-- 加载机器人描述 -->
   <!-- ============================================= -->
   <include file="$(dirname)/planning_context.launch">
     <arg name="load_robot_description" value="true" />
+    <arg name="collision_mode" value="$(arg collision_mode)" />
   </include>
 
   <!-- ============================================= -->

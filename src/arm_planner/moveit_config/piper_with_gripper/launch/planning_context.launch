@@ -4,9 +4,13 @@
 
   <!-- The name of the parameter under which the URDF is loaded -->
   <arg name="robot_description" default="robot_description"/>
+  
+  <!-- Collision model type: performance (default) or safety -->
+  <arg name="collision_mode" default="performance"/>
 
   <!-- Load universal robot description format (URDF) -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2_description.urdf"/>
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" 
+         textfile="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2_$(arg collision_mode).urdf"/>
 
   <!-- The semantic description that corresponds to the URDF -->
   <param name="$(arg robot_description)_semantic" textfile="$(find arm_planner)/moveit_config/piper_with_gripper/config/piper_with_gripper_description.srdf" />

@@ -1,3 +1,3 @@
-Symlinking /home/agilex/MobileManipulator/devel/share/arm_controller/cmake/arm_controllerConfig.cmake
-Symlinking /home/agilex/MobileManipulator/devel/share/arm_controller/cmake/arm_controllerConfig-version.cmake
-Symlinking /home/agilex/MobileManipulator/devel/lib/pkgconfig/arm_controller.pc
+Linked: (/home/agilex/MobileManipulator/devel/.private/arm_controller/share/arm_controller/cmake/arm_controllerConfig.cmake, /home/agilex/MobileManipulator/devel/share/arm_controller/cmake/arm_controllerConfig.cmake)
+Linked: (/home/agilex/MobileManipulator/devel/.private/arm_controller/share/arm_controller/cmake/arm_controllerConfig-version.cmake, /home/agilex/MobileManipulator/devel/share/arm_controller/cmake/arm_controllerConfig-version.cmake)
+Linked: (/home/agilex/MobileManipulator/devel/.private/arm_controller/lib/pkgconfig/arm_controller.pc, /home/agilex/MobileManipulator/devel/lib/pkgconfig/arm_controller.pc)

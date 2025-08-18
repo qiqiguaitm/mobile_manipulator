@@ -1,8 +1,9 @@
 # 碰撞检测安全缓冲配置
 # Linus: "Be conservative with safety, aggressive with performance"
+# 注意：STL碰撞模型已经是简化版本，无额外padding，所有安全距离在这里统一配置
 
 # 默认安全距离（米）
-default_padding: 0.02  # 20mm - 覆盖所有系统误差
+default_padding: 0.015  # 15mm - 适中的默认值，因为STL已经简化
 
 # 默认缩放因子（用于放大碰撞体）
 default_scale: 1.0
@@ -10,25 +11,27 @@ default_scale: 1.0
 # 各link的特定padding配置
 link_padding:
   # 底盘组件 - 保守配置
-  base_link: 0.03        # 30mm - 底盘是参考基准
-  box_Link: 0.03         # 30mm - 主体结构
-  lifting_Link: 0.04     # 40mm - 最危险的碰撞目标
+  chassis_base_link: 0.025  # 25mm - 底盘是参考基准
+  box_Link: 0.025         # 25mm - 主体结构
+  lifting_Link: 0.035     # 35mm - 含显示器，需要额外保护
   
   # 传感器 - 额外保护
-  lidar_Link: 0.03       # 30mm - 昂贵设备
-  top_camera_Link: 0.03  # 30mm - 易损设备
-  under_camera_Link: 0.03 # 30mm - 易损设备
+  lidar_Link: 0.025       # 25mm - 昂贵设备
+  top_camera_Link: 0.02   # 20mm - 易损设备
+  under_camera_Link: 0.02 # 20mm - 易损设备
+  hand_cam: 0.015         # 15mm - 手部相机
   
   # 机械臂基座和大臂 - 标准保护
-  arm_base: 0.02         # 20mm
-  link1: 0.025           # 25mm - 运动范围大
-  link2: 0.025           # 25mm - 运动范围大
-  link3: 0.02            # 20mm
+  piper_base_link: 0.015  # 15mm - Piper基座
+  arm_base: 0.015         # 15mm - 机械臂基座
+  link1: 0.02             # 20mm - 运动范围大
+  link2: 0.02             # 20mm - 运动范围大
+  link3: 0.015            # 15mm
   
   # 机械臂末端 - 精密控制
-  link4: 0.015           # 15mm
-  link5: 0.015           # 15mm
-  link6: 0.01            # 10mm - 含相机，需要精确定位
+  link4: 0.01             # 10mm
+  link5: 0.01             # 10mm
+  link6: 0.008            # 8mm - 含相机，需要精确定位
   
   # 夹爪 - 最精密
   link7: 0.005           # 5mm - 抓取操作需要
@@ -39,24 +42,24 @@ link_pair_padding:
   # 高风险碰撞对 - 额外安全距离
   - link1: "link1"
     link2: "lifting_Link"
-    padding: 0.05        # 50mm - 主要风险
+    padding: 0.025       # 25mm - 减小以允许zero状态
     
   - link1: "link2"
     link2: "lifting_Link"
-    padding: 0.05        # 50mm - 主要风险
+    padding: 0.02        # 20mm - 减小以允许zero状态
     
   - link1: "link3"
     link2: "lifting_Link"
-    padding: 0.04        # 40mm - 次要风险
+    padding: 0.015       # 15mm - 减小以允许zero状态
     
   # 传感器保护
   - link1: "link1"
     link2: "lidar_Link"
-    padding: 0.04        # 40mm
+    padding: 0.035       # 35mm
     
   - link1: "link2"
     link2: "under_camera_Link"
-    padding: 0.04        # 40mm
+    padding: 0.03        # 30mm
 
 # 运动规划参数
 planning_parameters:
