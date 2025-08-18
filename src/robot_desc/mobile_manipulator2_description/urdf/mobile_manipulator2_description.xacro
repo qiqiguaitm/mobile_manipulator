@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_manipulator2">
+
+  <!-- Import all links and joints except under_camera_joint -->
+  <link name="base_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0312209606413168 -1.37168643094102E-05 -0.0624311561488474"/>
+      <mass value="3.66600808570302"/>
+      <inertia ixx="0.070830972506108" ixy="0.000423733904503755" ixz="-0.0004402307499561" iyy="0.0538747474413543" iyz="0.000250637811260168" izz="0.118808674602765"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="box_Link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0336792278049677 -0.00458080590131121 0.046046222818299"/>
+      <mass value="1.96086062558564"/>
+      <inertia ixx="0.00861532872920901" ixy="-0.000126429659448238" ixz="-4.57098901476866E-05" iyy="0.0243467421162108" iyz="-2.86453497285015E-05" izz="0.0322309365376531"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/box_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/box_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="box_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="box_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="lifting_Link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0645758262218638 3.1034672673273E-05 0.590832686497018"/>
+      <mass value="1.28345031134681"/>
+      <inertia ixx="0.0137761443631695" ixy="-2.91078208048479E-07" ixz="-0.000720021739199037" iyy="0.00882953168919407" iyz="7.87382666162099E-08" izz="0.00591609424737705"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/lifting_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/lifting_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lifting_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.24269 0 0.022"/>
+    <parent link="box_Link"/>
+    <child link="lifting_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="top_camera_Link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0081944 0.00022525 0.00024018"/>
+      <mass value="0.028999"/>
+      <inertia ixx="3.8589E-05" ixy="-1.3619E-08" ixz="-2.6151E-08" iyy="3.7635E-06" iyz="2.7688E-08" izz="3.7044E-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/top_camera_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/top_camera_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="top_camera_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.056999999999981 0 0.569500339851353"/>
+    <parent link="lifting_Link"/>
+    <child link="top_camera_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="lidar_Link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.010562 -0.00043095 0.033917"/>
+      <mass value="0.11388"/>
+      <inertia ixx="0.0001253" ixy="1.1158E-07" ixz="3.3459E-07" iyy="0.00012408" iyz="-2.6657E-08" izz="0.00019563"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/lidar_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.78824 0.81961 0.92941 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/lidar_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.27254 0.00035292 0.0315"/>
+    <parent link="base_link"/>
+    <child link="lidar_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="under_camera_Link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0088456 0.00020043 0.1203575"/>
+      <mass value="0.055353"/>
+      <inertia ixx="4.2284E-05" ixy="2.4484E-07" ixz="-6.627E-08" iyy="4.8492E-06" iyz="-2.9109E-09" izz="4.2122E-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/under_camera_Link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mobile_manipulator2_description/meshes/under_camera_Link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Modified under_camera_joint to be on top of lidar -->
+  <!-- Place under_camera on top of lidar with an offset of 0.1m in Z direction -->
+  <joint name="under_camera_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.1"/>
+    <parent link="lidar_Link"/>
+    <child link="under_camera_Link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <!-- Include Piper arm description -->
+  <xacro:include filename="$(find piper_description)/urdf/piper_description_v100_camera.urdf"/>
+
+  <!-- Joint to connect the arm to the mobile base -->
+  <joint name="arm_joint" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.118 0 0.1"/>
+    <parent link="box_Link"/>
+    <child link="arm_base"/>
+    <axis xyz="0.0 0.0 0.0"/>
+    <limit effort="0.0" lower="0.0" upper="0.0" velocity="0.0"/>
+  </joint>
+
+</robot>

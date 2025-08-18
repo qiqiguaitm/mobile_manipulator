@@ -140,7 +140,7 @@
   </joint>
   <link name="under_camera_Link">
     <inertial>
-      <origin rpy="0 0 0" xyz="0.0088456 0.00020043 0.0003575"/>
+      <origin rpy="0 0 0" xyz="0.0088456 0.00020043 0.1203575"/>
       <mass value="0.055353"/>
       <inertia ixx="4.2284E-05" ixy="2.4484E-07" ixz="-6.627E-08" iyy="4.8492E-06" iyz="-2.9109E-09" izz="4.2122E-05"/>
     </inertial>
@@ -161,8 +161,8 @@
     </collision>
   </link>
   <joint name="under_camera_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.35023 0 -0.00085446"/>
-    <parent link="base_link"/>
+    <origin rpy="0 0 0" xyz="0.025 0 0.1"/>
+    <parent link="lidar_Link"/>
     <child link="under_camera_Link"/>
     <axis xyz="0 0 0"/>
   </joint>
