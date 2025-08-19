@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/camera_driver/lib/python3/dist-packages/camera_driver/__init__.py

@@ -1,0 +1,81 @@
+<launch>
+  // 底盘驱动节点
+  <include file="$(find tracer_base)/launch/tracer_base.launch" name="tracer_base"/>
+  // 启动lidar
+  <!-- Launch the rslidar driver with pointcloud to laserscan conversion -->
+  <include file="$(find lidar_driver)/launch/rslidar_driver.launch"/>
+
+  <!--激光话题转发（/sensors/lidar/scan → /scan，供rf2o和gmapping使用） -->
+  <node pkg="topic_tools" type="relay" name="scan_topic_relay"
+        args="/lidar/chassis/scan /scan" output="screen"/>
+  // tf
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" 
+  args="-0.25 0.0 0.0 0.0 0.0 0.0 rslidar base_link 100"/>
+
+  <!-- 启动IMU（依赖底盘控制器启动完成） -->
+  <include file="$(find imu_driver)/launch/imu_driver.launch" name="imu_node" depends="tracer_base"/>
+
+  <!-- IMU话题转发（/imu/data → /imu/data_raw） -->
+  <node pkg="topic_tools" type="relay" name="imu_topic_relay"
+        args="/imu/data /imu/data_raw" output="screen"/>
+
+  <!-- RF2O激光里程计 -->
+  <node pkg="rf2o_laser_odometry" type="rf2o_laser_odometry_node" name="rf2o_laser_odometry_slam" output="screen">
+    <param name="laser_scan_topic" value="/scan"/>  <!-- 接收转发后的激光话题 -->
+    <param name="odom_topic" value="/odom"/>        <!-- 发布里程计话题 -->
+    
+    <param name="base_frame_id" value="rslidar"/>  <!-- 机器人基坐标系（核心修复） -->
+    <param name="odom_frame_id" value="odom"/>      <!-- 里程计坐标系 -->
+    <param name="publish_tf" value="true"/>         <!-- 发布TF变换 -->
+    <param name="init_pose_from_topic" value=""/>   <!-- 从原点启动 -->
+    <param name="freq" value="10.0"/>               <!-- 执行频率 -->
+    <param name="verbose" value="true"/>            <!-- 详细日志 -->
+    <!-- 移除参数后的#注释（ROS launch不支持行内注释） -->
+  </node>
+
+  <!--启动gmapping建图（依赖IMU和激光雷达） -->
+  <node pkg="gmapping" type="slam_gmapping" name="simple_gmapping" output="screen"> 
+	<rosparam>
+      odom_frame: odom
+      base_frame: base_link
+      map_frame: map
+
+      map_update_interval: 0.5 #0.5 # Publish new map
+
+      maxUrange: 10.0 #19.9 #5.5 # Should be just less than sensor range
+      maxRange: 10.1 #20 #6.1 # Should be just greater than sensor range
+      particles: 100 # Increased from 80
+
+      # Update frequencies
+      linearUpdate: 0.3
+      angularUpdate: 0.5 #0.2 #0.5
+      temporalUpdate: 2.0 #1.0 #2.0
+      resampleThreshold: 0.5
+
+      # Initial Map Size
+      xmin: -100.0
+      ymin: -100.0
+      xmax: 100.0
+      ymax: 100.0
+      delta: 0.05
+
+      # All default
+      sigma: 0.05
+      kernelSize: 1
+      lstep: 0.05
+      astep: 0.05
+      iterations: 5
+      lsigma: 0.075
+      ogain: 3.0
+      lskip: 0
+      llsamplerange: 0.01
+      llsamplestep: 0.01
+      lasamplerange: 0.005
+      lasamplestep: 0.005
+
+    </rosparam>
+ </node>
+
+  <node name="rviz1" pkg="rviz" type="rviz" args="-d $(find slam)/rviz/mapping.rviz" />
+</launch>
+

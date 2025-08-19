@@ -6,6 +6,8 @@
     <remap from="/rslidar_points" to="/lidar/chassis/point_cloud"/>
     <remap from="/sensors/lidar/scan" to="/lidar/chassis/scan"/>
   </node>
+    <!-- rviz -->
+  <!-- <node pkg="rviz" name="rviz" type="rviz" args="-d $(find rslidar_sdk)/rviz/rviz.rviz" /> -->
   
   <!-- Pointcloud to laserscan conversion -->
   <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">

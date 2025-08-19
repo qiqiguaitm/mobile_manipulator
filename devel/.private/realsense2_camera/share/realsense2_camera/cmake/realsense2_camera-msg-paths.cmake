@@ -1,4 +1,4 @@
 # generated from genmsg/cmake/pkg-msg-paths.cmake.develspace.in
 
-set(realsense2_camera_MSG_INCLUDE_DIRS "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/msg")
+set(realsense2_camera_MSG_INCLUDE_DIRS "/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/msg")
 set(realsense2_camera_MSG_DEPENDENCIES sensor_msgs;std_msgs)

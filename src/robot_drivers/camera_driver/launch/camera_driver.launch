@@ -13,6 +13,11 @@
   <arg name="tf_prefix_camera3" default="$(arg camera3)"/>
   
   <arg name="initial_reset" default="false"/>
+  
+  <!-- Enable/disable cameras individually for USB bandwidth management -->
+  <arg name="enable_camera1" default="true"/>  <!-- chassis -->
+  <arg name="enable_camera2" default="true"/>  <!-- hand -->
+  <arg name="enable_camera3" default="false"/>  <!-- top - disabled by default -->
   <arg name="reconnect_timeout" default="6.0"/>
   
   <!-- Configuration for all cameras -->
@@ -30,7 +35,7 @@
   
   <arg name="color_width" default="640"/>
   <arg name="color_height" default="480"/>
-  <arg name="color_fps" default="30"/>
+  <arg name="color_fps" default="15"/>
   
   <arg name="depth_width" default="640"/>
   <arg name="depth_height" default="480"/>
@@ -46,9 +51,13 @@
   
   <arg name="gyro_fps" default="0"/>
   <arg name="accel_fps" default="0"/>
+
+  <!-- RViz visualization option -->
+  <arg name="rviz" default="false"/>
+  <arg name="rviz_config" default="$(find camera_driver)/config/camera_driver.rviz"/>
   
   <!-- Camera 1 (chassis) -->
-  <group ns="$(arg camera1)">
+  <group ns="$(arg camera1)" if="$(arg enable_camera1)">
     <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
       <arg name="serial_no" value="$(arg serial_no_camera1)"/>
       <arg name="tf_prefix" value="$(arg tf_prefix_camera1)"/>
@@ -89,7 +98,7 @@
   </group>
   
   <!-- Camera 2 (hand) -->
-  <group ns="$(arg camera2)">
+  <group ns="$(arg camera2)" if="$(arg enable_camera2)">
     <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
       <arg name="serial_no" value="$(arg serial_no_camera2)"/>
       <arg name="tf_prefix" value="$(arg tf_prefix_camera2)"/>
@@ -130,7 +139,7 @@
   </group>
   
   <!-- Camera 3 (top) -->
-  <group ns="$(arg camera3)">
+  <group ns="$(arg camera3)" if="$(arg enable_camera3)">
     <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
       <arg name="serial_no" value="$(arg serial_no_camera3)"/>
       <arg name="tf_prefix" value="$(arg tf_prefix_camera3)"/>
@@ -168,6 +177,11 @@
       <arg name="gyro_fps" value="$(arg gyro_fps)"/>
       <arg name="accel_fps" value="$(arg accel_fps)"/>
     </include>
+  </group>
+
+  <!-- Launch RViz if requested -->
+  <group if="$(arg rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)" output="screen"/>
   </group>
   
 </launch>

@@ -5,4 +5,4 @@ Description: Description of chassis_planner
 Version: 0.0.1
 Cflags: 
 Libs: -L${prefix}/lib 
-Requires: 
+Requires: rviz actionlib_msgs geometry_msgs std_msgs

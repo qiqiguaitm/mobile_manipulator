@@ -1,9 +1,0 @@
-topics:
-  inputs:
-    cmd_vel:
-      name: /chassis/cmd_vel
-      type: geometry_msgs/Twist
-  outputs:
-    state:
-      name: /chassis/state
-      type: geometry_msgs/PoseStamped

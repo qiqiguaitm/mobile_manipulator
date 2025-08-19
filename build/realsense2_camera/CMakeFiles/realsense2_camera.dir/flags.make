@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIE -fPIC -std=c++11 -D_FORTIFY_SOURCE=2 -fstack-protector -Wforma
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"realsense2_camera\" -D_CRT_SECURE_NO_WARNINGS -Drealsense2_camera_EXPORTS
 
-CXX_INCLUDES = -I/home/agilex/MobileManipulator/devel/.private/realsense2_camera/include -I/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_camera/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/opencv4 
+CXX_INCLUDES = -I/home/agilex/MobileManipulator/devel/.private/realsense2_camera/include -I/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/opencv4 
 

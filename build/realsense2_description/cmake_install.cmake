@@ -1,4 +1,4 @@
-# Install script for directory: /home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_description
+# Install script for directory: /home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -155,15 +155,15 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_description" TYPE FILE FILES "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_description" TYPE FILE FILES "/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_description/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/realsense2_description" TYPE DIRECTORY FILES
-    "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_description/launch"
-    "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_description/meshes"
-    "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_description/rviz"
-    "/home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_description/urdf"
+    "/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_description/launch"
+    "/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_description/meshes"
+    "/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_description/rviz"
+    "/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_description/urdf"
     )
 endif()
 

@@ -13,7 +13,10 @@
   <depend>std_msgs</depend>
   <depend>geometry_msgs</depend>
   <depend>nav_msgs</depend>
+  <depend>rviz</depend>
+  <depend>actionlib_msgs</depend>
   
   <export>
+    <rviz plugin="${prefix}/rviz_navi_multi_goals_pub_plugin/navi_multi_goals_pub_rviz_plugin/plugin_description.xml"/>
   </export>
 </package>

@@ -1,8 +1,0 @@
-prefix=/home/agilex/MobileManipulator/devel/.private/camera_driver
-
-Name: camera_driver
-Description: Description of camera_driver
-Version: 0.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

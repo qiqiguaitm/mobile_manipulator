@@ -1,5 +1,0 @@
-chassis_controller
-/home/agilex/MobileManipulator/devel/.private/chassis_controller/share/chassis_controller/cmake/chassis_controllerConfig-version.cmake /home/agilex/MobileManipulator/devel/share/chassis_controller/cmake/chassis_controllerConfig-version.cmake
-/home/agilex/MobileManipulator/devel/.private/chassis_controller/share/chassis_controller/cmake/chassis_controllerConfig.cmake /home/agilex/MobileManipulator/devel/share/chassis_controller/cmake/chassis_controllerConfig.cmake
-/home/agilex/MobileManipulator/devel/.private/chassis_controller/lib/python3/dist-packages/chassis_controller/__init__.py /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/chassis_controller/__init__.py
-/home/agilex/MobileManipulator/devel/.private/chassis_controller/lib/pkgconfig/chassis_controller.pc /home/agilex/MobileManipulator/devel/lib/pkgconfig/chassis_controller.pc

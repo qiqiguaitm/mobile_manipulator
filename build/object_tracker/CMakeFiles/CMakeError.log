@@ -1,21 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_264a5/fast && /usr/bin/make -f CMakeFiles/cmTC_264a5.dir/build.make CMakeFiles/cmTC_264a5.dir/build
+Run Build Command(s):/usr/bin/make cmTC_0adfc/fast && /usr/bin/make -f CMakeFiles/cmTC_0adfc.dir/build.make CMakeFiles/cmTC_0adfc.dir/build
 make[1]: Entering directory '/home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_264a5.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_264a5.dir/src.c.o   -c /home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_264a5
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_264a5.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_264a5.dir/src.c.o  -o cmTC_264a5 
-/usr/bin/ld: CMakeFiles/cmTC_264a5.dir/src.c.o: in function `main':
+Building C object CMakeFiles/cmTC_0adfc.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_0adfc.dir/src.c.o   -c /home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_0adfc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0adfc.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_0adfc.dir/src.c.o  -o cmTC_0adfc 
+/usr/bin/ld: CMakeFiles/cmTC_0adfc.dir/src.c.o: in function `main':
 src.c:(.text+0x48): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x50): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x5c): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_264a5.dir/build.make:87: cmTC_264a5] Error 1
+make[1]: *** [CMakeFiles/cmTC_0adfc.dir/build.make:87: cmTC_0adfc] Error 1
 make[1]: Leaving directory '/home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_264a5/fast] Error 2
+make: *** [Makefile:121: cmTC_0adfc/fast] Error 2
 
 
 Source file was:
@@ -41,18 +41,18 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_2ef66/fast && /usr/bin/make -f CMakeFiles/cmTC_2ef66.dir/build.make CMakeFiles/cmTC_2ef66.dir/build
+Run Build Command(s):/usr/bin/make cmTC_affac/fast && /usr/bin/make -f CMakeFiles/cmTC_affac.dir/build.make CMakeFiles/cmTC_affac.dir/build
 make[1]: Entering directory '/home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_2ef66.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_2ef66.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_2ef66
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2ef66.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_2ef66.dir/CheckFunctionExists.c.o  -o cmTC_2ef66  -lpthreads 
+Building C object CMakeFiles/cmTC_affac.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_affac.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_affac
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_affac.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_affac.dir/CheckFunctionExists.c.o  -o cmTC_affac  -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_2ef66.dir/build.make:87: cmTC_2ef66] Error 1
+make[1]: *** [CMakeFiles/cmTC_affac.dir/build.make:87: cmTC_affac] Error 1
 make[1]: Leaving directory '/home/agilex/MobileManipulator/build/object_tracker/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_2ef66/fast] Error 2
+make: *** [Makefile:121: cmTC_affac/fast] Error 2
 
 
 

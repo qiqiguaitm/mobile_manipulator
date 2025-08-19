@@ -67,7 +67,7 @@ set(realsense2_description_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(realsense2_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/third_party/realsense2_camera/realsense2_description)
+  set(realsense2_description_SOURCE_PREFIX /home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_description)
   set(realsense2_description_DEVEL_PREFIX /home/agilex/MobileManipulator/devel/.private/realsense2_description)
   set(realsense2_description_INSTALL_PREFIX "")
   set(realsense2_description_PREFIX ${realsense2_description_DEVEL_PREFIX})

@@ -55,12 +55,11 @@ launch_modules() {
         
         # 智能查找launch文件
         case "$module" in
-            "camera_driver")     launch_file="camera_driver/launch/camera_driver.launch" ;;
             "lidar_driver")      launch_file="lidar_driver/launch/lidar_driver_simple.launch" ;;
             "imu_driver")        launch_file="imu_driver/launch/imu_driver.launch" ;;
             "realsense2_camera") launch_file="realsense2_camera/launch/realsense_cameras.launch" ;;
             "arm_controller")    launch_file="arm_controller/launch/start_single_piper.launch" ;;
-            "chassis_controller") launch_file="chassis_controller/launch/chassis_controller.launch" ;;
+            "tracer_base") launch_file="chassis_controller/tracer_base/launch/tracer_base.launch" ;;
             "arm_planner")       launch_file="arm_planner/launch/arm_planner.launch" ;;
             "chassis_planner")   launch_file="chassis_planner/launch/chassis_planner.launch" ;;
             "perception")        launch_file="perception/launch/perception.launch" ;;

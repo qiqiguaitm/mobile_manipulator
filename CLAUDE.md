@@ -180,11 +180,12 @@ claude mcp add --transport http grep https://mcp.grep.app
 claude mcp add spec-workflow-mcp -s user -- npx -y spec-workflow-mcp@latest
 ```
 
-## 其他要求
+## 进一步附加要求
 - 如果有权限问题，sudo 的密码是agx
 - 使用中文来回答用户问题。
 - please keep ultrathink！
-- 执行ros相关程序前，先清理一下现有的ros进程，构建一个干净的环境，如pkill -9 roscore & pkill -9 rosmaster & roscore & 然后再执行
+- 执行ros相关程序前，先清理一下现有的ros进程，构建一个干净的环境，如rosnode kill 对应node, 然后再执行
+- 不要轻易pkill -f roscore/pkill -f rosmaster;如果必须，需要确认；尽量使用rosnode kill 对应节点来避免冲突
 - 验证代码正确性，直接参考用户的执行脚本验证，尽量避免开发其他测试脚本验证
 - 对于用户提的错误日志和对应的执行脚本，根据错误日志修复后，使用用户的脚本进行验证；
 - 保持代码结构的简洁和干净
