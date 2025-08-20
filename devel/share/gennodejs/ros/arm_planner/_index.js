@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/arm_planner/share/gennodejs/ros/arm_planner/_index.js

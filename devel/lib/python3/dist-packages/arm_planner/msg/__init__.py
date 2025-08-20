@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/arm_planner/lib/python3/dist-packages/arm_planner/msg/__init__.py

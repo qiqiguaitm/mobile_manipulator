@@ -1,4 +1,0 @@
-robot_desc/piper_description
-/home/agilex/MobileManipulator/devel/.private/piper_description/share/piper_description/cmake/piper_descriptionConfig.cmake /home/agilex/MobileManipulator/devel/share/piper_description/cmake/piper_descriptionConfig.cmake
-/home/agilex/MobileManipulator/devel/.private/piper_description/share/piper_description/cmake/piper_descriptionConfig-version.cmake /home/agilex/MobileManipulator/devel/share/piper_description/cmake/piper_descriptionConfig-version.cmake
-/home/agilex/MobileManipulator/devel/.private/piper_description/lib/pkgconfig/piper_description.pc /home/agilex/MobileManipulator/devel/lib/pkgconfig/piper_description.pc

@@ -19,4 +19,10 @@ make_args: []
 source_space: src
 use_env_cache: false
 use_internal_make_jobserver: true
-whitelist: []
+whitelist:
+- ugv_sdk
+- tracer_msgs
+- tracer_base
+- rslidar_sdk
+- realsense2_camera
+- realsense2_description

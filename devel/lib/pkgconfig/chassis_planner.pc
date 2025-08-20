@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/chassis_planner/lib/pkgconfig/chassis_planner.pc

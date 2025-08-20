@@ -10,12 +10,14 @@ set -euo pipefail  # 严格错误处理
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# 分层包定义 - 数据结构即算法
+# 标准7层架构定义 - 数据结构即算法
 readonly L1_DESCRIPTION="mobile_manipulator2_description piper_description tracer2_description realsense2_description"
-readonly L2_DRIVERS="arm_controller ugv_sdk tracer_msgs tracer_base rslidar_sdk lidar_driver imu_driver realsense2_camera rf2o_laser_odometry"  
-readonly L3_PLANNERS="arm_planner chassis_planner"
-readonly L4_PERCEPTION="perception object_tracker target_filter inference_abstraction"
-readonly L5_INTEGRATION="task_mgr task_router slam odom sensor_calibration"
+readonly L2_DRIVERS="rslidar_sdk lidar_driver imu_driver realsense2_camera camera_driver"  
+readonly L3_CONTROLLERS="ugv_sdk tracer_msgs tracer_base chassis_controller arm_controller"
+readonly L4_ODOM="rf2o_laser_odometry odom slam"
+readonly L5_PERCEPTION="sensor_calibration inference_abstraction perception object_tracker target_filter"
+readonly L6_PLANNERS="arm_planner chassis_planner task_router"
+readonly L7_INTEGRATION="task_mgr"
 
 # 颜色定义 - 更清晰的输出
 readonly RED='\033[0;31m'
@@ -28,9 +30,46 @@ log_info() { echo -e "${GREEN}[INFO]${NC} $*"; }
 log_warn() { echo -e "${YELLOW}[WARN]${NC} $*"; }
 log_error() { echo -e "${RED}[ERROR]${NC} $*" >&2; }
 
+# 嵌套包映射表 - 智能包管理
+readonly NESTED_PACKAGES=(
+    "ugv_sdk:chassis_controller/ugv_sdk"
+    "tracer_msgs:chassis_controller/tracer_msgs"
+    "tracer_base:chassis_controller/tracer_base"
+    "rslidar_sdk:robot_drivers/lidar_driver/rslidar_sdk"
+    "realsense2_camera:robot_drivers/camera_driver/realsense2_camera"
+    "realsense2_description:robot_drivers/camera_driver/realsense2_description"
+)
+
+# 动态符号链接管理 - 优雅解决嵌套包问题
+create_temp_links() {
+    log_info "创建智能符号链接..."
+    for mapping in "${NESTED_PACKAGES[@]}"; do
+        local pkg_name="${mapping%%:*}"
+        local pkg_path="${mapping##*:}"
+        
+        if [[ -d "src/$pkg_path" && ! -e "src/$pkg_name" ]]; then
+            ln -sf "./$pkg_path" "src/$pkg_name"
+            log_info "  ✅ $pkg_name -> $pkg_path"
+        fi
+    done
+}
+
+# 清理临时符号链接
+cleanup_temp_links() {
+    for mapping in "${NESTED_PACKAGES[@]}"; do
+        local pkg_name="${mapping%%:*}"
+        if [[ -L "src/$pkg_name" ]]; then
+            rm "src/$pkg_name" 2>/dev/null || true
+        fi
+    done
+}
+
 # 环境初始化 - 单一配置点
 init_environment() {
     log_info "初始化构建环境"
+    
+    # 设置清理陷阱 - 确保退出时清理
+    trap cleanup_temp_links EXIT INT TERM
     
     # 检查 ROS 环境
     if [ ! -f /opt/ros/noetic/setup.bash ]; then
@@ -48,6 +87,9 @@ init_environment() {
         catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
         catkin config --jobs "$(nproc)"
     fi
+    
+    # 创建智能链接
+    create_temp_links
     
     # 检查必要的系统依赖
     check_dependencies
@@ -122,16 +164,18 @@ clean_workspace() {
     fi
 }
 
-# 构建所有层 - 按依赖顺序
+# 构建所有层 - 按标准7层依赖顺序
 build_all_layers() {
-    log_info "开始分层构建"
+    log_info "开始标准7层构建"
     
     local layers=(
         "L1-描述文件:$L1_DESCRIPTION"
         "L2-硬件驱动:$L2_DRIVERS"
-        "L3-规划模块:$L3_PLANNERS"
-        "L4-感知模块:$L4_PERCEPTION"
-        "L5-集成模块:$L5_INTEGRATION"
+        "L3-控制器层:$L3_CONTROLLERS"
+        "L4-里程计层:$L4_ODOM"
+        "L5-感知模块:$L5_PERCEPTION"
+        "L6-规划模块:$L6_PLANNERS"
+        "L7-集成模块:$L7_INTEGRATION"
     )
     
     local failed=0
@@ -143,7 +187,7 @@ build_all_layers() {
     done
     
     if [ $failed -eq 0 ]; then
-        log_info "🎉 全部构建完成！"
+        log_info "🎉 全部7层构建完成！"
     else
         log_error "❌ 有 $failed 个层构建失败"
         return 1
@@ -157,13 +201,15 @@ MobileManipulator 分层构建脚本
 
 用法: $0 [选项]
 
-分层选项:
-  all             完整分层构建 (推荐)
+标准7层选项:
+  all             完整7层构建 (推荐)
   l1, description L1层: 机器人描述文件
   l2, drivers     L2层: 硬件驱动模块  
-  l3, planners    L3层: 运动规划模块
-  l4, perception  L4层: 感知处理模块
-  l5, integration L5层: 系统集成模块
+  l3, controllers L3层: 控制器模块
+  l4, odom        L4层: 里程计/SLAM
+  l5, perception  L5层: 感知处理模块
+  l6, planners    L6层: 运动规划模块
+  l7, integration L7层: 系统集成模块
 
 维护选项:
   clean           清理构建缓存
@@ -185,13 +231,15 @@ main() {
     init_environment
     
     case "${1:-all}" in
-        "all")          build_all_layers ;;
+        "all")              build_all_layers ;;
         "l1"|"description") build_layer "L1-描述文件" "$L1_DESCRIPTION" ;;
         "l2"|"drivers")     build_layer "L2-硬件驱动" "$L2_DRIVERS" ;;
-        "l3"|"planners")    build_layer "L3-规划模块" "$L3_PLANNERS" ;;  
-        "l4"|"perception")  build_layer "L4-感知模块" "$L4_PERCEPTION" ;;
-        "l5"|"integration") build_layer "L5-集成模块" "$L5_INTEGRATION" ;;
-        "clean")        clean_workspace ;;
+        "l3"|"controllers") build_layer "L3-控制器层" "$L3_CONTROLLERS" ;;  
+        "l4"|"odom")        build_layer "L4-里程计层" "$L4_ODOM" ;;
+        "l5"|"perception")  build_layer "L5-感知模块" "$L5_PERCEPTION" ;;
+        "l6"|"planners")    build_layer "L6-规划模块" "$L6_PLANNERS" ;;
+        "l7"|"integration") build_layer "L7-集成模块" "$L7_INTEGRATION" ;;
+        "clean")            clean_workspace ;;
         "list"|"help"|"-h") show_help ;;
         *) 
             echo "❌ 未知选项: $1"

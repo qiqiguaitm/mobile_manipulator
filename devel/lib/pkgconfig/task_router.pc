@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/task_router/lib/pkgconfig/task_router.pc

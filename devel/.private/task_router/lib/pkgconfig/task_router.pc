@@ -1,8 +1,0 @@
-prefix=/home/agilex/MobileManipulator/devel/.private/task_router
-
-Name: task_router
-Description: Description of task_router
-Version: 0.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

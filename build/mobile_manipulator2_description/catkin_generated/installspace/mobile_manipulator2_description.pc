@@ -1,8 +1,0 @@
-prefix=/home/agilex/MobileManipulator/install
-
-Name: mobile_manipulator2_description
-Description: Description of mobile_manipulator2_description
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

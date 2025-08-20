@@ -1,7 +1,0 @@
-set(object_tracker_SETUP_PY_SETUP_MODULE "setuptools")
-set(object_tracker_SETUP_PY_VERSION "0.0.1")
-set(object_tracker_SETUP_PY_SCRIPTS "")
-set(object_tracker_SETUP_PY_PACKAGES "object_tracker")
-set(object_tracker_SETUP_PY_PACKAGE_DIRS "src/object_tracker")
-set(object_tracker_SETUP_PY_MODULES "")
-set(object_tracker_SETUP_PY_MODULE_DIRS "")

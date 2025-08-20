@@ -1,7 +1,0 @@
-set(odom_SETUP_PY_SETUP_MODULE "setuptools")
-set(odom_SETUP_PY_VERSION "0.0.1")
-set(odom_SETUP_PY_SCRIPTS "")
-set(odom_SETUP_PY_PACKAGES "odom")
-set(odom_SETUP_PY_PACKAGE_DIRS "src/odom")
-set(odom_SETUP_PY_MODULES "")
-set(odom_SETUP_PY_MODULE_DIRS "")

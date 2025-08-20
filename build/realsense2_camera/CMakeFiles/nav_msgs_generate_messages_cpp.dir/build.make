@@ -43,7 +43,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera
+CMAKE_SOURCE_DIR = /home/agilex/MobileManipulator/src/realsense2_camera
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/agilex/MobileManipulator/build/realsense2_camera
@@ -67,6 +67,6 @@ CMakeFiles/nav_msgs_generate_messages_cpp.dir/clean:
 .PHONY : CMakeFiles/nav_msgs_generate_messages_cpp.dir/clean
 
 CMakeFiles/nav_msgs_generate_messages_cpp.dir/depend:
-	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera /home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera /home/agilex/MobileManipulator/build/realsense2_camera /home/agilex/MobileManipulator/build/realsense2_camera /home/agilex/MobileManipulator/build/realsense2_camera/CMakeFiles/nav_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/agilex/MobileManipulator/build/realsense2_camera && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/agilex/MobileManipulator/src/realsense2_camera /home/agilex/MobileManipulator/src/realsense2_camera /home/agilex/MobileManipulator/build/realsense2_camera /home/agilex/MobileManipulator/build/realsense2_camera /home/agilex/MobileManipulator/build/realsense2_camera/CMakeFiles/nav_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/nav_msgs_generate_messages_cpp.dir/depend
 

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>chassis_controller</name>
+  <version>0.0.0</version>
+  <description>Chassis controller metapackage for AgileX Tracer robot</description>
+
+  <maintainer email="agx@agilex.com">AgileX Team</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Package dependencies in build order -->
+  <exec_depend>tracer_msgs</exec_depend>
+  <exec_depend>ugv_sdk</exec_depend>
+  <exec_depend>tracer_base</exec_depend>
+  <exec_depend>tracer_description</exec_depend>
+  <exec_depend>tracer_gazebo_sim</exec_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/inference_abstraction/share/inference_abstraction/cmake/inference_abstractionConfig-version.cmake

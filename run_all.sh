@@ -10,12 +10,13 @@ set -euo pipefail
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# 启动配置定义 - 清晰的数据结构
-readonly SENSORS_MODULES="camera_driver lidar_driver imu_driver realsense2_camera"
-readonly CONTROL_MODULES="arm_controller chassis_controller"  
-readonly PLANNING_MODULES="arm_planner chassis_planner"
-readonly PERCEPTION_MODULES="perception object_tracker target_filter"
-readonly INTEGRATION_MODULES="task_mgr task_router slam odom"
+# 启动配置定义 - 对应标准7层架构
+readonly L2_DRIVER_MODULES="camera_driver lidar_driver imu_driver realsense2_camera"
+readonly L3_CONTROLLER_MODULES="arm_controller chassis_controller tracer_base"  
+readonly L4_ODOM_MODULES="odom slam rf2o_laser_odometry"
+readonly L5_PERCEPTION_MODULES="perception object_tracker target_filter"
+readonly L6_PLANNER_MODULES="arm_planner chassis_planner"
+readonly L7_INTEGRATION_MODULES="task_mgr task_router"
 
 # 环境初始化 - 统一配置点
 init_environment() {
@@ -57,9 +58,9 @@ launch_modules() {
         case "$module" in
             "lidar_driver")      launch_file="lidar_driver/launch/lidar_driver_simple.launch" ;;
             "imu_driver")        launch_file="imu_driver/launch/imu_driver.launch" ;;
-            "realsense2_camera") launch_file="realsense2_camera/launch/realsense_cameras.launch" ;;
-            "arm_controller")    launch_file="arm_controller/launch/start_single_piper.launch" ;;
-            "tracer_base") launch_file="chassis_controller/tracer_base/launch/tracer_base.launch" ;;
+            "camera_driver") launch_file="camera_driver/launch/camera_driver.launch" ;;
+            "arm_controller")    launch_file="arm_controller/launch/arm_controller.launch" ;;
+            "chassis_controller")    launch_file="chassis_controller/launch/chassis_controller.launch" ;;
             "arm_planner")       launch_file="arm_planner/launch/arm_planner.launch" ;;
             "chassis_planner")   launch_file="chassis_planner/launch/chassis_planner.launch" ;;
             "perception")        launch_file="perception/launch/perception.launch" ;;
@@ -83,26 +84,35 @@ launch_modules() {
     echo "✅ $module_group 启动完成"
 }
 
-# 启动完整机器人系统
+# 启动完整机器人系统 - 按标准7层顺序
 launch_full_system() {
-    echo "=== 启动完整机器人系统 ==="
+    echo "=== 启动完整机器人系统（7层架构）==="
     
-    # 按依赖顺序启动
-    launch_modules "传感器模块" "$SENSORS_MODULES"
+    # 按标准7层依赖顺序启动
+    echo "启动L2层: 硬件驱动"
+    launch_modules "L2-硬件驱动" "$L2_DRIVER_MODULES"
     sleep 3
     
-    launch_modules "控制模块" "$CONTROL_MODULES"  
+    echo "启动L3层: 控制器"
+    launch_modules "L3-控制器" "$L3_CONTROLLER_MODULES"  
     sleep 3
     
-    launch_modules "规划模块" "$PLANNING_MODULES"
+    echo "启动L4层: 里程计/SLAM"
+    launch_modules "L4-里程计" "$L4_ODOM_MODULES"
     sleep 3
     
-    launch_modules "感知模块" "$PERCEPTION_MODULES"
+    echo "启动L5层: 感知模块"
+    launch_modules "L5-感知" "$L5_PERCEPTION_MODULES"
     sleep 3
     
-    launch_modules "集成模块" "$INTEGRATION_MODULES"
+    echo "启动L6层: 规划模块"
+    launch_modules "L6-规划" "$L6_PLANNER_MODULES"
+    sleep 3
     
-    echo "🎉 完整系统启动完成！"
+    echo "启动L7层: 集成模块"
+    launch_modules "L7-集成" "$L7_INTEGRATION_MODULES"
+    
+    echo "🎉 完整7层系统启动完成！"
     echo "💡 使用 './run_all.sh stop' 停止所有模块"
 }
 
@@ -134,15 +144,22 @@ MobileManipulator 模块化启动脚本
 用法: $0 [选项]
 
 系统启动:
-  all        启动完整机器人系统 (推荐)
+  all        启动完整7层机器人系统 (推荐)
   demo       启动演示模式
 
-模块组启动:
-  sensors    传感器模块 (相机、激光雷达、IMU)
-  arm        机械臂模块 (控制器 + 规划器)  
-  chassis    底盘模块 (控制器 + 规划器)
-  perception 感知模块 (感知、跟踪、过滤)
-  slam       SLAM定位导航
+标准7层模块启动:
+  l2, drivers     L2层: 硬件驱动模块
+  l3, controllers L3层: 控制器模块
+  l4, odom        L4层: 里程计/SLAM模块
+  l5, perception  L5层: 感知处理模块  
+  l6, planners    L6层: 运动规划模块
+  l7, integration L7层: 系统集成模块
+
+快捷启动 (向后兼容):
+  sensors    传感器模块 (等同于l2)
+  arm        机械臂模块 (l3+l6机械臂部分)  
+  chassis    底盘模块 (l3+l6底盘部分)
+  slam       SLAM定位导航 (等同于l4)
 
 系统管理:
   stop       停止所有ROS模块
@@ -155,23 +172,33 @@ MobileManipulator 模块化启动脚本
 EOF
 }
 
-# 主逻辑 - 清晰的控制流
+# 主逻辑 - 清晰的控制流，符合7层架构
 main() {
     case "${1:-all}" in
-        "all")        init_environment; launch_full_system ;;
-        "demo")       init_environment; launch_demo ;;
-        "sensors")    init_environment; launch_modules "传感器模块" "$SENSORS_MODULES" ;;
-        "arm")        init_environment; launch_modules "机械臂模块" "$CONTROL_MODULES $PLANNING_MODULES" ;;
-        "chassis")    init_environment; launch_modules "底盘模块" "chassis_controller chassis_planner" ;;
-        "perception") init_environment; launch_modules "感知模块" "$PERCEPTION_MODULES" ;;
-        "slam")       init_environment; launch_modules "SLAM模块" "slam odom" ;;
-        "stop")       stop_all ;;
-        "list"|"help"|"-h") show_help ;;
+        "all")                  init_environment; launch_full_system ;;
+        "demo")                 init_environment; launch_demo ;;
+        
+        # 标准7层启动
+        "l2"|"drivers")         init_environment; launch_modules "L2-硬件驱动" "$L2_DRIVER_MODULES" ;;
+        "l3"|"controllers")     init_environment; launch_modules "L3-控制器" "$L3_CONTROLLER_MODULES" ;;
+        "l4"|"odom")           init_environment; launch_modules "L4-里程计" "$L4_ODOM_MODULES" ;;
+        "l5"|"perception")      init_environment; launch_modules "L5-感知" "$L5_PERCEPTION_MODULES" ;;
+        "l6"|"planners")        init_environment; launch_modules "L6-规划" "$L6_PLANNER_MODULES" ;;
+        "l7"|"integration")     init_environment; launch_modules "L7-集成" "$L7_INTEGRATION_MODULES" ;;
         
         # 向后兼容旧接口 - Never break userspace
-        "camera")     init_environment; launch_modules "相机驱动" "camera_driver realsense2_camera" ;;
-        "lidar")      init_environment; launch_modules "激光雷达" "lidar_driver" ;;
-        "imu")        init_environment; launch_modules "IMU驱动" "imu_driver" ;;
+        "sensors")              init_environment; launch_modules "传感器模块" "$L2_DRIVER_MODULES" ;;
+        "arm")                  init_environment; launch_modules "机械臂模块" "arm_controller arm_planner" ;;
+        "chassis")              init_environment; launch_modules "底盘模块" "chassis_controller tracer_base chassis_planner" ;;
+        "slam")                 init_environment; launch_modules "SLAM模块" "$L4_ODOM_MODULES" ;;
+        
+        # 向后兼容更细粒度接口
+        "camera")               init_environment; launch_modules "相机驱动" "camera_driver realsense2_camera" ;;
+        "lidar")                init_environment; launch_modules "激光雷达" "lidar_driver" ;;
+        "imu")                  init_environment; launch_modules "IMU驱动" "imu_driver" ;;
+        
+        "stop")                 stop_all ;;
+        "list"|"help"|"-h")     show_help ;;
         
         *) 
             echo "❌ 未知选项: $1"

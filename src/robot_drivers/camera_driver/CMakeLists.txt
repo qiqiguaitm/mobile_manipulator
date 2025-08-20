@@ -18,6 +18,6 @@ include_directories(
 )
 
 catkin_install_python(PROGRAMS
-  scripts/camera_driver_node.py
+  scripts/camera_driver_test.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

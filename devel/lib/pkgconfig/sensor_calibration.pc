@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/sensor_calibration/lib/pkgconfig/sensor_calibration.pc

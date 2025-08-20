@@ -1,5 +1,0 @@
-perception
-/home/agilex/MobileManipulator/devel/.private/perception/share/perception/cmake/perceptionConfig-version.cmake /home/agilex/MobileManipulator/devel/share/perception/cmake/perceptionConfig-version.cmake
-/home/agilex/MobileManipulator/devel/.private/perception/share/perception/cmake/perceptionConfig.cmake /home/agilex/MobileManipulator/devel/share/perception/cmake/perceptionConfig.cmake
-/home/agilex/MobileManipulator/devel/.private/perception/lib/python3/dist-packages/perception/__init__.py /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/perception/__init__.py
-/home/agilex/MobileManipulator/devel/.private/perception/lib/pkgconfig/perception.pc /home/agilex/MobileManipulator/devel/lib/pkgconfig/perception.pc

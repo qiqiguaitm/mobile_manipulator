@@ -1,8 +1,0 @@
-prefix=/home/agilex/MobileManipulator/devel/.private/tracer2_description
-
-Name: tracer2_description
-Description: Description of tracer2_description
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

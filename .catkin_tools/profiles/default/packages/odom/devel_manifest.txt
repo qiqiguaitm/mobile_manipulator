@@ -1,5 +1,0 @@
-odom
-/home/agilex/MobileManipulator/devel/.private/odom/share/odom/cmake/odomConfig.cmake /home/agilex/MobileManipulator/devel/share/odom/cmake/odomConfig.cmake
-/home/agilex/MobileManipulator/devel/.private/odom/share/odom/cmake/odomConfig-version.cmake /home/agilex/MobileManipulator/devel/share/odom/cmake/odomConfig-version.cmake
-/home/agilex/MobileManipulator/devel/.private/odom/lib/python3/dist-packages/odom/__init__.py /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/odom/__init__.py
-/home/agilex/MobileManipulator/devel/.private/odom/lib/pkgconfig/odom.pc /home/agilex/MobileManipulator/devel/lib/pkgconfig/odom.pc

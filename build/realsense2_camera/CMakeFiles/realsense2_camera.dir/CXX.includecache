@@ -98,13 +98,13 @@ ros/message_operations.h
 std_msgs/Header.h
 -
 
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/include/realsense2_camera/base_realsense_node.h
+/home/agilex/MobileManipulator/src/realsense2_camera/include/realsense2_camera/base_realsense_node.h
 realsense2_camera/realsense_node_factory.h
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/include/realsense2_camera/realsense2_camera/realsense_node_factory.h
+/home/agilex/MobileManipulator/src/realsense2_camera/include/realsense2_camera/realsense2_camera/realsense_node_factory.h
 realsense2_camera/DeviceInfo.h
 -
 realsense2_camera/Metadata.h
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/include/realsense2_camera/realsense2_camera/Metadata.h
+/home/agilex/MobileManipulator/src/realsense2_camera/include/realsense2_camera/realsense2_camera/Metadata.h
 ddynamic_reconfigure/ddynamic_reconfigure.h
 -
 diagnostic_updater/diagnostic_updater.h
@@ -136,11 +136,11 @@ atomic
 thread
 -
 
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/include/realsense2_camera/constants.h
+/home/agilex/MobileManipulator/src/realsense2_camera/include/realsense2_camera/constants.h
 string
 -
 
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/include/realsense2_camera/realsense_node_factory.h
+/home/agilex/MobileManipulator/src/realsense2_camera/include/realsense2_camera/realsense_node_factory.h
 pluginlib/class_list_macros.h
 -
 nodelet/nodelet.h
@@ -180,15 +180,15 @@ thread
 std_srvs/Empty.h
 -
 
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/include/realsense2_camera/t265_realsense_node.h
+/home/agilex/MobileManipulator/src/realsense2_camera/include/realsense2_camera/t265_realsense_node.h
 realsense2_camera/base_realsense_node.h
 -
 
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/base_realsense_node.cpp
+/home/agilex/MobileManipulator/src/realsense2_camera/src/base_realsense_node.cpp
 realsense2_camera/base_realsense_node.h
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/realsense2_camera/base_realsense_node.h
+/home/agilex/MobileManipulator/src/realsense2_camera/src/realsense2_camera/base_realsense_node.h
 assert.h
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/assert.h
+/home/agilex/MobileManipulator/src/realsense2_camera/src/assert.h
 boost/algorithm/string.hpp
 -
 algorithm
@@ -204,13 +204,13 @@ dynamic_reconfigure/Reconfigure.h
 dynamic_reconfigure/Config.h
 -
 
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/realsense_node_factory.cpp
+/home/agilex/MobileManipulator/src/realsense2_camera/src/realsense_node_factory.cpp
 realsense2_camera/realsense_node_factory.h
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/realsense2_camera/realsense_node_factory.h
+/home/agilex/MobileManipulator/src/realsense2_camera/src/realsense2_camera/realsense_node_factory.h
 realsense2_camera/base_realsense_node.h
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/realsense2_camera/base_realsense_node.h
+/home/agilex/MobileManipulator/src/realsense2_camera/src/realsense2_camera/base_realsense_node.h
 realsense2_camera/t265_realsense_node.h
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/realsense2_camera/t265_realsense_node.h
+/home/agilex/MobileManipulator/src/realsense2_camera/src/realsense2_camera/t265_realsense_node.h
 iostream
 -
 map
@@ -226,9 +226,9 @@ thread
 regex
 -
 
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/t265_realsense_node.cpp
+/home/agilex/MobileManipulator/src/realsense2_camera/src/t265_realsense_node.cpp
 realsense2_camera/t265_realsense_node.h
-/home/agilex/MobileManipulator/src/robot_drivers/realsense2_camera/realsense2_camera/src/realsense2_camera/t265_realsense_node.h
+/home/agilex/MobileManipulator/src/realsense2_camera/src/realsense2_camera/t265_realsense_node.h
 
 /opt/ros/noetic/include/class_loader/class_loader.hpp
 boost/bind/bind.hpp

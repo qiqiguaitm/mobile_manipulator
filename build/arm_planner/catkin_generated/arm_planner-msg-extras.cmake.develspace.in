@@ -1,2 +1,0 @@
-set(arm_planner_MESSAGE_FILES "/home/agilex/MobileManipulator/src/arm_planner/msg/PiperEulerPose.msg;/home/agilex/MobileManipulator/src/arm_planner/msg/PiperStatusMsg.msg;/home/agilex/MobileManipulator/src/arm_planner/msg/PosCmd.msg")
-set(arm_planner_SERVICE_FILES "/home/agilex/MobileManipulator/src/arm_planner/srv/Enable.srv;/home/agilex/MobileManipulator/src/arm_planner/srv/GoZero.srv;/home/agilex/MobileManipulator/src/arm_planner/srv/Gripper.srv;/home/agilex/MobileManipulator/src/arm_planner/srv/JointMoveitCtrl.srv")

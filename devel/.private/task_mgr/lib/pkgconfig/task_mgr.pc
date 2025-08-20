@@ -1,8 +1,0 @@
-prefix=/home/agilex/MobileManipulator/devel/.private/task_mgr
-
-Name: task_mgr
-Description: Description of task_mgr
-Version: 0.0.1
-Cflags: -I/home/agilex/MobileManipulator/devel/.private/task_mgr/include
-Libs: -L${prefix}/lib 
-Requires: rospy std_msgs geometry_msgs sensor_msgs message_runtime

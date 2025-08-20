@@ -1,6 +1,0 @@
-chassis_planner
-/home/agilex/MobileManipulator/devel/.private/chassis_planner/share/chassis_planner/cmake/chassis_plannerConfig-version.cmake /home/agilex/MobileManipulator/devel/share/chassis_planner/cmake/chassis_plannerConfig-version.cmake
-/home/agilex/MobileManipulator/devel/.private/chassis_planner/share/chassis_planner/cmake/chassis_plannerConfig.cmake /home/agilex/MobileManipulator/devel/share/chassis_planner/cmake/chassis_plannerConfig.cmake
-/home/agilex/MobileManipulator/devel/.private/chassis_planner/lib/libchassis_planner_rviz_plugin.so /home/agilex/MobileManipulator/devel/lib/libchassis_planner_rviz_plugin.so
-/home/agilex/MobileManipulator/devel/.private/chassis_planner/lib/python3/dist-packages/chassis_planner/__init__.py /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/chassis_planner/__init__.py
-/home/agilex/MobileManipulator/devel/.private/chassis_planner/lib/pkgconfig/chassis_planner.pc /home/agilex/MobileManipulator/devel/lib/pkgconfig/chassis_planner.pc

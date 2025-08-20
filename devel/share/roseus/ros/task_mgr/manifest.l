@@ -1,1 +1,0 @@
-/home/agilex/MobileManipulator/devel/.private/task_mgr/share/roseus/ros/task_mgr/manifest.l
