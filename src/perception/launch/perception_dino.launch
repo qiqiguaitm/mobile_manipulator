@@ -1,0 +1,22 @@
+<launch>
+  <!-- Chassis Object Detector -->
+  <node pkg="perception" type="chassis_detector.py" name="chassis_detector" output="screen">
+    <param name="rate" value="0.15"/>  <!-- 0.15 Hz for 640x480 (3.25s latency) -->
+    <param name="query_text" value="object"/>
+    <param name="visualize" value="true"/>
+    
+    <!-- Remap topics if needed -->
+    <remap from="/camera/chassis/color/image_raw" to="/camera/chassis/color/image_raw"/>
+  </node>
+  
+  <!-- Hand Grasp Detector -->
+  <node pkg="perception" type="hand_grasp_detector.py" name="hand_grasp_detector" output="screen">
+    <param name="rate" value="0.33"/>  <!-- 0.33 Hz for 640x480 (1.52s latency) -->
+    <param name="visualize" value="true"/>
+    <param name="use_touching_points" value="true"/>
+    <param name="model_name" value="full"/>
+    
+    <!-- Remap topics if needed -->
+    <remap from="/camera/hand/color/image_raw" to="/camera/hand/color/image_raw"/>
+  </node>
+</launch>

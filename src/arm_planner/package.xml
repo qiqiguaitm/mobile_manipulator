@@ -47,7 +47,7 @@
   <depend>std_srvs</depend>
 
   <export>
-    <!-- RViz plugin export -->
-    <rviz plugin="${prefix}/plugin_description.xml"/>
+    <!-- RViz plugin disabled due to missing plugin_description.xml -->
+    <!-- <rviz plugin="${prefix}/plugin_description.xml"/> -->
   </export>
 </package>

@@ -13,7 +13,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/base_link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/chassis_base_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -22,11 +22,11 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/base_link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/chassis_base_link.STL"/>
       </geometry>
     </collision>
   </link>
-  <link name="box_Link">
+  <link name="box_link">
     <inertial>
       <origin rpy="0 0 0" xyz="-0.0336792278049677 -0.00458080590131121 0.046046222818299"/>
       <mass value="1.96086062558564"/>
@@ -35,7 +35,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/box_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/box_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -44,17 +44,17 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/box_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/box_link.STL"/>
       </geometry>
     </collision>
   </link>
   <joint name="box_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="base_link"/>
-    <child link="box_Link"/>
+    <child link="box_link"/>
     <axis xyz="0 0 0"/>
   </joint>
-  <link name="lifting_Link">
+  <link name="lifting_link">
     <inertial>
       <origin rpy="0 0 0" xyz="-0.0645758262218638 3.1034672673273E-05 0.590832686497018"/>
       <mass value="1.28345031134681"/>
@@ -63,7 +63,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/lifting_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/lifting_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -72,17 +72,17 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/lifting_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/lifting_link.STL"/>
       </geometry>
     </collision>
   </link>
   <joint name="lifting_joint" type="fixed">
     <origin rpy="0 0 0" xyz="-0.24269 0 0.022"/>
-    <parent link="box_Link"/>
-    <child link="lifting_Link"/>
+    <parent link="box_link"/>
+    <child link="lifting_link"/>
     <axis xyz="0 0 0"/>
   </joint>
-  <link name="top_camera_Link">
+  <link name="top_camera_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0081944 0.00022525 0.00024018"/>
       <mass value="0.028999"/>
@@ -91,7 +91,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/top_camera_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/top_camera_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -100,17 +100,17 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/top_camera_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/top_camera_link.STL"/>
       </geometry>
     </collision>
   </link>
   <joint name="top_camera_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.056999999999981 0 0.569500339851353"/>
-    <parent link="lifting_Link"/>
-    <child link="top_camera_Link"/>
+    <parent link="lifting_link"/>
+    <child link="top_camera_link"/>
     <axis xyz="0 0 0"/>
   </joint>
-  <link name="lidar_Link">
+  <link name="lidar_link">
     <inertial>
       <origin rpy="0 0 0" xyz="-0.010562 -0.00043095 0.033917"/>
       <mass value="0.11388"/>
@@ -119,7 +119,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/lidar_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/lidar_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="0.78824 0.81961 0.92941 1"/>
@@ -128,17 +128,17 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/lidar_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/lidar_link.STL"/>
       </geometry>
     </collision>
   </link>
   <joint name="lidar_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.27254 0.00035292 0.0315"/>
     <parent link="base_link"/>
-    <child link="lidar_Link"/>
+    <child link="lidar_link"/>
     <axis xyz="0 0 0"/>
   </joint>
-  <link name="under_camera_Link">
+  <link name="chassis_camera_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0088456 0.00020043 0.1203575"/>
       <mass value="0.055353"/>
@@ -147,7 +147,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/under_camera_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/top_camera_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -156,14 +156,14 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://mobile_manipulator2_description/meshes/under_camera_Link.STL"/>
+        <mesh filename="package://mobile_manipulator2_description/meshes/visual/top_camera_link.STL"/>
       </geometry>
     </collision>
   </link>
-  <joint name="under_camera_joint" type="fixed">
+  <joint name="chassis_camera_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.025 0 0.1"/>
-    <parent link="lidar_Link"/>
-    <child link="under_camera_Link"/>
+    <parent link="lidar_link"/>
+    <child link="chassis_camera_link"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="arm_base">
@@ -423,18 +423,21 @@
   <!-- Joint to connect the arm to the mobile base -->
   <joint name="arm_joint" type="fixed">
     <origin rpy="0.0 0.0 0.0" xyz="0.118 0 0.1"/>
-    <parent link="box_Link"/>
+    <parent link="box_link"/>
     <child link="arm_base"/>
     <axis xyz="0.0 0.0 0.0"/>
     <limit effort="0.0" lower="0.0" upper="0.0" velocity="0.0"/>
   </joint>
   
-  <!-- Hand camera link for sensor simulation -->
-  <link name="hand_cam">
+  <link
+    name="hand_camera_link">
     <inertial>
-      <origin xyz="0.0009804 0.025556 -0.036977" rpy="0 0 0" />
-      <mass value="0.0067926" />
-      <inertia 
+      <origin
+        xyz="0.0009804 0.025556 -0.036977"
+        rpy="0 0 0" />
+      <mass
+        value="0.0067926" />
+      <inertia
         ixx="3.7811E-05"
         ixy="2.2861E-18"
         ixz="2.2446E-19"
@@ -443,27 +446,45 @@
         izz="0.00012345" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
-        <box size="0.02 0.05 0.02"/>
+          <box size="0.02 0.08 0.02"/>
       </geometry>
-      <material name="">
-        <color rgba="1 1 1 1" />
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 1.57 0" />
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
-        <box size="0.001 0.001 0.001"/>
+         <box size="0.02 0.08 0.02"/>
       </geometry>
     </collision>
   </link>
 
-  <!-- Joint to attach hand camera to link6 -->
-  <joint name="hand_camera_joint" type="fixed">
-    <origin xyz="0.0 0.075 0.03" rpy="0 -0.3 1.57" />
-    <parent link="link6" />
-    <child link="hand_cam" />
-    <axis xyz="0 0 0" />
+  <joint
+    name="hand_camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.0 0.075 0.03"
+      rpy="0.000000 -0.7855105 -1.571021" />
+    <parent
+      link="link6" />
+    <child
+      link="hand_camera_link" />
+    <axis
+      xyz="0 0 0" />
   </joint>
+
+
+
+
+
+
 </robot>

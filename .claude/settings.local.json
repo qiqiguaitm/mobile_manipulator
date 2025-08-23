@@ -84,7 +84,12 @@
       "Bash(xmllint:*)",
       "Bash(/dev/null)",
       "Bash(rosnode kill:*)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "mcp__serena__find_file",
+      "mcp__serena__activate_project",
+      "mcp__serena__check_onboarding_performed",
+      "Bash(./scripts/visualize_depth_test.sh:*)",
+      "Bash(bash:*)"
     ],
     "deny": []
   }

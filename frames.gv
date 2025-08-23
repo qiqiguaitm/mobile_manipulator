@@ -1,8 +1,0 @@
-digraph G {
-"odom" -> "rslidar"[label="Broadcaster: /rf2o_laser_odometry_slam\nAverage rate: 10.193 Hz\nMost recent transform: 1755573880.881 ( 0.009 sec old)\nBuffer length: 4.905 sec\n"];
-"rslidar" -> "base_link"[label="Broadcaster: /base_link_to_laser\nAverage rate: 10.195 Hz\nMost recent transform: 1755573880.894 ( -0.004 sec old)\nBuffer length: 4.806 sec\n"];
-edge [style=invis];
- subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 1755573880.890"[ shape=plaintext ] ;
- }->"odom";
-}

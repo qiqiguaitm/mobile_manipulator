@@ -191,5 +191,8 @@ claude mcp add spec-workflow-mcp -s user -- npx -y spec-workflow-mcp@latest
 - 保持代码结构的简洁和干净
 - 对于正式的代码,使用合理的文件名字，请放到正确和合理的目录，并正确命名；否则用于临时测试验证脚本放在在MobileManipulator/scripts, 并增加 _cc_ 作为前缀
 
+## Guide to Avoiding Pitfalls
+- When using Python, export PATH="/usr/bin:$PATH" && python3
+
 
 

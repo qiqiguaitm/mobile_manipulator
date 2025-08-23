@@ -1,0 +1,43 @@
+<launch>
+  <!-- Parameters -->
+  <arg name="visualize" default="true"/>
+  <arg name="target_frame_mode" default="mobile_base" doc="Options: arm_base, mobile_base, world"/>
+  
+  <!-- Camera driver with depth enabled -->
+  <include file="$(find camera_driver)/launch/camera_driver.launch">
+    <arg name="camera2_enable" value="true"/>
+    <arg name="enable_depth" value="true"/>
+    <arg name="enable_color" value="true"/>
+    <arg name="align_depth" value="true"/>
+    <arg name="depth_width" value="640"/>
+    <arg name="depth_height" value="480"/>
+    <arg name="color_width" value="640"/>
+    <arg name="color_height" value="480"/>
+  </include>
+  
+  <!-- 2D Grasp detection -->
+  <node name="hand_grasp_detector" pkg="perception" type="hand_grasp_detector.py" output="screen">
+    <param name="rate" value="1.0"/>
+    <param name="visualize" value="true"/>
+  </node>
+  
+  <!-- 3D Depth processor -->
+  <node name="depth_grasp_processor" pkg="perception" type="depth_grasp_processor_simple.py" output="screen"/>
+  
+  <!-- TF Converter -->
+  <node name="grasp_tf_converter" pkg="perception" type="grasp_tf_converter.py" output="screen">
+    <param name="target_frame_mode" value="$(arg target_frame_mode)"/>
+  </node>
+  
+  <!-- 3D Visualizer -->
+  <node name="grasp_3d_visualizer" pkg="perception" type="grasp_3d_visualizer.py" output="screen" if="$(arg visualize)">
+    <param name="show_bbox" value="true"/>
+    <param name="show_grasp_poses" value="true"/>
+    <param name="show_touching_points" value="true"/>
+    <param name="show_labels" value="true"/>
+    <param name="max_grasps_per_object" value="3"/>
+  </node>
+  
+  <!-- RViz Visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find perception)/config/grasp_3d.rviz" if="$(arg visualize)"/>
+</launch>

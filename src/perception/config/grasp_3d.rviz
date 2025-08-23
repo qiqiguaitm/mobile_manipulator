@@ -1,0 +1,77 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz/TF
+      Enabled: true
+      Name: TF
+      Frame Timeout: 15
+      Show Names: true
+      Show Axes: true
+      Show Arrows: true
+      
+    - Class: rviz/Image
+      Enabled: true
+      Name: "RGB Image"
+      Image Topic: /camera/hand/color/image_raw
+      Queue Size: 1
+      
+    - Class: rviz/Image
+      Enabled: true
+      Name: "Detection Visualization"
+      Image Topic: /perception/hand/vis_image
+      Queue Size: 1
+      
+    - Class: rviz/DepthCloud
+      Enabled: true
+      Name: "Depth Cloud"
+      Topic Filter: true
+      Depth Map Topic: /camera/hand/aligned_depth_to_color/image_raw
+      Color Image Topic: /camera/hand/color/image_raw
+      Queue Size: 1
+      Use Fixed Frame: true
+      
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Name: "3D Grasp Markers"
+      Marker Topic: /perception/grasp_3d_markers
+      Queue Size: 100
+      
+    - Class: rviz/PoseArray
+      Enabled: true
+      Name: "Grasp Poses"
+      Topic: /arm_planner/grasp_poses
+      Shape: Arrow
+      Color: 0; 255; 0
+      Arrow Length: 0.1
+      Arrow Width: 0.01
+      
+  Global Options:
+    Fixed Frame: base_link
+    Frame Rate: 30
+    
+  Tools:
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/Measure
+    
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 2.0
+      Pitch: 0.5
+      Target Frame: base_link
+      Yaw: 0.5
+      
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1080
+  Width: 1920
+  X: 0
+  Y: 0

@@ -1,10 +1,3 @@
 <?xml version="1.0"?>
-<library path="scripts">
-  <class name="arm_planner/PiperStopPanel" 
-         type="rviz_stop_panel.PiperStopPanel" 
-         base_class_type="rviz::Panel">
-    <description>
-      Piper机械臂完整控制面板 - 包含停止、回零和使能控制功能
-    </description>
-  </class>
+<library path="lib/libarm_planner">
 </library>

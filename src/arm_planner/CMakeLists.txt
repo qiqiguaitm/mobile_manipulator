@@ -72,7 +72,6 @@ include_directories(
 catkin_install_python(PROGRAMS
   scripts/follow_joint_trajectory_server.py
   scripts/joint_moveit_ctrl_server.py
-  scripts/launch_status_info.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -1,0 +1,84 @@
+<launch>
+  <!-- ============================================= -->
+  <!-- Configuration Parameters -->
+  <!-- ============================================= -->
+  <arg name="enable_hand" default="true"/>
+  <arg name="enable_chassis" default="true"/>
+  <arg name="enable_rviz" default="true"/>
+  
+  <!-- ============================================= -->
+  <!-- Camera Drivers using existing camera_driver.launch -->
+  <!-- ============================================= -->
+  
+  <include file="$(find camera_driver)/launch/camera_driver.launch">
+    <!-- Enable cameras based on perception needs -->
+    <arg name="camera1_enable" value="false"/>  <!-- top camera not needed -->
+    <arg name="camera2_enable" value="$(arg enable_hand)"/>   <!-- hand camera -->
+    <arg name="camera3_enable" value="$(arg enable_chassis)"/>   <!-- chassis camera -->
+    
+    <!-- Image settings for perception -->
+    <arg name="color_width" value="640"/>
+    <arg name="color_height" value="480"/>
+    <arg name="color_fps" value="15"/>
+    <arg name="depth_width" value="640"/>
+    <arg name="depth_height" value="480"/>
+    <arg name="depth_fps" value="15"/>
+    
+    <!-- Disable unnecessary features for performance -->
+    <arg name="enable_depth" value="false"/>
+    <arg name="enable_color" value="true"/>
+    <arg name="enable_pointcloud" value="false"/>
+    <arg name="enable_sync" value="false"/>
+  </include>
+  
+  <!-- ============================================= -->
+  <!-- Perception Nodes -->
+  <!-- ============================================= -->
+  
+  <!-- Chassis Object Detector -->
+  <node pkg="perception" type="chassis_detector.py" name="chassis_detector" output="screen" if="$(arg enable_chassis)">
+    <param name="rate" value="0.15"/>
+    <param name="query_text" value="object"/>
+    <param name="visualize" value="true"/>
+  </node>
+  
+  <!-- Hand Grasp Detector -->
+  <node pkg="perception" type="hand_grasp_detector.py" name="hand_grasp_detector" output="screen" if="$(arg enable_hand)">
+    <param name="rate" value="0.33"/>
+    <param name="visualize" value="true"/>
+    <param name="use_touching_points" value="true"/>
+    <param name="model_name" value="full"/>
+  </node>
+  
+  <!-- ============================================= -->
+  <!-- Visualization Setup -->
+  <!-- ============================================= -->
+  
+  <!-- Image republishers removed - RViz now uses compressed images directly -->
+  
+  <!-- RViz with perception config -->
+  <node pkg="rviz" type="rviz" name="perception_rviz" 
+        args="-d $(find perception)/config/perception_visualization_optimized.rviz" if="$(arg enable_rviz)"/>
+  
+  <!-- ============================================= -->
+  <!-- Monitoring -->
+  <!-- ============================================= -->
+  
+  <!-- Topic rate monitor -->
+  <node pkg="rostopic" type="rostopic" name="chassis_cam_hz" 
+        args="hz /camera/chassis/color/image_raw"
+        output="log" if="$(arg enable_chassis)"/>
+        
+  <node pkg="rostopic" type="rostopic" name="hand_cam_hz" 
+        args="hz /camera/hand/color/image_raw"
+        output="log" if="$(arg enable_hand)"/>
+  
+  <node pkg="rostopic" type="rostopic" name="chassis_det_hz" 
+        args="hz /perception/chassis/detections"
+        output="log" if="$(arg enable_chassis)"/>
+        
+  <node pkg="rostopic" type="rostopic" name="hand_grasp_hz" 
+        args="hz /perception/hand/grasps"
+        output="log" if="$(arg enable_hand)"/>
+        
+</launch>

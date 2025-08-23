@@ -383,7 +383,7 @@
     type="fixed">
     <origin
       xyz="0.0 0.075 0.03"
-      rpy="0 -0.3 1.57 " />
+      rpy="0 1.27 1.57 " />
     <parent
       link="link6" />
     <child

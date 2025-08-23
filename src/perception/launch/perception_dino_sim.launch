@@ -1,0 +1,53 @@
+<launch>
+  <!-- ============================================= -->
+  <!-- Simulated Test Mode (No Real Cameras) -->
+  <!-- ============================================= -->
+  
+  <!-- Test image publisher -->
+  <node pkg="perception" type="test_image_publisher.py" name="test_image_publisher" output="screen">
+    <param name="image_path" value="$(find perception)/scripts/dino_test.jpg"/>
+    <param name="rate" value="1.0"/>
+  </node>
+  
+  <!-- ============================================= -->
+  <!-- Perception Nodes -->
+  <!-- ============================================= -->
+  
+  <!-- Chassis Object Detector -->
+  <node pkg="perception" type="chassis_detector.py" name="chassis_detector" output="screen">
+    <param name="rate" value="0.15"/>
+    <param name="query_text" value="object"/>
+    <param name="visualize" value="true"/>
+  </node>
+  
+  <!-- Hand Grasp Detector -->
+  <node pkg="perception" type="hand_grasp_detector.py" name="hand_grasp_detector" output="screen">
+    <param name="rate" value="0.33"/>
+    <param name="visualize" value="true"/>
+    <param name="use_touching_points" value="true"/>
+    <param name="model_name" value="full"/>
+  </node>
+  
+  <!-- ============================================= -->
+  <!-- Visualization -->
+  <!-- ============================================= -->
+  
+  <!-- Image republishers -->
+  <node name="chassis_vis_republish" pkg="image_transport" type="republish" 
+        args="compressed in:=/perception/chassis/vis_image raw out:=/perception/chassis/vis_image_raw"/>
+  
+  <node name="hand_vis_republish" pkg="image_transport" type="republish" 
+        args="compressed in:=/perception/hand/vis_image raw out:=/perception/hand/vis_image_raw"/>
+  
+  <!-- Simple image viewer -->
+  <node pkg="image_view" type="image_view" name="chassis_viewer">
+    <remap from="image" to="/perception/chassis/vis_image_raw"/>
+    <param name="window_name" value="Chassis Detection"/>
+  </node>
+  
+  <node pkg="image_view" type="image_view" name="hand_viewer">
+    <remap from="image" to="/perception/hand/vis_image_raw"/>
+    <param name="window_name" value="Hand Grasp Detection"/>
+  </node>
+  
+</launch>

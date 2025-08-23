@@ -13,7 +13,7 @@
   <arg name="debug" default="false" doc="调试模式" />
 
   <!-- 加载MoveIt配置 -->
-  <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/demo.launch">
+  <include file="$(find arm_planner)/moveit_config/piper_with_gripper/launch/piper_with_gripper.launch">
     <arg name="mode" value="$(arg mode)" />
     <arg name="use_rviz" value="false" />
     <arg name="debug" value="$(arg debug)" />

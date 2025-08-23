@@ -1,5 +1,5 @@
-Linked: (/home/agilex/MobileManipulator/devel/.private/lidar_driver/share/lidar_driver/cmake/lidar_driverConfig-version.cmake, /home/agilex/MobileManipulator/devel/share/lidar_driver/cmake/lidar_driverConfig-version.cmake)
-Linked: (/home/agilex/MobileManipulator/devel/.private/lidar_driver/share/lidar_driver/cmake/lidar_driverConfig.cmake, /home/agilex/MobileManipulator/devel/share/lidar_driver/cmake/lidar_driverConfig.cmake)
-Linked: (/home/agilex/MobileManipulator/devel/.private/lidar_driver/lib/lidar_driver/lidar_test.py, /home/agilex/MobileManipulator/devel/lib/lidar_driver/lidar_test.py)
-Linked: (/home/agilex/MobileManipulator/devel/.private/lidar_driver/lib/python3/dist-packages/lidar_driver/__init__.py, /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/lidar_driver/__init__.py)
-Linked: (/home/agilex/MobileManipulator/devel/.private/lidar_driver/lib/pkgconfig/lidar_driver.pc, /home/agilex/MobileManipulator/devel/lib/pkgconfig/lidar_driver.pc)
+Symlinking /home/agilex/MobileManipulator/devel/share/lidar_driver/cmake/lidar_driverConfig-version.cmake
+Symlinking /home/agilex/MobileManipulator/devel/share/lidar_driver/cmake/lidar_driverConfig.cmake
+Symlinking /home/agilex/MobileManipulator/devel/lib/lidar_driver/lidar_test.py
+Symlinking /home/agilex/MobileManipulator/devel/lib/python3/dist-packages/lidar_driver/__init__.py
+Symlinking /home/agilex/MobileManipulator/devel/lib/pkgconfig/lidar_driver.pc

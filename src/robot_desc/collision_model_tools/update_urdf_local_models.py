@@ -9,7 +9,7 @@ import re
 
 def update_safety_urdf():
     """更新safety版本，让所有Piper模型使用本地visual目录"""
-    urdf_path = '/home/agilex/MobileManipulator/src/robot_desc/mobile_manipulator2_description/urdf/mobile_manipulator2_safety.urdf'
+    urdf_path = '/home/agilex/MobileManipulator/src/robot_desc/mobile_manipulator2_description/urdf/mobile_manipulator2.urdf'
     
     with open(urdf_path, 'r') as f:
         content = f.read()

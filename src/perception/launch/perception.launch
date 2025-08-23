@@ -1,7 +1,0 @@
-<launch>
-  <!-- 加载话题配置 -->
-  <rosparam file="$(find perception)/config/topics.yaml" command="load" />
-  
-  <node pkg="perception" type="perception_node.py" name="perception_node" output="screen">
-  </node>
-</launch>

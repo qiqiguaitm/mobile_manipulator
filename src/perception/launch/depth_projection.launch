@@ -1,0 +1,100 @@
+<!-- 深度图像投影到机器人坐标系 Launch文件 -->
+<launch>
+
+  <!-- 参数配置 -->
+  <arg name="enable_chassis_camera" default="true" doc="启用底盘相机深度投影"/>
+  <arg name="enable_top_camera" default="true" doc="启用顶部相机深度投影"/>
+  <arg name="enable_hand_camera" default="false" doc="启用手部相机深度投影 (需要TF)"/>
+  <arg name="publish_combined" default="true" doc="发布合并点云"/>
+  <arg name="projection_method" default="urdf" doc="投影方法: urdf, calibration, compare"/>
+  
+  <!-- 深度缩放参数 (深度值到米的转换) -->
+  <arg name="chassis_depth_scale" default="1000.0" doc="底盘相机深度缩放"/>
+  <arg name="top_depth_scale" default="1000.0" doc="顶部相机深度缩放"/>
+  <arg name="hand_depth_scale" default="1000.0" doc="手部相机深度缩放"/>
+  
+  <!-- 输入话题配置 - 统一相机话题格式 -->
+  <arg name="chassis_depth_topic" default="/camera/chassis/depth/image_rect_raw"/>
+  <arg name="top_depth_topic" default="/camera/top/depth/image_rect_raw"/>
+  <arg name="hand_depth_topic" default="/camera/hand/depth/image_rect_raw"/>
+  
+  <!-- 颜色图像话题配置 - 统一使用image_raw -->
+  <arg name="chassis_color_topic" default="/camera/chassis/color/image_raw"/>
+  <arg name="top_color_topic" default="/camera/top/color/image_raw"/>
+  <arg name="hand_color_topic" default="/camera/hand/color/image_raw"/>
+  
+  <!-- 颜色功能开关 -->
+  <arg name="enable_color" default="true" doc="启用彩色点云生成"/>
+  
+  <!-- 可视化配置 -->
+  <arg name="use_rviz" default="true" doc="启动RViz可视化"/>
+  <arg name="rviz_config" default="$(find perception)/config/depth_projection_visualization.rviz" doc="RViz配置文件"/>
+  <arg name="load_robot_description" default="true" doc="加载机器人URDF模型"/>
+  
+  <!-- 多相机深度投影节点 -->
+  <node name="depth_projection_node" pkg="perception" type="depth_projection_node.py" output="screen">
+    <param name="enable_chassis_camera" value="$(arg enable_chassis_camera)"/>
+    <param name="enable_top_camera" value="$(arg enable_top_camera)"/>
+    <param name="enable_hand_camera" value="$(arg enable_hand_camera)"/>
+    <param name="publish_combined_cloud" value="$(arg publish_combined)"/>
+    
+    <!-- 深度缩放参数 -->
+    <param name="chassis_depth_scale" value="$(arg chassis_depth_scale)"/>
+    <param name="top_depth_scale" value="$(arg top_depth_scale)"/>
+    <param name="hand_depth_scale" value="$(arg hand_depth_scale)"/>
+    
+    <!-- 输入话题 -->
+    <param name="chassis_depth_topic" value="$(arg chassis_depth_topic)"/>
+    <param name="top_depth_topic" value="$(arg top_depth_topic)"/>
+    <param name="hand_depth_topic" value="$(arg hand_depth_topic)"/>
+    
+    <!-- 颜色图像话题 -->
+    <param name="chassis_color_topic" value="$(arg chassis_color_topic)"/>
+    <param name="top_color_topic" value="$(arg top_color_topic)"/>
+    <param name="hand_color_topic" value="$(arg hand_color_topic)"/>
+    
+    <!-- 颜色功能 -->
+    <param name="enable_color" value="$(arg enable_color)"/>
+    
+    <!-- 投影方法 -->
+    <param name="projection_method" value="$(arg projection_method)"/>
+  </node>
+  
+  <!-- 相机TF由camera_driver.launch自动发布，无需重复 -->
+  
+  <!-- 机器人模型加载 -->
+  <group if="$(arg load_robot_description)">
+    <!-- 直接加载预编译的URDF文件 -->
+    <param name="robot_description" 
+           textfile="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2_description.urdf"/>
+    
+    <!-- 机器人状态发布器 -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="30.0"/>
+    </node>
+    
+    <!-- 关节状态发布器 (发布零位置) -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
+      <param name="use_gui" value="false"/>
+      <param name="rate" value="10"/>
+    </node>
+  </group>
+  
+  <!-- RViz可视化 -->
+  <group if="$(arg use_rviz)">
+    <node name="rviz_depth_projection" pkg="rviz" type="rviz" output="screen"
+          args="-d $(arg rviz_config)" respawn="false">
+      <remap from="/tf" to="/tf"/>
+      <remap from="/tf_static" to="/tf_static"/>
+    </node>
+  </group>
+  
+  <!-- 输出话题重映射 (可选) -->
+  <group ns="projected_cloud">
+    <remap from="/projected_cloud/chassis_camera" to="chassis_points"/>
+    <remap from="/projected_cloud/top_camera" to="top_points"/> 
+    <remap from="/projected_cloud/hand_camera" to="hand_points"/>
+    <remap from="/projected_cloud/combined" to="all_points"/>
+  </group>
+
+</launch>
