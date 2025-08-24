@@ -1,0 +1,215 @@
+<!-- 统一感知系统Launch文件 -->
+<!-- 整合多相机、多检测API、多TF链路的可配置感知系统 -->
+<launch>
+  
+  <!-- 核心参数配置 -->
+  <arg name="config_file" default="$(find perception)/config/perception_unified.yaml" doc="统一配置文件路径"/>
+  <arg name="debug_mode" default="true" doc="启用调试模式"/>
+  <arg name="load_robot_description" default="true" doc="加载机器人URDF模型"/>
+  <arg name="enable_visualization" default="true" doc="启用可视化组件"/>
+  <arg name="enable_tf_publisher" default="true" doc="启用TF发布"/>
+  
+  <!-- 相机驱动选择 -->
+  <arg name="start_cameras" default="true" doc="启动相机驱动"/>
+  <arg name="camera_config" default="hand_only" doc="相机配置: hand_only, chassis_only, top_only, all"/>
+  
+  <!-- 检测和投影方法选择 -->
+  <arg name="detection_method" default="grasp_anything" doc="检测方法: grasp_anything, referring_dino"/>  
+  <arg name="projection_method" default="urdf" doc="投影方法: urdf, calibration"/>
+  
+  <!-- 相机驱动启动（可选） -->
+  <group if="$(arg start_cameras)">
+    <!-- 手部相机（默认启用） -->
+    <group if="$(eval arg('camera_config') in ['hand_only', 'all'])">
+      <include file="$(find camera_driver)/launch/camera_driver.launch">
+        <arg name="camera1_enable" value="false"/>
+        <arg name="camera2_enable" value="true"/>  <!-- 手部相机 -->
+        <arg name="camera3_enable" value="false"/>
+        <arg name="enable_depth" value="true"/>
+        <arg name="enable_color" value="true"/>
+        <arg name="align_depth" value="false"/>
+        <arg name="depth_width" value="640"/>
+        <arg name="depth_height" value="480"/>
+        <arg name="color_width" value="640"/>
+        <arg name="color_height" value="480"/>
+        <arg name="enable_camera_tf" value="false"/>
+      </include>
+    </group>
+    
+    <!-- 底盘相机（按需启用） -->
+    <group if="$(eval arg('camera_config') in ['chassis_only', 'all'])">
+      <include file="$(find camera_driver)/launch/camera_driver.launch">
+        <arg name="camera1_enable" value="false"/>
+        <arg name="camera2_enable" value="false"/>
+        <arg name="camera3_enable" value="true"/>   <!-- 底盘相机 -->
+        <arg name="enable_depth" value="true"/>
+        <arg name="enable_color" value="true"/>
+        <arg name="align_depth" value="false"/>
+        <arg name="depth_width" value="640"/>
+        <arg name="depth_height" value="480"/>
+        <arg name="color_width" value="640"/>
+        <arg name="color_height" value="480"/>
+        <arg name="enable_camera_tf" value="false"/>
+      </include>
+    </group>
+    
+    <!-- 顶部相机（按需启用） -->
+    <group if="$(eval arg('camera_config') in ['top_only', 'all'])">
+      <include file="$(find camera_driver)/launch/camera_driver.launch">
+        <arg name="camera1_enable" value="true"/>   <!-- 顶部相机 -->
+        <arg name="camera2_enable" value="false"/>
+        <arg name="camera3_enable" value="false"/>
+        <arg name="enable_depth" value="true"/>
+        <arg name="enable_color" value="true"/>
+        <arg name="align_depth" value="false"/>
+        <arg name="depth_width" value="640"/>
+        <arg name="depth_height" value="480"/>
+        <arg name="color_width" value="640"/>
+        <arg name="color_height" value="480"/>
+        <arg name="enable_camera_tf" value="false"/>
+      </include>
+    </group>
+  </group>
+
+  <!-- 机器人模型和TF链 -->
+  <group if="$(arg load_robot_description)">
+    <!-- 加载机器人描述 -->
+    <param name="robot_description" 
+           textfile="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2_description.urdf"/>
+    
+    <group if="$(arg enable_tf_publisher)">
+      <!-- 机器人状态发布器 - 发布URDF TF链 -->
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+        <param name="publish_frequency" type="double" value="30.0"/>
+      </node>
+      
+      <!-- 关节状态发布器 (发布零位置) -->
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
+        <param name="use_gui" value="false"/>
+        <param name="rate" value="10"/>
+      </node>
+    </group>
+    
+    <!-- Calibration TF发布器（如果使用calibration投影方法） -->
+    <group if="$(eval arg('projection_method') == 'calibration')">
+      <node name="camera_tf_publisher" pkg="camera_driver" type="camera_tf_publisher.py" output="screen">
+        <param name="config_path" value="$(find camera_driver)/config"/>
+        <param name="publish_rate" value="30.0"/>
+      </node>
+    </group>
+  </group>
+
+  
+  <!-- 相机启动延时 - 修复OGRE图像流问题 -->
+  <group if="$(arg start_cameras)">
+    <arg name="camera_startup_delay" default="3.0" doc="相机启动后延时(秒)"/>
+    <!-- 使用timer节点创建启动延时 -->
+    <node name="camera_startup_delay" pkg="perception" type="startup_delay.py" output="screen">
+      <param name="delay_seconds" value="$(arg camera_startup_delay)"/>
+      <param name="message" value="等待相机启动和图像流稳定..."/>
+    </node>
+  </group>
+
+  <!-- 统一感知节点 - 核心节点 -->
+  <node name="unified_perception_node" pkg="perception" type="perception_unified_node.py" 
+        output="screen" launch-prefix="env -u LD_PRELOAD">
+    
+    <!-- 核心参数 -->
+    <param name="config_file" value="$(arg config_file)"/>
+    <param name="debug_mode" value="$(arg debug_mode)"/>
+    
+    <!-- 运行时覆盖参数（可以覆盖配置文件中的设置） -->
+    <rosparam subst_value="true">
+      runtime_overrides:
+        projection_method: "$(arg projection_method)"
+        detection_method: "$(arg detection_method)"
+        enable_visualization: $(arg enable_visualization)
+    </rosparam>
+    
+    <!-- 全局设置覆盖 -->
+    <rosparam>
+      global_settings:
+        depth_scale: 1000.0
+        image_buffer_size: 2
+        sync_tolerance: 0.1
+        max_worker_threads: 4
+    </rosparam>
+  </node>
+
+  <!-- 可视化组件 -->
+  <group if="$(arg enable_visualization)">
+    <!-- 3D抓取可视化器 (复用现有的) -->
+    <node name="grasp_3d_visualizer" pkg="perception" type="grasp_3d_visualizer.py" output="screen">
+      <param name="show_bbox" value="true"/>
+      <param name="show_grasp_poses" value="true"/>
+      <param name="show_touching_points" value="true"/>
+      <param name="show_labels" value="true"/>
+      <param name="max_grasps_per_object" value="5"/>
+      <param name="projection_method" value="$(arg projection_method)"/>
+      
+      <!-- 订阅统一感知节点的输出 -->
+      <remap from="/perception/hand/grasps_3d" to="/perception/hand/grasps_3d"/>
+    </node>
+    
+    <!-- TF转换器 (复用现有的，用于MoveIt接口) -->
+    <node name="grasp_tf_converter" pkg="perception" type="grasp_tf_converter.py" output="screen">
+      <param name="target_frame_mode" value="mobile_base"/>
+      <param name="projection_method" value="$(arg projection_method)"/>
+      
+      <!-- 订阅统一感知节点的3D输出 -->
+      <remap from="/perception/hand/grasps_3d" to="/perception/hand/grasps_3d"/>
+    </node>
+    
+    <!-- Referring检测可视化器 -->
+    <node name="referring_visualizer" pkg="perception" type="referring_visualizer.py" output="screen">
+      <param name="camera_name" value="hand"/>
+      <param name="show_bbox" value="true"/>
+      <param name="show_labels" value="true"/>
+      <param name="show_points" value="true"/>
+    </node>
+    
+    <!-- RViz配置控制器 -->
+    <node name="rviz_config_controller" pkg="perception" type="rviz_config_controller.py" output="screen">
+      <param name="config_file" value="$(arg config_file)"/>
+    </node>
+    
+    <!-- RViz可视化（使用通用配置） -->
+    <node name="rviz_unified_perception" pkg="rviz" type="rviz" output="screen"
+          args="-d $(find perception)/config/perception_universal.rviz" respawn="false">
+      <remap from="/tf" to="/tf"/>
+      <remap from="/tf_static" to="/tf_static"/>
+    </node>
+  </group>
+
+  <!-- 系统监控和调试工具 -->
+  <group if="$(arg debug_mode)">
+    <!-- 系统状态监控 -->
+    <node name="perception_monitor" pkg="perception" type="perception_monitor.py" output="screen" required="false">
+      <param name="monitor_interval" value="10.0"/>
+      <param name="log_performance" value="true"/>
+    </node>
+    
+    <!-- 动态参数重配置 -->
+    <node name="dynamic_reconfigure_server" pkg="dynamic_reconfigure" type="reconfigure_gui" 
+          args="unified_perception_node" output="screen" required="false"/>
+  </group>
+
+  <!-- 服务接口说明 -->
+  <!-- 
+  可用服务:
+  - /unified_perception/restart : 重启整个感知系统
+  - /unified_perception/reload_config : 重新加载配置文件
+  
+  可用话题:
+  - /unified_perception/status : 系统状态信息
+  - /perception/hand/grasps : 2D抓取检测结果
+  - /perception/hand/grasps_3d : 3D抓取检测结果  
+  - /perception/hand/grasp_points : 3D抓取点云
+  - /perception/hand/vis_image : 可视化图像
+  
+  参数配置:
+  - 修改 $(arg config_file) 中的配置以调整系统行为
+  - 支持运行时通过服务重新加载配置
+  -->
+
+</launch>

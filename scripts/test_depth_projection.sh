@@ -9,10 +9,10 @@
 # 相机配置数据结构 - Linus式设计：统一处理所有相机
 declare -A CAMERA_CONFIG=(
     # 相机启用参数
-    ["hand_enable"]="enable_hand_camera:=true enable_chassis_camera:=false enable_top_camera:=false"
-    ["top_enable"]="enable_top_camera:=true enable_hand_camera:=false enable_chassis_camera:=false"  
-    ["chassis_enable"]="enable_chassis_camera:=true enable_hand_camera:=false enable_top_camera:=false"
-    ["all_enable"]="enable_hand_camera:=true enable_chassis_camera:=true enable_top_camera:=true"
+    ["hand_enable"]="hand_enable:=true chassis_enable:=false top_enable:=false"
+    ["top_enable"]="top_enable:=true hand_enable:=false chassis_enable:=false"  
+    ["chassis_enable"]="chassis_enable:=true hand_enable:=false top_enable:=false"
+    ["all_enable"]="hand_enable:=true chassis_enable:=true top_enable:=true"
     
     # 深度话题
     ["hand_depth_topic"]="/camera/hand/depth/image_rect_raw"
@@ -115,7 +115,7 @@ cleanup() {
     
     # 强制终止进程
     echo "  强制终止残留进程..."
-    pkill -f realsense2_camera 2>/dev/null || true
+    #pkill -f realsense2_camera 2>/dev/null || true
     pkill -f depth_projection 2>/dev/null || true
     pkill -f rviz 2>/dev/null || true
     
@@ -153,9 +153,12 @@ initial_cleanup
 
 
 
-:<<BLK
 # 2. RealSense硬件检测和复位 - Linus式实用主义修复
 realsense_hardware_check() {
+
+    #skip
+    return 0
+
     echo ">>> 检查RealSense硬件连接..."
     
     # 第一次检查：直接尝试枚举设备
@@ -204,14 +207,13 @@ realsense_hardware_check || {
     echo "   某些功能可能不可用，建议检查硬件连接"
     echo ""
 }
-BLK
 
 
 # 3. 启动相机驱动
 echo ">>> 启动相机驱动（${CAMERA_NAME}）..."
-roslaunch camera_driver camera_driver.launch ${CAMERA_ENABLE} &
+roslaunch camera_driver camera_driver.launch ${CAMERA_ENABLE} & 
 CAMERA_PID=$!
-sleep 12
+sleep 10
 
 # 4. 验证相机数据流
 echo ">>> 验证相机数据流..."
@@ -349,26 +351,23 @@ if [ "$failed_cameras" -gt 0 ]; then
     fi
 fi
 
+
 echo "投影方法: $PROJECTION_METHOD"
 
 case $PROJECTION_METHOD in
     "urdf"|"calibration")
         echo "使用 $PROJECTION_METHOD 投影方法"
-        export PATH="/usr/bin:$PATH" && python3 /home/agilex/MobileManipulator/scripts/_cc_test_projection_methods.py \
-            _camera_name:=$CAMERA_TYPE \
-            _projection_method:=$PROJECTION_METHOD &
+        export PATH="/usr/bin:$PATH" && python3 /home/agilex/MobileManipulator/scripts/test_rgbd_projection.py &
         TEST_PID=$!
         ;;
     "compare")
         echo "对比两种投影方法"
-        export PATH="/usr/bin:$PATH" && python3 /home/agilex/MobileManipulator/scripts/_cc_test_projection_methods.py \
-            _camera_name:=$CAMERA_TYPE \
-            _projection_method:=compare &
+        export PATH="/usr/bin:$PATH" && python3 /home/agilex/MobileManipulator/scripts/test_rgbd_projection.py &
         TEST_PID=$!
         ;;
 esac
 
-sleep 5
+sleep 15  # 给Python测试脚本更多时间等待相机稳定
 
 # 9. 显示系统信息
 echo ""

@@ -1,25 +1,25 @@
 <launch>
   
-  <!-- 相机配置 - 移除type属性，使用引号确保字符串 -->
-  <arg name="camera1_enable"       default="true"/>
-  <arg name="camera1_name"         default="camera/top"/>
-  <arg name="camera1_serial_no"    default="318122302992"/>
+  <!-- 相机配置 - 降低带宽设置 -->
+  <arg name="top_enable"       default="false"/>
+  <arg name="top_name"         default="camera/top"/>
+  <arg name="top_serial_no"    default="	318122302992"/>
   
-  <arg name="camera2_enable"       default="true"/>
-  <arg name="camera2_name"         default="camera/hand"/>
-  <arg name="camera2_serial_no"    default="337122071190"/>
+  <arg name="hand_enable"       default="false"/>
+  <arg name="hand_name"         default="camera/hand"/>
+  <arg name="hand_serial_no"    default="	337122071190"/>
   
-  <arg name="camera3_enable"       default="true"/>
-  <arg name="camera3_name"         default="camera/chassis"/>
-  <arg name="camera3_serial_no"    default="337122071540"/>
+  <arg name="chassis_enable"       default="false"/>
+  <arg name="chassis_name"         default="camera/chassis"/>
+  <arg name="chassis_serial_no"    default="    337122071540"/>
   
-  <!-- 图像配置 -->
+  <!-- 标准图像配置 -->
   <arg name="depth_width"          default="640"/>
   <arg name="depth_height"         default="480"/>
-  <arg name="depth_fps"            default="30"/>
+  <arg name="depth_fps"            default="15"/>
   <arg name="color_width"          default="640"/>
   <arg name="color_height"         default="480"/>
-  <arg name="color_fps"            default="30"/>
+  <arg name="color_fps"            default="15"/>
   
   <!-- 最小功能集 -->
   <arg name="enable_depth"         default="true"/>
@@ -27,14 +27,15 @@
   <arg name="enable_pointcloud"    default="false"/>
   <arg name="enable_sync"          default="false"/>
   <arg name="align_depth"          default="false"/>
-  <arg name="initial_reset"        default="false"/>
+  <arg name="initial_reset"        default="true"/>  <!-- 启用初始重置 -->
   <arg name="filters"              default=""/>
+  <arg name="enable_camera_tf"     default="true"/>   <!-- TF发布器控制 -->
   
-  <!-- Camera 1 - Top -->
-  <include file="$(find realsense2_camera)/launch/rs_camera.launch" if="$(arg camera1_enable)">
-    <arg name="camera"             value="$(arg camera1_name)"/>
-    <arg name="serial_no"          value="$(arg camera1_serial_no)"/>
-    <arg name="tf_prefix"          value="$(arg camera1_name)"/>
+  <!-- top - Top -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch" if="$(arg top_enable)">
+    <arg name="camera"             value="$(arg top_name)"/>
+    <arg name="serial_no"          value="$(arg top_serial_no)"/>
+    <arg name="tf_prefix"          value="$(arg top_name)"/>
     <arg name="initial_reset"      value="$(arg initial_reset)"/>
     <arg name="enable_pointcloud"  value="$(arg enable_pointcloud)"/>
     <arg name="enable_depth"       value="$(arg enable_depth)"/>
@@ -54,12 +55,12 @@
     <arg name="filters"            value="$(arg filters)"/>
   </include>
   
-  <!-- Camera 2 - Hand -->
-  <include file="$(find realsense2_camera)/launch/rs_camera.launch" if="$(arg camera2_enable)">
-    <arg name="camera"              value="$(arg camera2_name)"/>
-    <arg name="serial_no"          value="$(arg camera2_serial_no)"/>
-    <arg name="tf_prefix"          value="$(arg camera2_name)"/>
-    <arg name="initial_reset"      value="false"/>
+  <!-- hand - Hand -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch" if="$(arg hand_enable)">
+    <arg name="camera"              value="$(arg hand_name)"/>
+    <arg name="serial_no"          value="$(arg hand_serial_no)"/>
+    <arg name="tf_prefix"          value="$(arg hand_name)"/>
+    <arg name="initial_reset"      value="true"/>  <!-- 启用初始重置 -->
     <arg name="enable_pointcloud"  value="$(arg enable_pointcloud)"/>
     <arg name="enable_depth"       value="$(arg enable_depth)"/>
     <arg name="enable_color"       value="$(arg enable_color)"/>
@@ -78,12 +79,12 @@
     <arg name="filters"            value="$(arg filters)"/>
   </include>
   
-  <!-- Camera 3 - Chassis -->
-  <include file="$(find realsense2_camera)/launch/rs_camera.launch" if="$(arg camera3_enable)">
-    <arg name="camera"              value="$(arg camera3_name)"/>
-    <arg name="serial_no"          value="$(arg camera3_serial_no)"/>
-    <arg name="tf_prefix"          value="$(arg camera3_name)"/>
-    <arg name="initial_reset"      value="false"/>
+  <!-- chassis - Chassis -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch" if="$(arg chassis_enable)">
+    <arg name="camera"              value="$(arg chassis_name)"/>
+    <arg name="serial_no"          value="$(arg chassis_serial_no)"/>
+    <arg name="tf_prefix"          value="$(arg chassis_name)"/>
+    <arg name="initial_reset"      value="true"/>  <!-- 启用初始重置 -->
     <arg name="enable_pointcloud"  value="$(arg enable_pointcloud)"/>
     <arg name="enable_depth"       value="$(arg enable_depth)"/>
     <arg name="enable_color"       value="$(arg enable_color)"/>
@@ -102,18 +103,12 @@
     <arg name="filters"            value="$(arg filters)"/>
   </include>
   
-  <!-- 相机TF发布器 - 基于标定外参配置 -->
-  <arg name="enable_camera_tf" default="true" doc="启用相机TF发布器"/>
-  <arg name="config_path" default="$(find camera_driver)/config" doc="相机外参配置文件路径"/>
-  
+  <!-- 相机TF发布器 -->
   <group if="$(arg enable_camera_tf)">
-    <node name="camera_tf_publisher" 
-          pkg="camera_driver" 
-          type="camera_tf_publisher.py" 
-          output="screen"
-          respawn="true">
-      <param name="config_path" value="$(arg config_path)"/>
+    <node name="camera_tf_publisher" pkg="camera_driver" type="camera_tf_publisher.py" output="screen">
+      <param name="config_path" value="$(find camera_driver)/config"/>
+      <param name="publish_rate" value="30.0"/>
     </node>
   </group>
-
+  
 </launch>

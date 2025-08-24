@@ -1,0 +1,130 @@
+<!-- 改进的3D抓取检测Launch文件 - 支持双TF链投影方法 -->
+<launch>
+  
+  <!-- 核心参数配置 -->
+  <arg name="visualize" default="true" doc="启用RViz可视化"/>
+  <arg name="target_frame_mode" default="mobile_base" doc="Options: arm_base, mobile_base, world"/>
+  <arg name="projection_method" default="calibration" doc="投影方法: urdf, calibration, compare"/>
+  <arg name="enable_color" default="true" doc="启用彩色点云生成"/>
+  <arg name="load_robot_description" default="true" doc="加载机器人URDF模型"/>
+  <arg name="compare_mode" default="false" doc="对比模式：同时显示两种投影方法结果"/>
+  <arg name="config_path" default="$(find camera_driver)/config" doc="相机配置文件路径"/>
+
+  <!-- 相机驱动由start_grasp3d.sh负责启动，避免重复启动冲突 -->
+  <!-- 注释掉相机驱动启动，由外部脚本管理 -->
+  <!--
+  <include file="$(find camera_driver)/launch/camera_driver.launch">
+    <arg name="camera1_enable" value="false"/>
+    <arg name="camera2_enable" value="true"/>
+    <arg name="camera3_enable" value="false"/>
+    <arg name="enable_depth" value="true"/>
+    <arg name="enable_color" value="true"/>
+    <arg name="align_depth" value="false"/>
+    <arg name="depth_width" value="640"/>
+    <arg name="depth_height" value="480"/>
+    <arg name="color_width" value="640"/>
+    <arg name="color_height" value="480"/>
+  </include>
+  -->
+
+  <!-- 深度投影系统 - 使用统一的depth_projector_core -->
+  <node name="hand_depth_projection" pkg="perception" type="depth_projection_node.py" output="screen">
+    <param name="enable_hand_camera" value="true"/>
+    <param name="enable_chassis_camera" value="false"/>
+    <param name="enable_top_camera" value="false"/>
+    <param name="publish_combined_cloud" value="false"/>
+    <param name="projection_method" value="$(arg projection_method)"/>
+    <param name="enable_color" value="$(arg enable_color)"/>
+    <param name="config_path" value="$(arg config_path)"/>
+    
+    <!-- 手部相机深度投影参数 -->
+    <param name="hand_depth_scale" value="1000.0"/>
+    <param name="hand_depth_topic" value="/camera/hand/depth/image_rect_raw"/>
+    <param name="hand_color_topic" value="/camera/hand/color/image_raw"/>
+  </node>
+
+  <!-- 机器人模型加载 (支持两种TF链) -->
+  <group if="$(arg load_robot_description)">
+    <param name="robot_description" 
+           textfile="$(find mobile_manipulator2_description)/urdf/mobile_manipulator2_description.urdf"/>
+    
+    <!-- 机器人状态发布器 - 发布URDF TF链 -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="30.0"/>
+    </node>
+    
+    <!-- 关节状态发布器 (发布零位置) -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
+      <param name="use_gui" value="false"/>
+      <param name="rate" value="10"/>
+    </node>
+  </group>
+
+  <!-- 2D抓取检测 (清理LD_PRELOAD避免libffi冲突) -->
+  <node name="hand_grasp_detector" pkg="perception" type="hand_grasp_detector.py" output="screen" launch-prefix="env -u LD_PRELOAD">
+    <param name="rate" value="2.0"/>  <!-- 降低频率避免计算负载 -->
+    <param name="visualize" value="$(arg visualize)"/>
+    <param name="image_topic" value="/camera/hand/color/image_raw"/>
+    <param name="camera_info_topic" value="/camera/hand/color/camera_info"/>
+  </node>
+
+  <!-- 改进的3D深度处理器 - 使用depth_projector_core -->
+  <node name="depth_grasp_processor_dual" pkg="perception" type="depth_grasp_processor_v2.py" output="screen">
+    <param name="projection_method" value="$(arg projection_method)"/>
+    <param name="config_path" value="$(arg config_path)"/>
+    <param name="enable_color" value="$(arg enable_color)"/>
+    <param name="depth_topic" value="/camera/hand/depth/image_rect_raw"/>
+    <param name="color_topic" value="/camera/hand/color/image_raw"/>
+    <param name="camera_info_topic" value="/camera/hand/depth/camera_info"/>
+  </node>
+
+  <!-- TF转换器 - 支持不同坐标系 -->
+  <node name="grasp_tf_converter" pkg="perception" type="grasp_tf_converter.py" output="screen">
+    <param name="target_frame_mode" value="$(arg target_frame_mode)"/>
+    <param name="projection_method" value="$(arg projection_method)"/>
+  </node>
+
+  <!-- 对比模式：同时运行两种投影方法 -->
+  <group if="$(arg compare_mode)">
+    <node name="depth_grasp_processor_urdf" pkg="perception" type="depth_grasp_processor_v2.py" output="screen">
+      <param name="projection_method" value="urdf"/>
+      <param name="config_path" value="$(arg config_path)"/>
+      <param name="enable_color" value="$(arg enable_color)"/>
+      <param name="depth_topic" value="/camera/hand/depth/image_rect_raw"/>
+      <param name="color_topic" value="/camera/hand/color/image_raw"/>
+      <param name="camera_info_topic" value="/camera/hand/depth/camera_info"/>
+      <remap from="/perception/hand/grasps_3d" to="/perception/hand/grasps_3d_urdf"/>
+    </node>
+    
+    <node name="depth_grasp_processor_calib" pkg="perception" type="depth_grasp_processor_v2.py" output="screen">
+      <param name="projection_method" value="calibration"/>
+      <param name="config_path" value="$(arg config_path)"/>
+      <param name="enable_color" value="$(arg enable_color)"/>
+      <param name="depth_topic" value="/camera/hand/depth/image_rect_raw"/>
+      <param name="color_topic" value="/camera/hand/color/image_raw"/>
+      <param name="camera_info_topic" value="/camera/hand/depth/camera_info"/>
+      <remap from="/perception/hand/grasps_3d" to="/perception/hand/grasps_3d_calibration"/>
+    </node>
+  </group>
+
+  <!-- 3D可视化器 - 显示投影结果 -->
+  <node name="grasp_3d_visualizer" pkg="perception" type="grasp_3d_visualizer.py" output="screen" if="$(arg visualize)">
+    <param name="show_bbox" value="true"/>
+    <param name="show_grasp_poses" value="true"/>
+    <param name="show_touching_points" value="true"/>
+    <param name="show_labels" value="true"/>
+    <param name="max_grasps_per_object" value="5"/>
+    <param name="projection_method" value="$(arg projection_method)"/>
+    <param name="compare_mode" value="$(arg compare_mode)"/>
+  </node>
+
+  <!-- RViz可视化 - 使用专门的配置文件 -->
+  <group if="$(arg visualize)">
+    <node name="rviz_grasp_3d" pkg="rviz" type="rviz" output="screen"
+          args="-d $(find perception)/config/grasp_3d_view_simple.rviz" respawn="false">
+      <remap from="/tf" to="/tf"/>
+      <remap from="/tf_static" to="/tf_static"/>
+    </node>
+  </group>
+
+</launch>

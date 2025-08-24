@@ -37,6 +37,11 @@ class CameraDepthProjector:
         elif self.projection_method == 'calibration':
             # 标定文件内参
             self._load_intrinsics_from_config()
+        elif self.projection_method == 'compare':
+            # 对比模式：优先使用标定内参，TF使用标定链
+            rospy.loginfo("对比模式：使用标定内参，将发布两条TF链用于对比")
+            self._load_intrinsics_from_config()
+            # 在对比模式下，主要使用标定方法，但会在节点中创建对比发布器
         else:
             raise ValueError(f"Unknown projection method: {self.projection_method}")
             
@@ -53,7 +58,7 @@ class CameraDepthProjector:
         try:
             from sensor_msgs.msg import CameraInfo
             rospy.loginfo(f"Getting RealSense intrinsics from {topic}...")
-            msg = rospy.wait_for_message(topic, CameraInfo, timeout=2.0)
+            msg = rospy.wait_for_message(topic, CameraInfo, timeout=10.0)
             
             self.K = np.array(msg.K).reshape(3, 3)
             self.D = np.array(msg.D) if len(msg.D) > 0 else np.zeros(5)
@@ -155,6 +160,12 @@ class CameraDepthProjector:
                 'hand_camera': 'camera/hand_depth_optical_frame'
             },
             'calibration': {
+                'chassis_camera': 'calibration/chassis_camera_optical',
+                'top_camera': 'calibration/top_camera_optical',
+                'hand_camera': 'calibration/hand_camera_optical'
+            },
+            'compare': {
+                # 对比模式默认使用标定链，但节点中会处理双链对比
                 'chassis_camera': 'calibration/chassis_camera_optical',
                 'top_camera': 'calibration/top_camera_optical',
                 'hand_camera': 'calibration/hand_camera_optical'
@@ -326,6 +337,48 @@ class CameraDepthProjector:
         rospy.logdebug(f"Projected {camera_points.shape[0]} RGBD points to robot coordinates")
         
         return robot_points, colors, valid_mask
+
+    def project_depth_to_3d(self, pixel_coords, depths):
+        """
+        投影特定像素点到3D机器人坐标系
+        
+        Args:
+            pixel_coords: Nx2 numpy array, 像素坐标 [[u1,v1], [u2,v2], ...]
+            depths: Nx1 numpy array, 对应的深度值 (米)
+            
+        Returns:
+            points_3d: Nx3 numpy array, 机器人坐标系下的3D点
+        """
+        pixel_coords = np.array(pixel_coords)
+        depths = np.array(depths)
+        
+        if pixel_coords.ndim == 1:
+            pixel_coords = pixel_coords.reshape(1, -1)
+        if depths.ndim == 0:
+            depths = depths.reshape(1)
+            
+        # 转换为相机坐标系
+        u = pixel_coords[:, 0]
+        v = pixel_coords[:, 1]
+        
+        # 使用内参矩阵反投影
+        fx, fy = self.K[0, 0], self.K[1, 1]
+        cx, cy = self.K[0, 2], self.K[1, 2]
+        
+        # 相机坐标系下的3D点
+        x_cam = (u - cx) * depths / fx
+        y_cam = (v - cy) * depths / fy
+        z_cam = depths
+        
+        camera_points = np.column_stack([x_cam, y_cam, z_cam])
+        
+        # 转换到机器人坐标系
+        T_camera_to_robot = self._get_transform_to_robot_base()
+        camera_points_homo = np.hstack([camera_points, np.ones((camera_points.shape[0], 1))])
+        robot_points_homo = (T_camera_to_robot @ camera_points_homo.T).T
+        robot_points = robot_points_homo[:, :3]
+        
+        return robot_points
         
     def project_to_robot_coordinates(self, depth_image, depth_scale=1000.0):
         """

@@ -1,269 +1,300 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
-3D Grasp Processor V2 - with relaxed synchronization
-Uses latest messages instead of strict time sync
+改进的3D抓取处理器 - 使用depth_projector_core统一双TF链投影
 """
-
 
 import rospy
 import numpy as np
-from sensor_msgs.msg import Image, CameraInfo
-from perception.msg import (GraspDetection, GraspDetectionArray, 
+import sys
+import os
+from sensor_msgs.msg import Image, CameraInfo, PointCloud2
+from perception.msg import (GraspDetectionArray, 
                            GraspPose3D, GraspDetection3D, GraspDetectionArray3D,
                            TouchingPoint3D)
-from geometry_msgs.msg import Point, Pose, Quaternion
-from cv_bridge import CvBridge
-import tf.transformations as tf_trans
-import threading
+from geometry_msgs.msg import Point
+import struct
 
+# 添加depth_projector_core路径
+sys.path.append(os.path.dirname(__file__))
+from depth_projector_core import CameraDepthProjector
 
-class DepthGraspProcessorV2:
+class DualProjectionGraspProcessor:
     def __init__(self):
-        rospy.init_node('depth_grasp_processor_v2')
+        rospy.init_node('depth_grasp_processor_v2', anonymous=True)
         
-        # Camera intrinsics
-        self.fx = None
-        self.fy = None
-        self.cx = None
-        self.cy = None
-        self.depth_scale = 0.001  # mm to meters
+        # 参数获取
+        self.projection_method = rospy.get_param('~projection_method', 'calibration')
+        self.config_path = rospy.get_param('~config_path', '/home/agilex/MobileManipulator/src/robot_drivers/camera_driver/config')
+        self.enable_color = rospy.get_param('~enable_color', True)
+        self.depth_topic = rospy.get_param('~depth_topic', '/camera/hand/depth/image_rect_raw')
+        self.color_topic = rospy.get_param('~color_topic', '/camera/hand/color/image_raw')
+        self.camera_info_topic = rospy.get_param('~camera_info_topic', '/camera/hand/depth/camera_info')
         
-        self.bridge = CvBridge()
+        # 过滤参数
+        self.min_depth = rospy.get_param('~min_depth', 200)      # 最小深度mm
+        self.max_depth = rospy.get_param('~max_depth', 2000)     # 最大深度mm
+        self.min_z_height = rospy.get_param('~min_z_height', -0.3) # 最小Z高度m (base_link在底盘上表面)
+        self.max_z_height = rospy.get_param('~max_z_height', 1.5)  # 最大Z高度m
+        self.max_xy_dist = rospy.get_param('~max_xy_dist', 1.5)  # 最大XY距离m
+        self.min_score = rospy.get_param('~min_score', 0.3)      # 最小置信度
         
-        # Latest messages (no strict sync)
+        rospy.loginfo(f"🚀 启动3D抓取处理器 v2")
+        rospy.loginfo(f"  投影方法: {self.projection_method}")
+        rospy.loginfo(f"  彩色模式: {self.enable_color}")
+        rospy.loginfo(f"  深度范围: {self.min_depth}-{self.max_depth}mm")
+        rospy.loginfo(f"  Z高度范围: {self.min_z_height}-{self.max_z_height}m")
+        rospy.loginfo(f"  最小置信度: {self.min_score}")
+        
+        # 初始化深度投影器
+        try:
+            self.depth_projector = CameraDepthProjector(
+                'hand_camera', 
+                self.projection_method, 
+                self.config_path
+            )
+            rospy.loginfo("✅ 深度投影器初始化成功")
+            rospy.loginfo(f"  相机内参: fx={self.depth_projector.K[0,0]:.1f}, fy={self.depth_projector.K[1,1]:.1f}")
+            rospy.loginfo(f"  相机坐标系: {self.depth_projector.camera_frame}")
+        except Exception as e:
+            rospy.logerr(f"❌ 深度投影器初始化失败: {e}")
+            return
+        
+        # 数据存储
         self.latest_depth = None
-        self.latest_grasps = None
-        self.depth_lock = threading.Lock()
-        self.grasp_lock = threading.Lock()
+        self.latest_color = None
+        self.latest_grasps_2d = None
+        self.depth_scale = 1000.0  # 深度值缩放
         
-        # Publishers
-        self.grasp3d_pub = rospy.Publisher(
-            '/perception/hand/grasps_3d', 
-            GraspDetectionArray3D,
-            queue_size=1
-        )
+        # 发布器
+        self.pub_grasps_3d = rospy.Publisher('/perception/hand/grasps_3d', 
+                                            GraspDetectionArray3D, queue_size=1)
+        self.pub_pointcloud = rospy.Publisher('/perception/hand/grasp_points', 
+                                            PointCloud2, queue_size=1)
         
-        # Subscribers
-        self.camera_info_sub = rospy.Subscriber(
-            '/camera/hand/depth/camera_info',
-            CameraInfo,
-            self.camera_info_callback
-        )
+        # 订阅器
+        rospy.Subscriber(self.depth_topic, Image, self.depth_callback)
+        if self.enable_color:
+            rospy.Subscriber(self.color_topic, Image, self.color_callback)
+        rospy.Subscriber('/perception/hand/grasps', GraspDetectionArray, self.grasp_2d_callback)
         
-        self.depth_sub = rospy.Subscriber(
-            '/camera/hand/aligned_depth_to_color/image_raw',
-            Image,
-            self.depth_callback
-        )
+        rospy.loginfo("🎯 准备处理3D抓取检测...")
         
-        self.grasp_sub = rospy.Subscriber(
-            '/perception/hand/grasps',
-            GraspDetectionArray,
-            self.grasp_callback
-        )
-        
-        rospy.loginfo("3D Grasp processor V2 initialized (relaxed sync)")
-    
-    def camera_info_callback(self, msg):
-        """Extract camera intrinsics"""
-        if self.fx is None:
-            self.fx = msg.K[0]
-            self.fy = msg.K[4]
-            self.cx = msg.K[2]
-            self.cy = msg.K[5]
-            rospy.loginfo(f"Camera intrinsics: fx={self.fx:.2f}, fy={self.fy:.2f}, cx={self.cx:.2f}, cy={self.cy:.2f}")
-    
     def depth_callback(self, msg):
-        """Store latest depth image"""
-        with self.depth_lock:
-            self.latest_depth = msg
-            rospy.logdebug("Updated depth image")
+        """深度图回调"""
+        self.latest_depth = self._image_msg_to_array(msg)
+        
+    def color_callback(self, msg):
+        """彩色图回调"""
+        if self.enable_color:
+            self.latest_color = self._image_msg_to_array(msg, is_color=True)
     
-    def grasp_callback(self, msg):
-        """Process grasps when received"""
-        with self.grasp_lock:
-            self.latest_grasps = msg
-        
-        # Try to process with latest depth
-        self.process_if_ready()
+    def grasp_2d_callback(self, msg):
+        """2D抓取检测回调"""
+        self.latest_grasps_2d = msg
+        self._process_3d_grasps()
     
-    def process_if_ready(self):
-        """Process if we have all required data"""
-        if self.fx is None:
-            rospy.logwarn_throttle(5, "Waiting for camera intrinsics...")
+    def _image_msg_to_array(self, msg, is_color=False):
+        """ROS Image消息转numpy数组"""
+        try:
+            if is_color:
+                # RGB8格式
+                data = np.frombuffer(msg.data, dtype=np.uint8)
+                image = data.reshape(msg.height, msg.width, 3)
+                return image
+            else:
+                # 深度图 16UC1格式
+                data = np.frombuffer(msg.data, dtype=np.uint16)
+                image = data.reshape(msg.height, msg.width)
+                return image.astype(np.float32)
+        except Exception as e:
+            rospy.logwarn(f"图像转换失败: {e}")
+            return None
+    
+    def _process_3d_grasps(self):
+        """处理3D抓取检测"""
+        if self.latest_depth is None or self.latest_grasps_2d is None:
             return
-        
-        with self.depth_lock:
-            depth_msg = self.latest_depth
-        
-        if depth_msg is None:
-            rospy.logwarn_throttle(5, "Waiting for depth image...")
+            
+        if len(self.latest_grasps_2d.detections) == 0:
             return
-        
-        with self.grasp_lock:
-            grasp_msg = self.latest_grasps
-        
-        if grasp_msg is None:
-            return
-        
-        # Just use latest depth image, don't check time
-        # time_diff = abs((grasp_msg.header.stamp - depth_msg.header.stamp).to_sec())
-        # rospy.logdebug(f"Time diff: {time_diff:.3f}s")
         
         try:
-            # Convert depth image
-            depth_image = self.bridge.imgmsg_to_cv2(depth_msg, "16UC1")
-            depth_meters = depth_image.astype(np.float32) * self.depth_scale
+            # 提取2D抓取点
+            grasp_points_2d = []
+            colors = []
+            valid_detection_indices = []
             
-            # Create 3D grasp message
-            grasp3d_msg = GraspDetectionArray3D()
-            grasp3d_msg.header = grasp_msg.header
+            for det_idx, detection in enumerate(self.latest_grasps_2d.detections):
+                # 过滤低置信度检测
+                if detection.score < self.min_score:
+                    rospy.logdebug(f"跳过检测{det_idx}: 置信度{detection.score:.2f} < {self.min_score}")
+                    continue
+                detection_has_valid = False
+                for grasp in detection.grasp_poses:
+                    # 抓取中心点
+                    u = int(grasp.x)
+                    v = int(grasp.y)
+                    
+                    if 0 <= u < self.latest_depth.shape[1] and 0 <= v < self.latest_depth.shape[0]:
+                        depth_value = self.latest_depth[v, u]
+                        
+                        # 如果深度为0，尝试使用邻域深度
+                        if depth_value == 0:
+                            # 搜索邻域有效深度
+                            for radius in [5, 10, 15, 20]:
+                                u_min = max(0, u-radius)
+                                u_max = min(self.latest_depth.shape[1], u+radius+1)
+                                v_min = max(0, v-radius)
+                                v_max = min(self.latest_depth.shape[0], v+radius+1)
+                                
+                                neighborhood = self.latest_depth[v_min:v_max, u_min:u_max]
+                                valid_neighbor = neighborhood[neighborhood > 0]
+                                
+                                if len(valid_neighbor) > 0:
+                                    # 使用中位数作为估计深度
+                                    depth_value = np.median(valid_neighbor)
+                                    rospy.logdebug(f"使用邻域深度(半径{radius}): {depth_value:.0f}mm")
+                                    break
+                        
+                        # 深度范围过滤
+                        if self.min_depth <= depth_value <= self.max_depth:
+                            grasp_points_2d.append([u, v, depth_value])
+                            detection_has_valid = True
+                            rospy.loginfo(f"有效抓取点: u={u}, v={v}, depth={depth_value:.0f}mm")
+                            
+                            # 获取颜色信息
+                            if self.enable_color and self.latest_color is not None:
+                                color = self.latest_color[v, u]
+                                colors.append(color)
+                            else:
+                                colors.append([255, 255, 255])  # 默认白色
+                
+                if detection_has_valid:
+                    valid_detection_indices.append(det_idx)
             
-            # Process each detection
-            for detection in grasp_msg.detections:
-                grasp3d = self.convert_to_3d(detection, depth_meters)
-                if grasp3d is not None:
-                    grasp3d_msg.detections.append(grasp3d)
+            if not grasp_points_2d:
+                rospy.logwarn("没有找到有效的3D抓取点")
+                return
             
-            # Publish
-            if grasp3d_msg.detections:
-                self.grasp3d_pub.publish(grasp3d_msg)
-                rospy.loginfo(f"Published {len(grasp3d_msg.detections)} 3D grasps (time_diff={time_diff:.3f}s)")
+            # 使用depth_projector_core进行3D投影
+            grasp_points_2d = np.array(grasp_points_2d)
+            colors = np.array(colors) if colors else None
+            
+            # 投影到3D空间
+            points_3d = self.depth_projector.project_depth_to_3d(
+                grasp_points_2d[:, :2],  # u, v坐标
+                grasp_points_2d[:, 2] / self.depth_scale  # 深度值(米)
+            )
+            
+            if points_3d is None or len(points_3d) == 0:
+                rospy.logwarn("3D投影失败")
+                return
+            
+            # 进一步过滤3D点
+            filtered_points = []
+            filtered_colors = []
+            for i, point_3d in enumerate(points_3d):
+                x, y, z = point_3d
+                
+                # Z高度过滤
+                if z < self.min_z_height or z > self.max_z_height:
+                    rospy.logwarn(f"过滤点: Z={z:.3f}m 超出范围[{self.min_z_height}, {self.max_z_height}]")
+                    continue
+                
+                # XY距离过滤
+                xy_dist = np.sqrt(x**2 + y**2)
+                if xy_dist > self.max_xy_dist:
+                    rospy.logdebug(f"过滤点: XY距离={xy_dist:.3f}m > {self.max_xy_dist}m")
+                    continue
+                
+                filtered_points.append(point_3d)
+                if len(colors) > 0:
+                    filtered_colors.append(colors[i] if i < len(colors) else [255, 255, 255])
+            
+            if not filtered_points:
+                rospy.logwarn("所有3D点都被过滤")
+                return
+            
+            points_3d = np.array(filtered_points)
+            if len(filtered_colors) > 0:
+                colors = np.array(filtered_colors)
+            else:
+                colors = None
+            
+            # 创建3D抓取检测消息
+            grasps_3d_msg = GraspDetectionArray3D()
+            grasps_3d_msg.header.stamp = rospy.Time.now()
+            grasps_3d_msg.header.frame_id = "base_link"
+            
+            # 转换2D抓取到3D（只处理有效检测）
+            point_idx = 0
+            for det_idx in valid_detection_indices:
+                detection = self.latest_grasps_2d.detections[det_idx]
+                detection_3d = GraspDetection3D()
+                detection_3d.bbox_2d = detection.bbox
+                detection_3d.score = detection.score
+                
+                for j, grasp_2d in enumerate(detection.grasp_poses):
+                    if point_idx < len(points_3d):
+                        grasp_3d = GraspPose3D()
+                        
+                        # 3D位置
+                        point_3d = points_3d[point_idx]
+                        point_idx += 1
+                        grasp_3d.position.x = point_3d[0]
+                        grasp_3d.position.y = point_3d[1] 
+                        grasp_3d.position.z = point_3d[2]
+                        
+                        # 姿态 (简化处理)
+                        grasp_3d.orientation.w = 1.0
+                        
+                        # 抓取参数
+                        grasp_3d.width = grasp_2d.width / 1000.0  # 转换为米
+                        grasp_3d.confidence = grasp_2d.confidence
+                        
+                        # 接触点 - touching_points在detection级别，不在grasp级别
+                        # 简化处理：不处理touching_points
+                        
+                        detection_3d.grasp_poses_3d.append(grasp_3d)
+                
+                grasps_3d_msg.detections.append(detection_3d)
+            
+            # 发布3D抓取检测
+            self.pub_grasps_3d.publish(grasps_3d_msg)
+            
+            # 发布点云用于可视化
+            if self.enable_color and colors is not None:
+                pointcloud_msg = self.depth_projector.create_colored_pointcloud2_msg(
+                    points_3d, colors, "base_link", rospy.Time.now()
+                )
+            else:
+                pointcloud_msg = self.depth_projector.create_pointcloud2_msg(
+                    points_3d, "base_link", rospy.Time.now()
+                )
+            
+            self.pub_pointcloud.publish(pointcloud_msg)
+            
+            rospy.loginfo(f"✅ 处理了 {len(points_3d)} 个3D抓取点 ({self.projection_method}方法)")
+            rospy.loginfo(f"  发布了 {len(grasps_3d_msg.detections)} 个有效检测")
+            
+            # 显示3D位置统计
+            if len(points_3d) > 0:
+                z_values = [p[2] for p in points_3d]
+                rospy.loginfo(f"  Z高度: min={min(z_values):.3f}m, max={max(z_values):.3f}m, avg={sum(z_values)/len(z_values):.3f}m")
             
         except Exception as e:
-            rospy.logerr(f"Processing error: {e}")
-    
-    def convert_to_3d(self, detection, depth_image):
-        """Convert 2D detection to 3D"""
-        grasp3d = GraspDetection3D()
-        
-        # Copy 2D info
-        grasp3d.bbox_2d = detection.bbox
-        grasp3d.score = detection.score
-        grasp3d.rle = detection.rle
-        grasp3d.mask = detection.mask
-        grasp3d.reid_feature = detection.reid_feature
-        
-        # Get object center from bbox
-        x1, y1, x2, y2 = detection.bbox
-        cx_2d = int((x1 + x2) / 2)
-        cy_2d = int((y1 + y2) / 2)
-        
-        # Bounds check
-        if cx_2d < 0 or cx_2d >= depth_image.shape[1] or cy_2d < 0 or cy_2d >= depth_image.shape[0]:
-            return None
-        
-        # Sample depth in region (handle noise)
-        roi_size = 5
-        y_min = max(0, cy_2d - roi_size)
-        y_max = min(depth_image.shape[0], cy_2d + roi_size)
-        x_min = max(0, cx_2d - roi_size)
-        x_max = min(depth_image.shape[1], cx_2d + roi_size)
-        
-        depth_roi = depth_image[y_min:y_max, x_min:x_max]
-        valid_depths = depth_roi[depth_roi > 0.1]  # Filter invalid depths
-        
-        if len(valid_depths) == 0:
-            rospy.logwarn(f"No valid depth for object at ({cx_2d}, {cy_2d})")
-            return None
-        
-        # Use median for robustness
-        depth = np.median(valid_depths)
-        
-        # Project to 3D
-        x_3d = (cx_2d - self.cx) * depth / self.fx
-        y_3d = (cy_2d - self.cy) * depth / self.fy
-        z_3d = depth
-        
-        grasp3d.center_3d = Point(x=x_3d, y=y_3d, z=z_3d)
-        
-        # Calculate 3D bbox (simple approach)
-        width_pixels = x2 - x1
-        height_pixels = y2 - y1
-        
-        width_3d = width_pixels * depth / self.fx
-        height_3d = height_pixels * depth / self.fy
-        depth_3d = width_3d * 0.3  # Heuristic: depth proportional to width
-        
-        grasp3d.dimensions = Point(x=width_3d, y=height_3d, z=depth_3d)
-        
-        # Convert 2D grasp poses to 3D
-        for grasp_2d in detection.grasp_poses:
-            grasp_3d = self.grasp_2d_to_3d(grasp_2d, depth_image)
-            if grasp_3d is not None:
-                grasp3d.grasp_poses_3d.append(grasp_3d)
-        
-        # Convert touching points to 3D
-        for tp in detection.touching_points:
-            tp1_3d = self.point_2d_to_3d(tp.point1.x, tp.point1.y, depth_image)
-            tp2_3d = self.point_2d_to_3d(tp.point2.x, tp.point2.y, depth_image)
-            
-            if tp1_3d and tp2_3d:
-                tp3d = TouchingPoint3D()
-                tp3d.point1 = tp1_3d
-                tp3d.point2 = tp2_3d
-                grasp3d.touching_points_3d.append(tp3d)
-        
-        return grasp3d
-    
-    def grasp_2d_to_3d(self, grasp_2d, depth_image):
-        """Convert 2D grasp pose to 3D pose"""
-        grasp_3d = GraspPose3D()
-        
-        # Get depth at grasp center
-        cx = int(grasp_2d.x)
-        cy = int(grasp_2d.y)
-        
-        if cx < 0 or cx >= depth_image.shape[1] or cy < 0 or cy >= depth_image.shape[0]:
-            return None
-        
-        depth = depth_image[cy, cx]
-        if depth < 0.1:  # Invalid depth
-            return None
-        
-        # 3D position
-        x_3d = (cx - self.cx) * depth / self.fx
-        y_3d = (cy - self.cy) * depth / self.fy
-        z_3d = depth
-        
-        grasp_3d.position = Point(x=x_3d, y=y_3d, z=z_3d)
-        
-        # Gripper orientation from 2D angle
-        theta = grasp_2d.theta
-        q = tf_trans.quaternion_from_euler(0, np.pi/4, theta)  # 45-degree approach
-        grasp_3d.orientation = Quaternion(x=q[0], y=q[1], z=q[2], w=q[3])
-        
-        # Gripper width in 3D
-        grasp_3d.width = grasp_2d.width * depth / self.fx
-        grasp_3d.confidence = grasp_2d.confidence
-        
-        return grasp_3d
-    
-    def point_2d_to_3d(self, x_2d, y_2d, depth_image):
-        """Project 2D point to 3D"""
-        x, y = int(x_2d), int(y_2d)
-        
-        if x < 0 or x >= depth_image.shape[1] or y < 0 or y >= depth_image.shape[0]:
-            return None
-        
-        depth = depth_image[y, x]
-        if depth < 0.1:
-            return None
-        
-        x_3d = (x - self.cx) * depth / self.fx
-        y_3d = (y - self.cy) * depth / self.fy
-        z_3d = depth
-        
-        return Point(x=x_3d, y=y_3d, z=z_3d)
-
+            rospy.logerr(f"❌ 3D抓取处理失败: {e}")
+            import traceback
+            traceback.print_exc()
 
 def main():
     try:
-        processor = DepthGraspProcessorV2()
+        processor = DualProjectionGraspProcessor()
         rospy.spin()
     except rospy.ROSInterruptException:
-        pass
-
+        rospy.loginfo("3D抓取处理器已停止")
+    except Exception as e:
+        rospy.logerr(f"3D抓取处理器异常: {e}")
 
 if __name__ == '__main__':
     main()

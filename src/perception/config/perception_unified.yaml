@@ -1,0 +1,241 @@
+# 统一感知节点配置文件
+# 支持多相机、多检测API、多TF链路的可配置架构
+
+# 相机配置
+cameras:
+  hand:
+    topics:
+      color: "/camera/hand/color/image_raw"
+      depth: "/camera/hand/depth/image_rect_raw" 
+      info: "/camera/hand/depth/camera_info"
+    intrinsics_source: "realsense"  # realsense, calibration
+    enabled: true
+  
+  chassis:
+    topics:
+      color: "/camera/chassis/color/image_raw"
+      depth: "/camera/chassis/depth/image_rect_raw"
+      info: "/camera/chassis/depth/camera_info" 
+    intrinsics_source: "calibration"
+    enabled: false  # 默认禁用，按需启用
+    
+  top:
+    topics:
+      color: "/camera/top/color/image_raw"
+      depth: "/camera/top/depth/image_rect_raw"
+      info: "/camera/top/depth/camera_info"
+    intrinsics_source: "realsense"
+    enabled: false  # 默认禁用，按需启用
+
+# 检测API配置
+detection_apis:
+  grasp_anything:
+    endpoint: "/home/agilex/MobileManipulator/src/perception/scripts/server_grasp.json"
+    model_name: "full"
+    rate_hz: 0.25
+    use_touching_points: true
+    visualize: true
+    enabled: true
+    
+  referring_dino:
+    endpoint: "http://localhost:5000/referring"  # 已弃用，现使用DDS云API
+    model_name: "dino"
+    rate_hz: 0.25
+    visualize: true
+    default_query: "物体"  # 默认查询文本，可以是"水瓶", "纸巾", "物体"等
+    enabled: false  # 可按需启用
+
+# 投影方法配置
+projection_methods:
+  urdf:
+    config_path: ""  # 使用RealSense默认内参
+    
+  calibration:
+    config_path: "/home/agilex/MobileManipulator/src/robot_drivers/camera_driver/config"
+
+# 流水线配置：相机-检测-投影的组合
+pipelines:
+  # 手部相机抓取检测（URDF方法）
+  hand_grasp_urdf:
+    camera: "hand"
+    detector: "grasp_anything" 
+    projector: "urdf"
+    enabled: true
+    filters:
+      min_depth_mm: 200
+      max_depth_mm: 2000
+      min_z_height_m: -0.3
+      max_z_height_m: 1.5
+      max_xy_dist_m: 1.5
+      min_score: 0.3
+    outputs:
+      detections_2d: "/perception/hand/grasps"
+      detections_3d: "/perception/hand/grasps_3d"
+      pointcloud: "/perception/hand/grasp_points"
+      vis_image: "/perception/hand/vis_image"
+      vis_compressed: "/perception/hand/vis_image/compressed"
+  
+  # 手部相机抓取检测（标定方法） - 可选
+  hand_grasp_calib:
+    camera: "hand"
+    detector: "grasp_anything"
+    projector: "calibration"
+    filters:
+      min_depth_mm: 200
+      max_depth_mm: 2000
+      min_z_height_m: -0.3
+      max_z_height_m: 1.5
+      max_xy_dist_m: 1.5
+      min_score: 0.3
+    outputs:
+      detections_2d: "/perception/hand/grasps"
+      detections_3d: "/perception/hand/grasps_3d"
+      pointcloud: "/perception/hand/grasp_points"
+      vis_image: "/perception/hand/vis_image"
+      vis_compressed: "/perception/hand/vis_image/compressed"
+    enabled: false
+
+  # 底盘相机抓取检测（标定方法） - 可选
+  chassis_grasp_calib:
+    camera: "chassis"
+    detector: "grasp_anything"
+    projector: "calibration"
+    filters:
+      min_depth_mm: 300
+      max_depth_mm: 3000
+      min_z_height_m: -0.5
+      max_z_height_m: 2.0
+      max_xy_dist_m: 2.0
+      min_score: 0.4
+    outputs:
+      detections_2d: "/perception/chassis/grasps"
+      detections_3d: "/perception/chassis/grasps_3d"
+      pointcloud: "/perception/chassis/grasp_points"
+    enabled: false
+  
+  # 顶部相机抓取检测 - 可选
+  top_grasp_urdf:
+    camera: "top"
+    detector: "grasp_anything"
+    projector: "urdf"
+    filters:
+      min_depth_mm: 500
+      max_depth_mm: 5000
+      min_z_height_m: -1.0
+      max_z_height_m: 3.0
+      max_xy_dist_m: 3.0
+      min_score: 0.3
+    outputs:
+      detections_2d: "/perception/top/grasps"
+      detections_3d: "/perception/top/grasps_3d"
+      pointcloud: "/perception/top/grasp_points"
+    enabled: false
+
+  # 手部相机Referring检测（URDF方法） - 可选
+  hand_refer_urdf:
+    camera: "hand"
+    detector: "referring_dino"
+    projector: "urdf"
+    filters:
+      min_depth_mm: 200
+      max_depth_mm: 2000
+      min_z_height_m: -0.3
+      max_z_height_m: 1.5
+      max_xy_dist_m: 1.5
+      min_score: 0.2
+    outputs:
+      detections_2d: "/perception/hand/referring"
+      detections_3d: "/perception/hand/referring_3d"
+      pointcloud: "/perception/hand/referring_points"
+      vis_image: "/perception/hand/referring_vis"
+    enabled: false
+
+  # 手部相机Referring检测（标定方法） - 可选
+  hand_refer_calib:
+    camera: "hand"
+    detector: "referring_dino"
+    projector: "calibration"
+    filters:
+      min_depth_mm: 200
+      max_depth_mm: 2000
+      min_z_height_m: -0.3
+      max_z_height_m: 1.5
+      max_xy_dist_m: 1.5
+      min_score: 0.2
+    outputs:
+      detections_2d: "/perception/hand/referring"
+      detections_3d: "/perception/hand/referring_3d"
+      pointcloud: "/perception/hand/referring_points"
+      vis_image: "/perception/hand/referring_vis"
+    enabled: false
+
+  # 底盘相机Referring检测（标定方法） - 可选
+  chassis_refer_calib:
+    camera: "chassis"
+    detector: "referring_dino"
+    projector: "calibration"
+    filters:
+      min_depth_mm: 300
+      max_depth_mm: 3000
+      min_z_height_m: -0.5
+      max_z_height_m: 2.0
+      max_xy_dist_m: 2.0
+      min_score: 0.2
+    outputs:
+      detections_2d: "/perception/chassis/referring"
+      detections_3d: "/perception/chassis/referring_3d"
+      pointcloud: "/perception/chassis/referring_points"
+    enabled: false
+
+  # 顶部相机Referring检测（URDF方法） - 可选
+  top_refer_urdf:
+    camera: "top"
+    detector: "referring_dino"
+    projector: "urdf"
+    filters:
+      min_depth_mm: 500
+      max_depth_mm: 5000
+      min_z_height_m: -1.0
+      max_z_height_m: 3.0
+      max_xy_dist_m: 3.0
+      min_score: 0.2
+    outputs:
+      detections_2d: "/perception/top/referring"
+      detections_3d: "/perception/top/referring_3d"
+      pointcloud: "/perception/top/referring_points"
+    enabled: false
+
+  # 顶部相机Referring检测（标定方法） - 可选
+  top_refer_calib:
+    camera: "top"
+    detector: "referring_dino"
+    projector: "calibration"
+    filters:
+      min_depth_mm: 500
+      max_depth_mm: 5000
+      min_z_height_m: -1.0
+      max_z_height_m: 3.0
+      max_xy_dist_m: 3.0
+      min_score: 0.2
+    outputs:
+      detections_2d: "/perception/top/referring"
+      detections_3d: "/perception/top/referring_3d"
+      pointcloud: "/perception/top/referring_points"
+    enabled: false
+
+# 全局设置
+global_settings:
+  # 深度图像缩放比例
+  depth_scale: 1000.0
+  
+  # 图像缓存设置
+  image_buffer_size: 2
+  
+  # 时间同步容差（秒）
+  sync_tolerance: 0.1
+  
+  # 调试模式
+  debug_mode: true
+  
+  # 线程数量
+  max_worker_threads: 4

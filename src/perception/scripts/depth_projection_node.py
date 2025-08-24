@@ -52,6 +52,9 @@ class DepthProjectionNode:
         # 是否启用颜色
         self.enable_color = rospy.get_param('~enable_color', True)
         
+        # 投影方法
+        self.projection_method = rospy.get_param('~projection_method', 'urdf')
+        
         self.bridge = CvBridge()
         
         # 初始化投影管理器
@@ -61,7 +64,7 @@ class DepthProjectionNode:
         if self.enable_hand: enabled_cameras.append('hand_camera')
         
         try:
-            self.manager = DepthProjectionManager(enabled_cameras)
+            self.manager = DepthProjectionManager(enabled_cameras, projection_method=self.projection_method)
             rospy.loginfo(f"Initialized depth projection for cameras: {enabled_cameras}")
         except Exception as e:
             rospy.logerr(f"Failed to initialize DepthProjectionManager: {e}")
@@ -319,12 +322,13 @@ class SingleCameraProjectionNode:
         self.depth_scale = rospy.get_param('~depth_scale', 1000.0)
         self.depth_topic = rospy.get_param('~depth_topic', f'/{camera_name}/depth/image_raw')
         self.output_topic = rospy.get_param('~output_topic', f'/projected_cloud/{camera_name}')
+        self.projection_method = rospy.get_param('~projection_method', 'urdf')
         
         self.bridge = CvBridge()
         
         # 初始化投影器
         try:
-            self.projector = CameraDepthProjector(camera_name)
+            self.projector = CameraDepthProjector(camera_name, projection_method=self.projection_method)
             rospy.loginfo(f"Initialized projector for {camera_name}")
         except Exception as e:
             rospy.logerr(f"Failed to initialize projector: {e}")

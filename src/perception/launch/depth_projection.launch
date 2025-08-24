@@ -2,9 +2,9 @@
 <launch>
 
   <!-- 参数配置 -->
-  <arg name="enable_chassis_camera" default="true" doc="启用底盘相机深度投影"/>
-  <arg name="enable_top_camera" default="true" doc="启用顶部相机深度投影"/>
-  <arg name="enable_hand_camera" default="false" doc="启用手部相机深度投影 (需要TF)"/>
+  <arg name="chassis_enable" default="true" doc="启用底盘相机深度投影"/>
+  <arg name="top_enable" default="true" doc="启用顶部相机深度投影"/>
+  <arg name="hand_enable" default="false" doc="启用手部相机深度投影 (需要TF)"/>
   <arg name="publish_combined" default="true" doc="发布合并点云"/>
   <arg name="projection_method" default="urdf" doc="投影方法: urdf, calibration, compare"/>
   
@@ -33,9 +33,9 @@
   
   <!-- 多相机深度投影节点 -->
   <node name="depth_projection_node" pkg="perception" type="depth_projection_node.py" output="screen">
-    <param name="enable_chassis_camera" value="$(arg enable_chassis_camera)"/>
-    <param name="enable_top_camera" value="$(arg enable_top_camera)"/>
-    <param name="enable_hand_camera" value="$(arg enable_hand_camera)"/>
+    <param name="enable_chassis_camera" value="$(arg chassis_enable)"/>
+    <param name="enable_top_camera" value="$(arg top_enable)"/>
+    <param name="enable_hand_camera" value="$(arg hand_enable)"/>
     <param name="publish_combined_cloud" value="$(arg publish_combined)"/>
     
     <!-- 深度缩放参数 -->
@@ -60,7 +60,22 @@
     <param name="projection_method" value="$(arg projection_method)"/>
   </node>
   
-  <!-- 相机TF由camera_driver.launch自动发布，无需重复 -->
+  <!-- 标定TF发布器 - calibration模式需要 -->
+  <node name="camera_tf_publisher" pkg="camera_driver" type="camera_tf_publisher.py" output="screen" if="$(eval projection_method == 'calibration' or projection_method == 'compare')">
+    <param name="config_path" value="$(find camera_driver)/config"/>
+    <param name="publish_rate" value="30.0"/>
+  </node>
+
+  <!-- URDF模式的简单TF连接 - 临时解决方案 -->
+  <group if="$(eval projection_method == 'urdf')">
+    <!-- 这些是临时的静态TF，应该由proper URDF定义 -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_chassis_camera"
+          args="0 0 0 0 0 0 base_link camera/chassis_depth_optical_frame" if="$(arg chassis_enable)"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_top_camera"
+          args="0 0 1.5 0 0 0 base_link camera/top_depth_optical_frame" if="$(arg top_enable)"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_hand_camera"
+          args="0.5 0 0.8 0 0 0 base_link camera/hand_depth_optical_frame" if="$(arg hand_enable)"/>
+  </group>
   
   <!-- 机器人模型加载 -->
   <group if="$(arg load_robot_description)">
