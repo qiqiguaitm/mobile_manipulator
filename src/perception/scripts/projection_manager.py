@@ -10,7 +10,9 @@ import sys
 import os
 from sensor_msgs.msg import PointCloud2
 from perception.msg import (GraspDetectionArray3D, GraspDetection3D, 
-                           GraspPose3D, TouchingPoint3D)
+                           GraspPose3D, TouchingPoint3D,
+                           ObjectDetectionArray, ObjectDetection,
+                           ObjectDetectionArray3D, ObjectDetection3D)
 from geometry_msgs.msg import Point
 import struct
 
@@ -60,20 +62,24 @@ class FilterManager:
         
         # 3. 合并所有过滤条件
         final_mask = z_mask & xy_mask
-        filtered_points = points_3d[final_mask]
+        filtered_indices = np.where(final_mask)[0]  # 返回有效点的索引
         
-        final_count = len(filtered_points)
+        final_count = len(filtered_indices)
         filtered_count = initial_count - final_count
         
         if debug and filtered_count > 0:
             rospy.loginfo(f"总过滤: {initial_count} -> {final_count} ({filtered_count} 点被移除)")
         
-        return filtered_points.tolist()
+        return filtered_indices.tolist()
     
     def get_filter_stats(self, points_3d):
         """获取点云统计信息"""
-        if not points_3d:
-            return {}
+        try:
+            if points_3d is None or len(points_3d) == 0:
+                return {}
+        except TypeError:
+            if points_3d is None:
+                return {}
         
         points_array = np.array(points_3d)
         
@@ -96,14 +102,24 @@ class PointCloudGenerator:
     
     def create_pointcloud2_msg(self, points_3d, colors=None, frame_id="base_link", timestamp=None):
         """创建PointCloud2消息"""
-        if not points_3d:
-            # 返回空点云
-            empty_cloud = PointCloud2()
-            empty_cloud.header.frame_id = frame_id
-            empty_cloud.header.stamp = timestamp or rospy.Time.now()
-            empty_cloud.height = 1
-            empty_cloud.width = 0
-            return empty_cloud
+        try:
+            if points_3d is None or len(points_3d) == 0:
+                # 返回空点云
+                empty_cloud = PointCloud2()
+                empty_cloud.header.frame_id = frame_id
+                empty_cloud.header.stamp = timestamp or rospy.Time.now()
+                empty_cloud.height = 1
+                empty_cloud.width = 0
+                return empty_cloud
+        except TypeError:
+            if points_3d is None:
+                # 返回空点云
+                empty_cloud = PointCloud2()
+                empty_cloud.header.frame_id = frame_id
+                empty_cloud.header.stamp = timestamp or rospy.Time.now()
+                empty_cloud.height = 1
+                empty_cloud.width = 0
+                return empty_cloud
         
         points_array = np.array(points_3d)
         num_points = len(points_array)
@@ -117,14 +133,15 @@ class PointCloudGenerator:
         
         # 点云数据结构
         if colors is not None and len(colors) == num_points:
+            from sensor_msgs.msg import PointField
             # 带颜色的点云 (XYZRGB)
             cloud_msg.fields = [
                 # XYZ
-                {'name': 'x', 'offset': 0, 'datatype': 7, 'count': 1},   # FLOAT32
-                {'name': 'y', 'offset': 4, 'datatype': 7, 'count': 1},
-                {'name': 'z', 'offset': 8, 'datatype': 7, 'count': 1},
+                PointField(name='x', offset=0, datatype=PointField.FLOAT32, count=1),
+                PointField(name='y', offset=4, datatype=PointField.FLOAT32, count=1),
+                PointField(name='z', offset=8, datatype=PointField.FLOAT32, count=1),
                 # RGB
-                {'name': 'rgb', 'offset': 12, 'datatype': 7, 'count': 1}
+                PointField(name='rgb', offset=12, datatype=PointField.FLOAT32, count=1)
             ]
             cloud_msg.point_step = 16  # 4 bytes * 4 fields
             
@@ -147,11 +164,12 @@ class PointCloudGenerator:
                 point_data.append(struct.pack('ffff', x, y, z, rgb_packed))
                 
         else:
+            from sensor_msgs.msg import PointField
             # 纯XYZ点云
             cloud_msg.fields = [
-                {'name': 'x', 'offset': 0, 'datatype': 7, 'count': 1},
-                {'name': 'y', 'offset': 4, 'datatype': 7, 'count': 1}, 
-                {'name': 'z', 'offset': 8, 'datatype': 7, 'count': 1}
+                PointField(name='x', offset=0, datatype=PointField.FLOAT32, count=1),
+                PointField(name='y', offset=4, datatype=PointField.FLOAT32, count=1),
+                PointField(name='z', offset=8, datatype=PointField.FLOAT32, count=1)
             ]
             cloud_msg.point_step = 12  # 4 bytes * 3 fields
             
@@ -243,11 +261,141 @@ class DepthProjector:
         
         return np.array(filled_depths)
     
+    def _filter_3d_points(self, points_3d, filters):
+        """使用FilterManager对3D点进行过滤，返回有效点的索引"""
+        if points_3d is None or len(points_3d) == 0:
+            return []
+        
+        # 使用FilterManager进行过滤
+        return self.filter_manager.apply_filters(points_3d, filters, debug=False)
+    
     def project_detections_to_3d(self, detections_2d, depth_image, filters, enable_color=False, color_image=None):
         """将2D检测投影到3D空间"""
         if not detections_2d.detections:
             return None
         
+        # 判断消息类型
+        if isinstance(detections_2d, ObjectDetectionArray):
+            return self._project_object_detections_to_3d(detections_2d, depth_image, filters, enable_color, color_image)
+        else:
+            return self._project_grasp_detections_to_3d(detections_2d, depth_image, filters, enable_color, color_image)
+    
+    def _project_object_detections_to_3d(self, detections_2d, depth_image, filters, enable_color, color_image):
+        """将ObjectDetection投影到3D空间"""
+        try:
+            # 创建3D检测结果
+            detections_3d = ObjectDetectionArray3D()
+            detections_3d.header = detections_2d.header
+            
+            # 提取边界框中心点进行投影
+            center_points_2d = []
+            for det in detections_2d.detections:
+                # bbox格式: [x1, y1, x2, y2]
+                center_x = int((det.bbox[0] + det.bbox[2]) / 2)
+                center_y = int((det.bbox[1] + det.bbox[3]) / 2)
+                center_points_2d.append([center_x, center_y])
+            
+            # 获取深度值
+            valid_points = []
+            valid_indices = []
+            depths_raw = []
+            
+            min_depth = filters.get('min_depth_mm', 200)
+            max_depth = filters.get('max_depth_mm', 2000)
+            
+            for i, (u, v) in enumerate(center_points_2d):
+                if 0 <= u < depth_image.shape[1] and 0 <= v < depth_image.shape[0]:
+                    depth_value = depth_image[v, u]
+                    
+                    # 深度填补
+                    if depth_value == 0:
+                        filled_depth = self.fill_depth_holes([(u, v)], depth_image)[0]
+                        if filled_depth > 0:
+                            depth_value = filled_depth
+                    
+                    # 深度范围过滤
+                    if min_depth <= depth_value <= max_depth:
+                        depths_raw.append(depth_value)
+                        valid_points.append([u, v])
+                        valid_indices.append(i)
+            
+            if len(valid_points) == 0:
+                rospy.logwarn("所有对象的深度值无效")
+                return None
+            
+            # 投影到3D
+            valid_points = np.array(valid_points)
+            depths_m = np.array(depths_raw) / 1000.0  # 转换为米
+            
+            points_3d = self.core_projector.project_depth_to_3d(
+                valid_points, depths_m
+            )
+            
+            # 3D空间过滤
+            filtered_indices = self._filter_3d_points(points_3d, filters)
+            
+            # 创建3D检测消息
+            for idx in filtered_indices:
+                det_idx = valid_indices[idx]
+                detection_2d = detections_2d.detections[det_idx]
+                detection_3d = ObjectDetection3D()
+                
+                # 复制2D信息
+                detection_3d.bbox_2d = detection_2d.bbox
+                detection_3d.confidence = detection_2d.confidence
+                detection_3d.label = detection_2d.label
+                
+                # 3D中心点
+                detection_3d.center_3d = Point()
+                detection_3d.center_3d.x = points_3d[idx][0]
+                detection_3d.center_3d.y = points_3d[idx][1]
+                detection_3d.center_3d.z = points_3d[idx][2]
+                
+                # 估算3D尺寸（基于深度和2D边界框）
+                bbox_width_2d = detection_2d.bbox[2] - detection_2d.bbox[0]
+                bbox_height_2d = detection_2d.bbox[3] - detection_2d.bbox[1]
+                depth_m = depths_raw[idx] / 1000.0
+                
+                # 使用相机内参估算实际尺寸
+                fx = self.core_projector.fx
+                fy = self.core_projector.fy
+                
+                detection_3d.dimensions = Point()
+                detection_3d.dimensions.x = (bbox_width_2d * depth_m) / fx
+                detection_3d.dimensions.y = (bbox_height_2d * depth_m) / fy
+                detection_3d.dimensions.z = 0.1  # 默认深度10cm
+                
+                detections_3d.detections.append(detection_3d)
+            
+            rospy.loginfo(f"ObjectDetection 3D投影: {len(detections_2d.detections)} -> {len(detections_3d.detections)} 个对象")
+            
+            # 计算Z范围统计
+            z_values = []
+            for detection in detections_3d.detections:
+                z_values.append(detection.center_3d.z)
+            
+            z_range = [min(z_values), max(z_values)] if z_values else [0.0, 0.0]
+            
+            return {
+                'detections_3d': detections_3d,
+                'pointcloud': None,  # ObjectDetection不生成点云
+                'stats': {
+                    'total_detections': len(detections_2d.detections),
+                    'successful_projections': len(detections_3d.detections),
+                    'filter_ratio': len(detections_3d.detections) / max(1, len(detections_2d.detections)),
+                    'z_range': z_range
+                },
+                'num_points': 0  # ObjectDetection没有点云点数
+            }
+            
+        except Exception as e:
+            rospy.logerr(f"ObjectDetection 3D投影处理失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+    
+    def _project_grasp_detections_to_3d(self, detections_2d, depth_image, filters, enable_color, color_image):
+        """将GraspDetection投影到3D空间（原有逻辑）"""
         try:
             # 1. 提取2D抓取点
             grasp_points_2d, det_indices, grasp_indices = self.extract_grasp_points_2d(detections_2d)
@@ -299,13 +447,20 @@ class DepthProjector:
                 return None
             
             # 4. 3D空间过滤
-            filtered_points = self.filter_manager.apply_filters(
+            filtered_indices = self.filter_manager.apply_filters(
                 points_3d, filters, debug=True
             )
             
-            if not filtered_points:
+            if not filtered_indices:
                 rospy.logwarn("所有3D点都被过滤")
                 return None
+            
+            # 根据索引获取过滤后的3D点
+            filtered_points = points_3d[filtered_indices]
+            
+            # 同时调整检测和抓取索引
+            filtered_det_indices = [valid_det_indices[i] for i in filtered_indices]
+            filtered_grasp_indices = [valid_grasp_indices[i] for i in filtered_indices]
             
             # 5. 提取颜色信息（如果启用）
             colors = None
@@ -313,8 +468,11 @@ class DepthProjector:
                 colors = []
                 for i, (u, v) in enumerate(valid_points):
                     if i < len(filtered_points):  # 确保索引对应
-                        if 0 <= u < color_image.shape[1] and 0 <= v < color_image.shape[0]:
-                            color = color_image[v, u]  # BGR格式
+                        # 确保u,v是标量值
+                        u_val = int(u) if hasattr(u, '__len__') and len(u) == 1 else int(u)
+                        v_val = int(v) if hasattr(v, '__len__') and len(v) == 1 else int(v)
+                        if 0 <= u_val < color_image.shape[1] and 0 <= v_val < color_image.shape[0]:
+                            color = color_image[v_val, u_val]  # BGR格式
                             colors.append([color[2], color[1], color[0]])  # 转为RGB
                         else:
                             colors.append([255, 255, 255])  # 默认白色
@@ -323,7 +481,7 @@ class DepthProjector:
             
             # 6. 创建3D检测消息
             detections_3d = self._create_3d_detections(
-                detections_2d, filtered_points, valid_det_indices, valid_grasp_indices
+                detections_2d, filtered_points, filtered_det_indices, filtered_grasp_indices
             )
             
             # 7. 创建点云消息
@@ -373,16 +531,9 @@ class DepthProjector:
             detection_3d.bbox_2d = detection_2d.bbox
             detection_3d.score = detection_2d.score
             
-            # 添加缺失的属性以兼容可视化器
-            from geometry_msgs.msg import Point
-            detection_3d.bbox_3d = type('BBox3D', (), {})()  # 创建简单的bbox_3d对象
-            detection_3d.bbox_3d.corners = []  # 初始化为空corners列表
+            # 3D边界框信息已通过center_3d和dimensions字段提供
             
-            # 如果有检测名称，复制过来
-            if hasattr(detection_2d, 'name'):
-                detection_3d.name = detection_2d.name
-            else:
-                detection_3d.name = f"detection_{len(detections_3d_msg.detections)}"
+            # name字段在消息定义中不存在，跳过
             
             # 添加3D抓取姿态
             for point_idx, grasp_idx in point_list:
@@ -393,10 +544,18 @@ class DepthProjector:
                 grasp_3d = GraspPose3D()
                 
                 # 3D位置
+                if point_idx >= len(points_3d):
+                    rospy.logwarn(f"point_idx {point_idx} 超出 points_3d 范围 {len(points_3d)}")
+                    continue
+                    
                 point_3d = points_3d[point_idx]
-                grasp_3d.position.x = point_3d[0]
-                grasp_3d.position.y = point_3d[1]
-                grasp_3d.position.z = point_3d[2]
+                if not hasattr(point_3d, '__getitem__') or len(point_3d) < 3:
+                    rospy.logwarn(f"point_3d 不是有效的3D坐标: {point_3d}, type: {type(point_3d)}")
+                    continue
+                    
+                grasp_3d.position.x = float(point_3d[0])
+                grasp_3d.position.y = float(point_3d[1]) 
+                grasp_3d.position.z = float(point_3d[2])
                 
                 # 姿态（简化为单位四元数）
                 grasp_3d.orientation.w = 1.0

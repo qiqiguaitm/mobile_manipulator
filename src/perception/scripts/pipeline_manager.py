@@ -9,7 +9,8 @@ import threading
 import time
 import queue
 from sensor_msgs.msg import Image, PointCloud2, CompressedImage
-from perception.msg import GraspDetectionArray, GraspDetectionArray3D
+from perception.msg import (GraspDetectionArray, GraspDetectionArray3D,
+                           ObjectDetectionArray, ObjectDetectionArray3D)
 from cv_bridge import CvBridge
 import traceback
 
@@ -60,9 +61,21 @@ class PublisherSet:
     def publish_results(self, results):
         """发布所有结果"""
         try:
-            # 发布2D检测
-            if 'detections_2d' in results and 'detections_2d' in self.publishers:
-                self.publishers['detections_2d'].publish(results['detections_2d'])
+            # 发布2D检测 - 支持动态消息类型
+            if 'detections_2d' in results and results['detections_2d'] is not None:
+                data_obj = results['detections_2d']
+                
+                # 检查是否有发布者
+                if 'detections_2d' in self.publishers:
+                    try:
+                        self.publishers['detections_2d'].publish(data_obj)
+                    except Exception as type_error:
+                        # 类型不匹配，动态创建正确的发布者
+                        rospy.logwarn(f"🟡 消息类型不匹配: {type_error}")
+                        self._publish_with_correct_type(data_obj, 'detections_2d')
+                else:
+                    # 没有发布者，跳过
+                    rospy.logdebug("没有2D检测发布者")
             
             # 发布3D检测
             if 'detections_3d' in results and 'detections_3d' in self.publishers:
@@ -94,6 +107,35 @@ class PublisherSet:
             
         except Exception as e:
             rospy.logerr(f"发布结果失败: {e}")
+    
+    def _publish_with_correct_type(self, data_obj, topic_key):
+        """根据数据对象的类型动态发布"""
+        try:
+            if hasattr(data_obj, '_type'):
+                msg_type_str = data_obj._type
+                rospy.loginfo(f"🔧 检测到消息类型: {msg_type_str}")
+                
+                # 获取原始发布者的话题名
+                topic_name = self.publishers[topic_key].resolved_name
+                
+                # 根据类型创建临时发布者并发布
+                if 'ObjectDetectionArray' in msg_type_str:
+                    temp_pub = rospy.Publisher(topic_name, ObjectDetectionArray, queue_size=1)
+                    # 等待连接建立
+                    rospy.sleep(0.1)
+                    temp_pub.publish(data_obj)
+                    rospy.loginfo(f"✅ 使用ObjectDetectionArray发布成功")
+                elif 'GraspDetectionArray' in msg_type_str:
+                    temp_pub = rospy.Publisher(topic_name, GraspDetectionArray, queue_size=1)
+                    rospy.sleep(0.1)
+                    temp_pub.publish(data_obj)
+                    rospy.loginfo(f"✅ 使用GraspDetectionArray发布成功")
+                else:
+                    rospy.logwarn(f"🟡 未知的消息类型: {msg_type_str}")
+            else:
+                rospy.logwarn(f"🟡 数据对象没有_type属性: {type(data_obj)}")
+        except Exception as e:
+            rospy.logerr(f"🔴 动态发布失败: {e}")
 
 
 class PipelineExecutor:
